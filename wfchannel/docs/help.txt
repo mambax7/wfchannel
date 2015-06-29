@@ -1,0 +1,19 @@
+[b]WF-Channel Help File[/b]
+
+[i]What is WF-Channel?[/i]
+
+Unlike many other content management tools written for Xoops, WF-Channel is in many respects just a method of putting up
+content very quickly and not a full blown article management system. WF-Channel allows you to put up content when and where
+you want it, without having to worry about anything else.
+
+[b]WF-Channel Menu[/b]
+
+[b]Page Management[/b]
+
+[b]Refer Management[/b]
+
+[b]Link Management[/b]
+
+[b]Permission Management[/b]
+
+[b]Upload Management[/b]

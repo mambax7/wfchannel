@@ -1,0 +1,19 @@
+=> version 1.0.7
+================
+
+  - Adding Full Security To Wf-channel see http://www.wf-projects.com/modules/ipboard/index.php?showtopic=591
+  - Bug fixed "Disable Comments" see http://www.wf-projects.com/modules/ipboard/index.php?showtopic=258
+  - Bug fixed "Admin section - rename menu"
+  - Bug fixed "WF-C 1.06 text formatting bug" see http://www.wf-projects.com/modules/ipboard/index.php?showtopic=315
+  - Bug fixed "backendjs.php" see http://www.wf-projects.com/modules/ipboard/index.php?showtopic=315
+  - Bug fixed "Page Menu Link Not Displayed On Link/refer Pages" ( also Templates fixed) 
+  - Change Page Menu Link to a function.
+  - Add define("_MD_NORIGHTTOVIEWPAGE","You do not have permission to view this page"); to main.php 
+  - Change in xoops_version.php variable $modversion['dirname'] not used now (
+   $xoopsModule = &$modhandler->getByDirname($modversion['dirname']);  )
+  - Now 100% ML hack ( marcan ) compatible, so it is recommanded not to use the index.php for wfchannel from the ML package
+  - modify link to wfsections2.com in wfchannel admin menu : Help Section, Report a bug section to wf-project site 
+  - Add [pagebreak] tag
+  -Bug fixed "Some wrong links in the language files and the upgrade.php"
+  -Bug fixed "Refer a friend admin parameters : seems that mail default message is not taken into account in mail."> 
+  
