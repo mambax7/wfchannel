@@ -1,7 +1,7 @@
-#Weblog
+#WF-Channel
 [![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](LICENSE) 
 
-WF-Channel is a module to display Misc pages on your website. This module is not a replacement for a content module, 
+WF-Channel is a XOOPS module to display Misc pages on your website. This module is not a replacement for a content module, 
 though it could be easily used as such if required.
 
 WF-Channel can also display a 'Link to Us' and 'Refer' pages.
