@@ -8,37 +8,35 @@
  * Licence: GNU
  */
 
-include("admin_header.php");
+include 'admin_header.php';
 
 $op = "";
 
-if (isset($HTTP_POST_VARS))
-{
-    foreach ($HTTP_POST_VARS as $k => $v)
-    {
+if (isset($HTTP_POST_VARS)) {
+    foreach ($HTTP_POST_VARS as $k => $v) {
         ${$k} = $v;
     }
 }
 
-if (isset($HTTP_GET_VARS))
-{
-    foreach ($HTTP_GET_VARS as $k => $v)
-    {
+if (isset($HTTP_GET_VARS)) {
+    foreach ($HTTP_GET_VARS as $k => $v) {
         ${$k} = $v;
     }
 }
 
-if (isset($HTTP_GET_VARS['op'])) $op = $HTTP_GET_VARS['op'];
-if (isset($HTTP_POST_VARS['op'])) $op = $HTTP_POST_VARS['op'];
+if (isset($HTTP_GET_VARS['op'])) {
+    $op = $HTTP_GET_VARS['op'];
+}
+if (isset($HTTP_POST_VARS['op'])) {
+    $op = $HTTP_POST_VARS['op'];
+}
 
-switch ($op)
-{
+switch ($op) {
     case "reorder":
 
         global $orders, $cat;
 
-        for ($i = 0; $i < count($orders); $i++)
-        {
+        for ($i = 0; $i < count($orders); ++$i) {
             $xoopsDB->queryF("update " . $xoopsDB->prefix("wfschannel") . " set weight = " . $orders[$i] . " WHERE CID=$cat[$i]");
         }
         redirect_header("reorder.php", 1, _AM_REORDERCHANNEL);
@@ -55,9 +53,9 @@ switch ($op)
         wfc_adminmenu(_AM_CHANADMIN);
 
         $orders = array();
-        $cat = array();
+        $cat    = array();
 
-       	echo "<fieldset><legend style='font-weight: bold; color: #900;'>" . _AM_REORDERADMIN . "</legend>";
+        echo "<fieldset><legend style='font-weight: bold; color: #900;'>" . _AM_REORDERADMIN . "</legend>";
         echo "<div style='padding: 8px;'>" . _AM_REORDERINTRO . "</div>";
 
         echo "<form name='reorder' METHOD='post'>";
@@ -69,8 +67,7 @@ switch ($op)
         echo "</td></tr>";
 
         $result = $xoopsDB->query("SELECT CID, pagetitle, weight FROM " . $xoopsDB->prefix("wfschannel") . " ORDER BY weight");
-        while ($myrow = $xoopsDB->fetchArray($result))
-        {
+        while ($myrow = $xoopsDB->fetchArray($result)) {
             echo "<tr>";
             echo "<td align='center' class = head>" . $myrow['CID'] . "</td>";
             echo "<input type='hidden' name='cat[]' value='" . $myrow['CID'] . "' />";
@@ -88,8 +85,6 @@ switch ($op)
         echo "</table>";
         echo "</form>";
         echo "</fieldset>";
-		break;
+        break;
 }
 xoops_cp_footer();
-
-?>

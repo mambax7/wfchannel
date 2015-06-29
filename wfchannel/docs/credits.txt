@@ -1,0 +1,24 @@
+Credits
+===============
+
+WF-Channel was originally written bei Catzwolf until version 1.06. Current Version 1.07 has been bugfixed by Predator.
+
+Versions 2.x were developed again by Catzwolf
+
+Version 2.07 was updated to XOOPS 2.5.6 Standard GUI by Michael Beck (Mamba)
+
+
+Authors:
+-------------
+Catzwolf
+Predator
+  Testing, documentation & support:
+
+WF-Projects Team: liquid, bender, phppp, davidl2, frankblack, xpider, tom, mercibe, amayer, xtheme, catzwolf, predator
+  We would also like to thank:
+Kazumi Ono (onokazu) & Goghs Cheng (goghs) for creating Xoops in the first place
+
+all the people that contributed to Xoops and its community in any form
+
+all people reporting bugs and making suggestions for future versions of this software
+

@@ -1,168 +1,233 @@
-.itemHead {padding: 3px;  color: #6495ed;  font-weight: bold;  background-color: transparent;   }
-.exampleText {	text-align: left;	font-weight: bold; margin-bottom: 4px;	margin-top: 4px;  margin-left: 10px;  color: #708090;    }
-.exampleimage{ text-align: center; }
-.codeText {	text-align: center;	margin-top: 10px;	margin-bottom: 4px;}
-.copyright {vertical-align: middle;	text-align: center;	font-style: italic;	font-size: smaller;  margin-bottom: 20px; }
-.newsfeed {	margin-bottom: 6px;  text-align: left;  text-indent: 5px;   }
-.rssicon {	margin-bottom: 6px;	margin-top: 6px;}
-.codeTextArea{	margin-top: 6px;	margin-bottom: 12px;  text-align: center;  border: thin dotted gray;  padding: 10px;  margin-left: 50px;  margin-right: 50px;  background-color: #f0f8ff;  font-size: smaller;          }
-.displayjava{ font-style: italic;  font-size: smaller;  margin-bottom: 6px;  text-indent: 20px;    }
-.referHead{ margin-bottom: 6px;  text-align: center;  font-weight: bold;  }
-.referHeadBoxes{ margin-bottom: 15px;  text-align: center; }
-.box {
-	text-align: center;
+.itemHead {
+    padding: 3px;
+    color: #6495ed;
+    font-weight: bold;
+    background-color: transparent;
 }
 
-#outerdiv{
-	text-align:center;
-	margin:0 auto;
+.exampleText {
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 4px;
+    margin-top: 4px;
+    margin-left: 10px;
+    color: #708090;
+}
+
+.exampleimage {
+    text-align: center;
+}
+
+.codeText {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+.copyright {
+    vertical-align: middle;
+    text-align: center;
+    font-style: italic;
+    font-size: smaller;
+    margin-bottom: 20px;
+}
+
+.newsfeed {
+    margin-bottom: 6px;
+    text-align: left;
+    text-indent: 5px;
+}
+
+.rssicon {
+    margin-bottom: 6px;
+    margin-top: 6px;
+}
+
+.codeTextArea {
+    margin-top: 6px;
+    margin-bottom: 12px;
+    text-align: center;
+    border: thin dotted gray;
+    padding: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color: #f0f8ff;
+    font-size: smaller;
+}
+
+.displayjava {
+    font-style: italic;
+    font-size: smaller;
+    margin-bottom: 6px;
+    text-indent: 20px;
+}
+
+.referHead {
+    margin-bottom: 6px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.referHeadBoxes {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.box {
+    text-align: center;
+}
+
+#outerdiv {
+    text-align: center;
+    margin: 0 auto;
 }
 
 div .wrapper {
-	width: 100%;
-	margin: 0;
-	margin-bottom: 12px;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 12px;
 }
 
 .page_underline {
-	text-decoration: underline;
-	vertical-align: top;
+    text-decoration: underline;
+    vertical-align: top;
 }
 
 .page_none {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .page_logo {
-	text-align: center;
-	float: right;
-	margin-top: 4px;
-	margin-bottom: 5px;
-	margin-left: 10px;
-	clear: both;
+    text-align: center;
+    float: right;
+    margin-top: 4px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    clear: both;
 }
 
 .page_logo_caption {
-	color: gray;
-	padding: 3px;
-	background-image: url(../../themes/default/hbar.gif);
-	font-size: x-small;
+    color: gray;
+    padding: 3px;
+    background-image: url(../../themes/default/hbar.gif);
+    font-size: x-small;
 }
 
-.page_logo_image{
-	padding: 1px;
-	border: thin solid silver;	
+.page_logo_image {
+    padding: 1px;
+    border: thin solid silver;
 }
 
-.page_headline{
-	font-weight: bold;
-	font-size: 200%;
-	color: #6495ed;
+.page_headline {
+    font-weight: bold;
+    font-size: 200%;
+    color: #6495ed;
 }
 
 .page_icons {
-	float: right;
-	vertical-align: middle;
-	margin-top: 16px;
+    float: right;
+    vertical-align: middle;
+    margin-top: 16px;
 }
 
 .page_links {
-	text-align: center; white-space: nowrap;
-	margin-bottom: 10px;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.page_adminlink{
-	text-align: right;
-	margin-bottom: 6px;
-	vertical-align: middle;
+.page_adminlink {
+    text-align: right;
+    margin-bottom: 6px;
+    vertical-align: middle;
 }
 
 .page_bookmarks {
-	text-align: center;
-	padding: 3px;
-	margin-top: 3px;
-	margin-bottom: 10px;
+    text-align: center;
+    padding: 3px;
+    margin-top: 3px;
+    margin-bottom: 10px;
 }
 
-.page_bookmarks a, hover{
-	font-weight: normal;
-	font-size: 80%;
+.page_bookmarks a, hover {
+    font-weight: normal;
+    font-size: 80%;
 }
 
 .page_bookmarkstext {
-	text-align: center;
-	font-weight: normal;
+    text-align: center;
+    font-weight: normal;
 }
 
 .page_image {
-	border: 0;
-	vertical-align: middle;
+    border: 0;
+    vertical-align: middle;
 }
 
 .page_comments {
-	text-align: center;
-	padding: 3px;
-	margin: 3px;
+    text-align: center;
+    padding: 3px;
+    margin: 3px;
 }
 
 .page_commentsbox {
-	padding: 3px;
-	margin: 3px;
+    padding: 3px;
+    margin: 3px;
 }
 
 .page_commentstext {
-	text-align: center;
-	padding: 3px;
-	margin: 3px;
+    text-align: center;
+    padding: 3px;
+    margin: 3px;
 }
 
-.page_tags{
-	padding: 3px;
-	margin: 3px;
+.page_tags {
+    padding: 3px;
+    margin: 3px;
 }
 
-.page_related_title{
-	padding-bottom: 6px;
-	margin-bottom: 6px;
-	margin-left: 10px;
-	padding-left: 10px;
+.page_related_title {
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    margin-left: 10px;
+    padding-left: 10px;
 }
 
-.page_related{
-	padding-bottom: 6px;
-	margin-bottom: 6px;
-	margin-left: 10px;
-	padding-left: 10px;
+.page_related {
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    margin-left: 10px;
+    padding-left: 10px;
 }
 
-.page_commentcount{
-	padding-bottom: 6px;
-	margin-bottom: 6px;
-	margin-left: 1px;
-	padding-left: 1px;
-	font-weight: bold;
-	color: #6495ed;
+.page_commentcount {
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    margin-left: 1px;
+    padding-left: 1px;
+    font-weight: bold;
+    color: #6495ed;
 }
 
 .itemText {
-	text-align: justify;
+    text-align: justify;
 }
 
-.itemBody{
-	clear: both;
+.itemBody {
+    clear: both;
 }
+
 /**
 * Override the theme page nagigation
 **/
 #xo-pagenav {
-    margin:                 7px 0;
-    text-align:             right;
-    font-size:              1.05em;
+    margin: 7px 0;
+    text-align: right;
+    font-size: 1.05em;
 }
 
-.page_previousnext{
-	margin-left: 10px;
-	margin-right: 10px;
-	margin-bottom: 10px;
-	padding-bottom: 16px;
+.page_previousnext {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 16px;
 }

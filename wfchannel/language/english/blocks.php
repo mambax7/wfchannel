@@ -11,11 +11,10 @@
 // URL: http://catzwolf.x10hosting.com/										//
 // Project: WF-Projects														//
 // -------------------------------------------------------------------------//
-defined( 'XOOPS_ROOT_PATH' ) or die( 'You do not have permission to access this file!');
+defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
 
 // Blocks
-define('_MB_WFC_DISP','Display Amount: ');
-define('_MB_WFC_CHARS','Title Length: ');
-define('_MB_WFC_DATEFORMAT','Date Format: ');
-
-?>
+define('_MB_WFCHANNEL_WFCHANNEL', 'wfchannel');
+define('_MB_WFCHANNEL_DISP', 'Display Amount: ');
+define('_MB_WFCHANNEL_CHARS', 'Title Length: ');
+define('_MB_WFCHANNEL_DATEFORMAT', 'Date Format: ');

@@ -1,3 +1,22 @@
+	=>version 2.07
+	- updated for XOOPS 2.5.7.1 and PHP 5.6 (mamba)
+
+	=>version 2.06 (catzwolf)
+	->fixed naming convention on the FCKeditor. Should now work on all systems.
+	->fixed naming convention on file sanitize_textbox.php in the filters and put in force an error check to prevent errors and return default.
+	->fixed naming convention on file sanitize_textbox.php in the filters.
+	->Fixed: New Menu block was using the wrong 'string' for permissions. This block used work as expected now.
+	->Removed: Removed code for older editors.
+	->Removed: Removed code  now considered depreciated from Xoops 2.3.
+	->Changed: Removed Xoops Captcha and repalaced it with the old WF-Channel version. This was due to a number of issues with the Xoops Version.
+	->Changed: Used many of the new XoopsForms and elements that were added in Xoops 2.3.
+	->Changed: Updated to work on PHP 2.3. The creation of Articles and such should now be possible.
+	->Changed: Changed Captcha to now use Xoops Captcha.
+	->Changed: Updated some language defines and corrected spelling errors.
+	->Changed: WF-Channel should work with XoopsEditors now.
+	->Fixed Many other issues, bugs and features that now lost to me while updaing this module.
+	->Fixed: RSS Channels should be working now. If not.... bite me!
+
 	=>Version 2.05
 	->Fixed: The upgrader has been fixed and should update correctly now.
 	->Changes: This version fixed many issues, and I'm sorry but I didn't take notice or notes
@@ -169,7 +188,7 @@
   - Bug fixed "backendjs.php"
   - Bug fixed "Page Menu Link Not Displayed On Link/refer Pages" ( also Templates fixed)
   - Change Page Menu Link to a function.
-  - Add define("_MD_WFC_NORIGHTTOVIEWPAGE","You do not have permission to view this page"); to main.php
+  - Add define("_MA_WFCHANNEL_NORIGHTTOVIEWPAGE","You do not have permission to view this page"); to main.php
   - Change in xoops_version.php variable $modversion['dirname'] not used now (
    $xoopsModule = &$modhandler->getByDirname($modversion['dirname']);  )
   - Now 100% ML hack ( marcan ) compatible, so it is recommanded not to use the index.php for wfchannel from the ML package

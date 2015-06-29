@@ -1,5 +1,3 @@
 <?php
 
-define('_WFC_MODULE_NAME', 'WF-Channel')
-
-?>
+define('_WFCHANNEL_MODULE_NAME', 'WF-Channel')

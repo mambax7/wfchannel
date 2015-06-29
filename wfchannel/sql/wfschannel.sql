@@ -35,7 +35,7 @@ CREATE TABLE `wfclink` (
   PRIMARY KEY  (`wfcl_id`),
   KEY `wfcl_textlink` (`wfcl_textlink`),
   KEY `wfcl_mainpage` (`wfcl_mainpage`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 #
 # Dumping data for table `wfclink`
@@ -80,7 +80,7 @@ CREATE TABLE `wfcpages` (
   KEY `wfc_publish` (`wfc_publish`),
   KEY `wfc_expired` (`wfc_expired`),
   KEY `wfc_default` (`wfc_default`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 #
 # Dumping data for table `wfcpages`
@@ -114,7 +114,7 @@ CREATE TABLE `wfcrefer` (
   PRIMARY KEY  (`wfcr_id`),
   KEY `wfcr_title` (`wfcr_title`),
   KEY `wfcr_mainpage` (`wfcr_mainpage`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 #
 # Dumping data for table `wfcrefer`
@@ -137,7 +137,7 @@ CREATE TABLE `wfcrefers` (
   `wfcr_date` int(10) unsigned NOT NULL,
   `wfcr_ip` varchar(20) NOT NULL,
   UNIQUE KEY `wfcr_id` (`wfcr_id`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 #
 # Dumping data for table `wfcrefers`
