@@ -37,6 +37,11 @@ require_once $moduleFolder . '/include/common.php';
 
 //$myts = & MyTextSanitizer::getInstance();
 
+if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl)) {
+    include_once $GLOBALS['xoops']->path("class/template.php");
+    $xoopsTpl = new XoopsTpl();
+}
+
 // Load language files
 xoops_loadLanguage('admin', $moduleFolder);
 xoops_loadLanguage('modinfo', $moduleFolder);
@@ -45,4 +50,8 @@ xoops_loadLanguage('main', $moduleFolder);
 $pathIcon16      = XOOPS_URL . '/' . $xoopsModule->getInfo('icons16');
 $pathIcon32      = XOOPS_URL . '/' . $xoopsModule->getInfo('icons32');
 $pathModuleAdmin = XOOPS_ROOT_PATH . '/' . $xoopsModule->getInfo('dirmoduleadmin');
-require_once $pathModuleAdmin . '/moduleadmin/moduleadmin.php';
+require_once $pathModuleAdmin . '/moduleadmin.php';
+
+
+$GLOBALS['xoopsTpl']->assign('pathIcon16', $pathIcon16);
+$GLOBALS['xoopsTpl']->assign('pathIcon32', $pathIcon32);

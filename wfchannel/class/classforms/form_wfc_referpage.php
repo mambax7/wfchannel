@@ -26,7 +26,7 @@ $form->addElement(new XoopsFormText(_MD_WFCHANNEL_SENDEREMAIL, 'email', 40, 255,
 $form->addElement(new XoopsFormText(_MD_WFCHANNEL_RECPINAME, 'runame', 40, 255), true);
 $form->addElement(new XoopsFormText(_MD_WFCHANNEL_RECPIEMAIL, 'remail', 40, 255), true);
 if ($this->getVar('wfsr_ublurb')) {
-    $form->addElement(new XoopsFormTextArea(_MD_WFCHANNEL_CAPTACHA, 'message', $this->getVar('wfcr_dblurb')), false);
+    $form->addElement(new XoopsFormTextArea(_MD_WFCHANNEL_CAPTCHA, 'message', $this->getVar('wfcr_dblurb')), false);
 } else {
     $form->addElement(new XoopsFormHidden('message', $this->getVar('wfcr_dblurb')));
 }
@@ -34,10 +34,10 @@ if ($this->getVar('wfsr_ublurb')) {
 xoops_load('XoopsCaptcha');
 $xoopsCaptcha = XoopsCaptcha::getInstance();
 
-var_dump($xoopsCaptcha->isActive());
+//var_dump($xoopsCaptcha->isActive());
 
 if ($xoopsCaptcha->isActive()) {
-    $form->addElement(new XoopsFormCaptcha(_MD_WFCHANNEL_CAPTACHA, 'captcha'), true);
+    $form->addElement(new XoopsFormCaptcha(_MD_WFCHANNEL_CAPTCHA, 'captcha'), true);
 }
 $form->addElement(new XoopsFormHidden('op', 'refersend'));
 $form->addElement(new XoopsFormButtontray('submit', _SUBMIT));

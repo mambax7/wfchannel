@@ -46,10 +46,10 @@ define('_MD_WFCHANNEL_EMAILSENTWITHERRORS', 'Sorry, but we have encountered an i
 define('_MD_WFCHANNEL_RETURNTOWHEREYOUWHERE', 'Return to previous page');
 define('_MD_WFCHANNEL_FILEERROR', 'WARNING: Error opening required HTMLfile!');
 define('_MD_WFCHANNEL_NAVPAGE', 'Page: ');
-define('_MD_WFCHANNEL_CAPTACHA', 'Please enter the letters in the image as you see them.');
-define('_MD_WFCHANNEL_CAPTACHA_ERROR', 'Please enter the letters in the image as you see them.');
+define('_MD_WFCHANNEL_CAPTCHA', 'Please enter the letters in the image as you see them.');
+define('_MD_WFCHANNEL_CAPTCHA_ERROR', 'Please enter the letters in the image as you see them.');
 define('_MD_WFCHANNEL_ERRORS', 'WFChannel Errors.');
-define('_MD_WFCHANNEL_CAPTACHA_ERRORSEND', 'The captcha you entered did not match the one that we have stored. Please go back and try again');
+define('_MD_WFCHANNEL_CAPTCHA_ERRORSEND', 'The captcha you entered did not match the one that we have stored. Please go back and try again');
 define('_MD_WFCHANNEL_SORRY_ERRORSEND', 'Sorry But there was a problem sending your email');
 define('_MD_WFCHANNEL_GOBACKBUTTON', 'Go Back');
 define('_MD_WFCHANNEL_NOTITLESET', 'No Default Page');

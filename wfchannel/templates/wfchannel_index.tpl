@@ -32,18 +32,18 @@
 
 <{if $xoops_isadmin AND $page_info.id > 0  }>
 <div class="page_adminlink"><span><{$smarty.const._MD_WFCHANNEL_ADMINTASKS}></span>
-    <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/index.php?op=edit&amp;wfc_cid=<{$page_info.id}>"><img class="page_image" src="<{$xoops_url}>/modules/wfresource/images/icon/wfp_edit.png" title="<{$smarty.const._MD_WFP_MODIFY}>" alt="<{$smarty.const._MD_WFP_MODIFY}>"/></a>
-    <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/index.php?op=delete&amp;wfc_cid=<{$page_info.id}>"><img class="page_image" src="<{$xoops_url}>/modules/wfresource/images/icon/wfp_delete.png" title="<{$smarty.const._MD_WFP_DELETE}>" alt="<{$smarty.const._MD_WFP_DELETE}>"/></a>
-    <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/index.php?op=duplicate&amp;wfc_cid=<{$page_info.id}>"><img class="page_image" src="<{$xoops_url}>/modules/wfresource/images/icon/wfp_duplicate.png" title="<{$smarty.const._MD_WFP_DUPLICATE}>" alt="<{$smarty.const._MD_WFP_DUPLICATE}>"/></a>
+    <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/main.php?op=edit&amp;wfc_cid=<{$page_info.id}>"><img class="page_image" src="<{xoModuleIcons16 edit.png}>" title="<{$smarty.const._MD_WFP_MODIFY}>" alt="<{$smarty.const._MD_WFP_MODIFY}>"/></a>
+    <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/main.php?op=delete&amp;wfc_cid=<{$page_info.id}>"><img class="page_image" src="<{xoModuleIcons16 delete.png}>" title="<{$smarty.const._MD_WFP_DELETE}>" alt="<{$smarty.const._MD_WFP_DELETE}>"/></a>
+    <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/main.php?op=duplicate&amp;wfc_cid=<{$page_info.id}>"><img class="page_image" src="<{xoModuleIcons16 editcopy.png}>" title="<{$smarty.const._MD_WFP_DUPLICATE}>" alt="<{$smarty.const._MD_WFP_DUPLICATE}>"/></a>
 </div>
 <{/if}>
 
 <{if $wfc_tag}>
-<div class="page_tags"><{include file="db:tag_bar.html"}></div>
+<div class="page_tags"><{include file="db:tag_bar.tpl"}></div>
 <{/if}>
 
 <{if $menu_top }>
-<{include file="db:wfchannel_channellinks.html"}>
+<{include file="db:wfchannel_channellinks.tpl"}>
 <{/if}>
 
 <{if $page_info.pagenav }>
@@ -97,7 +97,7 @@
 <{/if}>
 
 <{if $menu_bottom }>
-<{include file="db:wfchannel_channellinks.html"}>
+<{include file="db:wfchannel_channellinks.tpl"}>
 <{/if}>
 
 <{if $page_info.bookmarks }>

@@ -4,12 +4,12 @@
 
 <{if $xoops_isadmin }>
 <div class="page_adminlink"><span><{$smarty.const._MD_WFCHANNEL_ADMINTASKS}></span>
-    <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/refer.php"><img class="page_image" src="<{$xoops_url}>/modules/wfresource/images/icon/wfp_edit.png" title="<{$smarty.const._MD_WFP_MODIFY}>" alt="<{$smarty.const._MD_WFP_MODIFY}>"/></a>
+    <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/refer.php"><img class="page_image" src="<{xoModuleIcons16 edit.png}>" title="<{$smarty.const._MD_WFP_MODIFY}>" alt="<{$smarty.const._MD_WFP_MODIFY}>"/></a>
 </div>
 <{/if}>
 
 <{if $menu_top }>
-<{include file="db:wfchannel_channellinks.html"}>
+<{include file="db:wfchannel_channellinks.tpl"}>
 <{/if}>
 <div style="clear: both;"></div>
 
@@ -57,7 +57,7 @@
 <{/if}>
 
 <{if $menu_bottom }>
-<{include file="db:wfchannel_channellinks.html"}>
+<{include file="db:wfchannel_channellinks.tpl"}>
 <{/if}>
 
 <div class="copyright"><{$copyright}></div>

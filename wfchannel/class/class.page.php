@@ -755,16 +755,16 @@ class wfc_PageHandler extends wfp_ObjectHandler
     public function pageInfo(&$obj)
     {
         $url = XOOPS_URL . '/modules/system/admin.php?module=' . $GLOBALS['xoopsModule']->getVar('mid') . '&status=0&limit=10&fct=comments&selsubmit=Go%21';
-        $ret = '<div>' . _MD_WFCHANNEL_TOTALCOMENTS . '<b>' . $obj->getVar('wfc_comments') . '</b>';
+        $ret = '<div>' . _AM_WFCHANNEL_TOTALCOMENTS . '<b>' . $obj->getVar('wfc_comments') . '</b>';
         if ($obj->getVar('wfc_comments')) {
-            $ret .= '&nbsp;<a href="' . $url . '">' . _MD_WFCHANNEL_VIEWCOMMENTS . '</a>';
+            $ret .= '&nbsp;<a href="' . $url . '">' . _AM_WFCHANNEL_VIEWCOMMENTS . '</a>';
         }
 
         $ret .= '</div>';
-        $ret .= '<div>' . _MD_WFCHANNEL_TOTALPAGEREADS . '<b>' . $obj->getVar('wfc_counter') . '</b></div>';
-        $ret .= '<div>' . _MD_WFCHANNEL_PAGECREATED . '<b>' . formatTimestamp($obj->getVar('wfc_created')) . '</b></div>';
+        $ret .= '<div>' . _AM_WFCHANNEL_TOTALPAGEREADS . '<b>' . $obj->getVar('wfc_counter') . '</b></div>';
+        $ret .= '<div>' . _AM_WFCHANNEL_PAGECREATED . '<b>' . formatTimestamp($obj->getVar('wfc_created')) . '</b></div>';
         $time = ($obj->getVar('wfc_publish')) ? formatTimestamp($obj->getVar('wfc_publish')) : '';
-        $ret .= '<div>' . _MD_WFCHANNEL_LASUPDATED . '<b>' . $time . '</b></div><br />';
+        $ret .= '<div>' . _AM_WFCHANNEL_LASUPDATED . '<b>' . $time . '</b></div><br />';
 
         return $ret;
     }
@@ -783,17 +783,17 @@ class wfc_PageHandler extends wfp_ObjectHandler
         $refers_handler = &wfp_gethandler('refers', 'wfchannel', 'wfc_');
         $refer_count    = $refers_handler->getEmailSentCount();
         $default        = self::getDefaultPage();
-        $ret .= '<input class="wfbutton" type="button" name="button" onclick=\'location="index.php?op=edit"\' value="' . _MD_WFP_CREATENEW . '" />';
+        $ret .= '<input class="wfbutton" type="button" name="button" onclick=\'location="main.php?op=edit"\' value="' . _AM_WFP_CREATENEW . '" />';
         $ret .= '<div style="padding-bottom: 8px;">';
         if ($default == null) {
-            $ret .= _MD_WFCHANNEL_NODEFAULTPAGESET;
+            $ret .= _AM_WFCHANNEL_NODEFAULTPAGESET;
         } else {
-            $ret .= _MD_WFCHANNEL_DEFAULTPAGESET . ": <a href='../index.php?op=edit&wfc_cid=" . $default['id'] . "'>" . $default['title'] . "</a>";
+            $ret .= _AM_WFCHANNEL_DEFAULTPAGESET . ": <a href='../main.php?op=edit&wfc_cid=" . $default['id'] . "'>" . $default['title'] . "</a>";
         }
-        $ret .= '<div>' . _MD_WFCHANNEL_TOTALNUMCHANL . ': <b>' . $total_count . '</b></div>';
-        $ret .= '<div>' . _MD_WFCHANNEL_TOTALEMAILSSENT . ': <b>' . $refer_count . '</b></div>';
+        $ret .= '<div>' . _AM_WFCHANNEL_TOTALNUMCHANL . ': <b>' . $total_count . '</b></div>';
+        $ret .= '<div>' . _AM_WFCHANNEL_TOTALEMAILSSENT . ': <b>' . $refer_count . '</b></div>';
         if ($refer_count > 0) {
-            $ret .= '<a href="' . XOOPS_URL . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/admin/refers.php">' . _MD_WFCHANNEL_VIEW . '</a><br />';
+            $ret .= '<a href="' . XOOPS_URL . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/admin/refers.php">' . _AM_WFP_VIEW . '</a><br />';
         }
         $ret .= '</div>';
         echo $ret;

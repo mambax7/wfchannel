@@ -157,10 +157,10 @@ $form->addElement($wfc_expired);
  */
 $state_select = new XoopsFormSelect(_AM_WFCHANNEL_SELSTATUS, 'wfc_active', $this->getVar('wfc_active'));
 $state_select->setDescription(_AM_WFCHANNEL_SELSTATUS_DSC);
-$state_select->addOption(1, _AM_WFCHANNEL_SELPUBLIHSED);
-$state_select->addOption(2, _AM_WFCHANNEL_SELUNPUBLISHED);
-$state_select->addOption(3, _AM_WFCHANNEL_SELEXPIRED);
-$state_select->addOption(0, _AM_WFCHANNEL_SELOFFLINE);
+$state_select->addOption(1, _AM_WFC_SELPUBLISHED);
+$state_select->addOption(2, _AM_WFC_SELUNPUBLISHED);
+$state_select->addOption(3, _AM_WFC_SELEXPIRED);
+$state_select->addOption(0, _AM_WFC_SELOFFLINE);
 $form->addElement($state_select);
 
 /**

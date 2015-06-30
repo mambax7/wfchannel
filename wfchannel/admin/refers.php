@@ -76,7 +76,7 @@ switch ($op) {
         $tlist->AddHeader('wfcr_ip', '', 'center', true);
         $tlist->AddHeader('', '', 'center', 2);
         $tlist->AddHeader('action', '', 'center', false);
-        $tlist->addFooter(array('deleteall' => _AM_WFCHANNEL_DELETESELECTED));
+        $tlist->addFooter(array('deleteall' => _AM_WFC_DELETESELECTED));
         $tlist->setPath('op=' . $op);
 
         $button = array('delete');

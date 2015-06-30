@@ -10,126 +10,118 @@
 // URL: http:www.Xoops.com 												//
 // Project: Xoops Project                                               //
 // -------------------------------------------------------------------------//
-$modversion['name']                = _MI_WFCHANNEL_CHANNEL;
-$modversion['version']             = 2.07;
-$modversion['requires']            = 1.06;
-$modversion['description']         = _MI_WFCHANNEL_CHANNELDESC;
-$modversion['releasedate']         = 'Thursday 13.5.2010';
-$modversion['author']              = 'John Neill';
-$modversion['credits']             = 'I would like to thank all the people who in some way or another who have either helped with coding or contributed with the development of this module. Mark Boyden, many thanks for your contribution and help with the development of this module..and you may get your wish yet! ;)';
-$modversion['status']              = '2.06 Beta';
-$modversion['lead']                = 'John Neill aka Catzwolf';
-$modversion['contributors']        = 'Predator, Phppp, Bender, giba and many others. Thank you :)';
-$modversion['website_url']         = 'http://www.xoops.org';
-$modversion['website_name']        = 'XOOPS Modules';
-$modversion['email']               = 'support@xoops.org';
-$modversion['demo_site_url']       = '';
-$modversion['demo_site_name']      = 'WF-Channel Demo';
-$modversion['support_site_url']    = 'http://xoops.org/forum/index.php';
-$modversion['support_site_name']   = 'Offical Support Website';
-$modversion['submit_bug_url']      = 'http://code.google.com/p/xoosla-modules/issues/list';
-$modversion['submit_bug_name']     = 'Bug Submission';
-$modversion['submit_feature_url']  = 'http://xoops.org/forum/index.php';
-$modversion['submit_feature_name'] = 'Feature Submission';
-$modversion['disclaimer']          = _MI_WFCHANNEL_CHANNELDISCLAIMER;
 
-$modversion['help']        = 'page=help';
-$modversion['license']     = 'GNU GPL 2.0 or later';
-$modversion['license_url'] = 'www.gnu.org/licenses/gpl-2.0.html';
-$modversion['official']    = 0;
-$modversion['image']       = 'images/wfchannel_slogo.png';
-$modversion['dirname']     = 'wfchannel';
+$moduleDirName = basename(__DIR__);
 
-$modversion['dirname'] = basename(__DIR__);
+// ------------------- Informations ------------------- //
+$modversion = array(
+    'name'                => _MI_WFCHANNEL_CHANNEL,
+    'description'         => _MI_WFCHANNEL_CHANNELDESC,
+    'official'            => 0, //1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
+    'author'              => 'John Neill',
+    'author_mail'         => 'author-email',
+    'author_website_url'  => 'http://xoops.org',
+    'author_website_name' => 'XOOPS',
+    'credits'             => 'I would like to thank all the people who in some way or another who have either helped with coding or contributed with the development of this module. Mark Boyden, many thanks for your contribution and help with the development of this module..and you may get your wish yet! ;-)',
+    'contributors'        => 'Predator, Phppp, Bender, giba and many others. Thank you :)',
+    'disclaimer'          => _MI_WFCHANNEL_CHANNELDISCLAIMER,
+    'license'             => 'GPL 2.0 or later',
+    'license_url'         => 'www.gnu.org/licenses/gpl-2.0.html/',
+    'help'                => 'page=help',
+    //
+    'release_info'        => 'Changelog',
+    'release_file'        => XOOPS_URL . "/modules/{$moduleDirName}/docs/changelog file",
+    //
+    'manual'              => 'link to manual file',
+    'manual_file'         => XOOPS_URL . "/modules/{$moduleDirName}/docs/install.txt",
+    'min_php'             => '5.3.7',
+    'min_xoops'           => '2.5.7.1',
+    'min_admin'           => '1.1',
+    'min_db'              => array('mysql' => '5.0.7', 'mysqli' => '5.0.7'),
+    // images
+    'image'               => 'images/module_logo.png',
+    'iconsmall'           => 'assets/images/iconsmall.png',
+    'iconbig'             => 'assets/images/iconbig.png',
+    'dirname'             => $moduleDirName,
+    //Frameworks
+    'dirmoduleadmin'      => 'Frameworks/moduleclasses/moduleadmin',
+    'sysicons16'          => 'Frameworks/moduleclasses/icons/16',
+    'sysicons32'          => 'Frameworks/moduleclasses/icons/32',
+    // Local path icons
+    'modicons16'          => 'assets/images/icons/16',
+    'modicons32'          => 'assets/images/icons/32',
+    //About
+    'version'             => 2.07,
+    'requires'            => 1.06,
+    'module_status'       => 'Beta 1',
+    'release_date'        => '2015/06/29', //yyyy/mm/dd
+    //    'release'             => '2015-04-04',
+    'demo_site_url'       => 'http://www.xoops.org',
+    'demo_site_name'      => 'XOOPS Demo Site',
+    'support_url'         => 'http://xoops.org/modules/newbb',
+    'support_name'        => 'Support Forum',
+    'module_website_url'  => 'www.xoops.org',
+    'module_website_name' => 'XOOPS Project',
+    // paypal
+//    'paypal'              => array(
+//        'business'      => 'XXX@email.com',
+//        'item_name'     => 'Donation : ' . _MI_WFCHANNEL_CHANNELDESC,
+//        'amount'        => 0,
+//        'currency_code' => 'USD'),
+    // Admin system menu
+    'system_menu'         => 1,
+    // Admin menu
+    'hasAdmin'            => 1,
+    'adminindex'          => 'admin/index.php',
+    'adminmenu'           => 'admin/menu.php',
+    // Main menu
+    'hasMain'             => 1,
+    //Search & Comments
+    'hasSearch'           => 1,
+    'search'              => array(
+        'file' => 'include/search.inc.php',
+        'func' => $moduleDirName . '_search'),
+    'hasComments'         => 1,
+    'comments'            => array(
+        'pageName'     => 'index.php',
+        'itemName'     => 'cid',
+        'callbackFile' => 'include/comment_functions.php',
+        'callback'     => array(
+            'approve' => 'wfchannel_com_approve',
+            'update'  => 'wfchannel_com_update')),
+    // Install/Update
+    'onInstall'           => 'include/oninstall.php',
+    'onUpdate'            => 'include/onupdate.php',
+    'onUninstall'         => 'include/onuninstall.php'
 
-$modversion['dirmoduleadmin'] = 'Frameworks/moduleclasses';
-$modversion['icons16']        = 'Frameworks/moduleclasses/icons/16';
-$modversion['icons32']        = 'Frameworks/moduleclasses/icons/32';
-//about
-$modversion['release_date']        = '2015/06/29';
-$modversion['module_website_url']  = 'www.xoops.org';
-$modversion['module_website_name'] = 'XOOPS';
-$modversion['module_status']       = 'Beta 1';
-$modversion['min_php']             = '5.3.7';
-$modversion['min_xoops']           = '2.5.7';
-$modversion['min_admin']           = '1.1';
-$modversion['min_db']              = array(
-    'mysql'  => '5.0.7',
-    'mysqli' => '5.0.7');
+);
 
-// Sql file (must contain sql generated by phpMyAdmin or phpPgAdmin)
-// All tables should not have any prefix!
-$modversion['sqlfile']['mysql'] = 'sql/wfchannel.sql';
+// ------------------- Mysql ------------------- //
+$modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
+
 // Tables created by sql file (without prefix!)
-$modversion['tables'][] = 'wfcpages';
-$modversion['tables'][] = 'wfclink';
-$modversion['tables'][] = 'wfcrefer';
-$modversion['tables'][] = 'wfcrefers';
-// Admin things
-$modversion['hasAdmin']    = 1;
-$modversion['system_menu'] = 1;
-$modversion['adminindex']  = 'admin/index.php';
-$modversion['adminmenu']   = 'admin/menu.php';
-// Additionnal script executed during install update
-$modversion['onInstall']   = 'include/oninstall.php';
-$modversion['onUpdate']    = 'include/onupdate.php';
-$modversion['onUninstall'] = 'include/onuninstall.php';
-// Blocks
-// Menu
-$modversion['hasMain'] = 1;
-// Search
-$modversion['hasSearch']      = 1;
-$modversion['search']['file'] = 'include/search.inc.php';
-$modversion['search']['func'] = 'wfchannel_search';
-// Comments
-$modversion['hasComments']          = 1;
-$modversion['comments']['pageName'] = 'index.php';
-$modversion['comments']['itemName'] = 'cid';
+$modversion['tables'] = array(
+    'wfcpages',
+    'wfclink',
+    'wfcrefer',
+    'wfcrefers');
+
 // Comment callback functions
-$modversion['comments']['callbackFile']        = 'include/comment_functions.php';
-$modversion['comments']['callback']['approve'] = 'wfchannel_com_approve';
-$modversion['comments']['callback']['update']  = 'wfchannel_com_update';
+//$modversion['comments']['callbackFile']        = 'include/comment_functions.php';
+//$modversion['comments']['callback']['approve'] = 'wfchannel_com_approve';
+//$modversion['comments']['callback']['update']  = 'wfchannel_com_update';
 
-//help files
-$i                                     = 0;
-$modversion['helpsection'][$i]['name'] = _MI_WFCHANNEL_OVERVIEW;
-$modversion['helpsection'][$i]['link'] = 'page=help';
-++$i;
-$modversion['helpsection'][$i]['name'] = _MI_WFCHANNEL_REQUIREMENTS;
-$modversion['helpsection'][$i]['link'] = 'page=__requirements';
-++$i;
-$modversion['helpsection'][$i]['name'] = _MI_WFCHANNEL_INSTALL;
-$modversion['helpsection'][$i]['link'] = 'page=__install';
-++$i;
-$modversion['helpsection'][$i]['name'] = _MI_WFCHANNEL_UPDATE;
-$modversion['helpsection'][$i]['link'] = 'page=__update';
-++$i;
-$modversion['helpsection'][$i]['name'] = _MI_WFCHANNEL_HOWTO;
-$modversion['helpsection'][$i]['link'] = 'page=__howto';
-++$i;
-$modversion['helpsection'][$i]['name'] = _MI_WFCHANNEL_CREDITS;
-$modversion['helpsection'][$i]['link'] = 'page=__credits';
-++$i;
-$modversion['helpsection'][$i]['name'] = _MI_WFCHANNEL_DESCLAIMER;
-$modversion['helpsection'][$i]['link'] = 'page=__disclaimer';
-++$i;
-$modversion['helpsection'][$i]['name'] = _MI_WFCHANNEL_LICENSE;
-$modversion['helpsection'][$i]['link'] = 'page=__license';
-++$i;
-$modversion['helpsection'][$i]['name'] = _MI_WFCHANNEL_SUPPORT;
-$modversion['helpsection'][$i]['link'] = 'page=__support';
-
-
-
-//define('_MI_WFCHANNEL_REQUIREMENTS', 'Requirements');
-////define('_MI_WFCHANNEL_INSTALL', 'Install');
-//define('_MI_WFCHANNEL_UPDATE', 'Update');
-//define('_MI_WFCHANNEL_HOWTO', 'HowTo');
-//define('_MI_WFCHANNEL_HISTORY', 'History');
-//define('_MI_WFCHANNEL_CREDITS', 'Credits');
-//define('_MI_WFCHANNEL_DESCLAIMER', 'Disclaimer');
-//define('_MI_WFCHANNEL_LICENSE', 'License');
-//define('_MI_WFCHANNEL_SUPPORT', 'Support');
+// ------------------- Help files ------------------- //
+$modversion['helpsection'] = array(
+    array('name' => _MI_WFCHANNEL_OVERVIEW, 'link' => 'page=help'),
+    array('name' => _MI_WFCHANNEL_REQUIREMENTS, 'link' => 'page=__requirements'),
+    array('name' => _MI_WFCHANNEL_INSTALL, 'link' => 'page=__install'),
+    array('name' => _MI_WFCHANNEL_UPDATE, 'link' => 'page=__update'),
+    array('name' => _MI_WFCHANNEL_HOWTO, 'link' => 'page=__howto'),
+    array('name' => _MI_WFCHANNEL_CREDITS, 'link' => 'page=__credits'),
+    array('name' => _MI_WFCHANNEL_DESCLAIMER, 'link' => 'page=__disclaimer'),
+    array('name' => _MI_WFCHANNEL_LICENSE, 'link' => 'page=__license'),
+    array('name' => _MI_WFCHANNEL_SUPPORT, 'link' => 'page=__support'));
 
 
 /**
@@ -190,37 +182,36 @@ $modversion['notification']['event'][] = array(
     'mail_template' => 'global_pagenew_notify',
     'mail_subject'  => '_MI_WFCHANNEL_PAGENEWNOTIFY_SUBJECT');
 
-/**
- * Blocks
- */
-$modversion['blocks'][1]['file']        = 'wfc_block.new.php';
-$modversion['blocks'][1]['name']        = _MI_WFCHANNEL_BNAME1;
-$modversion['blocks'][1]['description'] = 'Shows recently added donwload files';
-$modversion['blocks'][1]['show_func']   = 'b_wfc_new_show';
-$modversion['blocks'][1]['edit_func']   = 'b_wfc_new_edit';
-$modversion['blocks'][1]['options']     = 'published|10|19|M/d/Y|' . $modversion['dirname'];
-$modversion['blocks'][1]['template']    = 'wfchannel_block_new.html';
+// ------------------- Blocks ------------------- //
+$modversion['blocks'][] = array(
+    'file'        => 'wfc_block.new.php',
+    'name'        => _MI_WFCHANNEL_BLOCK1,
+    'description' => _MI_WFCHANNEL_BLOCK1_DESC,
+    'show_func'   => 'b_wfc_new_show',
+    'edit_func'   => 'b_wfc_new_edit',
+    'options'     => 'published|10|19|M/d/Y|' . $modversion['dirname'],
+    'template'    => 'wfchannel_block_new.tpl');
 
-$modversion['blocks'][2]['file']        = 'wfc_block.menu.php';
-$modversion['blocks'][2]['name']        = _MI_WFCHANNEL_BNAME2;
-$modversion['blocks'][2]['description'] = 'Shows Main menu type block';
-$modversion['blocks'][2]['show_func']   = 'b_wfc_menu_show';
-$modversion['blocks'][2]['edit_func']   = 'b_wfc_menu_edit';
-$modversion['blocks'][2]['options']     = 'weight|10|19|' . $modversion['dirname'];
-$modversion['blocks'][2]['template']    = 'wfchannel_block_menu.html';
-// Templates
-$modversion['templates'][1]['file']        = 'wfchannel_index.html';
-$modversion['templates'][1]['description'] = 'Display index.';
-$modversion['templates'][2]['file']        = 'wfchannel_linktous.html';
-$modversion['templates'][2]['description'] = 'Display Link to Us page.';
-$modversion['templates'][3]['file']        = 'wfchannel_refer.html';
-$modversion['templates'][3]['description'] = 'Display refer page.';
-$modversion['templates'][4]['file']        = 'wfchannel_banned.html';
-$modversion['templates'][4]['description'] = 'Display a banned page.';
-$modversion['templates'][5]['file']        = 'wfchannel_channellinks.html';
-$modversion['templates'][5]['description'] = 'Display channel links within pages.';
-$modversion['templates'][6]['file']        = 'wfchannel_emailerror.html';
-$modversion['templates'][6]['description'] = 'Display channel email error page.';
+$modversion['blocks'][] = array(
+    'file'        => 'wfc_block.menu.php',
+    'name'        => _MI_WFCHANNEL_BLOCK2,
+    'description' => _MI_WFCHANNEL_BLOCK2_DESC,
+    'show_func'   => 'b_wfc_menu_show',
+    'edit_func'   => 'b_wfc_menu_edit',
+    'options'     => 'weight|10|19|' . $modversion['dirname'],
+    'template'    => 'wfchannel_block_menu.tpl');
+
+// ------------------- Templates ------------------- //
+
+$modversion['templates'] = array(
+    // User
+    array('file' => $moduleDirName . '_index.tpl', 'description' => _MI_WFCHANNEL_TPL1_DESC),
+    array('file' => $moduleDirName . '_linktous.tpl', 'description' => _MI_WFCHANNEL_TPL2_DESC),
+    array('file' => $moduleDirName . '_refer.tpl', 'description' => _MI_WFCHANNEL_TPL3_DESC),
+    array('file' => $moduleDirName . '_banned.tpl', 'description' => _MI_WFCHANNEL_TPL4_DESC),
+    array('file' => $moduleDirName . '_channellinks.tpl', 'description' => _MI_WFCHANNEL_TPL5_DESC),
+    array('file' => $moduleDirName . '_emailerror.tpl', 'description' => _MI_WFCHANNEL_TPL6_DESC));
+
 
 $modversion['config'][] = array(
     'name'        => 'htmluploaddir',
@@ -287,6 +278,10 @@ $modversion['config'][] = array(
     'valuetype'   => 'int',
     'default'     => 1);
 
+xoops_load('XoopsEditorHandler');
+$editor_handler = XoopsEditorHandler::getInstance();
+$editorList = array_flip($editor_handler->getList());
+
 $modversion['config'][] = array(
     'name'        => 'use_wysiwyg',
     'title'       => '_MI_WFCHANNEL_WYSIWYG',
@@ -294,7 +289,7 @@ $modversion['config'][] = array(
     'formtype'    => 'select',
     'valuetype'   => 'text',
     'default'     => 'dhtmltextarea',
-    'options'     => array('Plain Editor' => 'textarea', 'Xoops Editor' => 'dhtmltextarea', 'Tiny Editor' => 'tinymce', 'FCK Editor' => 'ckeditor'));
+    'options'     =>  $editorList);
 
 $modversion['config'][] = array(
     'name'        => 'banned',

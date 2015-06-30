@@ -34,16 +34,19 @@ In no event shall the WF-Project be liable to you or any third parties for any s
 The use of the software downloaded through the WF-Project site is done at your own discretion and risk and with agreement that you will be solely responsible for any damage to your computer system or loss of data that results from such activities. No advice or information, whether oral or written, obtained by you from the WF-Project or from the WF-Project web site shall create any warranty for the software.
 ');
 // Names of admin menu items
-define('_MI_WFCHANNEL_ADMENU1', 'Channel admin');
-define('_MI_WFCHANNEL_ADMENU2', 'Create page');
+define('_MI_WFCHANNEL_ADMENU1', 'Page index');
+define('_MI_WFCHANNEL_ADMENU2', 'New page');
 define('_MI_WFCHANNEL_ADMENU3', 'Refer page');
 define('_MI_WFCHANNEL_ADMENU4', 'Link page');
 define('_MI_WFCHANNEL_ADMENU5', 'Permission');
 define('_MI_WFCHANNEL_ADMENU6', 'Upload');
 define('_MI_WFCHANNEL_ADMENU7', 'Import');
+define('_MI_WFCHANNEL_ADMENU8', 'Refers Mgmt');
 // Blocks
-define('_MI_WFCHANNEL_BNAME1', 'WF-Channel Recent Block');
-define('_MI_WFCHANNEL_BNAME2', 'WF-Channel Menu Block');
+define('_MI_WFCHANNEL_BLOCK1', 'WF-Channel Recent Block');
+define('_MI_WFCHANNEL_BLOCK1_DESC', 'Shows recently added donwload files');
+define('_MI_WFCHANNEL_BLOCK2', 'WF-Channel Menu Block');
+define('_MI_WFCHANNEL_BLOCK2_DESC', 'Shows Main menu type block');
 // Other
 define('_MI_WFCHANNEL_MAXFILESIZE', 'Maximum upload size (kb)');
 define('_MI_WFCHANNEL_IMGWIDTH', 'Maximum uploaded images width (px)');
@@ -163,3 +166,12 @@ define('_MI_WFCHANNEL_CREDITS', 'Credits');
 define('_MI_WFCHANNEL_DESCLAIMER', 'Disclaimer');
 define('_MI_WFCHANNEL_LICENSE', 'License');
 define('_MI_WFCHANNEL_SUPPORT', 'Support');
+
+//Templates
+
+define('_MI_WFCHANNEL_TPL1_DESC', 'Display index.');
+define('_MI_WFCHANNEL_TPL2_DESC', 'Display Link to Us page.');
+define('_MI_WFCHANNEL_TPL3_DESC', 'Display refer page.');
+define('_MI_WFCHANNEL_TPL4_DESC', 'Display a banned page.');
+define('_MI_WFCHANNEL_TPL5_DESC', 'Display channel links within pages.');
+define('_MI_WFCHANNEL_TPL6_DESC', 'Display channel email error page.');

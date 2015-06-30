@@ -166,7 +166,7 @@ class wfc_RefersHandler extends wfp_ObjectHandler
     {
         $ret = '';
         if (func_num_args() == 1) {
-            $ret = '<div style="padding-bottom: 8px;">' . _MD_WFCHANNEL_TOTALEMAILSSENT . ': <b>' . func_get_arg(0) . '</b></div>';
+            $ret = '<div style="padding-bottom: 8px;">' . _AM_WFCHANNEL_TOTALEMAILSSENT . ': <b>' . func_get_arg(0) . '</b></div>';
         }
         /**
          */

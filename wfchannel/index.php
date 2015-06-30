@@ -40,7 +40,7 @@ switch ($op) {
             $ret = $refer_handler->refersend();
         }
         if ($ret !== true || !empty($ret)) {
-            $xoopsOption['template_main'] = 'wfchannel_emailerror.html';
+            $xoopsOption['template_main'] = 'wfchannel_emailerror.tpl';
             include XOOPS_ROOT_PATH . '/header.php';
             $xoopsTpl->assign('wfc_email_error', $ret);
         } else {
@@ -62,7 +62,7 @@ switch ($op) {
         }
         /**
          */
-        $xoopsOption['template_main'] = 'wfchannel_refer.html';
+        $xoopsOption['template_main'] = 'wfchannel_refer.tpl';
         include_once XOOPS_ROOT_PATH . '/header.php';
         $refer_obj->formEdit('wfc_referpage');
         $xoopsTpl->assign('refer', array(
@@ -83,7 +83,7 @@ switch ($op) {
             redirect_header(XOOPS_URL, 1, _MD_WFCHANNEL_NORIGHTTOVIEWPAGE);
         }
 
-        $xoopsOption['template_main'] = 'wfchannel_linktous.html';
+        $xoopsOption['template_main'] = 'wfchannel_linktous.tpl';
         include_once XOOPS_ROOT_PATH . '/header.php';
         $xoopsTpl->assign('linktous', array(
             'textlink'    => $link_obj->getTextLink('wfcl_textlink'),
@@ -129,7 +129,7 @@ switch ($op) {
 
             case 'default':
             default:
-                $xoopsOption['template_main']   = 'wfchannel_index.html';
+                $xoopsOption['template_main']   = 'wfchannel_index.tpl';
                 $xoopsOption['xoops_pagetitle'] = $pageObj->getVar('wfc_title');
                 include_once(XOOPS_ROOT_PATH . '/header.php');
                 /**

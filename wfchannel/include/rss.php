@@ -26,7 +26,7 @@ $tpl->xoops_setCacheTime(0);
 if (!$tpl->is_cached('db:system_rss.html', 'wfc|feed|rss')) {
     xoops_load('XoopsLocal');
     $rssContent = wfp_getClass('rss');
-    $rssContent->basics('wfchannel_slogo.png', 'modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/images');
+    $rssContent->basics('module_logo.png', 'modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/images');
     $rss = $rssContent->render();
     foreach ($rss as $key => $value) {
         $tpl->assign($key, $value);

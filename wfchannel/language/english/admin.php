@@ -51,14 +51,14 @@ define('_AM_WFCHANNEL_TOTALEMAILSSENT', 'Total Refer Emails Sent');
 /**
  * WF-Channel Main index Page Listing
  */
-define('_AM_WFCHANNEL_CID', '#');
-define('_AM_WFCHANNEL_TITLE', 'Page Title');
-define('_AM_WFCHANNEL_HEADLINE', 'Page Headline');
-define('_AM_WFCHANNEL_COUNTER', 'Read');
-define('_AM_WFCHANNEL_MAINMENU', 'Menu Item');
-define('_AM_WFCHANNEL_PUBLISH', 'Published');
-define('_AM_WFCHANNEL_EXPIRED', 'Expires');
-define('_AM_WFCHANNEL_WEIGHT', 'Weight');
+define('_AM_WFC_CID', '#');
+define('_AM_WFC_TITLE', 'Page Title');
+define('_AM_WFC_HEADLINE', 'Page Headline');
+define('_AM_WFC_COUNTER', 'Read');
+define('_AM_WFC_MAINMENU', 'Menu Item');
+define('_AM_WFC_PUBLISH', 'Published');
+define('_AM_WFC_EXPIRED', 'Expires');
+define('_AM_WFC_WEIGHT', 'Weight');
 
 /**
  * WF-Channel Page Edit Form
@@ -213,11 +213,11 @@ define('_AM_WFCHANNEL_SELSTATUS_DSC', 'Set the status of a page to one of the fo
 <br /><b>Inactive:</b> Sets the page as inactive keeps its orginal state
 ');
 
-define('_AM_WFCHANNEL_SELALL', 'All Pages');
-define('_AM_WFCHANNEL_SELPUBLIHSED', 'Published');
-define('_AM_WFCHANNEL_SELUNPUBLISHED', 'Unpublished');
-define('_AM_WFCHANNEL_SELEXPIRED', 'Expired');
-define('_AM_WFCHANNEL_SELOFFLINE', 'Inactive');
+define('_AM_WFC_SELALL', 'All Pages');
+define('_AM_WFC_SELPUBLISHED', 'Published');
+define('_AM_WFC_SELUNPUBLISHED', 'Unpublished');
+define('_AM_WFC_SELEXPIRED', 'Expired');
+define('_AM_WFC_SELOFFLINE', 'Inactive');
 
 /**
  * Tabs for Forms

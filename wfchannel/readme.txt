@@ -1,20 +1,7 @@
 
-
-
-
-
-
 Please note:
 
-
 ===>  A complete readme can be found in the folder docs  <===
-
-
-
-
-
-
-
 
 ========== Short readme ===========
 

@@ -46,7 +46,7 @@ switch ($op) {
 
     case 'view':
         $wfc_cid = wfp_Request::doRequest($_REQUEST, 'wfc_cid', 0, 'int');
-        $URL     = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/index.php?cid=' . $wfc_cid;
+        $URL     = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/main.php?cid=' . $wfc_cid;
         header("Location: $URL");
         break;
 
@@ -189,7 +189,7 @@ switch ($op) {
         }
 
         $tlist = wfp_getClass('tlist');
-        $tlist->AddFormStart('post', 'index.php', 'pages');
+        $tlist->AddFormStart('post', 'main.php', 'pages');
         $tlist->AddHeader('wfc_cid', '5', 'center', false);
         $tlist->AddHeader('wfc_title', '25%', 'left', true);
         $tlist->AddHeader('wfc_counter', '', 'center', true);
@@ -200,7 +200,7 @@ switch ($op) {
         $tlist->AddHeader('', '', 'center', 2);
         $tlist->AddHeader('action', '', 'center', false);
         $tlist->addFooter();
-        $button = array('../index.php' => 'view', 'edit', 'delete', 'duplicate');
+        $button = array('../main.php' => 'view', 'edit', 'delete', 'duplicate');
         $_obj   = $handler->getObj($nav, true);
         if ($_obj['count'] && count($_obj['list'])) {
             foreach ($_obj['list'] as $obj) {
