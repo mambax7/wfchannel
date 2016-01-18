@@ -27,7 +27,7 @@ class wfc_Refer extends wfp_Object
      */
     public function __construct()
     {
-        $this->XoopsObject();
+        parent::__construct();
 
         $this->initVar('wfcr_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('wfcr_title', XOBJ_DTYPE_TXTBOX, '', true, 60);

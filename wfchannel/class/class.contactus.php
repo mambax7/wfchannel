@@ -25,7 +25,7 @@ class wfc_Contactus extends wfp_Object
      */
     public function __construct()
     {
-        $this->XoopsObject();
+        parent::__construct();
 
         $this->initVar('wfcc_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('wfcc_titlecont', XOBJ_DTYPE_TXTBOX, null, true, 255);

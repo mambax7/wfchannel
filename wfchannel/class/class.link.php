@@ -29,9 +29,9 @@ class wfc_Link extends wfp_Object
     /**
      * wfc_Link::wfc_Link()
      */
-    public function wfc_Link()
+    public function __construct()
     {
-        $this->XoopsObject();
+        parent::__construct();
         $this->initVar('wfcl_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('wfcl_titlelink', XOBJ_DTYPE_TXTBOX, null, true, 255);
         $this->initVar('wfcl_submenu', XOBJ_DTYPE_INT, null, false);

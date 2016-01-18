@@ -38,9 +38,9 @@ class wfc_Page extends wfp_Object
     /**
      * XoopsWfPage::XoopsWfPage()
      */
-    public function wfc_Page()
+    public function __construct()
     {
-        $this->XoopsObject();
+        parent::__construct();
         $this->initVar('wfc_cid', XOBJ_DTYPE_INT, null, false);
         $this->initVar('wfc_title', XOBJ_DTYPE_TXTBOX, null, true, 120);
         $this->initVar('wfc_headline', XOBJ_DTYPE_TXTBOX, null, false, 150);

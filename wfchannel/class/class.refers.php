@@ -30,9 +30,9 @@ class wfc_Refers extends wfp_Object
     /**
      * XoopsWfPage::XoopsWfPage()
      */
-    public function wfc_Refers()
+    public function __construct()
     {
-        $this->XoopsObject();
+        parent::__construct();
         $this->initVar('wfcr_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('wfcr_username', XOBJ_DTYPE_TXTBOX, null, true, 60);
         $this->initVar('wfcr_uid', XOBJ_DTYPE_INT, null, false);
