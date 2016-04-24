@@ -17,20 +17,19 @@
  * @subpackage :
  * @since      2.3.0
  * @author     John Neill
- * @version    $Id: plugin_userpoints.php 8179 2011-11-07 00:54:10Z beckmi $
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 /**
- * @param        $uid
- * @param string $startdate
+ * @param         $uid
+ * @param  string $startdate
  * @return array
  */
 function wfchannel_getUserPoints($uid, $startdate = '')
 {
     include_once XOOPS_ROOT_PATH . '/modules/wfchannel/include/functions.php';
 
-    $download_handler = &wfp_gethandler('page', _MODULE_DIR, _MODULE_CLASS);
+    $download_handler = &wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
     if (empty($startdate)) {
         $startdate = strtotime(date('m-y-Y'));
     }

@@ -10,7 +10,6 @@
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
- * @version    : $Id: onupdate.php 10055 2012-08-11 12:46:10Z beckmi $
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
@@ -19,7 +18,7 @@ defined('XOOPS_ROOT_PATH') || exit('Restricted access');
  *
  * @param mixed $module
  * @param mixed $oldversion
- * @return
+ * @return bool
  */
 function xoops_module_update_wfchannel($module, $oldversion)
 {
@@ -31,7 +30,7 @@ function xoops_module_update_wfchannel($module, $oldversion)
     $upgrade = true;
     include_once XOOPS_ROOT_PATH . '/modules/' . $GLOBALS['module']->getVar('dirname') . '/include/functions.php';
     $msgs[] = '<br />Updating Module Database Tables.......';
-    if ($result == true) {
+    if ($result === true) {
         define('_WF_INSTALLER', 1);
         include_once XOOPS_ROOT_PATH . '/modules/' . $GLOBALS['module']->getVar('dirname') . '/include/upgrade.php';
 
@@ -46,29 +45,28 @@ function xoops_module_update_wfchannel($module, $oldversion)
 /**
  * displayOutput()
  *
- * @return
  */
 function displayOutput()
 {
     global $updater, $msgs;
 
-    $msgs[]   = '<h4>' . _MD_WFCHANNEL_SUCCESS . '</h4>';
+    $msgs[]   = '<h4>' . _MD_WFC_SUCCESS . '</h4>';
     $_success = $updater->getSuccess();
     if (count($_success)) {
         foreach ($_success as $success) {
             $msgs[] = "<div style=\"text-indent: 12px;\">$success</div>";
         }
     } else {
-        $msgs[] = "<div style=\"text-indent: 12px;\">" . sprintf(_MD_WFCHANNEL_NOTHING_UPDATED, $updater->getTable()) . "</div>";
+        $msgs[] = "<div style=\"text-indent: 12px;\">" . sprintf(_MD_WFC_NOTHING_UPDATED, $updater->getTable()) . '</div>';
     }
 
-    $msgs[]  = "<h4>" . _MD_WFCHANNEL_FAILURE . "</h4>";
+    $msgs[]  = '<h4>' . _MD_WFC_FAILURE . '</h4>';
     $_errors = $updater->getError();
     if (count($_errors)) {
         foreach ($_errors as $errors) {
             $msgs[] = "<div style=\"text-indent: 12px;\">$errors</div>";
         }
     } else {
-        $msgs[] = "<div style=\"text-indent: 12px;\">" . sprintf(_MD_WFCHANNEL_NO_ERRORSFOUND, $updater->getTable()) . "</div>";
+        $msgs[] = "<div style=\"text-indent: 12px;\">" . sprintf(_MD_WFC_NO_ERRORSFOUND, $updater->getTable()) . '</div>';
     }
 }

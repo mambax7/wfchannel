@@ -1,3 +1,3 @@
 <?php
 
-define('_WFCHANNEL_MODULE_NAME', 'WF-Channel')
+define('_WFC_MODULE_NAME', 'WF-Channel');

@@ -1,7 +1,7 @@
 .dynamic-tab-pane-control.tab-pane {
     position: relative;
-    /*width:		100%;		 width needed weird IE bug */
-    /*margin-right:	-2px;	 to make room for the shadow */
+    /*width:        100%;        width needed weird IE bug */
+    /*margin-right: -2px;    to make room for the shadow */
 }
 
 .dynamic-tab-pane-control .tab-row .tab {
@@ -15,7 +15,7 @@
     overflow: hidden;
     cursor: pointer;
     margin: 1px -1px 1px 2px;
-    padding: 2px 0px 0px 0px;
+    padding: 2px 0 0 0;
     border: 0;
     z-index: 1;
     font: 11px Tahoma, Helvetica, sans-serif;
@@ -30,8 +30,8 @@
     background-repeat: no-repeat;
     border-bottom-width: 0;
     z-index: 3;
-    padding: 2px 0px 0px 0px;
-    margin: 1px -3px -3px 0px;
+    padding: 2px 0 0 0;
+    margin: 1px -3px -3px 0;
     top: -2px;
     font: 11px Tahoma, Helvetica, sans-serif;
 }
@@ -47,8 +47,7 @@
     font: 11px Tahoma, Helvetica, sans-serif;
     width: 70px;
     height: 16px;
-    background-image: url("tab_hover.png");
-    background-repeat: no-repeat;
+    background: url("tab_hover.png") no-repeat;
 }
 
 .dynamic-tab-pane-control .tab-page {

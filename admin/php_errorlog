@@ -1,7 +1,0 @@
-[07-Apr-2009 04:50:43] PHP Fatal error:  Call to undefined method wfc_LinkHandler::getHtmlErrors() in /home/xoosla/public_html/modules/wfchannel/admin/link.php on line 30
-[07-Apr-2009 04:51:13] PHP Fatal error:  Call to undefined method wfc_ReferHandler::getHtmlErrors() in /home/xoosla/public_html/modules/wfchannel/admin/refer.php on line 32
-[07-Apr-2009 04:54:52] PHP Fatal error:  Call to undefined method wfc_ReferHandler::getHtmlErrors() in /home/xoosla/public_html/modules/wfchannel/admin/refer.php on line 32
-[07-Apr-2009 04:55:20] PHP Fatal error:  Call to undefined method wfc_LinkHandler::getHtmlErrors() in /home/xoosla/public_html/modules/wfchannel/admin/link.php on line 30
-[07-Apr-2009 04:55:31] PHP Fatal error:  Call to undefined function  wfp_gethandler() in /home/xoosla/public_html/modules/wfchannel/admin/admin_header.php on line 15
-[07-Apr-2009 04:59:04] PHP Fatal error:  Call to undefined method wfc_ReferHandler::getHtmlErrors() in /home/xoosla/public_html/modules/wfchannel/admin/refer.php on line 32
-[07-Apr-2009 04:59:14] PHP Fatal error:  Call to undefined method wfc_LinkHandler::getHtmlErrors() in /home/xoosla/public_html/modules/wfchannel/admin/link.php on line 30

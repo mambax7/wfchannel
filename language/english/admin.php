@@ -1,13 +1,13 @@
 <?php
 // ------------------------------------------------------------------------ //
-// Xoops - PHP Content Management System                      			//
-// Copyright (c) 2007 Xoops                           				//
+// Xoops - PHP Content Management System                                //
+// Copyright (c) 2007 Xoops                                         //
 // //
-// Authors: 																//
-// John Neill ( AKA Catzwolf )                                     			//
-// Raimondas Rimkevicius ( AKA Mekdrop )									//
+// Authors:                                                                 //
+// John Neill ( AKA Catzwolf )                                              //
+// Raimondas Rimkevicius ( AKA Mekdrop )                                    //
 // //
-// URL: http:www.Xoops.com 												//
+// URL: http:www.Xoops.com                                              //
 // Project: Xoops Project                                               //
 // -------------------------------------------------------------------------//
 defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
@@ -15,38 +15,38 @@ defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this fi
 /**
  * Menu Language defines
  */
-define('_AM_WFCHANNEL_ADMINMENU_INDEX', 'Index Page');
-define('_AM_WFCHANNEL_ADMINMENU_REFER', 'Refer Page');
-define('_AM_WFCHANNEL_ADMINMENU_REFERS', 'Refers Page');
-define('_AM_WFCHANNEL_ADMINMENU_LINK', 'Link Page');
-define('_AM_WFCHANNEL_ADMINMENU_CONTUS', 'Contant Page');
-define('_AM_WFCHANNEL_ADMINMENU_PERMS', 'Permissions');
-define('_AM_WFCHANNEL_ADMINMENU_UPLOAD', 'Upload');
-define('_AM_WFCHANNEL_ADMINMENU_IMPORT', 'Import');
+define('_AM_WFC_ADMINMENU_INDEX', 'Index Page');
+define('_AM_WFC_ADMINMENU_REFER', 'Refer Page');
+define('_AM_WFC_ADMINMENU_REFERS', 'Refers Page');
+define('_AM_WFC_ADMINMENU_LINK', 'Link Page');
+define('_AM_WFC_ADMINMENU_CONTUS', 'Contant Page');
+define('_AM_WFC_ADMINMENU_PERMS', 'Permissions');
+define('_AM_WFC_ADMINMENU_UPLOAD', 'Upload');
+define('_AM_WFC_ADMINMENU_IMPORT', 'Import');
 /**
  */
-define('_AM_WFCHANNEL_MAINAREA', 'Page Management');
-define('_AM_WFCHANNEL_MAINAREA_DSC', 'Manage all your pages from this area. Perform actions such as, edit, delete or duplicate your pages.');
-define('_AM_WFCHANNEL_MAINAREA_EDIT_DSC', 'Page Edit: You can create or edit a page from this area. Once you have edited or modified your page, please click submit button to save all changes made.');
-define('_AM_WFCHANNEL_REFERAREA', 'Refer Management');
-define('_AM_WFCHANNEL_REFERAREA_DSC', 'Manage all your Refer page from this area.');
-define('_AM_WFCHANNEL_REFERSAREA', 'Refers Management');
-define('_AM_WFCHANNEL_REFERSAREA_DSC', 'Manage all refers made from your website. Select a date via the calender to view all refers for that date or leave blank to view all.');
-define('_AM_WFCHANNEL_LINKAREA', 'Link Management');
-define('_AM_WFCHANNEL_LINKAREA_DSC', 'Manage all your Link to us page from this area.');
-define('_AM_WFCHANNEL_PERMISSIONAREA', 'Permission Management');
-define('_AM_WFCHANNEL_UPLOADAREA', 'Upload Management');
-define('_AM_WFCHANNEL_UPLOADAREA_DSC', 'Use this area to upload images, files or anything you wish to display.');
-define('_AM_WFCHANNEL_IMPORT', 'Import Management');
-define('_AM_WFCHANNEL_IMPORT_DSC', 'Import html files on mass with various cleaning techniques.');
+define('_AM_WFC_MAINAREA', 'Page Management');
+define('_AM_WFC_MAINAREA_DSC', 'Manage all your pages from this area. Perform actions such as, edit, delete or duplicate your pages.');
+define('_AM_WFC_MAINAREA_EDIT_DSC', 'Page Edit: You can create or edit a page from this area. Once you have edited or modified your page, please click submit button to save all changes made.');
+define('_AM_WFC_REFERAREA', 'Refer Management');
+define('_AM_WFC_REFERAREA_DSC', 'Manage all your Refer page from this area.');
+define('_AM_WFC_REFERSAREA', 'Refers Management');
+define('_AM_WFC_REFERSAREA_DSC', 'Manage all refers made from your website. Select a date via the calender to view all refers for that date or leave blank to view all.');
+define('_AM_WFC_LINKAREA', 'Link Management');
+define('_AM_WFC_LINKAREA_DSC', 'Manage all your Link to us page from this area.');
+define('_AM_WFC_PERMISSIONAREA', 'Permission Management');
+define('_AM_WFC_UPLOADAREA', 'Upload Management');
+define('_AM_WFC_UPLOADAREA_DSC', 'Use this area to upload images, files or anything you wish to display.');
+define('_AM_WFC_IMPORT', 'Import Management');
+define('_AM_WFC_IMPORT_DSC', 'Import html files on mass with various cleaning techniques.');
 /**
  * WF-Channel Page index defines
  */
-define('_AM_WFCHANNEL_COPYSTANDALONE', 'Copy and paste this link if you intent to use this page as a stand alone page:');
-define('_AM_WFCHANNEL_NODEFAULTPAGESET', 'WARNING: No Default page set, please select one');
-define('_AM_WFCHANNEL_DEFAULTPAGESET', 'Default Page is Titled');
-define('_AM_WFCHANNEL_TOTALNUMCHANL', 'Total Number of Pages');
-define('_AM_WFCHANNEL_TOTALEMAILSSENT', 'Total Refer Emails Sent');
+define('_AM_WFC_COPYSTANDALONE', 'Copy and paste this link if you intent to use this page as a stand alone page:');
+define('_AM_WFC_NODEFAULTPAGESET', 'WARNING: No Default page set, please select one');
+define('_AM_WFC_DEFAULTPAGESET', 'Default Page is Titled');
+define('_AM_WFC_TOTALNUMCHANL', 'Total Number of Pages');
+define('_AM_WFC_TOTALEMAILSSENT', 'Total Refer Emails Sent');
 
 /**
  * WF-Channel Main index Page Listing
@@ -124,7 +124,7 @@ define('_AM_EWFC_MENU_INFO_DSC', '');
 /**
  * WF-Channel Refer index defines
  */
-define('_AM_WFCHANNEL_CMODIFYREFER', '');
+define('_AM_WFC_CMODIFYREFER', '');
 
 /**
  * WF-Channel Refer Edit Form
@@ -151,7 +151,7 @@ define('_AM_EWFC_REFER_PSTATEMENT_DSC', 'Enter the text you wish to display for 
 /**
  * WF-Channel Link index defines
  */
-define('_AM_WFCHANNEL_CMODIFYLINK', '');
+define('_AM_WFC_CMODIFYLINK', '');
 
 /**
  * WF-Channel Link Edit Form
@@ -189,24 +189,24 @@ define('_AM_WFCR_DATE', 'Date Sent');
 define('_AM_WFCR_IP', 'IP Address');
 define('_AM_WFCR_REFERURL', 'Refer Url');
 
-define('_AM_WFCHANNEL_TOTALCOMENTS', 'Total Comments: ');
-define('_AM_WFCHANNEL_TOTALPAGEREADS', 'Total Page Reads: ');
-define('_AM_WFCHANNEL_PAGECREATED', 'Page Created: ');
-define('_AM_WFCHANNEL_LASUPDATED', 'Last Updated: ');
-define('_AM_WFCHANNEL_VIEWCOMMENTS', 'View Comments');
-define('_AM_WFCHANNEL_QUICKLINK', 'Quick Link: ');
-define('_AM_WFCHANNEL_QUICKVIEW', 'View Page');
+define('_AM_WFC_TOTALCOMENTS', 'Total Comments: ');
+define('_AM_WFC_TOTALPAGEREADS', 'Total Page Reads: ');
+define('_AM_WFC_PAGECREATED', 'Page Created: ');
+define('_AM_WFC_LASUPDATED', 'Last Updated: ');
+define('_AM_WFC_VIEWCOMMENTS', 'View Comments');
+define('_AM_WFC_QUICKLINK', 'Quick Link: ');
+define('_AM_WFC_QUICKVIEW', 'View Page');
 /**
  * Import
  */
-define('_AM_WFCHANNEL_IMPORTHTML', 'Mass Import HTML');
+define('_AM_WFC_IMPORTHTML', 'Mass Import HTML');
 define('_AM_EWFC_PAGE_UPLOADDIR', 'Enter Upload Directory');
 define('_AM_EWFC_PAGE_UPLOADDIR_DSC', 'Please enter the path of the import folder. This foler must be within the XOOPS document root<br /><br />Example: uploads/import');
 define('_AM_EWFC_FOLDERDOESNOTEXIST', '<strong>ERROR:</strong> The import folder either does not exist or is not readable.');
-define('_AM_WFCHANNEL_CHANIMAGEEXIST', 'File %s already exisits on the server, please try uploading another file.');
+define('_AM_WFC_CHANIMAGEEXIST', 'File %s already exisits on the server, please try uploading another file.');
 
-define('_AM_WFCHANNEL_SELSTATUS', 'Set Page Status:');
-define('_AM_WFCHANNEL_SELSTATUS_DSC', 'Set the status of a page to one of the following:
+define('_AM_WFC_SELSTATUS', 'Set Page Status:');
+define('_AM_WFC_SELSTATUS_DSC', 'Set the status of a page to one of the following:
 <br /><b>Published:</b> Open to all viewers with permissions
 <br /><b>Unpublished:</b> Sets Page to a submitted stage
 <br /><b>Expired:</b> Sets Page as Archive/Expired
@@ -222,12 +222,12 @@ define('_AM_WFC_SELOFFLINE', 'Inactive');
 /**
  * Tabs for Forms
  */
-define('_AM_WFCHANNEL_TABMAIN', 'Main');
-define('_AM_WFCHANNEL_TABPUBLISH', 'Publish');
-define('_AM_WFCHANNEL_TABIMAGE', 'Image');
-define('_AM_WFCHANNEL_TABMETA', 'Meta');
-define('_AM_WFCHANNEL_TABPERMISSIONS', 'Permissions');
-define('_AM_WFCHANNEL_INFO', 'Info');
+define('_AM_WFC_TABMAIN', 'Main');
+define('_AM_WFC_TABPUBLISH', 'Publish');
+define('_AM_WFC_TABIMAGE', 'Image');
+define('_AM_WFC_TABMETA', 'Meta');
+define('_AM_WFC_TABPERMISSIONS', 'Permissions');
+define('_AM_WFC_INFO', 'Info');
 
 define('_AM_EWFC_MENU_IMGWIDTH', 'Image Width: ');
 define('_AM_EWFC_MENU_IMGWIDTH_DSC', 'Enter the width you would like the image to be.');

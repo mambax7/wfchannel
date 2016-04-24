@@ -1,13 +1,13 @@
 <?php
 // ------------------------------------------------------------------------ //
-// Xoops - PHP Content Management System                      			//
-// Copyright (c) 2007 Xoops                           				//
+// Xoops - PHP Content Management System                                //
+// Copyright (c) 2007 Xoops                                         //
 // //
-// Authors: 																//
-// John Neill ( AKA Catzwolf )                                     			//
-// Raimondas Rimkevicius ( AKA Mekdrop )									//
+// Authors:                                                                 //
+// John Neill ( AKA Catzwolf )                                              //
+// Raimondas Rimkevicius ( AKA Mekdrop )                                    //
 // //
-// URL: http:www.Xoops.com 												//
+// URL: http:www.Xoops.com                                              //
 // Project: Xoops Project                                               //
 // -------------------------------------------------------------------------//
 defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
@@ -178,7 +178,7 @@ if ($oldversion < 200) {
     /**
      * Lets fix issues with dohtml, dosmilies ect
      */
-    $page_handler = &wfp_gethandler('page', 'wfchannel', 'wfc_');
+    $page_handler = &wfp_getHandler('page', 'wfchannel', 'wfc_');
     $obj          = $page_handler->getObj(null, true);
     if ($obj['count'] > 0) {
         foreach ($obj['list'] as $objs) {

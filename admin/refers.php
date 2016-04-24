@@ -10,16 +10,15 @@
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
- * @version    : $Id: refers.php 8179 2011-11-07 00:54:10Z beckmi $
  */
-include 'admin_header.php';
+include_once __DIR__ . '/admin_header.php';
 
 /**
  * Instance the call back
  */
-$menu_handler->addHeader(_AM_WFCHANNEL_REFERSAREA);
-$handler     = &wfp_gethandler('refers', _MODULE_DIR, _MODULE_CLASS);
-$do_callback = wfp_getObjectCallback($handler);
+$menu_handler->addHeader(_AM_WFC_REFERSAREA);
+$handler     = &wfp_getHandler('refers', _MODULE_DIR, _MODULE_CLASS);
+$do_callback = &wfp_getObjectCallback($handler);
 
 /**
  * Switch
@@ -38,7 +37,7 @@ switch ($op) {
         break;
 
     case 'deleteall':
-        if (false == $do_callback->deleteall($op)) {
+        if (false === $do_callback->deleteall($op)) {
             $handler->getHtmlErrors(true, $menu);
         }
         break;
@@ -52,7 +51,7 @@ switch ($op) {
         $nav['date']   = wfp_Request::doRequest($_REQUEST, 'date', '', 'textbox');
         $nav['search'] = wfp_Request::doRequest($_REQUEST, 'search', '', 'textbox');
         $nav['andor']  = wfp_Request::doRequest($_REQUEST, 'andor', 'AND', 'textbox');
-        if (strlen($nav['date']) != 10) {
+        if (strlen($nav['date']) !== 10) {
             $nav['date'] = strtotime($nav['date']);
         }
         foreach ($nav as $k => $v) {
@@ -67,7 +66,7 @@ switch ($op) {
             }
         }
 
-        $tlist = wfp_getClass('tlist');
+        $tlist = &wfp_getClass('tlist');
         $tlist->AddFormStart('post', 'refers.php', 'refer');
         $tlist->AddHeader('wfcr_id', '5', 'center', false);
         $tlist->AddHeader('wfcr_uid', '20%', 'left', true);
@@ -92,13 +91,14 @@ switch ($op) {
                                 $obj->getReferUrl(),
                                 $obj->getVar('wfcr_ip'),
                                 $obj->getCheckbox('wfcr_id'),
-                                wfp_getIcons($button, 'wfcr_id', $wfcr_id)));
+                                wfp_getIcons($button, 'wfcr_id', $wfcr_id)
+                            ));
             }
         }
         // HTML output
         xoops_cp_header();
-        $menu_handler->addSubHeader(_AM_WFCHANNEL_REFERSAREA_DSC);
-//        $menu_handler->render($menu);
+        $menu_handler->addSubHeader(_AM_WFC_REFERSAREA_DSC);
+        //        $menu_handler->render($menu);
         $handler->headingHtml($_obj['count']);
         $handler->displayCalendar($nav, false);
         $tlist->render();

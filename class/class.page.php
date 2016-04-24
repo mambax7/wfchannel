@@ -10,7 +10,6 @@
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
- * @version    : $Id: class.page.php 8179 2011-11-07 00:54:10Z beckmi $
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
@@ -25,7 +24,6 @@ wfp_getObjectHandler();
  * @package
  * @author    John
  * @copyright Copyright (c) 2009
- * @version   $Id: class.page.php 8179 2011-11-07 00:54:10Z beckmi $
  * @access    public
  */
 class wfc_Page extends wfp_Object
@@ -88,7 +86,7 @@ class wfc_Page extends wfp_Object
         $ret      = array();
         foreach ($iconVars as $k => $v) {
             if (!isset($flipped[0])) {
-                $ret[$v] = (isset($flipped[$k])) ? 1 : 0;
+                $ret[$v] = isset($flipped[$k]) ? 1 : 0;
             }
         }
 
@@ -98,10 +96,10 @@ class wfc_Page extends wfp_Object
     /**
      * wfc_Page::getUserName()
      *
-     * @param  mixed  $value
-     * @param  string $timestamp
-     * @param  mixed  $usereal
-     * @param  mixed  $linked
+     * @param  mixed        $value
+     * @param  string       $timestamp
+     * @param  mixed        $usereal
+     * @param  mixed        $linked
      * @return mixed|string
      */
     public function getUserName($value, $timestamp = '', $usereal = false, $linked = false)
@@ -135,11 +133,11 @@ class wfc_Page extends wfp_Object
      */
     public function &getContent($doPageNav = true, $type = 'content')
     {
-        $clean = wfp_getClass('clean');
+        $clean = &wfp_getClass('clean');
 
         $ret = $clean->getHtml($this->getVar('wfc_file'), $this->getVar('wfc_content', 'e'), $this->uploadDir);
         $this->setVar('wfc_content', htmlspecialchars_decode($ret));
-        if ($doPageNav == true) {
+        if ($doPageNav === true) {
             $text = explode('[pagebreak]', $this->getVar('wfc_content', 'e'));
             if (count($text) > 0) {
                 include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
@@ -151,7 +149,7 @@ class wfc_Page extends wfp_Object
             }
         }
 
-        $contents = &$this->getVar('wfc_content', 's');
+        $contents = $this->getVar('wfc_content', 's');
 
         return $contents;
     }
@@ -164,7 +162,7 @@ class wfc_Page extends wfp_Object
     public function getBookMarks()
     {
         if (wfp_getModuleOption('displaybookmarks')) {
-            $addto = wfp_getClass('addto');
+            $addto = &wfp_getClass('addto');
 
             return $addto->render($this->getTitle());
         }
@@ -176,7 +174,7 @@ class wfc_Page extends wfp_Object
      */
     public function getEmailLink()
     {
-        return 'mailto:?subject=' . sprintf(_MD_WFCHANNEL_INTARTICLE, $GLOBALS['xoopsConfig']['sitename']) . '&amp;body=' . sprintf(_MD_WFCHANNEL_INTARTFOUND, $GLOBALS['xoopsConfig']['sitename']) . ':  ' . XOOPS_URL . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/index.php?cid=' . $this->getVar('wfc_cid');
+        return 'mailto:?subject=' . sprintf(_MD_WFC_INTARTICLE, $GLOBALS['xoopsConfig']['sitename']) . '&amp;body=' . sprintf(_MD_WFC_INTARTFOUND, $GLOBALS['xoopsConfig']['sitename']) . ':  ' . XOOPS_URL . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/index.php?cid=' . $this->getVar('wfc_cid');
     }
 
     /**
@@ -227,7 +225,6 @@ class wfc_Page extends wfp_Object
  * @package
  * @author    John
  * @copyright Copyright (c) 2007
- * @version   $Id: class.page.php 8179 2011-11-07 00:54:10Z beckmi $
  * @access    public
  */
 class wfc_PageHandler extends wfp_ObjectHandler
@@ -239,7 +236,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
      *
      * @param mixed $db
      */
-    public function __construct(&$db)
+    public function __construct($db)
     {
         parent::__construct($db, 'wfcpages', 'wfc_Page', 'wfc_cid', 'wfc_title', 'page_read');
     }
@@ -247,10 +244,10 @@ class wfc_PageHandler extends wfp_ObjectHandler
     /**
      * wfc_PageHandler::getList()
      *
-     * @param  string $sort
-     * @param  string $order
-     * @param  int    $start
-     * @param  int    $limit
+     * @param  string     $sort
+     * @param  string     $order
+     * @param  int        $start
+     * @param  int        $limit
      * @return array|bool
      */
     public function &getList($sort = 'wfc_weight', $order = 'ASC', $start = 0, $limit = 0)
@@ -276,7 +273,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
             $criteria->setOrder('ASC');
             $criteria->setStart($start);
             $criteria->setLimit($start);
-            $channels = &$this->getObjects($criteria);
+            $channels = $this->getObjects($criteria);
         }
 
         return $channels;
@@ -289,7 +286,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
     public function &getDefaultPage()
     {
         $ret = '';
-        $obj = $this->get(0, true, 'wfc_default');
+        $obj =& $this->get(0, true, 'wfc_default');
         if (is_object($obj)) {
             $ret['id']    = $_SESSION['wfchanneldefault']['id'] = $obj->getVar('wfc_cid');
             $ret['title'] = $_SESSION['wfchanneldefault']['title'] = $obj->getVar('wfc_title');
@@ -301,35 +298,33 @@ class wfc_PageHandler extends wfp_ObjectHandler
     /**
      * wfc_PageHandler::getObj()
      * @return bool
-     * @internal param array $nav
-     * @internal param mixed $value
      */
     public function &getObj()
     {
-        $myts = &MyTextSanitizer::getInstance();
+        $myts = MyTextSanitizer::getInstance();
 
-        $obj = false;
-        if (func_num_args() == 2) {
+        $obj = array();
+        if (func_num_args() === 2) {
             $args     = func_get_args();
             $criteria = new CriteriaCompo();
             if (!empty($args[0]['search'])) {
                 $args[0]['search'] = stripslashes($args[0]['search']);
-                if (isset($args[0]['andor']) && $args[0]['andor'] != 'exact') {
+                if (isset($args[0]['andor']) && $args[0]['andor'] !== 'exact') {
                     $temp_queries = preg_split('/[\s,]+/', $args[0]['search']);
                     $queryarray   = array();
                     foreach ($temp_queries as $q) {
                         $q = trim($q);
                         if (strlen($q) >= 5) {
-                            $queryarray[] = mysql_escape_string($q);
+                            $queryarray[] = $GLOBALS['xoopsDB']->escape($q);
                         }
                     }
                 } else {
-                    $queryarray = array(trim(mysql_escape_string($args[0]['search'])));
+                    $queryarray = array(trim($GLOBALS['xoopsDB']->escape($args[0]['search'])));
                 }
-                $criteriaSearch = self::searchCriteria($queryarray, $args[0]['andor'], true, $criteria);
+                $criteriaSearch = $this->searchCriteria($queryarray, $args[0]['andor'], true, $criteria);
             }
             if (!empty($args[0]['date'])) {
-                $addon_date = &$this->getaDate($args[0]['date']);
+                $addon_date = $this->getaDate($args[0]['date']);
                 if ($addon_date['begin'] && $addon_date['end']) {
                     $criteriaDate = new CriteriaCompo();
                     $criteriaDate->add(new Criteria('wfc_publish', wfp_addslashes($addon_date['begin']), '>='));
@@ -364,7 +359,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
                 $criteria->setStart((int)$args[0]['start']);
                 $criteria->setLimit((int)$args[0]['limit']);
             }
-            $obj['list'] = &$this->getObjects($criteria, $args[1]);
+            $obj['list'] = $this->getObjects($criteria, $args[1]);
         }
 
         return $obj;
@@ -383,19 +378,20 @@ class wfc_PageHandler extends wfp_ObjectHandler
         if (!$ret) {
             $relatedTerms = explode(' ', $obj->getVar('wfc_related'));
             $relatedTerms = array_filter(array_map('trim', $relatedTerms));
-            $page_search  = &$this->getSearch($relatedTerms, $andor = '', 10, 0, false);
+            $page_search  =& $this->getSearch($relatedTerms, $andor = '', 10, 0, false);
             $ret          = array();
             $i            = 0;
             if (!empty($page_search['list'])) {
                 foreach ($page_search['list'] as $object) {
-                    if ($object->getVar('wfc_cid') == $obj->getVar('wfc_cid')) {
+                    if ($object->getVar('wfc_cid') === $obj->getVar('wfc_cid')) {
                         continue;
                     }
                     $ret['related'][$i] = array(
                         'link'  => $object->getVar('wfc_cid'),
                         'title' => $object->getTitle(),
                         'time'  => $object->getTimeStamp('wfc_publish'),
-                        'uid'   => ($object->getVar('wfc_author')) ? $object->getVar('wfc_author') : $object->getUserName('wfc_uid'),);
+                        'uid'   => $object->getVar('wfc_author') ?: $object->getUserName('wfc_uid')
+                    );
                     ++$i;
                 }
             }
@@ -409,7 +405,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
      * wfc_PageHandler::getNextPreviousLinks()
      *
      * @param $cid
-     * @return
+     * @return mixed
      */
     public function getNextPreviousLinks($cid)
     {
@@ -419,7 +415,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
 
         $page = wfp_Request::doRequest($_REQUEST, 'page', 0, 'int');
 
-        $wfpages_obj = &$this->getList();
+        $wfpages_obj =& $this->getList();
         $array_keys  = array();
         foreach ($wfpages_obj as $key => $obj) {
             $array_keys[$key] = $obj->getVar('wfc_cid');
@@ -449,23 +445,26 @@ class wfc_PageHandler extends wfp_ObjectHandler
 
     /**
      * wfc_PageHandler::getChanlinks()
-     *
-     * @return
+     * @return mixed
      */
     public function &getChanlinks()
     {
         $cid = wfp_Request::doRequest($_REQUEST, 'cid', 0, 'int');
         $op  = wfp_Request::doRequest($_REQUEST, 'op', '', 'textbox');
 
-        $css = ($cid == 0 && !$op) ? 'page_underline' : 'page_none';
+        $css = ($cid === 0 && !$op) ? 'page_underline' : 'page_none';
 
-        $wfpages['chanlink'][] = array('css' => $css, 'id' => '', 'title' => _MD_WFCHANNEL_HOME);
-        $wfpages_obj           = &$this->getList();
+        $wfpages['chanlink'][] = array('css' => $css, 'id' => '', 'title' => _MD_WFC_HOME);
+        $wfpages_obj           =& $this->getList();
 
         if (!empty($wfpages_obj)) {
             foreach (array_keys($wfpages_obj) as $i) {
-                $css                   = ($wfpages_obj[$i]->getVar('wfc_cid') == $cid) ? 'page_underline' : 'page_none';
-                $wfpages['chanlink'][] = array('css' => $css, 'id' => '?cid=' . $wfpages_obj[$i]->getVar('wfc_cid'), 'title' => $wfpages_obj[$i]->getVar('wfc_title'));
+                $css                   = ($wfpages_obj[$i]->getVar('wfc_cid') === $cid) ? 'page_underline' : 'page_none';
+                $wfpages['chanlink'][] = array(
+                    'css'   => $css,
+                    'id'    => '?cid=' . $wfpages_obj[$i]->getVar('wfc_cid'),
+                    'title' => $wfpages_obj[$i]->getVar('wfc_title')
+                );
             }
             unset($wfpages_obj);
         }
@@ -477,9 +476,9 @@ class wfc_PageHandler extends wfp_ObjectHandler
             unset($_SESSION['wfc_channel']['wfcl_titlelink']);
         }
 
-        $css = ($op == 'link') ? 'page_underline' : 'page_none';
+        $css = ($op === 'link') ? 'page_underline' : 'page_none';
         if (!isset($_SESSION['wfc_channel']['wfcl_titlelink'])) {
-            $links_handler = &wfp_gethandler('link', _MODULE_DIR, _MODULE_CLASS);
+            $links_handler = &wfp_getHandler('link', _MODULE_DIR, _MODULE_CLASS);
             $links         = $links_handler->get(1);
             if ($links && wfp_getModuleOption('act_link')) {
                 $_SESSION['wfc_channel']['wfcl_titlelink'] = $links->getVar('wfcl_titlelink');
@@ -499,9 +498,9 @@ class wfc_PageHandler extends wfp_ObjectHandler
         if (!$GLOBALS['xoopsModuleConfig']['act_refer']) {
             unset($_SESSION['wfc_channel']['wfcr_title']);
         }
-        $css = ($op == 'refer') ? 'page_underline' : 'page_none';
+        $css = ($op === 'refer') ? 'page_underline' : 'page_none';
         if (!isset($_SESSION['wfc_channel']['wfcr_title'])) {
-            $refer_handler = &wfp_gethandler('refer', _MODULE_DIR, _MODULE_CLASS);
+            $refer_handler = &wfp_getHandler('refer', _MODULE_DIR, _MODULE_CLASS);
             $refer         = $refer_handler->get(1);
             if ($refer && $GLOBALS['xoopsModuleConfig']['act_refer']) {
                 $_SESSION['wfc_channel']['wfcr_title'] = $refer->getVar('wfcr_title');
@@ -526,7 +525,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
      */
     public function update(&$obj)
     {
-        if ((is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) && (isset($GLOBALS['xoopsModuleConfig']['allow_admin']) && $GLOBALS['xoopsModuleConfig']['allow_admin'] == 0)) {
+        if ((is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) && (isset($GLOBALS['xoopsModuleConfig']['allow_admin']) && $GLOBALS['xoopsModuleConfig']['allow_admin'] === 0)) {
             return false;
         } else {
             $criteria = new CriteriaCompo();
@@ -561,7 +560,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
         $criteriaSearch = new CriteriaCompo();
 
         if (isset($queryarray[0])) {
-            if ($moreChecks == true) {
+            if ($moreChecks === true) {
                 $criteriaSearch->add(new Criteria('wfc_title', "%$queryarray[0]%", 'LIKE'), 'OR');
                 $criteriaSearch->add(new Criteria('wfc_headline', "%$queryarray[0]%", 'LIKE'), 'OR');
                 $criteriaSearch->add(new Criteria('wfc_content', "%$queryarray[0]%", 'LIKE'), 'OR');
@@ -569,8 +568,9 @@ class wfc_PageHandler extends wfp_ObjectHandler
             $criteriaSearch->add(new Criteria('wfc_related', "%$queryarray[0]%", 'LIKE'), 'OR');
         }
         if (!empty($andor)) {
-            for ($i = 1; $i < count($queryarray); ++$i) {
-                if ($moreChecks == true) {
+            
+            for ($i = 1, $iMax = count($queryarray); $i < $iMax; ++$i) {
+                if ($moreChecks === true) {
                     $criteriaSearch->add(new Criteria('wfc_title', "%$queryarray[$i]%", 'LIKE'), 'OR');
                     $criteriaSearch->add(new Criteria('wfc_headline', "%$queryarray[$i]%", 'LIKE'), 'OR');
                     $criteriaSearch->add(new Criteria('wfc_content', "%$queryarray[$i]%", 'LIKE'), 'OR');
@@ -589,19 +589,22 @@ class wfc_PageHandler extends wfp_ObjectHandler
      * @param mixed $limit
      * @param mixed $offset
      * @param bool  $moreChecks
-     * @return
+     * @return mixed
      */
     public function &getSearch($queryarray, $andor, $limit, $offset, $moreChecks = true)
     {
-        if ($andor != 'exact') {
-            $andor = $andor;
-        } else {
+//        if ($andor !== 'exact') {
+//            $andor = $andor;
+//        } else {
+//            $andor = '';
+//        }
+        if ($andor === 'exact') {
             $andor = '';
         }
 
         $criteria = new CriteriaCompo();
         if (is_array($queryarray) && count($queryarray)) {
-            self::searchCriteria($queryarray, $andor, $moreChecks, $criteria);
+            $this->searchCriteria($queryarray, $andor, $moreChecks, $criteria);
             $criteriaPublished = new CriteriaCompo();
             $criteriaPublished->add(new Criteria('wfc_publish', 0, '>'));
             $criteriaPublished->add(new Criteria('wfc_publish', time(), '<='));
@@ -618,7 +621,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
             $criteria->setOrder('DESC');
             $criteria->setStart((int)$offset);
             $criteria->setLimit((int)$limit);
-            $obj['list'] = &$this->getObjects($criteria, false);
+            $obj['list'] = $this->getObjects($criteria, false);
         }
 
         return $obj;
@@ -637,8 +640,8 @@ class wfc_PageHandler extends wfp_ObjectHandler
          */
         switch ($act) {
             case 'print':
-                $printerPage = wfp_getClass('doprint', _RESOURCE_DIR, _RESOURCE_CLASS);
-                $printerPage->setOptions(self::pdf_data($obj, $act));
+                $printerPage = &wfp_getClass('doprint', _RESOURCE_DIR, _RESOURCE_CLASS);
+                $printerPage->setOptions($this->pdf_data($obj, $act));
                 $printerPage->doRender();
                 break;
             case 'rss':
@@ -646,14 +649,14 @@ class wfc_PageHandler extends wfp_ObjectHandler
                     include $file;
                 } else {
                     $file = str_replace(XOOPS_ROOT_PATH, '', $file);
-                    error_reporting(sprintf(_MD_WFCHANNEL_FILENOTFOUND, $file, __FILE__, __LINE__));
+                    error_reporting(sprintf(_MD_WFC_FILENOTFOUND, $file, __FILE__, __LINE__));
                 }
                 break;
             case 'pdf':
-                $pdfPage = wfp_getClass('dopdf', _RESOURCE_DIR, _RESOURCE_CLASS);
+                $pdfPage = &wfp_getClass('dopdf', _RESOURCE_DIR, _RESOURCE_CLASS);
                 $ret     = $pdfPage->getCache($obj->getVar('wfc_cid'), $obj->getVar('wfc_cid'));
                 if (!$ret) {
-                    $pdfPage->setOptions(self::pdf_data($obj, $act));
+                    $pdfPage->setOptions($this->pdf_data($obj, $act));
                     $pdfPage->doRender();
                 }
                 break;
@@ -666,7 +669,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
      *
      * @param mixed $obj
      * @param       $act
-     * @return
+     * @return mixed
      */
     public function pdf_data(&$obj, $act)
     {
@@ -717,14 +720,14 @@ class wfc_PageHandler extends wfp_ObjectHandler
             case 'page_modified':
                 $tags['PAGE_NAME']    = $obj->getVar('wfc_title');
                 $tags['PAGE_URL']     = XOOPS_URL . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/index.php?cid=' . $obj->getVar('wfc_cid');
-                $notification_handler = &xoops_gethandler('notification');
+                $notification_handler = xoops_getHandler('notification');
                 $notification_handler->triggerEvent('page', $obj->getVar('wfc_cid'), $page_type, $tags);
                 break;
             case 'page_new':
             default:
                 $tags['PAGE_NAME']    = $obj->getVar('wfc_title');
                 $tags['PAGE_URL']     = XOOPS_URL . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/index.php?cid=' . $obj->getVar('wfc_cid');
-                $notification_handler = &xoops_gethandler('notification');
+                $notification_handler = xoops_getHandler('notification');
                 $notification_handler->triggerEvent('page', $obj->getVar('wfc_cid'), $page_type, $tags);
                 break;
         }
@@ -736,10 +739,10 @@ class wfc_PageHandler extends wfp_ObjectHandler
      * @param mixed $obj
      * @internal param string $page_type
      */
-    public function upTagHandler(&$obj)
+    public function upTagHandler($obj)
     {
         $item_tag    = wfp_Request::doRequest($_REQUEST, 'item_tag', '', 'textbox');
-        $tag_handler = xoops_getmodulehandler('tag', 'tag');
+        $tag_handler = xoops_getModuleHandler('tag', 'tag');
         if ($tag_handler) {
             $tag_handler->updateByItem($item_tag, $obj->getVar('wfc_cid'), $GLOBALS['xoopsModule']->getVar('dirname'), 0);
         }
@@ -755,16 +758,16 @@ class wfc_PageHandler extends wfp_ObjectHandler
     public function pageInfo(&$obj)
     {
         $url = XOOPS_URL . '/modules/system/admin.php?module=' . $GLOBALS['xoopsModule']->getVar('mid') . '&status=0&limit=10&fct=comments&selsubmit=Go%21';
-        $ret = '<div>' . _AM_WFCHANNEL_TOTALCOMENTS . '<b>' . $obj->getVar('wfc_comments') . '</b>';
+        $ret = '<div>' . _AM_WFC_TOTALCOMENTS . '<b>' . $obj->getVar('wfc_comments') . '</b>';
         if ($obj->getVar('wfc_comments')) {
-            $ret .= '&nbsp;<a href="' . $url . '">' . _AM_WFCHANNEL_VIEWCOMMENTS . '</a>';
+            $ret .= '&nbsp;<a href="' . $url . '">' . _AM_WFC_VIEWCOMMENTS . '</a>';
         }
 
         $ret .= '</div>';
-        $ret .= '<div>' . _AM_WFCHANNEL_TOTALPAGEREADS . '<b>' . $obj->getVar('wfc_counter') . '</b></div>';
-        $ret .= '<div>' . _AM_WFCHANNEL_PAGECREATED . '<b>' . formatTimestamp($obj->getVar('wfc_created')) . '</b></div>';
-        $time = ($obj->getVar('wfc_publish')) ? formatTimestamp($obj->getVar('wfc_publish')) : '';
-        $ret .= '<div>' . _AM_WFCHANNEL_LASUPDATED . '<b>' . $time . '</b></div><br />';
+        $ret .= '<div>' . _AM_WFC_TOTALPAGEREADS . '<b>' . $obj->getVar('wfc_counter') . '</b></div>';
+        $ret .= '<div>' . _AM_WFC_PAGECREATED . '<b>' . formatTimestamp($obj->getVar('wfc_created')) . '</b></div>';
+        $time = $obj->getVar('wfc_publish') ? formatTimestamp($obj->getVar('wfc_publish')) : '';
+        $ret .= '<div>' . _AM_WFC_LASUPDATED . '<b>' . $time . '</b></div><br />';
 
         return $ret;
     }
@@ -776,22 +779,22 @@ class wfc_PageHandler extends wfp_ObjectHandler
     public function headingHtml()
     {
         $ret = '';
-        if (func_num_args() != 1) {
+        if (func_num_args() !== 1) {
             return $ret;
         }
         $total_count    = $this->getCount();
-        $refers_handler = &wfp_gethandler('refers', 'wfchannel', 'wfc_');
+        $refers_handler = &wfp_getHandler('refers', 'wfchannel', 'wfc_');
         $refer_count    = $refers_handler->getEmailSentCount();
-        $default        = self::getDefaultPage();
+        $default        =& $this->getDefaultPage();
         $ret .= '<input class="wfbutton" type="button" name="button" onclick=\'location="main.php?op=edit"\' value="' . _AM_WFP_CREATENEW . '" />';
         $ret .= '<div style="padding-bottom: 8px;">';
-        if ($default == null) {
-            $ret .= _AM_WFCHANNEL_NODEFAULTPAGESET;
+        if ($default === null) {
+            $ret .= _AM_WFC_NODEFAULTPAGESET;
         } else {
-            $ret .= _AM_WFCHANNEL_DEFAULTPAGESET . ": <a href='../main.php?op=edit&wfc_cid=" . $default['id'] . "'>" . $default['title'] . "</a>";
+            $ret .= _AM_WFC_DEFAULTPAGESET . ": <a href='../main.php?op=edit&wfc_cid=" . $default['id'] . "'>" . $default['title'] . '</a>';
         }
-        $ret .= '<div>' . _AM_WFCHANNEL_TOTALNUMCHANL . ': <b>' . $total_count . '</b></div>';
-        $ret .= '<div>' . _AM_WFCHANNEL_TOTALEMAILSSENT . ': <b>' . $refer_count . '</b></div>';
+        $ret .= '<div>' . _AM_WFC_TOTALNUMCHANL . ': <b>' . $total_count . '</b></div>';
+        $ret .= '<div>' . _AM_WFC_TOTALEMAILSSENT . ': <b>' . $refer_count . '</b></div>';
         if ($refer_count > 0) {
             $ret .= '<a href="' . XOOPS_URL . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/admin/refers.php">' . _AM_WFP_VIEW . '</a><br />';
         }

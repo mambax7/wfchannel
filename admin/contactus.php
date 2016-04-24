@@ -1,11 +1,11 @@
 <?php
-include 'admin_header.php';
+include_once __DIR__ . '/admin_header.php';
 $menu_handler->addHeader(_AM_AD_CONTUSAREA);
-$_handler = &wfp_gethandler('contactus', _MODULE_DIR, _MODULE_CLASS);
+$_handler = &wfp_getHandler('contactus', _MODULE_DIR, _MODULE_CLASS);
 
 $op          = wfp_cleanRequestVars($_REQUEST, 'op', 'edit', XOBJ_DTYPE_TXTBOX);
 $options     = null;
-$do_callback = wfp_getObjectCallback($_handler);
+$do_callback = &wfp_getObjectCallback($_handler);
 $menu        = 4;
 switch ($op) {
     case 'edit':

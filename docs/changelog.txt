@@ -1,180 +1,180 @@
-	=>version 2.07 Beta 1      NOT RELEASED YET
-	- updated for XOOPS 2.5.7.1 and PHP 5.6 (mamba)
+    =>version 2.07 Beta 1      NOT RELEASED YET
+    - updated for XOOPS 2.5.7.1 and PHP 5.6 (mamba)
 
-	=>version 2.06 (catzwolf)
-	->fixed naming convention on the FCKeditor. Should now work on all systems.
-	->fixed naming convention on file sanitize_textbox.php in the filters and put in force an error check to prevent errors and return default.
-	->fixed naming convention on file sanitize_textbox.php in the filters.
-	->Fixed: New Menu block was using the wrong 'string' for permissions. This block used work as expected now.
-	->Removed: Removed code for older editors.
-	->Removed: Removed code  now considered depreciated from Xoops 2.3.
-	->Changed: Removed Xoops Captcha and repalaced it with the old WF-Channel version. This was due to a number of issues with the Xoops Version.
-	->Changed: Used many of the new XoopsForms and elements that were added in Xoops 2.3.
-	->Changed: Updated to work on PHP 2.3. The creation of Articles and such should now be possible.
-	->Changed: Changed Captcha to now use Xoops Captcha.
-	->Changed: Updated some language defines and corrected spelling errors.
-	->Changed: WF-Channel should work with XoopsEditors now.
-	->Fixed Many other issues, bugs and features that now lost to me while updaing this module.
-	->Fixed: RSS Channels should be working now. If not.... bite me!
+    =>version 2.06 (catzwolf)
+    ->fixed naming convention on the FCKeditor. Should now work on all systems.
+    ->fixed naming convention on file sanitize_textbox.php in the filters and put in force an error check to prevent errors and return default.
+    ->fixed naming convention on file sanitize_textbox.php in the filters.
+    ->Fixed: New Menu block was using the wrong 'string' for permissions. This block used work as expected now.
+    ->Removed: Removed code for older editors.
+    ->Removed: Removed code  now considered depreciated from Xoops 2.3.
+    ->Changed: Removed Xoops Captcha and repalaced it with the old WF-Channel version. This was due to a number of issues with the Xoops Version.
+    ->Changed: Used many of the new XoopsForms and elements that were added in Xoops 2.3.
+    ->Changed: Updated to work on PHP 2.3. The creation of Articles and such should now be possible.
+    ->Changed: Changed Captcha to now use Xoops Captcha.
+    ->Changed: Updated some language defines and corrected spelling errors.
+    ->Changed: WF-Channel should work with XoopsEditors now.
+    ->Fixed Many other issues, bugs and features that now lost to me while updaing this module.
+    ->Fixed: RSS Channels should be working now. If not.... bite me!
 
-	=>Version 2.05
-	->Fixed: The upgrader has been fixed and should update correctly now.
-	->Changes: This version fixed many issues, and I'm sorry but I didn't take notice or notes
+    =>Version 2.05
+    ->Fixed: The upgrader has been fixed and should update correctly now.
+    ->Changes: This version fixed many issues, and I'm sorry but I didn't take notice or notes
 
-	=>Version 2.04
-	- Fixed: Bug in sql files that set the database charset to latin1, this has been removed to allow the database to define the charset.
-	- Fixed: Big in main.php in the language files. $xoops['adminmail'] in the langauge define was treated as a non string var and would not display correctly.
-	- Fixed: Fixed an error with modversion 'use_wysiwyg' the wrong key was used for the default causing an error with the XoosEditor. Normally, doing a save with
-	the prefs would fix this.
-	- Fixed: Missing language defines for the print Page
-	- Fixed: Some navigation errors within the main admin page
-	- Changed: If a text editor is not a Xoops editor, WF-Channel will remove the ability to check the html and dobreak options and deal with them correctly
-	- Fixed: the display of Published time that would incorrectly display the right time set by WF-Channel when published
-	- Known Issue: When entering the time for published and Expire the incorrect format will be used. The H:s will not be converted and displayed
-		If this is used the time will not be saved. This is an issue between Xoops and WF-Chanel and cannot be fixed WF-Channel side.
-	- Fixed: Upload area will show a whitepage on uploading items, this was due a missing function.
-	- Fixed: Issue with page navigation where a user had selected how many results when on a page more than one, this would cause unexpected results.
+    =>Version 2.04
+    - Fixed: Bug in sql files that set the database charset to latin1, this has been removed to allow the database to define the charset.
+    - Fixed: Big in main.php in the language files. $xoops['adminmail'] in the langauge define was treated as a non string var and would not display correctly.
+    - Fixed: Fixed an error with modversion 'use_wysiwyg' the wrong key was used for the default causing an error with the XoosEditor. Normally, doing a save with
+    the prefs would fix this.
+    - Fixed: Missing language defines for the print Page
+    - Fixed: Some navigation errors within the main admin page
+    - Changed: If a text editor is not a Xoops editor, WF-Channel will remove the ability to check the html and dobreak options and deal with them correctly
+    - Fixed: the display of Published time that would incorrectly display the right time set by WF-Channel when published
+    - Known Issue: When entering the time for published and Expire the incorrect format will be used. The H:s will not be converted and displayed
+        If this is used the time will not be saved. This is an issue between Xoops and WF-Chanel and cannot be fixed WF-Channel side.
+    - Fixed: Upload area will show a whitepage on uploading items, this was due a missing function.
+    - Fixed: Issue with page navigation where a user had selected how many results when on a page more than one, this would cause unexpected results.
 
-	=>Version 2.03
-	- Fixed: Duplicate and Duplicate All would copy the default var arcorss to the new page. Now duplicate and duplicate pages will set this option to 0 during the copy process.
-	- Fixed: Bug in the WF-Resource check function function. Wasn't correctly checking to see if is the module was an object first.
-	- Fixed: Missing uninstall.php file.
-	- Fixed: Added complete check on whether 'XoopsEditor' was available or not. If XoopsEditor is not available then WF-Channel will use
-		XoopsFormDhtmlTextArea instead.
-	- Fixed: Linebreaks for links and refer would always return on even if saved as off.
-	- Fixed: Language issues when not using english as default. This has now been corrected.
-	- Fixed: Page navigation in main index added an extra 'index' to the url.
-	- Fixed: The default page on index would state that no index page was choosen. This would happened sometimes if the page navigation was used.
-	- Added: When you update WF-Channel from the Xoops Module admin, WF-channel will automatically update the tables with the new fields. So you don't have to update from WF-Channel admin now.
-	- Added: The updater will now automatically update some fields like dohtml, dosmilies etc when updating from v1 to v2. This is due to changed behavioue with these fields.
-	- Added: Due to a compatability issue, WF-Channel will check to see if the var (pagenum) is being used and convert it to the new (cid) var.
-		This is to keep external links alive.
-	- Added: Added more XOOP_ROOT_PATH checks to files to prevent people opening outwith the XOOPS_ROOT_PATH
-	- Changed: Removed some unwanted files from the package.
-	- Fixed: "Error: 1364 Field 'wfc_search' doesn't have a default value"
-	- Changed: Changed all text values within database to default NULL rather than NOT null values.
+    =>Version 2.03
+    - Fixed: Duplicate and Duplicate All would copy the default var arcorss to the new page. Now duplicate and duplicate pages will set this option to 0 during the copy process.
+    - Fixed: Bug in the WF-Resource check function function. Wasn't correctly checking to see if is the module was an object first.
+    - Fixed: Missing uninstall.php file.
+    - Fixed: Added complete check on whether 'XoopsEditor' was available or not. If XoopsEditor is not available then WF-Channel will use
+        XoopsFormDhtmlTextArea instead.
+    - Fixed: Linebreaks for links and refer would always return on even if saved as off.
+    - Fixed: Language issues when not using english as default. This has now been corrected.
+    - Fixed: Page navigation in main index added an extra 'index' to the url.
+    - Fixed: The default page on index would state that no index page was choosen. This would happened sometimes if the page navigation was used.
+    - Added: When you update WF-Channel from the Xoops Module admin, WF-channel will automatically update the tables with the new fields. So you don't have to update from WF-Channel admin now.
+    - Added: The updater will now automatically update some fields like dohtml, dosmilies etc when updating from v1 to v2. This is due to changed behavioue with these fields.
+    - Added: Due to a compatability issue, WF-Channel will check to see if the var (pagenum) is being used and convert it to the new (cid) var.
+        This is to keep external links alive.
+    - Added: Added more XOOP_ROOT_PATH checks to files to prevent people opening outwith the XOOPS_ROOT_PATH
+    - Changed: Removed some unwanted files from the package.
+    - Fixed: "Error: 1364 Field 'wfc_search' doesn't have a default value"
+    - Changed: Changed all text values within database to default NULL rather than NOT null values.
 
-	=>Version 2.02
-	- Fixed: There was an issue with Xoops search within WF-Channel. This has now been corrected and should work as expected.
-	- Fixed: Added and fixed the xoopseditor bug. Only the default editor would display even if another editor was selected.
-	- Added: Introduced a check to see if the correct version of WF-Resource is installed. If the check fails it will let you know and direct you to the ltest/correct version.
+    =>Version 2.02
+    - Fixed: There was an issue with Xoops search within WF-Channel. This has now been corrected and should work as expected.
+    - Fixed: Added and fixed the xoopseditor bug. Only the default editor would display even if another editor was selected.
+    - Added: Introduced a check to see if the correct version of WF-Resource is installed. If the check fails it will let you know and direct you to the ltest/correct version.
 
-	=>Version 2.01
-	- Fixed: Email sending error. There was a bug that would generate a blank page when sending an email.
-	- Fixed: default deselection, there was a bug that would prevent a user deselecting a default page on save.
-	- Known Issue: When using clone, if a page has been selected that is the default page, then this will be carried
-		on to the new cloned page, users must deselect the cloned page from being the default page.
-	- Fixed: Removed duplicate language defines within WF-Channel admin language.
-	- Fixed: Fixed undefined notices index in page class (4 to be exact).
-	- Fixed: Removed unwanted line that produced unwanted text on pages.
-	- Fixed: Finally, fixed Comments to appear in all pages (including default).
-	- Fixed: Error when uploading files via the upload feature in WF-Channel.
-	- Added: PDF cache. This will speed up PDF generation and hit the server less. The cache file will be
-		removed (deleted) on a edit/update then regenerated next time it is requested.
-	- Changed: Changed the Page creation form layout and added more contextual help on some of the topics.
-	- Added: Page creation Page, added a page link url for copying and pasting into other modules or scripts.
+    =>Version 2.01
+    - Fixed: Email sending error. There was a bug that would generate a blank page when sending an email.
+    - Fixed: default deselection, there was a bug that would prevent a user deselecting a default page on save.
+    - Known Issue: When using clone, if a page has been selected that is the default page, then this will be carried
+        on to the new cloned page, users must deselect the cloned page from being the default page.
+    - Fixed: Removed duplicate language defines within WF-Channel admin language.
+    - Fixed: Fixed undefined notices index in page class (4 to be exact).
+    - Fixed: Removed unwanted line that produced unwanted text on pages.
+    - Fixed: Finally, fixed Comments to appear in all pages (including default).
+    - Fixed: Error when uploading files via the upload feature in WF-Channel.
+    - Added: PDF cache. This will speed up PDF generation and hit the server less. The cache file will be
+        removed (deleted) on a edit/update then regenerated next time it is requested.
+    - Changed: Changed the Page creation form layout and added more contextual help on some of the topics.
+    - Added: Page creation Page, added a page link url for copying and pasting into other modules or scripts.
 
-	=> version 2.00d RC
-	- Fixed: There was a bug that would cause an error in search and profile module in Xoops v2.20.
-	- Fixed: There was a bug in the admin area that would prevent mass deleting and cloning of 'Pages'.
-	- Fixed: Some minor template issues.
-	- Fixed: Fixed some typos within this document.
-	- Changed: Changed the behavior of the menu in the pages, the top menu will now be horizontal rather than vertical.
+    => version 2.00d RC
+    - Fixed: There was a bug that would cause an error in search and profile module in Xoops v2.20.
+    - Fixed: There was a bug in the admin area that would prevent mass deleting and cloning of 'Pages'.
+    - Fixed: Some minor template issues.
+    - Fixed: Fixed some typos within this document.
+    - Changed: Changed the behavior of the menu in the pages, the top menu will now be horizontal rather than vertical.
 
-	=> version 2.00c RC
-	===============
-	- Fixed: The wrong mysql file was placed in the package before this module was released, added the correct one now.
-	- Fixed: The Html upload path pointed to an incorrect folder, this has now been corrected.
-	- Fixed: The Root path if not selected would point to an int val, now corrected.
-	- Changed: All WF-Project modules will now use the calendar in WF-Resource as a fix between compatibility issues with 2.18 and 2.25 releases.
+    => version 2.00c RC
+    ===============
+    - Fixed: The wrong mysql file was placed in the package before this module was released, added the correct one now.
+    - Fixed: The Html upload path pointed to an incorrect folder, this has now been corrected.
+    - Fixed: The Root path if not selected would point to an int val, now corrected.
+    - Changed: All WF-Project modules will now use the calendar in WF-Resource as a fix between compatibility issues with 2.18 and 2.25 releases.
 
-	=> version 2.00b RC
-	===============
-	- Added: Clone, save, and delete now update page permissions now. So if you clone an item the previous page permission are copied over.
-	- Removed: Removed the Cache folder as it is no longer required.
-	- Added: Main menu style block to blocks list.
-	- Added: View icon in Page list in admin area, user can now view any page via this method.
-	- Added: DHTML calender within the refers admin area. Users can view refers sent by date rather than one great big list.
-	- Added: Added microbutton to 'Link to Us' page.
-	- Added: Added the ability to add group permission while editing page.
-	- Added: Added pull down menu for page navigation, this allows you to dynamically change the amount of pages/refers
-			shown on the page.
-	- Added: Added the ability to popular bookmark sites.
-	- Added: Added the ability to Bookmark pages.
-	- Added: Added the ability to Print pages.
-	- Added: Added the ability to render PDF files.
-	- Added: Added the ability to view Refers in the admin area.
-	- Added: Added the ability to ban IP address from using the refer system.
-	- Added: Added legend to paged and refers page.
-	- Fixed: Fixed missing language constants in admin menu.
-	- Fixed: Fixed Page content to stop displaying 'space at the top of content' when [pagebreak] is used.
-	- Fixed: Fixed page layout, menu top and bottom did not display correctly.
-	- Fixed: The admin menu was not displaying correctly.
-	- Fixed: Group Permission for pages was not working correctly.
-	- Fixed: Fixed issues with the updater and should work correctly.
-	- Fixed: Deleting paged caused an error, stating page does not exist. corrected.
-	- Fixed: Captcha salt issue that could prevent emails being sent.
-	- Fixed: Image selection within the module.
-	- Fixed: Captcha not working without GD library, now will only show if GD library is installed.
-	- Fixed: Image selection in Page form not allowing for no image selection.
-	- Changed: Removed old edit, delete, clone and view icons to newer versions.
-	- Changed: icons now use PNG format rather than gif. If you are still using a browser that cannot process alpha images, then upgrade.
-	- Changed: Removed the previous method of selecting images, now uses a xoopsform style class for better functionality
-			This method also allows for using 'image manager' for storing files. This will be introduced in the next version.
-	- Changed: Now using own handler function rather than xoops handler function for better usage.
-	- Changed: Renamed all the class/*? files to use a prefix of class for proper naming.
-	- Changed: Moved class/php-captcha.inc.php and class/VeraMoBd.ttf to class/media/
-	- Changed: Renamed many/all functions and classes to use 'wfc' to prevent naming clashes with other modules.
-	- Changed: The link to Us page has been changed to give a less than cluttered look.
-	- Changed: Moved Menu images to their own folder and deleted all blank.png images as they are no longer required.
-	- Changed: Image in page is no longer a required element.
-	- Changed: Images in html files are automatically updated to match imported html files.
-	- Changed: Html files can be anywhere on the server and just not in one folder.
-	- Changed: Changed the handler method for new block, should now be quicker than the previous version.
-	- Changed: Removed two hardcoded language strings in Page Form.
+    => version 2.00b RC
+    ===============
+    - Added: Clone, save, and delete now update page permissions now. So if you clone an item the previous page permission are copied over.
+    - Removed: Removed the Cache folder as it is no longer required.
+    - Added: Main menu style block to blocks list.
+    - Added: View icon in Page list in admin area, user can now view any page via this method.
+    - Added: DHTML calender within the refers admin area. Users can view refers sent by date rather than one great big list.
+    - Added: Added microbutton to 'Link to Us' page.
+    - Added: Added the ability to add group permission while editing page.
+    - Added: Added pull down menu for page navigation, this allows you to dynamically change the amount of pages/refers
+            shown on the page.
+    - Added: Added the ability to popular bookmark sites.
+    - Added: Added the ability to Bookmark pages.
+    - Added: Added the ability to Print pages.
+    - Added: Added the ability to render PDF files.
+    - Added: Added the ability to view Refers in the admin area.
+    - Added: Added the ability to ban IP address from using the refer system.
+    - Added: Added legend to paged and refers page.
+    - Fixed: Fixed missing language constants in admin menu.
+    - Fixed: Fixed Page content to stop displaying 'space at the top of content' when [pagebreak] is used.
+    - Fixed: Fixed page layout, menu top and bottom did not display correctly.
+    - Fixed: The admin menu was not displaying correctly.
+    - Fixed: Group Permission for pages was not working correctly.
+    - Fixed: Fixed issues with the updater and should work correctly.
+    - Fixed: Deleting paged caused an error, stating page does not exist. corrected.
+    - Fixed: Captcha salt issue that could prevent emails being sent.
+    - Fixed: Image selection within the module.
+    - Fixed: Captcha not working without GD library, now will only show if GD library is installed.
+    - Fixed: Image selection in Page form not allowing for no image selection.
+    - Changed: Removed old edit, delete, clone and view icons to newer versions.
+    - Changed: icons now use PNG format rather than gif. If you are still using a browser that cannot process alpha images, then upgrade.
+    - Changed: Removed the previous method of selecting images, now uses a xoopsform style class for better functionality
+            This method also allows for using 'image manager' for storing files. This will be introduced in the next version.
+    - Changed: Now using own handler function rather than xoops handler function for better usage.
+    - Changed: Renamed all the class/*? files to use a prefix of class for proper naming.
+    - Changed: Moved class/php-captcha.inc.php and class/VeraMoBd.ttf to class/media/
+    - Changed: Renamed many/all functions and classes to use 'wfc' to prevent naming clashes with other modules.
+    - Changed: The link to Us page has been changed to give a less than cluttered look.
+    - Changed: Moved Menu images to their own folder and deleted all blank.png images as they are no longer required.
+    - Changed: Image in page is no longer a required element.
+    - Changed: Images in html files are automatically updated to match imported html files.
+    - Changed: Html files can be anywhere on the server and just not in one folder.
+    - Changed: Changed the handler method for new block, should now be quicker than the previous version.
+    - Changed: Removed two hardcoded language strings in Page Form.
 
 => version 2.00a RC
 ================
-	- Fixed: Image selection in Page form not allowing for no image.
-	- Fixed: Removed all known 'english' hard coded language
-	- Fixed: No sql file with last package, sorry about that one.
-	- Fixed: Refer Email, missing database field and count not saved.
-	- Fixed: Default Page was not updated correctly, could have more than one default page. bad!!
-	- Fixed: Page Menu link still shown if page was default or selected.
-	- Fixed: css bug when no pages in database
-	- Fixed: If no default page selected, WF-Channel will no longer exit with a redirect but show a
-		no default page.
-	- Fixed: The amount of Refer emails sent in admin area.
-	- Added: Block, add a block to show new pages. (Will add a WF-Channel menu as requested).
-	- Added: Better more friendly error handling, erros should just not fail for no reason.
-	- Changed: Removed the 'Create Tab' to a link above the Page listing. (saves Space)
-	- Changed: Function name wfc_upload to avoid conflicts with WF-Channel clones
+    - Fixed: Image selection in Page form not allowing for no image.
+    - Fixed: Removed all known 'english' hard coded language
+    - Fixed: No sql file with last package, sorry about that one.
+    - Fixed: Refer Email, missing database field and count not saved.
+    - Fixed: Default Page was not updated correctly, could have more than one default page. bad!!
+    - Fixed: Page Menu link still shown if page was default or selected.
+    - Fixed: css bug when no pages in database
+    - Fixed: If no default page selected, WF-Channel will no longer exit with a redirect but show a
+        no default page.
+    - Fixed: The amount of Refer emails sent in admin area.
+    - Added: Block, add a block to show new pages. (Will add a WF-Channel menu as requested).
+    - Added: Better more friendly error handling, erros should just not fail for no reason.
+    - Changed: Removed the 'Create Tab' to a link above the Page listing. (saves Space)
+    - Changed: Function name wfc_upload to avoid conflicts with WF-Channel clones
 
 
 => version 2.00 RC
 ================
 
-	- Completely rewritten to use OO functionality
-	- Changed Database table and field names to 'Friendly naming'
-	- Removed Reorder page, now no longer required
-	- Removed the html convert class, no longer required
-	- Removed bad links now that WF-Sections website is no longer available, changed any reference to the Xoops Website
-	- Removed: Changed functionality to Xoops Menu. You can no longer add pages to the Xoops Menu. This is for a performance increase
-		This method of adding sub menu items decreased Xoops performance and really should not be used.
-		Will add this method back or re-write in the future if wanted by the public.
-	- Added: Should be a lot more secure than any previous versions.
-	- Added: Should have a performance increase over other versions
-	- Added: Should use less MySQL queries than previous versions. Will introduce mysql caching in future version.
-	- Added: completely New admin interface.
-	- Added: captacha and other security features to refer page. Should prevent mass mailing and spamming from your website.
-		Future: Will add IP banning and Refer stats class.
+    - Completely rewritten to use OO functionality
+    - Changed Database table and field names to 'Friendly naming'
+    - Removed Reorder page, now no longer required
+    - Removed the html convert class, no longer required
+    - Removed bad links now that WF-Sections website is no longer available, changed any reference to the Xoops Website
+    - Removed: Changed functionality to Xoops Menu. You can no longer add pages to the Xoops Menu. This is for a performance increase
+        This method of adding sub menu items decreased Xoops performance and really should not be used.
+        Will add this method back or re-write in the future if wanted by the public.
+    - Added: Should be a lot more secure than any previous versions.
+    - Added: Should have a performance increase over other versions
+    - Added: Should use less MySQL queries than previous versions. Will introduce mysql caching in future version.
+    - Added: completely New admin interface.
+    - Added: captacha and other security features to refer page. Should prevent mass mailing and spamming from your website.
+        Future: Will add IP banning and Refer stats class.
 
-	- Bugfix: Correct amount of emails sent will be displayed.
-	- Bugfix: Comment count should be displayed correctly.
-	- Bugfix: Search function was buggy moved this over to a OO function.
+    - Bugfix: Correct amount of emails sent will be displayed.
+    - Bugfix: Comment count should be displayed correctly.
+    - Bugfix: Search function was buggy moved this over to a OO function.
 
-	- Added: Upgrade class. The upgrading now using a class than straight sql calls. Makes it easier to install now and in future for developers.
-	Plus Much more.....
+    - Added: Upgrade class. The upgrading now using a class than straight sql calls. Makes it easier to install now and in future for developers.
+    Plus Much more.....
 
 
 
@@ -188,7 +188,7 @@
   - Bug fixed "backendjs.php"
   - Bug fixed "Page Menu Link Not Displayed On Link/refer Pages" ( also Templates fixed)
   - Change Page Menu Link to a function.
-  - Add define("_MA_WFCHANNEL_NORIGHTTOVIEWPAGE","You do not have permission to view this page"); to main.php
+  - Add define("_MA_WFC_NORIGHTTOVIEWPAGE","You do not have permission to view this page"); to main.php
   - Change in xoops_version.php variable $modversion['dirname'] not used now (
    $xoopsModule = &$modhandler->getByDirname($modversion['dirname']);  )
   - Now 100% ML hack ( marcan ) compatible, so it is recommanded not to use the index.php for wfchannel from the ML package

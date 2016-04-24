@@ -49,7 +49,7 @@ function hasSupport() {
         return hasSupport.support;
     var ie55 = /msie 5\.[56789]/i.test(navigator.userAgent);
     hasSupport.support = ( typeof document.implementation != "undefined" &&
-    document.implementation.hasFeature("html", "1.0") || ie55 )
+    document.implementation.hasFeature("html", "1.0") || ie55 );
     if (ie55) {
         document._getElementsByTagName = document.getElementsByTagName;
         document.getElementsByTagName = function (sTagName) {
@@ -221,7 +221,7 @@ function setupAllTabs() {
     var cn, el;
     var parentTabPane;
     for (var i = 0; i < l; i++) {
-        el = all[i]
+        el = all[i];
         cn = el.className;
         if (cn == "") continue;
         if (tabPaneRe.test(cn) && !el.tabPane)
@@ -239,7 +239,7 @@ function disposeAllTabs() {
     var cn, el;
     var tabPanes = [];
     for (var i = 0; i < l; i++) {
-        el = all[i]
+        el = all[i];
         cn = el.className;
         if (cn == "") continue;
         if (tabPaneRe.test(cn) && el.tabPane)

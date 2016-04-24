@@ -15,7 +15,6 @@
  * @package
  * @since
  * @author       XOOPS Development Team
- * @version      $Id $
  */
 
 $rootPath = dirname(dirname(dirname(__DIR__)));
@@ -24,34 +23,32 @@ include_once $rootPath . '/include/cp_functions.php';
 require_once $rootPath . '/include/cp_header.php';
 
 require_once XOOPS_ROOT_PATH . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/include/functions.php';
-$menu_handler = &wfp_gethandler('menu');
+$menu_handler = &wfp_getHandler('menu');
 
 global $xoopsModule;
 
-//$moduleFolder = $GLOBALS['xoopsModule']->getVar('dirname');
-$moduleFolder = dirname(__DIR__);
-require_once $moduleFolder . '/include/common.php';
-
+//$moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
+$moduleDirName = basename(dirname(__DIR__));
+//require_once $moduleDirName . '/include/common.php';
 //if functions.php file exist
-//require_once dirname(__DIR__) . '/include/functions.php';
+require_once dirname(__DIR__) . '/include/functions.php';
 
-//$myts = & MyTextSanitizer::getInstance();
+//$myts = MyTextSanitizer::getInstance();
 
 if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl)) {
-    include_once $GLOBALS['xoops']->path("class/template.php");
+    include_once $GLOBALS['xoops']->path('class/template.php');
     $xoopsTpl = new XoopsTpl();
 }
 
 // Load language files
-xoops_loadLanguage('admin', $moduleFolder);
-xoops_loadLanguage('modinfo', $moduleFolder);
-xoops_loadLanguage('main', $moduleFolder);
+xoops_loadLanguage('admin', $moduleDirName);
+xoops_loadLanguage('modinfo', $moduleDirName);
+xoops_loadLanguage('main', $moduleDirName);
 
-$pathIcon16      = XOOPS_URL . '/' . $xoopsModule->getInfo('icons16');
-$pathIcon32      = XOOPS_URL . '/' . $xoopsModule->getInfo('icons32');
+$pathIcon16      = XOOPS_URL . '/' . $xoopsModule->getInfo('sysicons16');
+$pathIcon32      = XOOPS_URL . '/' . $xoopsModule->getInfo('sysicons32');
 $pathModuleAdmin = XOOPS_ROOT_PATH . '/' . $xoopsModule->getInfo('dirmoduleadmin');
 require_once $pathModuleAdmin . '/moduleadmin.php';
-
 
 $GLOBALS['xoopsTpl']->assign('pathIcon16', $pathIcon16);
 $GLOBALS['xoopsTpl']->assign('pathIcon32', $pathIcon32);

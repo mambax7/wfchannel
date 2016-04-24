@@ -11,19 +11,17 @@
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
- * @version    : $Id: sitemap.plugin.php 8179 2011-11-07 00:54:10Z beckmi $
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 /**
  * b_sitemap_wfchannel()
- *
- * @return
+ * @return array
  */
 function b_sitemap_wfchannel()
 {
     require_once XOOPS_ROOT_PATH . '/modules/wfchannel/include/functions.php';
-    $page_handler = &wfp_gethandler('page', _MODULE_DIR, _MODULE_CLASS);
+    $page_handler = &wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
     $obj          = $page_handler->getPageObj('', false);
     $ret          = array();
     if ($obj['count'] && count($obj['list'])) {
@@ -32,7 +30,8 @@ function b_sitemap_wfchannel()
             $ret['parent'][] = array(
                 'id'    => $wfc_cid,
                 'title' => $obj->getVar('wfc_title'),
-                'url'   => 'index.php?wfc_id=' . $wfc_cid);
+                'url'   => 'index.php?wfc_id=' . $wfc_cid
+            );
         }
     }
 

@@ -10,7 +10,8 @@
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
- * @version    : $Id: plugin.tag.php 8179 2011-11-07 00:54:10Z beckmi $
+ * @param $items
+ * @return bool
  */
 
 function wfchannel_tag_iteminfo(&$items)
@@ -27,7 +28,7 @@ function wfchannel_tag_iteminfo(&$items)
             $items_id[] = (int)$item_id;
         }
     }
-    $handler   = &wfp_gethandler('page', _MODULE_DIR, _MODULE_CLASS);
+    $handler   = &wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
     $items_obj = $handler->getObjects(new Criteria('wfc_cid', '(' . implode(', ', $items_id) . ')', 'IN'), true);
 
     foreach (array_keys($items) as $cat_id) {
@@ -40,7 +41,8 @@ function wfchannel_tag_iteminfo(&$items)
                     'link'    => 'index.php?cid=' . $item_id,
                     'time'    => $obj->getVar('wfc_publish'),
                     'tags'    => '', // tag_parse_tag($item_obj->getVar("item_tags", "n")), // optional
-                    'content' => '',);
+                    'content' => ''
+                );
             }
         }
     }
@@ -51,20 +53,19 @@ function wfchannel_tag_iteminfo(&$items)
  * wfchannel_tag_synchronization()
  *
  * @param mixed $mid
- * @return
  */
 function wfchannel_tag_synchronization($mid)
 {
-    $item_handler = &xoops_getmodulehandler('pages', 'wfchannel');
-    $link_handler = &xoops_getmodulehandler('link', 'tag');
+    $item_handler = xoops_getModuleHandler('pages', 'wfchannel');
+    $link_handler = xoops_getModuleHandler('link', 'tag');
 
     /**
      * clear tag-item links
      */
     if ($link_handler->mysql_major_version() >= 4) {
-        $sql = "	DELETE FROM {$link_handler->table}" . "	WHERE " . "		tag_modid = {$mid}" . "		AND " . "		( tag_itemid NOT IN " . "			( SELECT DISTINCT {$item_handler->keyName} " . "				FROM {$item_handler->table} " . "				WHERE {$item_handler->table}.approved > 0" . "			) " . "		)";
+        $sql = "    DELETE FROM {$link_handler->table}" . ' WHERE ' . "     tag_modid = {$mid}" . '     AND ' . '       ( tag_itemid NOT IN ' . "           ( SELECT DISTINCT {$item_handler->keyName} " . "                FROM {$item_handler->table} " . "               WHERE {$item_handler->table}.approved > 0" . '          ) ' . '     )';
     } else {
-        $sql = "	DELETE {$link_handler->table} FROM {$link_handler->table}" . "	LEFT JOIN {$item_handler->table} AS aa ON {$link_handler->table}.tag_itemid = aa.{$item_handler->keyName} " . "	WHERE " . "		tag_modid = {$mid}" . "		AND " . "		( aa.{$item_handler->keyName} IS NULL" . "			OR aa.approved < 1" . "		)";
+        $sql = "    DELETE {$link_handler->table} FROM {$link_handler->table}" . "  LEFT JOIN {$item_handler->table} AS aa ON {$link_handler->table}.tag_itemid = aa.{$item_handler->keyName} " . ' WHERE ' . "     tag_modid = {$mid}" . '     AND ' . "       ( aa.{$item_handler->keyName} IS NULL" . '          OR aa.approved < 1' . '     )';
     }
     if (!$result = $link_handler->db->queryF($sql)) {
         // xoops_error($link_handler->db->error());

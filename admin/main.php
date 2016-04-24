@@ -10,16 +10,15 @@
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
- * @version    : $Id: index.php 8179 2011-11-07 00:54:10Z beckmi $
  */
-include 'admin_header.php';
+include_once __DIR__ . '/admin_header.php';
 
 /**
  * Instance the call back
  */
-$handler     = &wfp_gethandler('page', _MODULE_DIR, _MODULE_CLASS);
+$handler     = &wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
 $do_callback = &wfp_getObjectCallback($handler);
-$menu_handler->addHeader(_AM_WFCHANNEL_MAINAREA);
+$menu_handler->addHeader(_AM_WFC_MAINAREA);
 
 /**
  * Switch
@@ -46,7 +45,7 @@ switch ($op) {
 
     case 'view':
         $wfc_cid = wfp_Request::doRequest($_REQUEST, 'wfc_cid', 0, 'int');
-        $URL     = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/main.php?cid=' . $wfc_cid;
+        $URL     = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/index.php?cid=' . $wfc_cid;
         header("Location: $URL");
         break;
 
@@ -65,20 +64,20 @@ switch ($op) {
         unset($_SESSION['wfc_channel']);
         $options = array('wfc_default' => 0);
         $do_callback->setNotificationType('page_new');
-        if (false == $do_callback->duplicateall($options)) {
+        if (false === $do_callback->duplicateall($options)) {
             $handler->getHtmlErrors(true, $menu);
         }
         break;
 
     case 'deleteall':
         unset($_SESSION['wfc_channel']);
-        if (false == $do_callback->deleteall($op)) {
+        if (false === $do_callback->deleteall($op)) {
             $handler->getHtmlErrors(true, $menu);
         }
         break;
 
     case 'edit':
-        $menu_handler->addSubHeader(_AM_WFCHANNEL_MAINAREA_EDIT_DSC);
+        //        $menu_handler->addSubHeader(_AM_WFC_MAINAREA_EDIT_DSC);
         if (!call_user_func(array($do_callback, $op), $options)) {
             $handler->getHtmlErrors(true, $menu);
         }
@@ -149,7 +148,7 @@ switch ($op) {
          */
         $wfc_cid = wfp_Request::doRequest($_REQUEST, 'wfc_cid', 0, 'int');
         if ($wfc_cid > 0) {
-            $pdf = wfp_getClass('dopdf');
+            $pdf = &wfp_getClass('dopdf');
             $pdf->deleteCache($wfc_cid, $_REQUEST['wfc_title']);
         }
         xoops_load('xoopscache');
@@ -165,6 +164,7 @@ switch ($op) {
 
     case 'default':
     default:
+        $nav = array();
         $nav['start']  = wfp_Request::doRequest($_REQUEST, 'start', 0, 'int');
         $nav['sort']   = wfp_Request::doRequest($_REQUEST, 'sort', 'wfc_cid', 'textbox');
         $nav['order']  = wfp_Request::doRequest($_REQUEST, 'order', 'DESC', 'textbox');
@@ -173,7 +173,7 @@ switch ($op) {
         $nav['search'] = wfp_Request::doRequest($_REQUEST, 'search', '', 'textbox');
         $nav['active'] = wfp_Request::doRequest($_REQUEST, 'active', 0, 'int');
         $nav['andor']  = wfp_Request::doRequest($_REQUEST, 'andor', 'AND', 'textbox');
-        if (strlen($nav['date']) != 10) {
+        if (strlen($nav['date']) !== 10) {
             $nav['date'] = strtotime($nav['date']);
         }
         foreach ($nav as $k => $v) {
@@ -188,7 +188,7 @@ switch ($op) {
             }
         }
 
-        $tlist = wfp_getClass('tlist');
+        $tlist = &wfp_getClass('tlist');
         $tlist->AddFormStart('post', 'main.php', 'pages');
         $tlist->AddHeader('wfc_cid', '5', 'center', false);
         $tlist->AddHeader('wfc_title', '25%', 'left', true);
@@ -213,13 +213,14 @@ switch ($op) {
                                 $obj->formatTimeStamp('wfc_expired'),
                                 $obj->getTextbox('wfc_cid', 'wfc_weight', '5'),
                                 $obj->getCheckbox('wfc_cid'),
-                                wfp_getIcons($button, 'wfc_cid', $obj->getVar('wfc_cid'))));
+                                wfp_getIcons($button, 'wfc_cid', $obj->getVar('wfc_cid'))
+                            ));
             }
         }
         // Html Output here
         xoops_cp_header();
-        $menu_handler->addSubHeader(_AM_WFCHANNEL_MAINAREA_DSC);
-//        $menu_handler->render(0);
+        $menu_handler->addSubHeader(_AM_WFC_MAINAREA_DSC);
+        //        $menu_handler->render(0);
         $handler->headingHtml($_obj['count']);
         $handler->displayCalendar($nav, true);
         $tlist->render();

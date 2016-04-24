@@ -10,20 +10,19 @@
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
- * @version    : $Id: link.php 8179 2011-11-07 00:54:10Z beckmi $
  */
-include 'admin_header.php';
+include_once __DIR__ . '/admin_header.php';
 
-$menu_handler->addHeader(_AM_WFCHANNEL_LINKAREA);
-$handler     = &wfp_gethandler('link', _MODULE_DIR, _MODULE_CLASS);
-$do_callback = wfp_getObjectCallback($handler);
+$menu_handler->addHeader(_AM_WFC_LINKAREA);
+$handler     = &wfp_getHandler('link', _MODULE_DIR, _MODULE_CLASS);
+$do_callback = &wfp_getObjectCallback($handler);
 
 $op = wfp_Request::doRequest($_REQUEST, 'op', 'edit', 'textbox');
 switch ($op) {
     case 'edit':
     default:
         $menu = 3;
-        $menu_handler->addSubHeader(_AM_WFCHANNEL_LINKAREA_DSC);
+        $menu_handler->addSubHeader(_AM_WFC_LINKAREA_DSC);
         $do_callback->setId(1);
         $do_callback->setMenu($menu);
         if (!call_user_func(array($do_callback, $op), null)) {

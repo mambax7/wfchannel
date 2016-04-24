@@ -54,7 +54,7 @@ function hasSupport() {
     var ie55 = /msie 5\.[56789]/i.test(navigator.userAgent);
 
     hasSupport.support = ( typeof document.implementation != "undefined" &&
-    document.implementation.hasFeature("html", "1.0") || ie55 )
+    document.implementation.hasFeature("html", "1.0") || ie55 );
 
     // IE55 has a serious DOM1 bug... Patch it!
     if (ie55) {
@@ -73,9 +73,9 @@ function hasSupport() {
 ///////////////////////////////////////////////////////////////////////////////////
 // The constructor for tab panes
 //
-// el : HTMLElement		The html element used to represent the tab pane
-// bUseCookie : Boolean	Optional. Default is true. Used to determine whether to us
-//						persistance using cookies or not
+// el : HTMLElement     The html element used to represent the tab pane
+// bUseCookie : Boolean Optional. Default is true. Used to determine whether to us
+//                      persistance using cookies or not
 //
 function WebFXTabPane(el, bUseCookie) {
     if (!hasSupport() || el == null) return;
@@ -122,7 +122,7 @@ WebFXTabPane.prototype.setSelectedIndex = function (n) {
         this.pages[this.selectedIndex].show();
 
         if (this.useCookie)
-            WebFXTabPane.setCookie("webfxtab_" + this.element.id, n);	// session cookie
+            WebFXTabPane.setCookie("webfxtab_" + this.element.id, n);   // session cookie
     }
 };
 
@@ -133,7 +133,7 @@ WebFXTabPane.prototype.getSelectedIndex = function () {
 WebFXTabPane.prototype.addTabPage = function (oElement) {
     if (!hasSupport()) return;
 
-    if (oElement.tabPage == this)	// already added
+    if (oElement.tabPage == this)   // already added
         return oElement.tabPage;
 
     var n = this.pages.length;
@@ -191,9 +191,9 @@ WebFXTabPane.removeCookie = function (name) {
 // The constructor for tab pages. This one should not be used.
 // Use WebFXTabPage.addTabPage instead
 //
-// el : HTMLElement			The html element used to represent the tab pane
-// tabPane : WebFXTabPane	The parent tab pane
-// nindex :	Number			The index of the page in the parent pane page array
+// el : HTMLElement         The html element used to represent the tab pane
+// tabPane : WebFXTabPane   The parent tab pane
+// nindex : Number          The index of the page in the parent pane page array
 //
 function WebFXTabPage(el, tabPane, nIndex) {
     if (!hasSupport() || el == null) return;
@@ -298,7 +298,7 @@ function setupAllTabs() {
     var parentTabPane;
 
     for (var i = 0; i < l; i++) {
-        el = all[i]
+        el = all[i];
         cn = el.className;
 
         // no className
@@ -326,7 +326,7 @@ function disposeAllTabs() {
     var tabPanes = [];
 
     for (var i = 0; i < l; i++) {
-        el = all[i]
+        el = all[i];
         cn = el.className;
 
         // no className
@@ -350,7 +350,7 @@ function disposeAllTabs() {
 if (typeof window.addEventListener != "undefined")
     window.addEventListener("load", setupAllTabs, false);
 
-// IE 
+// IE
 else if (typeof window.attachEvent != "undefined") {
     window.attachEvent("onload", setupAllTabs);
     window.attachEvent("onunload", disposeAllTabs);

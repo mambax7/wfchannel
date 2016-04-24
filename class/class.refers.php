@@ -10,7 +10,6 @@
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
- * @version    : $Id: class.refers.php 8179 2011-11-07 00:54:10Z beckmi $
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
@@ -22,7 +21,6 @@ wfp_getObjectHandler();
  * @package
  * @author    John
  * @copyright Copyright (c) 2007
- * @version   $Id: class.refers.php 8179 2011-11-07 00:54:10Z beckmi $
  * @access    public
  */
 class wfc_Refers extends wfp_Object
@@ -43,8 +41,7 @@ class wfc_Refers extends wfp_Object
 
     /**
      * WfchannelRefers::getUid()
-     *
-     * @return
+     * @return mixed|string
      */
     public function getUid()
     {
@@ -57,8 +54,7 @@ class wfc_Refers extends wfp_Object
 
     /**
      * WfchannelRefers::getReferUrl()
-     *
-     * @return
+     * @return string
      */
     public function getReferUrl()
     {
@@ -67,7 +63,7 @@ class wfc_Refers extends wfp_Object
         }
         $URL = parse_url($this->getVar('wfcr_referurl'));
 
-        return (isset($URL['host'])) ? $URL['host'] : 'Unknown Host';
+        return isset($URL['host']) ? $URL['host'] : 'Unknown Host';
     }
 }
 
@@ -77,7 +73,6 @@ class wfc_Refers extends wfp_Object
  * @package
  * @author    John
  * @copyright Copyright (c) 2009
- * @version   $Id: class.refers.php 8179 2011-11-07 00:54:10Z beckmi $
  * @access    public
  */
 class wfc_RefersHandler extends wfp_ObjectHandler
@@ -86,9 +81,8 @@ class wfc_RefersHandler extends wfp_ObjectHandler
      * WfchannelPageHandler::XoopsCategoryHandler()
      *
      * @param mixed $db
-     * @return
      */
-    public function __construct(&$db)
+    public function __construct($db)
     {
         parent::__construct($db, 'wfcrefers', 'wfc_Refers', 'wfcr_id', 'wfcr_ip');
     }
@@ -96,7 +90,8 @@ class wfc_RefersHandler extends wfp_ObjectHandler
     /**
      * WfchannelReferHandler::getEmailSentCount()
      *
-     * @return
+     * @param  string $id
+     * @return int
      */
     public function getEmailSentCount($id = '')
     {
@@ -111,7 +106,6 @@ class wfc_RefersHandler extends wfp_ObjectHandler
     /**
      * WfchannelReferHandler::getEmailSentCount()
      *
-     * @return
      */
     public function setEmailSendCount()
     {
@@ -122,13 +116,12 @@ class wfc_RefersHandler extends wfp_ObjectHandler
 
     /**
      * wfc_RefersHandler::getObj()
-     *
-     * @return
+     * @return bool
      */
     public function &getObj()
     {
-        $obj = false;
-        if (func_num_args() == 2) {
+        $obj = array();
+        if (func_num_args() === 2) {
             $args     = func_get_args();
             $criteria = new CriteriaCompo();
             if (!empty($args[0]['search'])) {
@@ -138,7 +131,7 @@ class wfc_RefersHandler extends wfp_ObjectHandler
                 $criteria->add(new Criteria('wfcr_referurl', "%$searchparms%", 'LIKE'), 'OR');
             }
             if (!empty($args[0]['date'])) {
-                $addon_date = &$this->getaDate($args[0]['date']);
+                $addon_date = $this->getaDate($args[0]['date']);
                 if ($addon_date['begin'] && $addon_date['end']) {
                     $criteria->add(new Criteria('wfcr_date', $addon_date['begin'], '>='), 'AND');
                     $criteria->add(new Criteria('wfcr_date', $addon_date['end'], '<='));
@@ -160,13 +153,12 @@ class wfc_RefersHandler extends wfp_ObjectHandler
     /**
      * wfc_RefersHandler::headingHtml()
      *
-     * @return
      */
     public function headingHtml()
     {
         $ret = '';
         if (func_num_args() == 1) {
-            $ret = '<div style="padding-bottom: 8px;">' . _AM_WFCHANNEL_TOTALEMAILSSENT . ': <b>' . func_get_arg(0) . '</b></div>';
+            $ret = '<div style="padding-bottom: 8px;">' . _AM_WFC_TOTALEMAILSSENT . ': <b>' . func_get_arg(0) . '</b></div>';
         }
         /**
          */
@@ -175,8 +167,7 @@ class wfc_RefersHandler extends wfp_ObjectHandler
 
     /**
      * wfc_RefersHandler::getIP()
-     *
-     * @return
+     * @return string
      */
     public function getIP()
     {

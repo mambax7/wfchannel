@@ -1,24 +1,24 @@
 <?php
 // ------------------------------------------------------------------------ //
-// Xoops - PHP Content Management System                      			//
-// Copyright (c) 2007 Xoops                           				//
+// Xoops - PHP Content Management System                                //
+// Copyright (c) 2007 Xoops                                         //
 // //
-// Authors: 																//
-// John Neill ( AKA Catzwolf )                                     			//
-// Raimondas Rimkevicius ( AKA Mekdrop )									//
+// Authors:                                                                 //
+// John Neill ( AKA Catzwolf )                                              //
+// Raimondas Rimkevicius ( AKA Mekdrop )                                    //
 // //
-// URL: http:www.Xoops.com 												//
+// URL: http:www.Xoops.com                                              //
 // Project: Xoops Project                                               //
 // -------------------------------------------------------------------------//
 defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
-include 'header.php';
+include __DIR__ . '/header.php';
 $op = wfp_cleanRequestVars($_REQUEST, 'op', 'default', XOBJ_DTYPE_TXTBOX);
 switch ($op) {
     case 'upgrade':
         include(XOOPS_ROOT_PATH . '/header.php');
-        echo "<p><b>" . _MD_WFCHANNEL_UPDATE24 . "</b></p>\n";
+        echo '<p><b>' . _MD_WFC_UPDATE24 . "</b></p>\n";
         echo "<br /><p><b>Updating table wfcpages</b></p>\n";
-        $updater = wfp_getClass('updater');
+        $updater = &wfp_getClass('updater');
         $result  = $updater->RenameTable('wfschannel', 'wfcpages');
         if (!$result) {
             $updater->getError();
@@ -57,8 +57,8 @@ switch ($op) {
         displayOutput();
         // Updating table wfclink
         echo "<br /><p><b>Updating table wfcrefer</b></p>\n";
-        $updater = wfp_getClass('updater');
-        $updater->setTable("wfcrefer");
+        $updater = &wfp_getClass('updater');
+        $updater->setTable('wfcrefer');
         $result = $updater->RenameTable('wfsrefer', 'wfcrefer');
         if (!$result) {
             $updater->getError();
@@ -67,21 +67,21 @@ switch ($op) {
             exit();
         }
 
-        $updater->changeField("titlerefer", "`wfcr_title` varchar(60) NOT NULL");
-        $updater->changeField("chanrefheadline", "`wfcr_content` text NOT NULL");
-        $updater->changeField("submenuitem", "`wfcr_submenuitem` smallint(1) unsigned NOT NULL default '0'");
-        $updater->changeField("mainpage", "`wfcr_mainpage` smallint(1) unsigned NOT NULL default '0'");
-        $updater->changeField("referpagelogo", "`wfcr_image` varchar(255) NOT NULL");
-        $updater->changeField("emailaddress", "`wfcr_email` tinyint(1) unsigned NOT NULL default '1'");
-        $updater->changeField("usersblurb", "`wfsr_ublurb` smallint(1) unsigned NOT NULL default '0'");
-        $updater->changeField("defblurb", "`wfcr_dblurb` text NOT NULL");
-        $updater->changeField("smiley", "`dosmiley` tinyint(1) unsigned NOT NULL default '1'");
-        $updater->changeField("xcodes", "`doxcode` tinyint(1) unsigned NOT NULL default '1'");
-        $updater->changeField("breaks", "`dobr` tinyint(1) unsigned NOT NULL default '1'");
-        $updater->changeField("html", "`dohtml` tinyint(1) unsigned NOT NULL default '0'");
-        $updater->changeField("privacy", "`wfcr_privacy` smallint(1) unsigned NOT NULL default '1'");
-        $updater->changeField("emailcheck", "`wfcr_emailcheck` smallint(1) unsigned NOT NULL default '1'");
-        $updater->changeField("privacy_statement", "`wfcr_privacytext` text NOT NULL");
+        $updater->changeField('titlerefer', '`wfcr_title` varchar(60) NOT NULL');
+        $updater->changeField('chanrefheadline', '`wfcr_content` text NOT NULL');
+        $updater->changeField('submenuitem', "`wfcr_submenuitem` smallint(1) unsigned NOT NULL default '0'");
+        $updater->changeField('mainpage', "`wfcr_mainpage` smallint(1) unsigned NOT NULL default '0'");
+        $updater->changeField('referpagelogo', '`wfcr_image` varchar(255) NOT NULL');
+        $updater->changeField('emailaddress', "`wfcr_email` tinyint(1) unsigned NOT NULL default '1'");
+        $updater->changeField('usersblurb', "`wfsr_ublurb` smallint(1) unsigned NOT NULL default '0'");
+        $updater->changeField('defblurb', '`wfcr_dblurb` text NOT NULL');
+        $updater->changeField('smiley', "`dosmiley` tinyint(1) unsigned NOT NULL default '1'");
+        $updater->changeField('xcodes', "`doxcode` tinyint(1) unsigned NOT NULL default '1'");
+        $updater->changeField('breaks', "`dobr` tinyint(1) unsigned NOT NULL default '1'");
+        $updater->changeField('html', "`dohtml` tinyint(1) unsigned NOT NULL default '0'");
+        $updater->changeField('privacy', "`wfcr_privacy` smallint(1) unsigned NOT NULL default '1'");
+        $updater->changeField('emailcheck', "`wfcr_emailcheck` smallint(1) unsigned NOT NULL default '1'");
+        $updater->changeField('privacy_statement', '`wfcr_privacytext` text NOT NULL');
         $updater->addField('wfcr_id', "tinyint(1) unsigned NOT NULL default '1'");
         $updater->addField('doimage', 'tinyint( 1 ) NOT null default "1" ', 'dosmiley');
         $updater->addField('wfcr_counter', 'mediumint(8) unsigned NOT NULL default "0"', 'wfcr_privacytext');
@@ -90,8 +90,8 @@ switch ($op) {
         displayOutput();
         // Updating table wfcrefer
         echo "<br /><p><b>Updating table wfclink</b></p>\n";
-        $updater = wfp_getClass('updater');
-        $updater->setTable("wfclink");
+        $updater = &wfp_getClass('updater');
+        $updater->setTable('wfclink');
         $result = $updater->RenameTable('wfslinktous', 'wfclink');
         if (!$result) {
             $updater->getError();
@@ -99,19 +99,19 @@ switch ($op) {
             include(XOOPS_ROOT_PATH . '/footer.php');
             exit();
         }
-        $updater->changeField("submenuitem", "`wfcl_submenu` tinyint(1) unsigned NOT NULL default '1'");
-        $updater->changeField("textlink", "`wfcl_textlink` varchar( 255 ) NOT null");
-        $updater->changeField("linkpagelogo", "`wfcl_linkpagelogo` varchar( 255 ) NOT null");
-        $updater->changeField("button", "`wfcl_button` varchar( 255 ) NOT null");
-        $updater->changeField("logo", "`wfcl_logo` varchar( 255 ) NOT null");
-        $updater->changeField("banner", "`wfcl_banner` varchar( 255 ) NOT null");
-        $updater->changeField("mainpage", "`wfcl_mainpage` tinyint( 1 ) unsigned NOT null default '1'");
-        $updater->changeField("newsfeed", "`wfcl_newsfeed` tinyint( 1 ) unsigned NOT null default '0'");
-        $updater->changeField("texthtml", "`wfcl_texthtml` varchar(255) NOT NULL");
-        $updater->changeField("titlelink", "`wfcl_titlelink` varchar( 255 ) NOT null");
-        $updater->changeField("newsfeedjs", "`wfcl_newsfeedjs` tinyint( 10 ) unsigned NOT null default '0'");
-        $updater->changeField("linkintro", "`wfcl_linkintro` text NOT null");
-        $updater->changeField("newstitle", "`wfcl_newstitle` varchar( 255 ) NOT null");
+        $updater->changeField('submenuitem', "`wfcl_submenu` tinyint(1) unsigned NOT NULL default '1'");
+        $updater->changeField('textlink', '`wfcl_textlink` varchar( 255 ) NOT null');
+        $updater->changeField('linkpagelogo', '`wfcl_linkpagelogo` varchar( 255 ) NOT null');
+        $updater->changeField('button', '`wfcl_button` varchar( 255 ) NOT null');
+        $updater->changeField('logo', '`wfcl_logo` varchar( 255 ) NOT null');
+        $updater->changeField('banner', '`wfcl_banner` varchar( 255 ) NOT null');
+        $updater->changeField('mainpage', "`wfcl_mainpage` tinyint( 1 ) unsigned NOT null default '1'");
+        $updater->changeField('newsfeed', "`wfcl_newsfeed` tinyint( 1 ) unsigned NOT null default '0'");
+        $updater->changeField('texthtml', '`wfcl_texthtml` varchar(255) NOT NULL');
+        $updater->changeField('titlelink', '`wfcl_titlelink` varchar( 255 ) NOT null');
+        $updater->changeField('newsfeedjs', "`wfcl_newsfeedjs` tinyint( 10 ) unsigned NOT null default '0'");
+        $updater->changeField('linkintro', '`wfcl_linkintro` text NOT null');
+        $updater->changeField('newstitle', '`wfcl_newstitle` varchar( 255 ) NOT null');
         $updater->addField('wfcl_microbutton', 'varchar(255) NOT NULL');
         $updater->addField('wfcl_id', "tinyint(1) unsigned NOT NULL default '1'");
         $updater->addField('dohtml', "tinyint( 1 ) unsigned NOT null default '0'");
@@ -126,7 +126,7 @@ switch ($op) {
         // Updating table wfcrefers;
         echo "<br /><p><b>Updating table wfcrefers</b></p>\n";
 
-        $updater = wfp_getClass('updater');
+        $updater = &wfp_getClass('updater');
         $data    = "  `wfcr_id` mediumint(8) unsigned NOT NULL auto_increment,
       `wfcr_username` varchar(60) NOT NULL,
       `wfcr_uid` mediumint(8) unsigned NOT NULL default '0',
@@ -148,9 +148,9 @@ switch ($op) {
     case 'intro':
     default:
         include XOOPS_ROOT_PATH . '/header.php';
-        echo "<table align=\"center\" width='100 % ' border='0'><tr><td align='center'><b>" . _MD_WFCHANNEL_UPDATE1 . "</b></td></tr><tr><td>&nbsp;</td></tr></table>";
-        echo "<table align=\"center\" width='50 % ' border='0'><tr><td colspan='2'>" . _MD_WFCHANNEL_UPDATE2 . "<br><br><b>" . _MD_WFCHANNEL_UPDATE3 . "<b></td></tr><tr><td></td><td >" . _MD_WFCHANNEL_UPDATE4 . "</td></tr><tr><td></td><td><span style='color:// ff0000;font-weight:bold;'>" . _MD_WFCHANNEL_UPDATE5 . "</span></td></tr></table>";
-        echo "<p>" . _MD_WFCHANNEL_UPDATE6 . "</p>";
+        echo "<table align=\"center\" width='100 % ' border='0'><tr><td align='center'><b>" . _MD_WFC_UPDATE1 . '</b></td></tr><tr><td>&nbsp;</td></tr></table>';
+        echo "<table align=\"center\" width='50 % ' border='0'><tr><td colspan='2'>" . _MD_WFC_UPDATE2 . '<br><br><b>' . _MD_WFC_UPDATE3 . '<b></td></tr><tr><td></td><td >' . _MD_WFC_UPDATE4 . "</td></tr><tr><td></td><td><span style='color:// ff0000;font-weight:bold;'>" . _MD_WFC_UPDATE5 . '</span></td></tr></table>';
+        echo '<p>' . _MD_WFC_UPDATE6 . '</p>';
         echo "<form action='" . xoops_getenv('PHP_SELF') . "' method='post'><input type='submit' value='Start Upgrade' /><input type='hidden' name='op' value='upgrade' /></form>";
         break;
 } // switch
@@ -160,23 +160,23 @@ function displayOutput()
 {
     global $updater;
 
-    echo "<h4>" . _MD_WFCHANNEL_SUCCESS . "</h4>";
+    echo '<h4>' . _MD_WFC_SUCCESS . '</h4>';
     $_success = $updater->getSuccess();
     if (count($_success)) {
         foreach ($_success as $success) {
             echo "<div style=\"text-indent: 12px;\">$success</div>";
         }
     } else {
-        echo "<div style=\"text-indent: 12px;\">" . sprintf(_MD_WFCHANNEL_NOTHING_UPDATED, $updater->getTable()) . "</div>";
+        echo "<div style=\"text-indent: 12px;\">" . sprintf(_MD_WFC_NOTHING_UPDATED, $updater->getTable()) . '</div>';
     }
 
-    echo "<h4>" . _MD_WFCHANNEL_FAILURE . "</h4>";
+    echo '<h4>' . _MD_WFC_FAILURE . '</h4>';
     $_errors = $updater->getError();
     if (count($_errors)) {
         foreach ($_errors as $errors) {
             echo "<div style=\"text-indent: 12px;\">$errors</div>";
         }
     } else {
-        echo "<div style=\"text-indent: 12px;\">" . sprintf(_MD_WFCHANNEL_NO_ERRORSFOUND, $updater->getTable()) . "</div>";
+        echo "<div style=\"text-indent: 12px;\">" . sprintf(_MD_WFC_NO_ERRORSFOUND, $updater->getTable()) . '</div>';
     }
 }

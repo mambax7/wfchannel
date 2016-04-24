@@ -10,12 +10,11 @@
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
- * @version    : $Id: form_wfc_page.php 8179 2011-11-07 00:54:10Z beckmi $
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 if (!$this->isNew()) {
-    echo '<div style="padding: 5px; float: left;"><a target="_BLANK" href="../index.php?wfc_cid=' . $this->getVar('wfc_cid') . '">' . _AM_WFCHANNEL_QUICKVIEW . '</a></div>';
+    echo '<div style="padding: 5px; float: left;"><a target="_BLANK" href="../index.php?wfc_cid=' . $this->getVar('wfc_cid') . '">' . _AM_WFC_QUICKVIEW . '</a></div>';
 }
 
 /**
@@ -33,7 +32,7 @@ $form->addElement(new xoopsFormHidden('wfc_cid', $this->getVar('wfc_cid')));
 /**
  * First Fields
  */
-$form->startTab(_AM_WFCHANNEL_TABMAIN, 'main-info');
+$form->startTab(_AM_WFC_TABMAIN, 'main-info');
 /**
  * Page Title
  */
@@ -55,10 +54,11 @@ $options = array(
     'rows'   => 35,
     'cols'   => 75,
     'width'  => '100%',
-    'height' => '400px');
+    'height' => '400px'
+);
 
 $options_tray = new XoopsFormElementTray(_AM_EWFC_PAGE_CONTENT . ': ' . $this->getVar('wfc_title'), '<br />');
-$options_tray->setNocolspan(1);
+//$options_tray->setNocolspan(1);
 
 $wfc_content = new XoopsFormEditor('', wfp_getModuleOption('use_wysiwyg'), $options, $nohtml = false, $onfailure = 'textarea');
 $options_tray->addElement($wfc_content);
@@ -124,7 +124,7 @@ $form->endTab();
 /**
  * Others
  */
-$form->startTab(_AM_WFCHANNEL_TABPUBLISH, 'main-published');
+$form->startTab(_AM_WFC_TABPUBLISH, 'main-published');
 
 $page_uid = new XoopsFormSelectUser(_AM_EWFC_MENU_AUTHOR, 'wfc_uid', true, $this->getUserID('wfc_uid'), 1, false);
 $page_uid->setDescription(_AM_EWFC_MENU_AUTHOR_DSC);
@@ -155,8 +155,8 @@ $form->addElement($wfc_expired);
 /**
  * Set Page State
  */
-$state_select = new XoopsFormSelect(_AM_WFCHANNEL_SELSTATUS, 'wfc_active', $this->getVar('wfc_active'));
-$state_select->setDescription(_AM_WFCHANNEL_SELSTATUS_DSC);
+$state_select = new XoopsFormSelect(_AM_WFC_SELSTATUS, 'wfc_active', $this->getVar('wfc_active'));
+$state_select->setDescription(_AM_WFC_SELSTATUS_DSC);
 $state_select->addOption(1, _AM_WFC_SELPUBLISHED);
 $state_select->addOption(2, _AM_WFC_SELUNPUBLISHED);
 $state_select->addOption(3, _AM_WFC_SELEXPIRED);
@@ -198,7 +198,7 @@ $form->addElement($wfc_allowcomments);
 $form->addElement(new XoopsFormButtontray('submit', _SUBMIT));
 $form->endTab();
 
-$form->startTab(_AM_WFCHANNEL_TABIMAGE, 'main-image');
+$form->startTab(_AM_WFC_TABIMAGE, 'main-image');
 /**
  * Page Image
  */
@@ -224,7 +224,7 @@ $form->addElement($page_caption, false);
 $form->addElement(new XoopsFormButtontray('submit', _SUBMIT));
 $form->endTab();
 
-$form->startTab(_AM_WFCHANNEL_TABMETA, 'main-meta');
+$form->startTab(_AM_WFC_TABMETA, 'main-meta');
 /**
  * Meta tags title
  */
@@ -261,8 +261,8 @@ $form->endTab();
 /**
  * Permissions
  */
-$form->startTab(_AM_WFCHANNEL_TABPERMISSIONS, 'main-permissions');
-$group = wfp_getClass('permissions');
+$form->startTab(_AM_WFC_TABPERMISSIONS, 'main-permissions');
+$group = &wfp_getClass('permissions');
 $group->setPermissions('wfcpages', 'page_read', '', $GLOBALS['xoopsModule']->getVar('mid'));
 $groups = new XoopsFormSelectCheckGroup(_AM_EWFP_GROUPS, 'page_read', $group->getAdmin($this->getVar('wfc_cid')), '', true);
 $groups->setDescription(_AM_EWFP_GROUPS_DSC);
@@ -275,15 +275,15 @@ $form->addElement(new XoopsFormButtontray('submit', _SUBMIT));
 $form->endTab();
 
 if (!$this->isNew()) {
-    $handler = &wfp_gethandler('page', _MODULE_DIR, _MODULE_CLASS);
-    $ret     = '<br /><div><b>' . _AM_WFCHANNEL_QUICKLINK . '</b> ' . _AM_WFCHANNEL_COPYSTANDALONE . '</div>';
+    $handler = &wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
+    $ret     = '<br /><div><b>' . _AM_WFC_QUICKLINK . '</b> ' . _AM_WFC_COPYSTANDALONE . '</div>';
     $ret .= '<div style="padding: 5px;">' . XOOPS_URL . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/index.php?cid=' . $this->getVar('wfc_cid') . '</div><br />';
     $ret .= $handler->pageInfo($this);
 
-    $form->startTab(_AM_WFCHANNEL_INFO, 'main-information');
+    $form->startTab(_AM_WFC_INFO, 'main-information');
     $page_info = new XoopsFormLabel(_AM_EWFC_MENU_INFO, $ret);
     $page_info->setDescription(_AM_EWFC_MENU_INFO_DSC);
-    $page_info->setNocolspan(1);
+    //    $page_info->setNocolspan(1);
     $form->addElement($page_info, false);
 
     $form->addElement(new XoopsFormButtontray('submit', _SUBMIT));

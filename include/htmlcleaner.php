@@ -12,9 +12,9 @@
  *         access to install binaries on your server, you might want to try using htmltidy.
  *     note :
  *         you might want to allow fonttags or even style tags. in that case, modify the
- *         function htmlcleaner::cleanup()
+ *         function HtmlCleaner::cleanup()
  *     usage :
- *         $body = htmlcleaner::cleanup($_POST['htmlCode']);
+ *         $body = HtmlCleaner::cleanup($_POST['htmlCode']);
  *
  *     disclaimer :
  *         this piece of code is freely usable by anyone. if it makes your life better,
@@ -30,9 +30,9 @@ define('HTML_CLEANER_NODE_NODETYPE_TEXT', 2);
 define('HTML_CLEANER_NODE_NODETYPE_SPECIAL', 3);
 
 /**
- * Class htmlcleanertag
+ * Class HtmlCleanerTag
  */
-class htmlcleanertag
+class HtmlCleanerTag
 {
     public $nodeType;
     public $nodeName;
@@ -43,15 +43,14 @@ class htmlcleanertag
     /**
      * @param $str
      */
-    public function htmlcleanertag($str)
+    public function __construct($str)
     {
-        if ($str[0] == '<') {
-            $this->nodeType = HTML_CLEANER_NODE_NODETYPE_NODE;
-        } else {
-            $this->nodeType = HTML_CLEANER_NODE_NODETYPE_TEXT;
+        $this->nodeType = HTML_CLEANER_NODE_NODETYPE_TEXT;
+        if ($str[0] === '<') {
+            $this->nodeType = HTML_CLEANER_NODE_NODETYPE_NODE;           
         }
 
-        if ((strlen($str) > 1) && ($str[1] == '?' || $str[1] == '!')) {
+        if ((strlen($str) > 1) && ($str[1] === '?' || $str[1] === '!')) {
             $this->nodeType = HTML_CLEANER_NODE_NODETYPE_SPECIAL;
         }
 
@@ -67,21 +66,21 @@ class htmlcleanertag
      */
     public function parseFromString($str)
     {
-        $str    = str_replace("\n", " ", $str);
+        $str    = str_replace("\n", ' ', $str);
         $offset = 1;
         $endset = strlen($str) - 2;
-        if ($str[0] != '<' || $str[strlen($str) - 1] != '>') {
+        if ($str[0] !== '<' || $str[strlen($str) - 1] !== '>') {
             trigger_error('tag syntax error', E_USER_ERROR);
         }
-        if ($str[strlen($str) - 2] == '/') {
-            $endset             = $endset - 1;
+        if ($str[strlen($str) - 2] === '/') {
+            $endset             -= 1;
             $this->closingStyle = HTML_CLEANER_NODE_CLOSINGSTYLE_XHTMLSINGLE;
         }
-        if ($str[1] == '/') {
+        if ($str[1] === '/') {
             $offset         = 2;
             $this->nodeType = HTML_CLEANER_NODE_NODETYPE_CLOSINGNODE;
         }
-        for ($tagname = ''; preg_match("/([a-zA-Z0-9]{1})/", $str[$offset]); ++$offset) {
+        for ($tagname = ''; preg_match('/([a-zA-Z0-9]{1})/', $str[$offset]); ++$offset) {
             $tagname .= $str[$offset];
         }
         for ($tagattr = ''; $offset <= $endset; ++$offset) {
@@ -110,14 +109,14 @@ class htmlcleanertag
                 $_state = 0; // parse from here
             }
             if ($_state == 0) { // state 0 : looking for name
-                if (preg_match("/([a-zA-Z]{1})/", $chr)) {
+                if (preg_match('/([a-zA-Z]{1})/', $chr)) {
                     $_name  = $chr;
                     $_state = 1;
                 }
             } elseif ($_state == 1) { // state 1 : looking for equal
-                if (preg_match("/([a-zA-Z]{1})/", $chr)) {
+                if (preg_match('/([a-zA-Z]{1})/', $chr)) {
                     $_name .= $chr;
-                } elseif ($chr == '=') {
+                } elseif ($chr === '=') {
                     $_state = 2;
                 }
             } elseif ($_state == 2) { // state 2 : looking for quote
@@ -131,7 +130,7 @@ class htmlcleanertag
                     $_state = 3;
                 }
             } elseif ($_state == 3) { // state 3 : looking for endquote
-                if ($_quote != "") {
+                if ($_quote != '') {
                     if ($chr == $_quote) {
                         // end of attribute
                         $return[strtolower($_name)] = $_value;
@@ -186,9 +185,9 @@ class htmlcleanertag
 }
 
 /**
- * Class htmlcleaner
+ * Class HtmlCleaner
  */
-class htmlcleaner
+class HtmlCleaner
 {
     /**
      * @return string
@@ -215,15 +214,15 @@ class htmlcleaner
                 $_state  = 0;
             }
             if ($_state == 0) { // state 0 : looking for <
-                if ($chr == '<') {
-                    if (($i + 3 < $str_len) && $str[$i + 1] == '!' && $str[$i + 2] == '-' && $str[$i + 3] == '-') {
+                if ($chr === '<') {
+                    if (($i + 3 < $str_len) && $str[$i + 1] === '!' && $str[$i + 2] == '-' && $str[$i + 3] == '-') {
                         // comment
                         $_state = 2;
                     } else {
                         // start buffering
                         if ($_buffer != '') {
                             // store part
-                            array_push($parts, new htmlcleanertag($_buffer));
+                            array_push($parts, new HtmlCleanerTag($_buffer));
                         }
                         $_buffer = '<';
                         $_state  = 1;
@@ -233,12 +232,12 @@ class htmlcleaner
                 }
             } elseif ($_state == 1) { // state 1 : in tag looking for >
                 $_buffer .= $chr;
-                if ($chr == '>') {
-                    array_push($parts, new htmlcleanertag($_buffer));
+                if ($chr === '>') {
+                    array_push($parts, new HtmlCleanerTag($_buffer));
                     $_state = -1;
                 }
             } elseif ($_state == 2) { // state 2 : in comment looking for -->
-                if ($str[$i - 2] == '-' && $str[$i - 1] == '-' && $str[$i] == '>') {
+                if ($str[$i - 2] == '-' && $str[$i - 1] == '-' && $str[$i] === '>') {
                     $_state = -1;
                 }
             }
@@ -256,14 +255,14 @@ class htmlcleaner
     public function cleanup($body)
     {
         $return = '';
-        foreach (htmlcleaner::dessicate($body) as $part) {
+        foreach (HtmlCleaner::dessicate($body) as $part) {
             if (isset($part->attributes['style'])) {
                 unset($part->attributes['style']);
             }
             if (isset($part->attributes['class'])) {
                 unset($part->attributes['class']);
             }
-            if (strstr($part->nodeValue, '<?xml:namespace') === false && $part->nodeName != 'span' && $part->nodeName != 'font' && $part->nodeName != 'o' && $part->nodeName != 'script' && $part->nodeName != 'style' && $part->nodeName != 'object' && $part->nodeName != 'iframe' && $part->nodeName != 'applet' && $part->nodeName != 'meta') {
+            if (false === strpos($part->nodeValue, '<?xml:namespace') && $part->nodeName !== 'span' && $part->nodeName !== 'font' && $part->nodeName !== 'o' && $part->nodeName !== 'script' && $part->nodeName !== 'style' && $part->nodeName !== 'object' && $part->nodeName !== 'iframe' && $part->nodeName !== 'applet' && $part->nodeName !== 'meta') {
                 $return .= $part->toString();
             }
         }

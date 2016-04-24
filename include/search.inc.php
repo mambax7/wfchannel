@@ -17,7 +17,7 @@ defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this fi
  * @param mixed $limit
  * @param mixed $offset
  * @param mixed $userid
- * @return
+ * @return array|string
  */
 function wfchannel_search($queryarray, $andor, $limit, $offset, $userid)
 {
@@ -26,7 +26,7 @@ function wfchannel_search($queryarray, $andor, $limit, $offset, $userid)
 
     $ret = '';
     if (!isset($page_handler)) {
-        $page_handler = &wfp_gethandler('page', _MODULE_DIR, _MODULE_CLASS);
+        $page_handler = &wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
     }
     $page_search = $page_handler->getSearch($queryarray, $andor, $limit, $offset, true);
 

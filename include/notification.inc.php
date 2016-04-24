@@ -6,18 +6,21 @@
  * Release Date: 26 july 2004
  * Author: WF-Sections
  * Licence: GNU
+ * @param $category
+ * @param $item_id
+ * @return array|bool
  */
 
 function wfchannel_notify_iteminfo($category, $item_id)
 {
-    if (empty($GLOBALS['xoopsModule']) || $GLOBALS['xoopsModule']->getVar('dirname') != 'wfchannel') {
-        $module_handler = &xoops_gethandler('module');
-        $module         = &$module_handler->getByDirname('wfchannel');
-        $config_handler = &xoops_gethandler('config');
-        $config         = &$config_handler->getConfigsByCat(0, (int)($module->getVar('mid')));
+    if (empty($GLOBALS['xoopsModule']) || $GLOBALS['xoopsModule']->getVar('dirname') !== 'wfchannel') {
+        $moduleHandler  = xoops_getHandler('module');
+        $module         = $moduleHandler->getByDirname('wfchannel');
+        $config_handler = xoops_getHandler('config');
+        $config         = $config_handler->getConfigsByCat(0, (int)$module->getVar('mid'));
     } else {
-        $module = &$GLOBALS['xoopsModule'];
-        $config = &$GLOBALS['xoopsModuleConfig'];
+        $module = $GLOBALS['xoopsModule'];
+        $config = $GLOBALS['xoopsModuleConfig'];
     }
     switch ($category) {
         case 'global':
@@ -26,7 +29,7 @@ function wfchannel_notify_iteminfo($category, $item_id)
 
         case 'page':
         default:
-            $sql    = "SELECT wfc_cid, wfc_title FROM " . $GLOBALS['xoopsDB']->prefix('wfcpages') . " WHERE wfc_cid = '" . (int)$item_id . "'";
+            $sql    = 'SELECT wfc_cid, wfc_title FROM ' . $GLOBALS['xoopsDB']->prefix('wfcpages') . " WHERE wfc_cid = '" . (int)$item_id . "'";
             $result = $GLOBALS['xoopsDB']->query($sql);
             if ($result) {
                 $result_array = $GLOBALS['xoopsDB']->fetchArray($result);

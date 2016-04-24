@@ -1,14 +1,14 @@
 <?php
 // $Id: class.contactus.php 8179 2011-11-07 00:54:10Z beckmi $
 // ------------------------------------------------------------------------ //
-// Xoops - PHP Content Management System                      			//
-// Copyright (c) 2007 Xoops                           				//
+// Xoops - PHP Content Management System                                //
+// Copyright (c) 2007 Xoops                                         //
 // //
-// Authors: 																//
-// John Neill ( AKA Catzwolf )                                     			//
-// Raimondas Rimkevicius ( AKA Mekdrop )									//
+// Authors:                                                                 //
+// John Neill ( AKA Catzwolf )                                              //
+// Raimondas Rimkevicius ( AKA Mekdrop )                                    //
 // //
-// URL: http:www.Xoops.com 												//
+// URL: http:www.Xoops.com                                              //
 // Project: Xoops Project                                               //
 // -------------------------------------------------------------------------//
 defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
@@ -40,7 +40,6 @@ class wfc_Contactus extends wfp_Object
  * @package
  * @author    John
  * @copyright Copyright (c) 2007
- * @version   $Id: class.contactus.php 8179 2011-11-07 00:54:10Z beckmi $
  * @access    public
  */
 class wfc_ContactusHandler extends wfp_ObjectHandler
@@ -49,9 +48,8 @@ class wfc_ContactusHandler extends wfp_ObjectHandler
      * WfchannelContusHandler::ZariliaCategoryHandler()
      *
      * @param mixed $db
-     * @return
      */
-    public function __construct(&$db)
+    public function __construct($db)
     {
         parent::__construct($db, 'wfccontus', 'wfc_Contactus', 'wfcc_id', 'wfcc_titlecont');
     }

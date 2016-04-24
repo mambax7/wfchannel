@@ -10,9 +10,8 @@
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
- * @version    : $Id: index.php 9326 2012-04-14 21:53:58Z beckmi $
  */
-include 'header.php';
+include __DIR__ . '/header.php';
 
 /**
  */
@@ -20,19 +19,19 @@ $op = wfp_Request::doRequest($_REQUEST, 'op', 'default', 'textbox');
 
 /**
  */
-$page_handler = &wfp_gethandler('page', _MODULE_DIR, _MODULE_CLASS);
+$page_handler = &wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
 switch ($op) {
     case 'refersend':
         if (!$GLOBALS['xoopsSecurity']->check()) {
-            ;
-            $url = ($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $_SERVER['PHP_SELF'];
+            $url = $_SERVER['HTTP_REFERER'] ?: $_SERVER['PHP_SELF'];
             redirect_header($url, 1, $GLOBALS['xoopsSecurity']->getErrors(true));
         }
-        $refer_handler = &wfp_gethandler('refer', _MODULE_DIR, _MODULE_CLASS);
+        $refer_handler = &wfp_getHandler('refer', _MODULE_DIR, _MODULE_CLASS);
 
         $ret = false;
 
         xoops_load('XoopsCaptcha');
+        $xoopsOption = array();
         $xoopsCaptcha = XoopsCaptcha::getInstance();
         if (!$xoopsCaptcha->verify()) {
             $stop .= $xoopsCaptcha->getMessage();
@@ -44,21 +43,21 @@ switch ($op) {
             include XOOPS_ROOT_PATH . '/header.php';
             $xoopsTpl->assign('wfc_email_error', $ret);
         } else {
-            redirect_header(XOOPS_URL, 1, _MD_WFCHANNEL_EMAILSENT);
+            redirect_header(XOOPS_URL, 1, _MD_WFC_EMAILSENT);
         }
         break;
 
     case 'refer':
         if (!wfp_getModuleOption('act_refer')) {
-            redirect_header(XOOPS_URL, 1, _MD_WFCHANNEL_NORIGHTTOVIEWPAGE);
+            redirect_header(XOOPS_URL, 1, _MD_WFC_NORIGHTTOVIEWPAGE);
         }
-        $refer_handler = &wfp_gethandler('refer', _MODULE_DIR, _MODULE_CLASS);
+        $refer_handler = &wfp_getHandler('refer', _MODULE_DIR, _MODULE_CLASS);
         // test for banned IP address //
         $refer_handler->doBanned();
         // show refer page //
         $refer_obj = $refer_handler->get(1);
         if (!is_object($refer_obj)) {
-            redirect_header(XOOPS_URL, 1, _MD_WFCHANNEL_NORIGHTTOVIEWPAGE);
+            redirect_header(XOOPS_URL, 1, _MD_WFC_NORIGHTTOVIEWPAGE);
         }
         /**
          */
@@ -69,18 +68,19 @@ switch ($op) {
             'title'   => $refer_obj->getVar('wfcr_title'),
             'image'   => $refer_obj->getImage('wfcr_image', wfp_getModuleOption('uploaddir')),
             'content' => $refer_obj->getVar('wfcr_content'),
-            'caption' => $refer_obj->getVar('wfcr_caption')));
+            'caption' => $refer_obj->getVar('wfcr_caption')
+        ));
         unset($refer_obj);
         break;
 
     case 'link':
         if (!wfp_getModuleOption('act_link')) {
-            redirect_header(XOOPS_URL, 1, _MD_WFCHANNEL_NORIGHTTOVIEWPAGE);
+            redirect_header(XOOPS_URL, 1, _MD_WFC_NORIGHTTOVIEWPAGE);
         }
-        $link_handler = &wfp_gethandler('link', _MODULE_DIR, _MODULE_CLASS);
+        $link_handler = &wfp_getHandler('link', _MODULE_DIR, _MODULE_CLASS);
         $link_obj     = $link_handler->get(1);
         if (!$link_obj) {
-            redirect_header(XOOPS_URL, 1, _MD_WFCHANNEL_NORIGHTTOVIEWPAGE);
+            redirect_header(XOOPS_URL, 1, _MD_WFC_NORIGHTTOVIEWPAGE);
         }
 
         $xoopsOption['template_main'] = 'wfchannel_linktous.tpl';
@@ -97,7 +97,8 @@ switch ($op) {
             'newstitle'   => $link_obj->getVar('wfcl_newstitle'),
             'content'     => $link_obj->getVar('wfcl_content'),
             'title'       => $link_obj->getVar('wfcl_titlelink'),
-            'caption'     => $link_obj->getVar('wfcl_caption')));
+            'caption'     => $link_obj->getVar('wfcl_caption')
+        ));
         break;
 
     case 'page':
@@ -108,8 +109,8 @@ switch ($op) {
 
         if (!is_object($pageObj)) {
             $pageObj = $page_handler->create();
-            $pageObj->setVar('wfc_headline', _MD_WFCHANNEL_NOTITLESET);
-            $pageObj->setVar('wfc_content', _MD_WFCHANNEL_NOCONTENTSET);
+            $pageObj->setVar('wfc_headline', _MD_WFC_NOTITLESET);
+            $pageObj->setVar('wfc_content', _MD_WFC_NOCONTENTSET);
             $pageObj->setVar('wfc_cid', 0);
             $pageObj->setVar('wfc_allowcomments', 0);
         } else {
@@ -142,7 +143,7 @@ switch ($op) {
                 $xoopsTpl->assign('page_info', array(
                     'id'        => $pageObj->getVar('wfc_cid'),
                     'title'     => $pageObj->getTitle(),
-                    'counter'   => sprintf(_MD_WFCHANNEL_COUNTER, $pageObj->getVar('wfc_counter')),
+                    'counter'   => sprintf(_MD_WFC_COUNTER, $pageObj->getVar('wfc_counter')),
                     'content'   => $pageObj->getContent(),
                     'published' => $pageObj->getTimeStamp('wfc_publish'),
                     'author'    => $pageObj->getUserName('wfc_uid'),
@@ -151,7 +152,8 @@ switch ($op) {
                     'maillink'  => $pageObj->getEmailLink(),
                     'bookmarks' => $pageObj->getBookMarks(),
                     'caption'   => $pageObj->getVar('wfc_caption'),
-                    'icons'     => $pageObj->getIcons()));
+                    'icons'     => $pageObj->getIcons()
+                ));
 
                 /**
                  * Hacked this in just now, will change later
@@ -182,8 +184,8 @@ switch ($op) {
  */
 $xoopsTpl->assign($page_handler->getChanlinks());
 $xoopsTpl->assign('copyright', sprintf(wfp_getModuleOption('copyrighttext'), date('Y'), $xoopsConfig['sitename']));
-$xoopsTpl->assign('menu_top', (in_array(wfp_getModuleOption('menulinks'), array(1, 2))));
-$xoopsTpl->assign('menu_bottom', (in_array(wfp_getModuleOption('menulinks'), array(1, 3))));
+$xoopsTpl->assign('menu_top', in_array(wfp_getModuleOption('menulinks'), array(1, 2)));
+$xoopsTpl->assign('menu_bottom', in_array(wfp_getModuleOption('menulinks'), array(1, 3)));
 /**
  * Comments
  */
@@ -193,4 +195,4 @@ if ((isset($pageObj) && ($pageObj->getVar('wfc_allowcomments') && wfp_getModuleO
     $xoopsTpl->assign('wfc_comments', $pageObj->getVar('wfc_comments'));
     include XOOPS_ROOT_PATH . '/include/comment_view.php';
 }
-include 'footer.php';
+include __DIR__ . '/footer.php';

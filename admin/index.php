@@ -15,7 +15,6 @@
  * @package
  * @since
  * @author       XOOPS Development Team
- * @version      $Id $
  */
 
 require_once dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';

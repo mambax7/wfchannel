@@ -1,14 +1,14 @@
 <?php
 // $Id: class.refer.php 10055 2012-08-11 12:46:10Z beckmi $
 // ------------------------------------------------------------------------ //
-// Xoops - PHP Content Management System                      			//
-// Copyright (c) 2007 Xoops                           				//
+// Xoops - PHP Content Management System                                //
+// Copyright (c) 2007 Xoops                                         //
 // //
-// Authors: 																//
-// John Neill ( AKA Catzwolf )                                     			//
-// Raimondas Rimkevicius ( AKA Mekdrop )									//
+// Authors:                                                                 //
+// John Neill ( AKA Catzwolf )                                              //
+// Raimondas Rimkevicius ( AKA Mekdrop )                                    //
 // //
-// URL: http:www.Xoops.com 												//
+// URL: http:www.Xoops.com                                              //
 // Project: Xoops Project                                               //
 // -------------------------------------------------------------------------//
 defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
@@ -58,7 +58,6 @@ class wfc_Refer extends wfp_Object
  * @package
  * @author    John
  * @copyright Copyright (c) 2007
- * @version   $Id: class.refer.php 10055 2012-08-11 12:46:10Z beckmi $
  * @access    public
  */
 class wfc_ReferHandler extends wfp_ObjectHandler
@@ -68,7 +67,7 @@ class wfc_ReferHandler extends wfp_ObjectHandler
      *
      * @param mixed $db
      */
-    public function __construct(&$db)
+    public function __construct($db)
     {
         parent::__construct($db, 'wfcrefer', 'wfc_Refer', 'wfcr_id', 'wfcr_title', 'refer_read');
     }
@@ -76,14 +75,14 @@ class wfc_ReferHandler extends wfp_ObjectHandler
     /**
      * wfc_ReferHandler::generateHash()
      *
-     * @param  mixed $plainText
-     * @param  mixed $salt
+     * @param  mixed  $plainText
+     * @param  mixed  $salt
      * @return string
      */
     public function generateHash($plainText, $salt = null)
     {
         if ($salt === null) {
-            $salt = substr(md5(uniqid(rand(), true)), 0, SALT_LENGTH);
+            $salt = substr(md5(uniqid(mt_rand(), true)), 0, SALT_LENGTH);
         } else {
             $salt = substr($salt, 0, SALT_LENGTH);
         }
@@ -99,7 +98,7 @@ class wfc_ReferHandler extends wfp_ObjectHandler
     {
         $bannedip = explode('|', wfp_getModuleOption('banned'));
         if (count($bannedip) > 0) {
-            $refers_handler = &wfp_gethandler('refers', _MODULE_DIR, _MODULE_CLASS);
+            $refers_handler = &wfp_getHandler('refers', _MODULE_DIR, _MODULE_CLASS);
             $ip             = $refers_handler->getIP();
             if (in_array($ip, $bannedip)) {
                 $xoopsOption['template_main'] = 'wfchannel_banned.tpl';
@@ -126,29 +125,29 @@ class wfc_ReferHandler extends wfp_ObjectHandler
         $email  = wfp_Request::doValidate($_REQUEST['email'], 'email');
 
         if (false === $remail || false === $email) {
-            return _MD_WFCHANNEL_EMAILERROR_TEXT;
+            return _MD_WFC_EMAILERROR_TEXT;
         }
 
         include_once XOOPS_ROOT_PATH . '/class/xoopsmailer.php';
-        $xoopsMailer = &xoops_getMailer();
+        $xoopsMailer =& xoops_getMailer();
         $xoopsMailer->useMail();
         $xoopsMailer->setTemplateDir(XOOPS_ROOT_PATH . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/mail_template');
         $xoopsMailer->setTemplate('refer.tpl');
         $xoopsMailer->assign('SITENAME', $GLOBALS['xoopsConfig']['sitename']);
         $xoopsMailer->assign('SITEURL', XOOPS_URL . '/');
-        $xoopsMailer->assign('TITLE', _MD_WFCHANNEL_MESSAGETITLE);
+        $xoopsMailer->assign('TITLE', _MD_WFC_MESSAGETITLE);
         $xoopsMailer->assign('SUSER', wfp_stripslashes($uname));
         $xoopsMailer->assign('RUSER', wfp_stripslashes($runame));
         $xoopsMailer->assign('MESSAGE', htmlspecialchars(wfp_stripslashes($message)));
-        $xoopsMailer->assign('VISIT', _MD_WFCHANNEL_VISIT);
+        $xoopsMailer->assign('VISIT', _MD_WFC_VISIT);
         $xoopsMailer->setToEmails(wfp_stripslashes($remail));
         $xoopsMailer->setFromEmail(wfp_stripslashes($email));
         $xoopsMailer->setFromName(wfp_stripslashes($uname));
-        $xoopsMailer->setSubject(wfp_stripslashes($uname) . ' ' . _MD_WFCHANNEL_MESSAGESUBECT);
-        if (false == $xoopsMailer->send()) {
-            return _MD_WFCHANNEL_EMAILSENTWITHERRORS;
+        $xoopsMailer->setSubject(wfp_stripslashes($uname) . ' ' . _MD_WFC_MESSAGESUBECT);
+        if (false === $xoopsMailer->send()) {
+            return _MD_WFC_EMAILSENTWITHERRORS;
         } else {
-            $refers_handler = &wfp_gethandler('refers', _MODULE_DIR, _MODULE_CLASS);
+            $refers_handler = &wfp_getHandler('refers', _MODULE_DIR, _MODULE_CLASS);
             $refers_handler->setEmailSendCount();
             $refer_obj = $refers_handler->create();
             $refer_obj->setVar('wfcr_username', $uname);
@@ -159,7 +158,7 @@ class wfc_ReferHandler extends wfp_ObjectHandler
             $refer_obj->setVar('wfcr_ip', $refers_handler->getIP());
             $refer_obj->setVar('wfcr_date', time());
             $refers_handler->insert($refer_obj, false);
-            redirect_header('index.php', 1, _MD_WFCHANNEL_EMAILSENT);
+            redirect_header('index.php', 1, _MD_WFC_EMAILSENT);
         }
     }
 
@@ -170,12 +169,12 @@ class wfc_ReferHandler extends wfp_ObjectHandler
     public function displayErrors()
     {
         include_once XOOPS_ROOT_PATH . '/header.php';
-        $ret    = '<h3>' . _MD_WFCHANNEL_ERRORS . '</h3>';
+        $ret    = '<h3>' . _MD_WFC_ERRORS . '</h3>';
         $argues = func_get_args();
         if (func_num_args() == 1) {
             $ret .= $argues['0'];
         }
-        $ret .= '<div style="padding-top: 12px;"><a href=\'javascript:history.go(-1)\'>[ ' . _MD_WFCHANNEL_GOBACKBUTTON . ' ]</a></div>';
+        $ret .= '<div style="padding-top: 12px;"><a href=\'javascript:history.go(-1)\'>[ ' . _MD_WFC_GOBACKBUTTON . ' ]</a></div>';
         echo $ret;
         include XOOPS_ROOT_PATH . '/footer.php';
         exit();

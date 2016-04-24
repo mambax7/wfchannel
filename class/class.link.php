@@ -1,14 +1,14 @@
 <?php
 // $Id: class.link.php 8179 2011-11-07 00:54:10Z beckmi $
 // ------------------------------------------------------------------------ //
-// Xoops - PHP Content Management System                      			//
-// Copyright (c) 2007 Xoops                           				//
+// Xoops - PHP Content Management System                                //
+// Copyright (c) 2007 Xoops                                         //
 // //
-// Authors: 																//
-// John Neill ( AKA Catzwolf )                                     			//
-// Raimondas Rimkevicius ( AKA Mekdrop )									//
+// Authors:                                                                 //
+// John Neill ( AKA Catzwolf )                                              //
+// Raimondas Rimkevicius ( AKA Mekdrop )                                    //
 // //
-// URL: http:www.Xoops.com 												//
+// URL: http:www.Xoops.com                                              //
 // Project: Xoops Project                                               //
 // -------------------------------------------------------------------------//
 defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
@@ -21,7 +21,6 @@ wfp_getObjectHandler();
  * @package
  * @author    John
  * @copyright Copyright (c) 2007
- * @version   $Id: class.link.php 8179 2011-11-07 00:54:10Z beckmi $
  * @access    public
  */
 class wfc_Link extends wfp_Object
@@ -76,7 +75,7 @@ class wfc_Link extends wfp_Object
         if ($this->getVar($value)) {
             $image = $this->getImage($value, wfp_getModuleOption('linkimages'));
             if (is_array($image) && count($image) > 0) {
-                return '<a href="' . XOOPS_URL . '" target="_blank"><img style="width: ' . $image['width'] . '; height: ' . $image['height'] . ';" src="' . $image['url'] . '" alt="' . htmlSpecialChars($GLOBALS['xoopsConfig']['sitename']) . '" /></a>';
+                return '<a href="' . XOOPS_URL . '" target="_blank"><img style="width: ' . $image['width'] . '; height: ' . $image['height'] . ';" src="' . $image['url'] . '" alt="' . htmlspecialchars($GLOBALS['xoopsConfig']['sitename']) . '" /></a>';
             }
         }
 
@@ -90,7 +89,6 @@ class wfc_Link extends wfp_Object
  * @package
  * @author    John
  * @copyright Copyright (c) 2007
- * @version   $Id: class.link.php 8179 2011-11-07 00:54:10Z beckmi $
  * @access    public
  */
 class wfc_LinkHandler extends wfp_ObjectHandler
@@ -100,7 +98,7 @@ class wfc_LinkHandler extends wfp_ObjectHandler
      *
      * @param mixed $db
      */
-    public function __construct(&$db)
+    public function __construct($db)
     {
         parent::__construct($db, 'wfclink', 'wfc_Link', 'wfcl_id', 'wfcl_titlelink', 'link_read');
     }

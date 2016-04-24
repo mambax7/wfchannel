@@ -44,13 +44,10 @@
 }
 
 .codeTextArea {
-    margin-top: 6px;
-    margin-bottom: 12px;
     text-align: center;
     border: thin dotted gray;
     padding: 10px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin: 6px 50px 12px;
     background-color: #f0f8ff;
     font-size: smaller;
 }
@@ -84,8 +81,7 @@
 
 div .wrapper {
     width: 100%;
-    margin: 0;
-    margin-bottom: 12px;
+    margin: 0 0 12px;
 }
 
 .page_underline {
@@ -109,7 +105,7 @@ div .wrapper {
 .page_logo_caption {
     color: gray;
     padding: 3px;
-    background-image: url(../../themes/default/hbar.gif);
+    background-image: url(../../../themes/default/hbar.gif);
     font-size: x-small;
 }
 

@@ -10,11 +10,10 @@
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
- * @version    : $Id: form_wfc_refer.php 8179 2011-11-07 00:54:10Z beckmi $
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
-$form = new XoopsThemeTabForm(_AM_WFCHANNEL_CMODIFYREFER, 'op', 'refer.php');
+$form = new XoopsThemeTabForm(_AM_WFC_CMODIFYREFER, 'op', 'refer.php');
 $form->setExtra('enctype="multipart/form-data"');
 $form->doTabs();
 #/**
@@ -27,7 +26,7 @@ $form->addElement(new xoopsFormHidden('wfcr_id', $this->getVar('wfcr_id')));
 #/**
 # * Main Elements
 # */
-$form->startTab(_AM_WFCHANNEL_TABMAIN, 'main-info');
+$form->startTab(_AM_WFC_TABMAIN, 'main-info');
 #/**
 # * Refer Title
 # */
@@ -53,7 +52,7 @@ if (class_exists('XoopsFormEditor')) {
     $wfc_content = new XoopsFormDhtmlTextArea('', 'wfcr_content', $this->getVar('wfcr_content', 'e'), 15, 60);
     $options_tray->addElement($wfc_content);
 }
-if (true == wfp_isEditorHTML()) {
+if (true === wfp_isEditorHTML()) {
     $options_tray->addElement(new xoopsFormHidden('dohtml', 1));
     $options_tray->addElement(new xoopsFormHidden('dobr', 0));
 } else {
@@ -123,7 +122,7 @@ $form->addElement($wfcr_ublurb, false);
 $form->addElement(new XoopsFormButtontray('submit', _SUBMIT));
 $form->endTab();
 
-$form->startTab(_AM_WFCHANNEL_TABIMAGE, 'main-image');
+$form->startTab(_AM_WFC_TABIMAGE, 'main-image');
 /**
  * Page Image
  */
@@ -175,7 +174,7 @@ $form->endTab();
 $form->startTab('Permissions', 'permission-info');
 /**
  */
-$group = wfp_getClass('permissions');
+$group = &wfp_getClass('permissions');
 $group->setPermissions('wfcrefer', 'refer_read', '', $GLOBALS['xoopsModule']->getVar('mid'));
 $groups = new XoopsFormSelectCheckGroup(_AM_EWFP_GROUPS, 'refer_read', $group->getAdmin($this->getVar('wfcr_id')), '', true);
 $groups->setDescription(_AM_EWFP_GROUPS_DSC);

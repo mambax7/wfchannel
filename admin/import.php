@@ -10,22 +10,21 @@
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
- * @version    : $Id: import.php 8179 2011-11-07 00:54:10Z beckmi $
  */
-include 'admin_header.php';
+include_once __DIR__ . '/admin_header.php';
 
-$menu_handler->addHeader(_AM_WFCHANNEL_UPLOADAREA);
+$menu_handler->addHeader(_AM_WFC_UPLOADAREA);
 $op = wfp_Request::doRequest($_REQUEST, 'op', 'default', 'textbox');
 switch ($op) {
     case 'save':
-        $handler     = &wfp_gethandler('page', _MODULE_DIR, _MODULE_CLASS);
+        $handler     = &wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
         $do_callback = &wfp_getObjectCallback($handler);
 
         $uploadir = wfp_Request::doRequest($_REQUEST, 'uploadir', '', 'textbox');
         if (empty($uploadir) || !is_dir(XOOPS_ROOT_PATH . '/' . $uploadir) || !is_readable(XOOPS_ROOT_PATH . '/' . $uploadir)) {
             xoops_cp_header();
-            $menu_handler->addSubHeader(_AM_WFCHANNEL_IMPORT_DSC);
-//            $menu_handler->render(6);
+            $menu_handler->addSubHeader(_AM_WFC_IMPORT_DSC);
+            //            $menu_handler->render(6);
             echo _AM_EWFC_FOLDERDOESNOTEXIST;
             xoosla_cp_footer();
         }
@@ -55,7 +54,7 @@ switch ($op) {
             }
 
             $ret = $handler->htmlClean($do_callback->getValue('wfc_content'), $_REQUEST['wfc_cleaningoptions']);
-            if (!is_null($ret)) {
+            if (null !== $ret) {
                 $do_callback->setValue('wfc_content', $ret);
             }
             $wfc_cid = wfp_Request::doRequest($_REQUEST, 'wfc_cid', 0, 'int');
@@ -77,14 +76,14 @@ switch ($op) {
              * * code to remove pdf files created to update them *
              */
             if ($wfc_cid > 0) {
-                $pdf = wfp_getClass('dopdf');
+                $pdf = &wfp_getClass('dopdf');
                 $pdf->deleteCache($wfc_cid, $_REQUEST['wfc_title']);
             }
             // /**
             // */
             $options['noreturn'] = true;
             $ret                 = call_user_func(array($do_callback, 'save'), $options);
-            if ($ret == false) {
+            if ($ret === false) {
                 $handler->getHtmlErrors(false, 6);
                 // exit();
             } else {
@@ -94,12 +93,12 @@ switch ($op) {
         }
         break;
 
-    case "default":
+    case 'default':
     default:
         xoops_cp_header();
-        $menu_handler->addSubHeader(_AM_WFCHANNEL_IMPORT_DSC);
-//        $menu_handler->render(6);
-        $dummy_handler = $refer_handler = &wfp_gethandler('dummy');
+        $menu_handler->addSubHeader(_AM_WFC_IMPORT_DSC);
+        //        $menu_handler->render(6);
+        $dummy_handler = $refer_handler = &wfp_getHandler('dummy');
         $up_obj        = $dummy_handler->create();
         $up_obj->formEdit('wfp_import');
 }

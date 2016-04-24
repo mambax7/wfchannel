@@ -10,11 +10,10 @@
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
- * @version    : $Id: form_wfc_link.php 8179 2011-11-07 00:54:10Z beckmi $
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
-$form = new XoopsThemeTabForm(_AM_WFCHANNEL_CMODIFYLINK, 'op', 'link.php');
+$form = new XoopsThemeTabForm(_AM_WFC_CMODIFYLINK, 'op', 'link.php');
 $form->setExtra('enctype="multipart/form-data"');
 $form->doTabs();
 /**
@@ -44,14 +43,15 @@ $options = array(
     'rows'   => 35,
     'cols'   => 75,
     'width'  => '100%',
-    'height' => '400px');
+    'height' => '400px'
+);
 
 $options_tray = new XoopsFormElementTray(_AM_EWFC_LINK_INTRO, '');
 $options_tray->setNocolspan(1);
 $wfc_content = new XoopsFormEditor('', wfp_getModuleOption('use_wysiwyg'), $options, $nohtml = false, 'textarea');
 $options_tray->addElement($wfc_content);
 
-if (true == wfp_isEditorHTML()) {
+if (true === wfp_isEditorHTML()) {
     $options_tray->addElement(new xoopsFormHidden('dohtml', 1));
     $options_tray->addElement(new xoopsFormHidden('dobr', 0));
 } else {
@@ -133,7 +133,7 @@ $form->addElement($wfcl_newsfeed, false);
 $form->addElement(new XoopsFormButtontray('submit', _SUBMIT));
 $form->endTab();
 
-$form->startTab(_AM_WFCHANNEL_TABIMAGE, 'main-image');
+$form->startTab(_AM_WFC_TABIMAGE, 'main-image');
 /**
  * Page Image
  */
@@ -164,7 +164,7 @@ $form->endTab();
 $form->startTab('Permissions', 'main-permissions');
 /**
  */
-$group = wfp_getClass('permissions');
+$group = &wfp_getClass('permissions');
 $group->setPermissions('wfclink', 'link_read', '', $GLOBALS['xoopsModule']->getVar('mid'));
 $groups = new XoopsFormSelectCheckGroup(_AM_EWFP_GROUPS, 'link_read', $group->getAdmin($this->getVar('wfcl_id')), '', true);
 $groups->setDescription(_AM_EWFP_GROUPS_DSC);
