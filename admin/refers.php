@@ -16,9 +16,9 @@ include_once __DIR__ . '/admin_header.php';
 /**
  * Instance the call back
  */
-$menu_handler->addHeader(_AM_WFC_REFERSAREA);
-$handler     = &wfp_getHandler('refers', _MODULE_DIR, _MODULE_CLASS);
-$do_callback = &wfp_getObjectCallback($handler);
+$menuHandler->addHeader(_AM_WFC_REFERSAREA);
+$handler     = wfp_getHandler('refers', _MODULE_DIR, _MODULE_CLASS);
+$do_callback = wfp_getObjectCallback($handler);
 
 /**
  * Switch
@@ -29,7 +29,7 @@ switch ($op) {
     case 'delete':
         $do_callback->setMenu($menu);
         if (!wfp_Request::doRequest($_REQUEST, 'ok', 0, 'int')) {
-            $menu_handler->addSubHeader(_AM_WFP_MAINAREA_DELETE_DSC);
+            $menuHandler->addSubHeader(_AM_WFP_MAINAREA_DELETE_DSC);
         }
         if (!call_user_func(array($do_callback, $op), null)) {
             $handler->getHtmlErrors(true, $menu);
@@ -66,7 +66,7 @@ switch ($op) {
             }
         }
 
-        $tlist = &wfp_getClass('tlist');
+        $tlist = wfp_getClass('tlist');
         $tlist->AddFormStart('post', 'refers.php', 'refer');
         $tlist->AddHeader('wfcr_id', '5', 'center', false);
         $tlist->AddHeader('wfcr_uid', '20%', 'left', true);
@@ -97,8 +97,8 @@ switch ($op) {
         }
         // HTML output
         xoops_cp_header();
-        $menu_handler->addSubHeader(_AM_WFC_REFERSAREA_DSC);
-        //        $menu_handler->render($menu);
+        $menuHandler->addSubHeader(_AM_WFC_REFERSAREA_DSC);
+        //        $menuHandler->render($menu);
         $handler->headingHtml($_obj['count']);
         $handler->displayCalendar($nav, false);
         $tlist->render();

@@ -13,9 +13,9 @@
  */
 include_once __DIR__ . '/admin_header.php';
 
-$menu_handler->addHeader(_AM_WFC_REFERAREA);
-$handler     = &wfp_getHandler('refer', _MODULE_DIR, _MODULE_CLASS);
-$do_callback = &wfp_getObjectCallback($handler);
+$menuHandler->addHeader(_AM_WFC_REFERAREA);
+$handler     = wfp_getHandler('refer', _MODULE_DIR, _MODULE_CLASS);
+$do_callback = wfp_getObjectCallback($handler);
 
 /**
  */
@@ -24,7 +24,7 @@ switch ($op) {
     case 'edit':
     default:
         $menu = 1;
-        $menu_handler->addSubHeader(_AM_WFC_REFERAREA_DSC);
+        $menuHandler->addSubHeader(_AM_WFC_REFERAREA_DSC);
         $do_callback->setId(1);
         $do_callback->setMenu($menu);
         if (!$do_callback->edit(null)) {

@@ -164,7 +164,7 @@ $form->endTab();
 $form->startTab('Permissions', 'main-permissions');
 /**
  */
-$group = &wfp_getClass('permissions');
+$group = wfp_getClass('permissions');
 $group->setPermissions('wfclink', 'link_read', '', $GLOBALS['xoopsModule']->getVar('mid'));
 $groups = new XoopsFormSelectCheckGroup(_AM_EWFP_GROUPS, 'link_read', $group->getAdmin($this->getVar('wfcl_id')), '', true);
 $groups->setDescription(_AM_EWFP_GROUPS_DSC);

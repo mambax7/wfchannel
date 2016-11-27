@@ -29,7 +29,7 @@ function wfchannel_getUserPoints($uid, $startdate = '')
 {
     include_once XOOPS_ROOT_PATH . '/modules/wfchannel/include/functions.php';
 
-    $download_handler = &wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
+    $downloadHandler = wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
     if (empty($startdate)) {
         $startdate = strtotime(date('m-y-Y'));
     }
@@ -47,7 +47,7 @@ function wfchannel_getUserPoints($uid, $startdate = '')
     $criteria->add($criteriaExpired);
     $criteria->add(new Criteria('wfc_active', 1, '='));
     $criteria->add(new Criteria('wfc_uid', $uid, '='));
-    $itemcount = $download_handler->getCount($criteria);
+    $itemcount = $downloadHandler->getCount($criteria);
 
     $ret = array();
     /**

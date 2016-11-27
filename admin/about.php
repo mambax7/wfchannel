@@ -27,4 +27,4 @@ $aboutAdmin = new ModuleAdmin();
 echo $aboutAdmin->addNavigation($currentFile);
 echo $aboutAdmin->renderAbout('6KJ7RW5DR3VTJ', false);
 
-include_once 'admin_footer.php';
+include_once __DIR__ . '/admin_footer.php';

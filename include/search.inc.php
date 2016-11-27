@@ -12,11 +12,11 @@ defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this fi
 /**
  * wfchannel_search()
  *
- * @param mixed $queryarray
- * @param mixed $andor
- * @param mixed $limit
- * @param mixed $offset
- * @param mixed $userid
+ * @param  mixed $queryarray
+ * @param  mixed $andor
+ * @param  mixed $limit
+ * @param  mixed $offset
+ * @param  mixed $userid
  * @return array|string
  */
 function wfchannel_search($queryarray, $andor, $limit, $offset, $userid)
@@ -25,10 +25,10 @@ function wfchannel_search($queryarray, $andor, $limit, $offset, $userid)
     require_once XOOPS_ROOT_PATH . '/modules/wfchannel/include/functions.php';
 
     $ret = '';
-    if (!isset($page_handler)) {
-        $page_handler = &wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
+    if (!isset($pageHandler)) {
+        $pageHandler = wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
     }
-    $page_search = $page_handler->getSearch($queryarray, $andor, $limit, $offset, true);
+    $page_search = $pageHandler->getSearch($queryarray, $andor, $limit, $offset, true);
 
     $i = 0;
 

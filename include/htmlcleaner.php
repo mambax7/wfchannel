@@ -47,7 +47,7 @@ class HtmlCleanerTag
     {
         $this->nodeType = HTML_CLEANER_NODE_NODETYPE_TEXT;
         if ($str[0] === '<') {
-            $this->nodeType = HTML_CLEANER_NODE_NODETYPE_NODE;           
+            $this->nodeType = HTML_CLEANER_NODE_NODETYPE_NODE;
         }
 
         if ((strlen($str) > 1) && ($str[1] === '?' || $str[1] === '!')) {
@@ -56,7 +56,9 @@ class HtmlCleanerTag
 
         if ($this->nodeType == HTML_CLEANER_NODE_NODETYPE_NODE) {
             $this->parseFromString($str);
-        } elseif ($this->nodeType == HTML_CLEANER_NODE_NODETYPE_TEXT || $this->nodeType == HTML_CLEANER_NODE_NODETYPE_SPECIAL) {
+        } elseif ($this->nodeType == HTML_CLEANER_NODE_NODETYPE_TEXT
+                  || $this->nodeType == HTML_CLEANER_NODE_NODETYPE_SPECIAL
+        ) {
             $this->nodeValue = $str;
         }
     }
@@ -73,7 +75,7 @@ class HtmlCleanerTag
             trigger_error('tag syntax error', E_USER_ERROR);
         }
         if ($str[strlen($str) - 2] === '/') {
-            $endset             -= 1;
+            $endset -= 1;
             $this->closingStyle = HTML_CLEANER_NODE_CLOSINGSTYLE_XHTMLSINGLE;
         }
         if ($str[1] === '/') {
@@ -162,7 +164,9 @@ class HtmlCleanerTag
      */
     public function toString()
     {
-        if ($this->nodeType == HTML_CLEANER_NODE_NODETYPE_TEXT || $this->nodeType == HTML_CLEANER_NODE_NODETYPE_SPECIAL) {
+        if ($this->nodeType == HTML_CLEANER_NODE_NODETYPE_TEXT
+            || $this->nodeType == HTML_CLEANER_NODE_NODETYPE_SPECIAL
+        ) {
             return $this->nodeValue;
         }
         if ($this->nodeType == HTML_CLEANER_NODE_NODETYPE_NODE) {
@@ -262,7 +266,16 @@ class HtmlCleaner
             if (isset($part->attributes['class'])) {
                 unset($part->attributes['class']);
             }
-            if (false === strpos($part->nodeValue, '<?xml:namespace') && $part->nodeName !== 'span' && $part->nodeName !== 'font' && $part->nodeName !== 'o' && $part->nodeName !== 'script' && $part->nodeName !== 'style' && $part->nodeName !== 'object' && $part->nodeName !== 'iframe' && $part->nodeName !== 'applet' && $part->nodeName !== 'meta') {
+            if (false === strpos($part->nodeValue, '<?xml:namespace') && $part->nodeName !== 'span'
+                && $part->nodeName !== 'font'
+                && $part->nodeName !== 'o'
+                && $part->nodeName !== 'script'
+                && $part->nodeName !== 'style'
+                && $part->nodeName !== 'object'
+                && $part->nodeName !== 'iframe'
+                && $part->nodeName !== 'applet'
+                && $part->nodeName !== 'meta'
+            ) {
                 $return .= $part->toString();
             }
         }

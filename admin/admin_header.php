@@ -23,7 +23,7 @@ include_once $rootPath . '/include/cp_functions.php';
 require_once $rootPath . '/include/cp_header.php';
 
 require_once XOOPS_ROOT_PATH . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/include/functions.php';
-$menu_handler = &wfp_getHandler('menu');
+$menuHandler = wfp_getHandler('menu');
 
 global $xoopsModule;
 
@@ -31,7 +31,7 @@ global $xoopsModule;
 $moduleDirName = basename(dirname(__DIR__));
 //require_once $moduleDirName . '/include/common.php';
 //if functions.php file exist
-require_once dirname(__DIR__) . '/include/functions.php';
+require_once __DIR__ . '/../include/functions.php';
 
 //$myts = MyTextSanitizer::getInstance();
 

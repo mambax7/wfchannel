@@ -35,7 +35,7 @@ function wfchannel_tag_iteminfo(&$items)
     foreach (array_keys($items) as $cat_id) {
         foreach (array_keys($items[$cat_id]) as $item_id) {
             if (isset($items_obj[$item_id])) {
-                $obj                      = &$items_obj[$item_id];
+                $obj                      = $items_obj[$item_id];
                 $items[$cat_id][$item_id] = array(
                     'title'   => $obj->getVar('wfc_title'),
                     'uid'     => $obj->getVar('wfc_uid'),
@@ -57,16 +57,18 @@ function wfchannel_tag_iteminfo(&$items)
  */
 function wfchannel_tag_synchronization($mid)
 {
-    $item_handler = xoops_getModuleHandler('pages', 'wfchannel');
-    $link_handler = xoops_getModuleHandler('link', 'tag');
+    $itemHandler = xoops_getModuleHandler('pages', 'wfchannel');
+    $linkHandler = xoops_getModuleHandler('link', 'tag');
 
     /* clear tag-item links */
-    if ($link_handler->mysql_major_version() >= 4) {
-        $sql = "    DELETE FROM {$link_handler->table}" . ' WHERE ' . "     tag_modid = {$mid}" . '     AND ' . '       ( tag_itemid NOT IN ' . "           ( SELECT DISTINCT {$item_handler->keyName} " . "                FROM {$item_handler->table} " . "               WHERE {$item_handler->table}.approved > 0" . '          ) ' . '     )';
+    if ($linkHandler->mysql_major_version() >= 4) {
+        $sql = "    DELETE FROM {$linkHandler->table}" . ' WHERE ' . "     tag_modid = {$mid}" . '     AND ' . '       ( tag_itemid NOT IN ' . "           ( SELECT DISTINCT {$itemHandler->keyName} " . "                FROM {$itemHandler->table} "
+               . "               WHERE {$itemHandler->table}.approved > 0" . '          ) ' . '     )';
     } else {
-        $sql = "    DELETE {$link_handler->table} FROM {$link_handler->table}" . "  LEFT JOIN {$item_handler->table} AS aa ON {$link_handler->table}.tag_itemid = aa.{$item_handler->keyName} " . ' WHERE ' . "     tag_modid = {$mid}" . '     AND ' . "       ( aa.{$item_handler->keyName} IS NULL" . '          OR aa.approved < 1' . '     )';
+        $sql = "    DELETE {$linkHandler->table} FROM {$linkHandler->table}" . "  LEFT JOIN {$itemHandler->table} AS aa ON {$linkHandler->table}.tag_itemid = aa.{$itemHandler->keyName} " . ' WHERE ' . "     tag_modid = {$mid}" . '     AND '
+               . "       ( aa.{$itemHandler->keyName} IS NULL" . '          OR aa.approved < 1' . '     )';
     }
-    if (!$result = $link_handler->db->queryF($sql)) {
-        //xoops_error($link_handler->db->error());
+    if (!$result = $linkHandler->db->queryF($sql)) {
+        //xoops_error($linkHandler->db->error());
     }
 }

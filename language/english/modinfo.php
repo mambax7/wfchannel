@@ -59,13 +59,14 @@ define('_MI_WFC_PERPAGE', 'Maximum number of pages to show per page');
 define('_MI_WFC_DISPLAYTITLE', 'Display Page Title?');
 define('_MI_WFC_DISPLAYTITLEDSC', 'Select whether to display titles on the page or not. ');
 define('_MI_WFC_WYSIWYG', 'Select Editor');
-define('_MI_WFC_WYSIWYGDSC', 'Please select the editor you would like to use? <br />You maybe required to install an editor before you can use it.');
+define('_MI_WFC_WYSIWYGDSC', 'Please select the editor you would like to use? <br>You maybe required to install an editor before you can use it.');
 define('_MI_WFC_BANNED', 'IP Address to Ban:');
-define('_MI_WFC_BANNEDDSC', 'The IP address will not be allowed to use the refer section of this module.<br /><br />Please seperate each one with |.');
+define('_MI_WFC_BANNEDDSC', 'The IP address will not be allowed to use the refer section of this module.<br><br>Please seperate each one with |.');
 define('_MI_WFC_BOOKMARK', 'Display Bookmarks on pages?');
 define('_MI_WFC_BOOKMARKDSC', 'Display various social bookmarking sites on pages. These link to blinklist, fark etc etc.');
 define('_MI_WFC_MENULINKS', 'Menu Links');
-define('_MI_WFC_MENULINKSDSC', 'Selects how to display the menu links within the page: <br /><br />None: Do not display menu links<br />Both: Display both top and menu links on the page.<br />Top: Only display the meny at the top of the page.<br />Bottom: Only display the menu at the bottom of the page.');
+define('_MI_WFC_MENULINKSDSC',
+       'Selects how to display the menu links within the page: <br><br>None: Do not display menu links<br>Both: Display both top and menu links on the page.<br>Top: Only display the meny at the top of the page.<br>Bottom: Only display the menu at the bottom of the page.');
 define('_MI_WFC_ACTIVATEREFERS', 'Activate Refers Page: ');
 define('_MI_WFC_ACTIVATEREFERS_DSC', 'Select to allow users to view and use the Refers Page.');
 define('_MI_WFC_ACTIVATELINKS', 'Activate Links Page: ');
@@ -80,9 +81,9 @@ define('_MI_WFC_ADDTHISCODE', 'AddThis Bookmark Code');
 define('_MI_WFC_ADDTHISCODE_DSC', 'Copy and Paste valid AddThis Bookmark code to use as your Bookmarks.');
 
 define('_MI_WFC_ALLOWBMTEXT', 'Add Title Text Bookmarks?');
-define('_MI_WFC_ALLOWBMTEXT_DSC', 'This will display a \'Bookmark to\' bookmark along side the Bookmark Icon.<br /><br />Notice: Ignored if AddThis Bookmarks are used');
+define('_MI_WFC_ALLOWBMTEXT_DSC', 'This will display a \'Bookmark to\' bookmark along side the Bookmark Icon.<br><br>Notice: Ignored if AddThis Bookmarks are used');
 define('_MI_WFC_BMLAYOUT', 'Type Of Bookmark Display?');
-define('_MI_WFC_BMLAYOUT_DSC', 'Selecting either of these options will change the display to a Vertical or Horizontal BookMarks.<br /><br />Notice: Ignored if AddThis Bookmarks are used');
+define('_MI_WFC_BMLAYOUT_DSC', 'Selecting either of these options will change the display to a Vertical or Horizontal BookMarks.<br><br>Notice: Ignored if AddThis Bookmarks are used');
 define('_MI_WFC_HORIZONTAL', 'Horizontal');
 define('_MI_WFC_VERTICAL', 'Vertical');
 

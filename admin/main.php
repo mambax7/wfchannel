@@ -1,6 +1,6 @@
 <?php
 /**
- * Name: index.php
+ * Name: main.php
  * Description:
  *
  * @package    : Xoosla Modules
@@ -16,9 +16,9 @@ include_once __DIR__ . '/admin_header.php';
 /**
  * Instance the call back
  */
-$handler     = &wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
-$do_callback = &wfp_getObjectCallback($handler);
-$menu_handler->addHeader(_AM_WFC_MAINAREA);
+$handler     = wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
+$do_callback = wfp_getObjectCallback($handler);
+$menuHandler->addHeader(_AM_WFC_MAINAREA);
 
 /**
  * Switch
@@ -36,9 +36,10 @@ switch ($op) {
 
     case 'delete':
         if (!wfp_Request::doRequest($_REQUEST, 'ok', 0, 'int')) {
-            $menu_handler->addSubHeader(_AM_WFP_MAINAREA_DELETE_DSC);
+            $menuHandler->addSubHeader(_AM_WFP_MAINAREA_DELETE_DSC);
         }
-        if (!call_user_func(array($do_callback, $op), $options)) {
+//        if (!call_user_func(array($do_callback, $op), $options)) {
+        if (!call_user_func(array($do_callback, 'deleteById'), $options)) {
             $handler->getHtmlErrors(true, $menu);
         }
         break;
@@ -77,7 +78,7 @@ switch ($op) {
         break;
 
     case 'edit':
-        //        $menu_handler->addSubHeader(_AM_WFC_MAINAREA_EDIT_DSC);
+        //        $menuHandler->addSubHeader(_AM_WFC_MAINAREA_EDIT_DSC);
         if (!call_user_func(array($do_callback, $op), $options)) {
             $handler->getHtmlErrors(true, $menu);
         }
@@ -148,7 +149,7 @@ switch ($op) {
          */
         $wfc_cid = wfp_Request::doRequest($_REQUEST, 'wfc_cid', 0, 'int');
         if ($wfc_cid > 0) {
-            $pdf = &wfp_getClass('dopdf');
+            $pdf = wfp_getClass('dopdf');
             $pdf->deleteCache($wfc_cid, $_REQUEST['wfc_title']);
         }
         xoops_load('xoopscache');
@@ -164,7 +165,7 @@ switch ($op) {
 
     case 'default':
     default:
-        $nav = array();
+        $nav           = array();
         $nav['start']  = wfp_Request::doRequest($_REQUEST, 'start', 0, 'int');
         $nav['sort']   = wfp_Request::doRequest($_REQUEST, 'sort', 'wfc_cid', 'textbox');
         $nav['order']  = wfp_Request::doRequest($_REQUEST, 'order', 'DESC', 'textbox');
@@ -188,7 +189,7 @@ switch ($op) {
             }
         }
 
-        $tlist = &wfp_getClass('tlist');
+        $tlist = wfp_getClass('tlist');
         $tlist->AddFormStart('post', 'main.php', 'pages');
         $tlist->AddHeader('wfc_cid', '5', 'center', false);
         $tlist->AddHeader('wfc_title', '25%', 'left', true);
@@ -200,7 +201,7 @@ switch ($op) {
         $tlist->AddHeader('', '', 'center', 2);
         $tlist->AddHeader('action', '', 'center', false);
         $tlist->addFooter();
-        $button = array('../main.php' => 'view', 'edit', 'delete', 'duplicate');
+        $button = array('../index.php' => 'view', 'edit', 'delete', 'duplicate');
         $_obj   = $handler->getObj($nav, true);
         if ($_obj['count'] && count($_obj['list'])) {
             foreach ($_obj['list'] as $obj) {
@@ -219,8 +220,8 @@ switch ($op) {
         }
         // Html Output here
         xoops_cp_header();
-        $menu_handler->addSubHeader(_AM_WFC_MAINAREA_DSC);
-        //        $menu_handler->render(0);
+        $menuHandler->addSubHeader(_AM_WFC_MAINAREA_DSC);
+        //        $menuHandler->render(0);
         $handler->headingHtml($_obj['count']);
         $handler->displayCalendar($nav, true);
         $tlist->render();

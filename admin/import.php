@@ -13,18 +13,20 @@
  */
 include_once __DIR__ . '/admin_header.php';
 
-$menu_handler->addHeader(_AM_WFC_UPLOADAREA);
+$menuHandler->addHeader(_AM_WFC_UPLOADAREA);
 $op = wfp_Request::doRequest($_REQUEST, 'op', 'default', 'textbox');
 switch ($op) {
     case 'save':
-        $handler     = &wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
-        $do_callback = &wfp_getObjectCallback($handler);
+        $handler     = wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
+        $do_callback = wfp_getObjectCallback($handler);
 
         $uploadir = wfp_Request::doRequest($_REQUEST, 'uploadir', '', 'textbox');
-        if (empty($uploadir) || !is_dir(XOOPS_ROOT_PATH . '/' . $uploadir) || !is_readable(XOOPS_ROOT_PATH . '/' . $uploadir)) {
+        if (empty($uploadir) || !is_dir(XOOPS_ROOT_PATH . '/' . $uploadir)
+            || !is_readable(XOOPS_ROOT_PATH . '/' . $uploadir)
+        ) {
             xoops_cp_header();
-            $menu_handler->addSubHeader(_AM_WFC_IMPORT_DSC);
-            //            $menu_handler->render(6);
+            $menuHandler->addSubHeader(_AM_WFC_IMPORT_DSC);
+            //            $menuHandler->render(6);
             echo _AM_EWFC_FOLDERDOESNOTEXIST;
             xoosla_cp_footer();
         }
@@ -76,7 +78,7 @@ switch ($op) {
              * * code to remove pdf files created to update them *
              */
             if ($wfc_cid > 0) {
-                $pdf = &wfp_getClass('dopdf');
+                $pdf = wfp_getClass('dopdf');
                 $pdf->deleteCache($wfc_cid, $_REQUEST['wfc_title']);
             }
             // /**
@@ -96,10 +98,10 @@ switch ($op) {
     case 'default':
     default:
         xoops_cp_header();
-        $menu_handler->addSubHeader(_AM_WFC_IMPORT_DSC);
-        //        $menu_handler->render(6);
-        $dummy_handler = $refer_handler = &wfp_getHandler('dummy');
-        $up_obj        = $dummy_handler->create();
+        $menuHandler->addSubHeader(_AM_WFC_IMPORT_DSC);
+        //        $menuHandler->render(6);
+        $dummyHandler = $referHandler = wfp_getHandler('dummy');
+        $up_obj        = $dummyHandler->create();
         $up_obj->formEdit('wfp_import');
 }
 xoosla_cp_footer();

@@ -75,8 +75,8 @@ class wfc_ReferHandler extends wfp_ObjectHandler
     /**
      * wfc_ReferHandler::generateHash()
      *
-     * @param  mixed  $plainText
-     * @param  mixed  $salt
+     * @param  mixed $plainText
+     * @param  mixed $salt
      * @return string
      */
     public function generateHash($plainText, $salt = null)
@@ -98,12 +98,12 @@ class wfc_ReferHandler extends wfp_ObjectHandler
     {
         $bannedip = explode('|', wfp_getModuleOption('banned'));
         if (count($bannedip) > 0) {
-            $refers_handler = &wfp_getHandler('refers', _MODULE_DIR, _MODULE_CLASS);
-            $ip             = $refers_handler->getIP();
+            $refersHandler = wfp_getHandler('refers', _MODULE_DIR, _MODULE_CLASS);
+            $ip             = $refersHandler->getIP();
             if (in_array($ip, $bannedip)) {
-                $xoopsOption['template_main'] = 'wfchannel_banned.tpl';
-                include_once(XOOPS_ROOT_PATH . '/header.php');
-                include_once(XOOPS_ROOT_PATH . '/footer.php');
+                $GLOBALS['xoopsOption']['template_main'] = 'wfchannel_banned.tpl';
+                include_once XOOPS_ROOT_PATH . '/header.php';
+                include_once XOOPS_ROOT_PATH . '/footer.php';
                 exit();
             }
         }
@@ -115,7 +115,7 @@ class wfc_ReferHandler extends wfp_ObjectHandler
      */
     public function refersend()
     {
-        global $xoopsConfig, $xoopsUser, $refer_handler;
+        global $xoopsConfig, $xoopsUser, $referHandler;
 
         $uname   = wfp_Request::doRequest($_REQUEST, 'uname', '', 'textbox');
         $runame  = wfp_Request::doRequest($_REQUEST, 'runame', '', 'textbox');
@@ -147,17 +147,17 @@ class wfc_ReferHandler extends wfp_ObjectHandler
         if (false === $xoopsMailer->send()) {
             return _MD_WFC_EMAILSENTWITHERRORS;
         } else {
-            $refers_handler = &wfp_getHandler('refers', _MODULE_DIR, _MODULE_CLASS);
-            $refers_handler->setEmailSendCount();
-            $refer_obj = $refers_handler->create();
+            $refersHandler = wfp_getHandler('refers', _MODULE_DIR, _MODULE_CLASS);
+            $refersHandler->setEmailSendCount();
+            $refer_obj = $refersHandler->create();
             $refer_obj->setVar('wfcr_username', $uname);
             if (is_object($GLOBALS['xoopsUser'])) {
                 $refer_obj->setVar('wfcr_uid', $GLOBALS['xoopsUser']->getVar('uid'));
             }
             $refer_obj->setVar('wfcr_referurl', $_SERVER['HTTP_REFERER']);
-            $refer_obj->setVar('wfcr_ip', $refers_handler->getIP());
+            $refer_obj->setVar('wfcr_ip', $refersHandler->getIP());
             $refer_obj->setVar('wfcr_date', time());
-            $refers_handler->insert($refer_obj, false);
+            $refersHandler->insert($refer_obj, false);
             redirect_header('index.php', 1, _MD_WFC_EMAILSENT);
         }
     }

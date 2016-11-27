@@ -15,15 +15,15 @@ include __DIR__ . '/header.php';
 $op = wfp_cleanRequestVars($_REQUEST, 'op', 'default', XOBJ_DTYPE_TXTBOX);
 switch ($op) {
     case 'upgrade':
-        include(XOOPS_ROOT_PATH . '/header.php');
+        include XOOPS_ROOT_PATH . '/header.php';
         echo '<p><b>' . _MD_WFC_UPDATE24 . "</b></p>\n";
-        echo "<br /><p><b>Updating table wfcpages</b></p>\n";
-        $updater = &wfp_getClass('updater');
+        echo "<br><p><b>Updating table wfcpages</b></p>\n";
+        $updater = wfp_getClass('updater');
         $result  = $updater->RenameTable('wfschannel', 'wfcpages');
         if (!$result) {
             $updater->getError();
             $updater->render();
-            include(XOOPS_ROOT_PATH . '/footer.php');
+            include XOOPS_ROOT_PATH . '/footer.php';
             exit();
         }
 
@@ -56,14 +56,14 @@ switch ($op) {
         $updater->doChange();
         displayOutput();
         // Updating table wfclink
-        echo "<br /><p><b>Updating table wfcrefer</b></p>\n";
-        $updater = &wfp_getClass('updater');
+        echo "<br><p><b>Updating table wfcrefer</b></p>\n";
+        $updater = wfp_getClass('updater');
         $updater->setTable('wfcrefer');
         $result = $updater->RenameTable('wfsrefer', 'wfcrefer');
         if (!$result) {
             $updater->getError();
             $updater->render();
-            include(XOOPS_ROOT_PATH . '/footer.php');
+            include XOOPS_ROOT_PATH . '/footer.php';
             exit();
         }
 
@@ -89,14 +89,14 @@ switch ($op) {
         $updater->doChange();
         displayOutput();
         // Updating table wfcrefer
-        echo "<br /><p><b>Updating table wfclink</b></p>\n";
-        $updater = &wfp_getClass('updater');
+        echo "<br><p><b>Updating table wfclink</b></p>\n";
+        $updater = wfp_getClass('updater');
         $updater->setTable('wfclink');
         $result = $updater->RenameTable('wfslinktous', 'wfclink');
         if (!$result) {
             $updater->getError();
             $updater->render();
-            include(XOOPS_ROOT_PATH . '/footer.php');
+            include XOOPS_ROOT_PATH . '/footer.php';
             exit();
         }
         $updater->changeField('submenuitem', "`wfcl_submenu` tinyint(1) unsigned NOT NULL default '1'");
@@ -124,9 +124,9 @@ switch ($op) {
         displayOutput();
 
         // Updating table wfcrefers;
-        echo "<br /><p><b>Updating table wfcrefers</b></p>\n";
+        echo "<br><p><b>Updating table wfcrefers</b></p>\n";
 
-        $updater = &wfp_getClass('updater');
+        $updater = wfp_getClass('updater');
         $data    = "  `wfcr_id` mediumint(8) unsigned NOT NULL auto_increment,
       `wfcr_username` varchar(60) NOT NULL,
       `wfcr_uid` mediumint(8) unsigned NOT NULL default '0',
@@ -139,7 +139,7 @@ switch ($op) {
         if (!$result) {
             $updater->getError();
             $updater->render();
-            include(XOOPS_ROOT_PATH . '/footer.php');
+            include XOOPS_ROOT_PATH . '/footer.php';
             exit();
         }
         displayOutput();
@@ -149,12 +149,13 @@ switch ($op) {
     default:
         include XOOPS_ROOT_PATH . '/header.php';
         echo "<table align=\"center\" width='100 % ' border='0'><tr><td align='center'><b>" . _MD_WFC_UPDATE1 . '</b></td></tr><tr><td>&nbsp;</td></tr></table>';
-        echo "<table align=\"center\" width='50 % ' border='0'><tr><td colspan='2'>" . _MD_WFC_UPDATE2 . '<br><br><b>' . _MD_WFC_UPDATE3 . '<b></td></tr><tr><td></td><td >' . _MD_WFC_UPDATE4 . "</td></tr><tr><td></td><td><span style='color:// ff0000;font-weight:bold;'>" . _MD_WFC_UPDATE5 . '</span></td></tr></table>';
+        echo "<table align=\"center\" width='50 % ' border='0'><tr><td colspan='2'>" . _MD_WFC_UPDATE2 . '<br><br><b>' . _MD_WFC_UPDATE3 . '<b></td></tr><tr><td></td><td >' . _MD_WFC_UPDATE4
+             . "</td></tr><tr><td></td><td><span style='color:// ff0000;font-weight:bold;'>" . _MD_WFC_UPDATE5 . '</span></td></tr></table>';
         echo '<p>' . _MD_WFC_UPDATE6 . '</p>';
         echo "<form action='" . xoops_getenv('PHP_SELF') . "' method='post'><input type='submit' value='Start Upgrade' /><input type='hidden' name='op' value='upgrade' /></form>";
         break;
 } // switch
-include(XOOPS_ROOT_PATH . '/footer.php');
+include XOOPS_ROOT_PATH . '/footer.php';
 
 function displayOutput()
 {

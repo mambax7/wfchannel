@@ -178,8 +178,8 @@ if ($oldversion < 200) {
     /**
      * Lets fix issues with dohtml, dosmilies ect
      */
-    $page_handler = &wfp_getHandler('page', 'wfchannel', 'wfc_');
-    $obj          = $page_handler->getObj(null, true);
+    $pageHandler = wfp_getHandler('page', 'wfchannel', 'wfc_');
+    $obj          = $pageHandler->getObj(null, true);
     if ($obj['count'] > 0) {
         foreach ($obj['list'] as $objs) {
             $ret             = array();
@@ -187,9 +187,9 @@ if ($oldversion < 200) {
             $ret['dosmiley'] = ($objs->getVar('dohtml') == 0) ? 1 : 0;
             $ret['doxcode']  = ($objs->getVar('dohtml') == 0) ? 1 : 0;
             $ret['dobr']     = ($objs->getVar('dohtml') == 0) ? 1 : 0;
-            $new_obj         = $page_handler->get($objs->getVar('wfc_cid'));
+            $new_obj         = $pageHandler->get($objs->getVar('wfc_cid'));
             $new_obj->setVars($ret);
-            @$page_handler->insert($new_obj, false);
+            @$pageHandler->insert($new_obj, false);
         }
     }
 }

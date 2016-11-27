@@ -1,10 +1,13 @@
 <{if $refer.title}>
     <div class="page_headline"><span class="itemTitle"><{$refer.title}></span></div><{/if}>
-<br/>
+<br>
 
 <{if $xoops_isadmin }>
     <div class="page_adminlink"><span><{$smarty.const._MD_WFC_ADMINTASKS}></span>
-        <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/refer.php"><img class="page_image" src="<{xoModuleIcons16 edit.png}>" title="<{$smarty.const._MD_WFP_MODIFY}>" alt="<{$smarty.const._MD_WFP_MODIFY}>"/></a>
+        <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/refer.php"><img class="page_image"
+                                                                                 src="<{xoModuleIcons16 edit.png}>"
+                                                                                 title="<{$smarty.const._MD_WFP_MODIFY}>"
+                                                                                 alt="<{$smarty.const._MD_WFP_MODIFY}>"/></a>
     </div>
 <{/if}>
 
@@ -15,13 +18,16 @@
 
 <div class="itemBody">
     <{if $refer.image.url }>
-        <div class="page_logo"><img class="page_logo_image" src="<{$refer.image.url}>" width="<{$refer.image.width}>" height="<{$refer.image.height}>" name="image" id="image" title="<{$refer.title}>" alt="<{$refer.title}>"/></div>
+        <div class="page_logo"><img class="page_logo_image" src="<{$refer.image.url}>" width="<{$refer.image.width}>"
+                                    height="<{$refer.image.height}>" name="image" id="image" title="<{$refer.title}>"
+                                    alt="<{$refer.title}>"/></div>
     <{/if}>
     <div class="itemText"><{$refer.content}></div>
 </div>
 <div style="clear: both;"></div>
 
-<form id="<{$refer_form.name}>" name="<{$refer_form.name}>" action="<{$refer_form.action}>" method="<{$refer_form.method}>" <{$refer_form.extra}> >
+<form id="<{$refer_form.name}>" name="<{$refer_form.name}>" action="<{$refer_form.action}>"
+      method="<{$refer_form.method}>" <{$refer_form.extra}> >
     <table id="refer-form-<{$refer_form.name}>" cellspacing="1" class="outer">
         <{foreach item=element from=$refer_form.elements}>
             <{if !$element.hidden}>
@@ -53,8 +59,9 @@
 <div style="clear: both;">&nbsp;</div>
 
 <{if $referfriend.privacy_statement}>
-    <div style="padding-top: 6px; width: 70%; margin-left: auto; margin-right: auto;"><span style="text-align: center;"><{$referfriend.privacy_statement}></span></div>
-    <br/>
+    <div style="padding-top: 6px; width: 70%; margin-left: auto; margin-right: auto;"><span
+                style="text-align: center;"><{$referfriend.privacy_statement}></span></div>
+    <br>
 <{/if}>
 
 <{if $menu_bottom }>

@@ -13,7 +13,7 @@
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
-global $xoopsTpl, $refer_handler;
+global $xoopsTpl, $referHandler;
 
 /**
  */
@@ -31,7 +31,7 @@ if ($this->getVar('wfsr_ublurb')) {
 }
 
 xoops_load('XoopsCaptcha');
-$xoopsCaptcha = &XoopsCaptcha::getInstance();
+$xoopsCaptcha = XoopsCaptcha::getInstance();
 
 //var_dump($xoopsCaptcha->isActive());
 

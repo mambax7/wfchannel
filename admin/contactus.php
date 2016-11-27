@@ -1,19 +1,19 @@
 <?php
 include_once __DIR__ . '/admin_header.php';
-$menu_handler->addHeader(_AM_AD_CONTUSAREA);
-$_handler = &wfp_getHandler('contactus', _MODULE_DIR, _MODULE_CLASS);
+$menuHandler->addHeader(_AM_AD_CONTUSAREA);
+$Handler = wfp_getHandler('contactus', _MODULE_DIR, _MODULE_CLASS);
 
 $op          = wfp_cleanRequestVars($_REQUEST, 'op', 'edit', XOBJ_DTYPE_TXTBOX);
 $options     = null;
-$do_callback = &wfp_getObjectCallback($_handler);
+$do_callback = wfp_getObjectCallback($Handler);
 $menu        = 4;
 switch ($op) {
     case 'edit':
-        $menu_handler->addSubHeader(_AM_AD_CONTUSAREA_DSC);
+        $menuHandler->addSubHeader(_AM_AD_CONTUSAREA_DSC);
         $do_callback->setId(1);
         $do_callback->setMenu($menu);
         if (!call_user_func(array($do_callback, $op), $options)) {
-            $_handler->getHtmlErrors(false, $menu);
+            $Handler->getHtmlErrors(false, $menu);
         }
         break;
 
@@ -25,7 +25,7 @@ switch ($op) {
         $_REQUEST['doimage']  = wfp_cleanRequestVars($_REQUEST, 'doimage', '0', XOBJ_DTYPE_INT);
         $_REQUEST['dobr']     = wfp_cleanRequestVars($_REQUEST, 'dobr', '0', XOBJ_DTYPE_INT);
         if (!call_user_func(array($do_callback, $op), $options)) {
-            $_handler->getHtmlErrors();
+            $Handler->getHtmlErrors();
         }
         break;
 }

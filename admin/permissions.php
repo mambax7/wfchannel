@@ -18,12 +18,12 @@ switch ($op) {
     case 'default':
     default:
         xoops_cp_header();
-        $menu_handler->addHeader(_AM_WFC_PERMISSIONAREA);
-        $menu_handler->addSubHeader(_AM_WFC_REFERAREA_DSC);
-        //        $menu_handler->render(4);
+        $menuHandler->addHeader(_AM_WFC_PERMISSIONAREA);
+        $menuHandler->addSubHeader(_AM_WFC_REFERAREA_DSC);
+        //        $menuHandler->render(4);
 
         ob_start('callback');
-        $group = &wfp_getClass('permissions');
+        $group = wfp_getClass('permissions');
         $group->setPermissions('wfcpages', 'page_read', '', $xoopsModule->getVar('mid'));
         $group->render(array('cid' => 'wfc_cid', 'title' => 'wfc_title'));
         ob_end_flush();

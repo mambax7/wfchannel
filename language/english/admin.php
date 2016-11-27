@@ -83,12 +83,12 @@ define('_AM_EWFC_DOIMPORT', 'Import File:');
 
 define('_AM_EWFC_CLEANINGOPTIONS', 'Page Cleaning Options:');
 define('_AM_EWFC_CLEANINGOPTIONS_DSC', 'The options will perform certain text cleaning.
- <br /><br />
- <b>Helpful Hints</b><br />
- Raw Formatting: Leave all formatting untouched and no html cleansing.<br />
+ <br><br>
+ <b>Helpful Hints</b><br>
+ Raw Formatting: Leave all formatting untouched and no html cleansing.<br>
  Html Cleansing: Clean and Filter Html input.
- MS Word Cleansing: Removes undesired MS word tags from content and leave all other html tags intact.<br />
- Remove All Formatting: Removes all html tags from content and converts content to plain text.<br />');
+ MS Word Cleansing: Removes undesired MS word tags from content and leave all other html tags intact.<br>
+ Remove All Formatting: Removes all html tags from content and converts content to plain text.<br>');
 define('_AM_EWFC_CLEANRAW', 'Raw Formatting');
 define('_AM_EWFC_CLEANHTML', 'Html Cleansing');
 define('_AM_EWFC_CLEANMSWORD', 'MS Word Cleansing');
@@ -199,18 +199,18 @@ define('_AM_WFC_QUICKVIEW', 'View Page');
 /**
  * Import
  */
-define('_AM_WFC_IMPORTHTML', 'Mass Import HTML');
+define('_AM_WFCHANNEL_IMPORTHTML', 'Mass Import HTML');
 define('_AM_EWFC_PAGE_UPLOADDIR', 'Enter Upload Directory');
-define('_AM_EWFC_PAGE_UPLOADDIR_DSC', 'Please enter the path of the import folder. This foler must be within the XOOPS document root<br /><br />Example: uploads/import');
+define('_AM_EWFC_PAGE_UPLOADDIR_DSC', 'Please enter the path of the import folder. This foler must be within the XOOPS document root<br><br>Example: uploads/import');
 define('_AM_EWFC_FOLDERDOESNOTEXIST', '<strong>ERROR:</strong> The import folder either does not exist or is not readable.');
 define('_AM_WFC_CHANIMAGEEXIST', 'File %s already exisits on the server, please try uploading another file.');
 
 define('_AM_WFC_SELSTATUS', 'Set Page Status:');
 define('_AM_WFC_SELSTATUS_DSC', 'Set the status of a page to one of the following:
-<br /><b>Published:</b> Open to all viewers with permissions
-<br /><b>Unpublished:</b> Sets Page to a submitted stage
-<br /><b>Expired:</b> Sets Page as Archive/Expired
-<br /><b>Inactive:</b> Sets the page as inactive keeps its orginal state
+<br><b>Published:</b> Open to all viewers with permissions
+<br><b>Unpublished:</b> Sets Page to a submitted stage
+<br><b>Expired:</b> Sets Page as Archive/Expired
+<br><b>Inactive:</b> Sets the page as inactive keeps its orginal state
 ');
 
 define('_AM_WFC_SELALL', 'All Pages');

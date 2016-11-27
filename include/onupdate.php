@@ -16,23 +16,23 @@ defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 /**
  * xoops_module_update_wfchannel()
  *
- * @param mixed $module
- * @param mixed $oldversion
+ * @param  mixed $module
+ * @param  mixed $oldversion
  * @return bool
  */
 function xoops_module_update_wfchannel($module, $oldversion)
 {
     global $msgs;
-
+    $moduleDirName = basename(dirname(__DIR__));
     /**
      * Do install here
      */
     $upgrade = true;
-    include_once XOOPS_ROOT_PATH . '/modules/' . $GLOBALS['module']->getVar('dirname') . '/include/functions.php';
-    $msgs[] = '<br />Updating Module Database Tables.......';
+    include_once XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/functions.php';
+    $msgs[] = '<br>Updating Module Database Tables.......';
     if ($result === true) {
         define('_WF_INSTALLER', 1);
-        include_once XOOPS_ROOT_PATH . '/modules/' . $GLOBALS['module']->getVar('dirname') . '/include/upgrade.php';
+        include_once XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/upgrade.php';
 
         return true;
     } else {

@@ -13,7 +13,7 @@
  */
 include_once __DIR__ . '/admin_header.php';
 
-$menu_handler->addHeader(_AM_WFC_UPLOADAREA);
+$menuHandler->addHeader(_AM_WFC_UPLOADAREA);
 $op = wfp_Request::doRequest($_REQUEST, 'op', 'default', 'textbox');
 switch ($op) {
     case 'upload':
@@ -29,7 +29,7 @@ switch ($op) {
         if (!empty($uploadfile)) {
             if (file_exists(XOOPS_ROOT_PATH . "/${uploadpath}/${uploadfile}")) {
                 xoops_cp_header();
-                //                $menu_handler->render(5);
+                //                $menuHandler->render(5);
                 echo sprintf(_AM_WFC_CHANIMAGEEXIST, $uploadfile);
                 xoosla_cp_footer();
                 exit();
@@ -41,11 +41,11 @@ switch ($op) {
             }
             $ret = wfp_uploader($allowed_mimetypes, $uploadfile, xoops_getenv('PHP_SELF'), 1, $uploadpath);
             xoops_cp_header();
-            //            $menu_handler->render(5);
+            //            $menuHandler->render(5);
             echo $ret;
         } else {
             xoops_cp_header();
-            //            $menu_handler->render(5);
+            //            $menuHandler->render(5);
             echo _AM_WFP_FILEDOESNOTEXIST;
         }
         break;
@@ -69,15 +69,15 @@ switch ($op) {
                     redirect_header(xoops_getenv('PHP_SELF'), 1, sprintf(_AM_WFP_FILEDELETED, $channelfile));
                 } else {
                     xoops_cp_header();
-                    //                    echo $menu_handler->render(5);
+                    //                    echo $menuHandler->render(5);
                     echo sprintf(_AM_WFP_ERRORDELETEFILE, $channelfile);
                     xoosla_cp_footer();
                 }
             }
         } else {
             xoops_cp_header();
-            $menu_handler->addSubHeader(_AM_WFP_MAINAREA_DELETE_DSC);
-            //            $menu_handler->render(5);
+            $menuHandler->addSubHeader(_AM_WFP_MAINAREA_DELETE_DSC);
+            //            $menuHandler->render(5);
             xoops_confirm(array(
                               'op'          => 'delete',
                               'uploadpath'  => $uploadpath,
@@ -90,10 +90,10 @@ switch ($op) {
     case 'default':
     default:
         xoops_cp_header();
-        $menu_handler->addSubHeader(_AM_WFC_UPLOADAREA_DSC);
-        //        $menu_handler->render(5);
-        $dummy_handler = $refer_handler = &wfp_getHandler('dummy');
-        $up_obj        = $dummy_handler->create();
+        $menuHandler->addSubHeader(_AM_WFC_UPLOADAREA_DSC);
+        //        $menuHandler->render(5);
+        $dummyHandler = $referHandler = wfp_getHandler('dummy');
+        $up_obj        = $dummyHandler->create();
         $up_obj->formEdit('wfp_upload');
 }
 xoosla_cp_footer();

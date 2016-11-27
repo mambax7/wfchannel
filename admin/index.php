@@ -17,7 +17,7 @@
  * @author       XOOPS Development Team
  */
 
-require_once dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
+//require_once __DIR__ . '/../../../include/cp_header.php';
 include_once __DIR__ . '/admin_header.php';
 
 xoops_cp_header();
@@ -27,4 +27,4 @@ $indexAdmin = new ModuleAdmin();
 echo $indexAdmin->addNavigation('index.php');
 echo $indexAdmin->renderIndex();
 
-include_once 'admin_footer.php';
+include_once __DIR__ . '/admin_footer.php';

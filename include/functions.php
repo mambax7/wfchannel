@@ -32,6 +32,7 @@ function wfc_CheckResource($upgrade)
 {
     global $xoopsUserIsAdmin, $xoopsConfig, $xoopsUser;
 
+    /** @var XoopsModuleHandler $moduleHandler */
     $moduleHandler = xoops_getHandler('module');
     $wmodule       = $moduleHandler->getByDirname(_MODULE_DIR);
 
@@ -63,7 +64,7 @@ function wfc_CheckResource($upgrade)
             return false;
         } else {
             $text = '';
-                include XOOPS_ROOT_PATH . '/header.php';
+            include XOOPS_ROOT_PATH . '/header.php';
             include_once XOOPS_ROOT_PATH . '/modules/' . $wmodule->getVar('dirname') . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/errors.php';
             $wfc_requires = '1.04';
             switch ($ret) {
@@ -105,11 +106,11 @@ if ($result) {
 }
 
 /**
- * @param      $array
- * @param null $name
- * @param null $def
- * @param bool $strict
- * @param int  $lengthcheck
+ * @param                              $array
+ * @param  null                        $name
+ * @param  null                        $def
+ * @param  bool                        $strict
+ * @param  int                         $lengthcheck
  * @return array|int|mixed|null|string
  */
 function wfp_cleanRequestVars(&$array, $name = null, $def = null, $strict = false, $lengthcheck = 15)
@@ -131,7 +132,7 @@ function wfp_cleanRequestVars(&$array, $name = null, $def = null, $strict = fals
             if (ctype_digit($value)) {
                 $value = (int)$value;
             } else {
-                if ($strict == true) {
+                if ($strict === true) {
                     $value = preg_replace('/\W/', '', trim($value));
                 }
                 $value = strtolower((string)$value);
@@ -151,7 +152,7 @@ function wfp_cleanRequestVars(&$array, $name = null, $def = null, $strict = fals
     if (ctype_digit($value)) {
         $value = (int)$value;
     } else {
-        if ($strict == true) {
+        if ($strict === true) {
             $value = preg_replace('/\W/', '', trim($value));
         }
         $value = strtolower((string)$value);

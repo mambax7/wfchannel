@@ -14,10 +14,11 @@
 function wfchannel_notify_iteminfo($category, $item_id)
 {
     if (empty($GLOBALS['xoopsModule']) || $GLOBALS['xoopsModule']->getVar('dirname') !== 'wfchannel') {
-        $moduleHandler  = xoops_getHandler('module');
+        /** @var XoopsModuleHandler $moduleHandler */
+        $moduleHandler = xoops_getHandler('module');
         $module         = $moduleHandler->getByDirname('wfchannel');
-        $config_handler = xoops_getHandler('config');
-        $config         = $config_handler->getConfigsByCat(0, (int)$module->getVar('mid'));
+        $configHandler = xoops_getHandler('config');
+        $config         = $configHandler->getConfigsByCat(0, (int)$module->getVar('mid'));
     } else {
         $module = $GLOBALS['xoopsModule'];
         $config = $GLOBALS['xoopsModuleConfig'];

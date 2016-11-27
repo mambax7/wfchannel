@@ -19,27 +19,27 @@ $op = wfp_Request::doRequest($_REQUEST, 'op', 'default', 'textbox');
 
 /**
  */
-$page_handler = &wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
+$pageHandler = wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
 switch ($op) {
     case 'refersend':
         if (!$GLOBALS['xoopsSecurity']->check()) {
             $url = $_SERVER['HTTP_REFERER'] ?: $_SERVER['PHP_SELF'];
             redirect_header($url, 1, $GLOBALS['xoopsSecurity']->getErrors(true));
         }
-        $refer_handler = &wfp_getHandler('refer', _MODULE_DIR, _MODULE_CLASS);
+        $referHandler = wfp_getHandler('refer', _MODULE_DIR, _MODULE_CLASS);
 
         $ret = false;
 
         xoops_load('XoopsCaptcha');
-        $xoopsOption = array();
+        $xoopsOption  = array();
         $xoopsCaptcha = XoopsCaptcha::getInstance();
         if (!$xoopsCaptcha->verify()) {
             $stop .= $xoopsCaptcha->getMessage();
         } else {
-            $ret = $refer_handler->refersend();
+            $ret = $referHandler->refersend();
         }
         if ($ret !== true || !empty($ret)) {
-            $xoopsOption['template_main'] = 'wfchannel_emailerror.tpl';
+            $GLOBALS['xoopsOption']['template_main'] = 'wfchannel_emailerror.tpl';
             include XOOPS_ROOT_PATH . '/header.php';
             $xoopsTpl->assign('wfc_email_error', $ret);
         } else {
@@ -51,17 +51,17 @@ switch ($op) {
         if (!wfp_getModuleOption('act_refer')) {
             redirect_header(XOOPS_URL, 1, _MD_WFC_NORIGHTTOVIEWPAGE);
         }
-        $refer_handler = &wfp_getHandler('refer', _MODULE_DIR, _MODULE_CLASS);
+        $referHandler = wfp_getHandler('refer', _MODULE_DIR, _MODULE_CLASS);
         // test for banned IP address //
-        $refer_handler->doBanned();
+        $referHandler->doBanned();
         // show refer page //
-        $refer_obj = $refer_handler->get(1);
+        $refer_obj = $referHandler->get(1);
         if (!is_object($refer_obj)) {
             redirect_header(XOOPS_URL, 1, _MD_WFC_NORIGHTTOVIEWPAGE);
         }
         /**
          */
-        $xoopsOption['template_main'] = 'wfchannel_refer.tpl';
+        $GLOBALS['xoopsOption']['template_main'] = 'wfchannel_refer.tpl';
         include_once XOOPS_ROOT_PATH . '/header.php';
         $refer_obj->formEdit('wfc_referpage');
         $xoopsTpl->assign('refer', array(
@@ -77,13 +77,13 @@ switch ($op) {
         if (!wfp_getModuleOption('act_link')) {
             redirect_header(XOOPS_URL, 1, _MD_WFC_NORIGHTTOVIEWPAGE);
         }
-        $link_handler = &wfp_getHandler('link', _MODULE_DIR, _MODULE_CLASS);
-        $link_obj     = $link_handler->get(1);
+        $linkHandler = wfp_getHandler('link', _MODULE_DIR, _MODULE_CLASS);
+        $link_obj     = $linkHandler->get(1);
         if (!$link_obj) {
             redirect_header(XOOPS_URL, 1, _MD_WFC_NORIGHTTOVIEWPAGE);
         }
 
-        $xoopsOption['template_main'] = 'wfchannel_linktous.tpl';
+        $GLOBALS['xoopsOption']['template_main'] = 'wfchannel_linktous.tpl';
         include_once XOOPS_ROOT_PATH . '/header.php';
         $xoopsTpl->assign('linktous', array(
             'textlink'    => $link_obj->getTextLink('wfcl_textlink'),
@@ -104,11 +104,11 @@ switch ($op) {
     case 'page':
     default:
         wfp_loadLangauge('main', 'wfresource');
-        $cid     = $page_handler->getPageNumber();
-        $pageObj = $page_handler->get($cid, true, 'wfc_default');
+        $cid     = $pageHandler->getPageNumber();
+        $pageObj = $pageHandler->get($cid, true, 'wfc_default');
 
         if (!is_object($pageObj)) {
-            $pageObj = $page_handler->create();
+            $pageObj = $pageHandler->create();
             $pageObj->setVar('wfc_headline', _MD_WFC_NOTITLESET);
             $pageObj->setVar('wfc_content', _MD_WFC_NOCONTENTSET);
             $pageObj->setVar('wfc_cid', 0);
@@ -117,7 +117,7 @@ switch ($op) {
             /**
              * Update counter
              */
-            $page_handler->update($pageObj);
+            $pageHandler->update($pageObj);
         }
 
         $act = wfp_Request::doRequest($_REQUEST, 'act', 'default', 'textbox');
@@ -125,14 +125,14 @@ switch ($op) {
             case 'print':
             case 'pdf':
             case 'rss':
-                $page_handler->getAction($pageObj, $act);
+                $pageHandler->getAction($pageObj, $act);
                 break;
 
             case 'default':
             default:
                 $xoopsOption['template_main']   = 'wfchannel_index.tpl';
                 $xoopsOption['xoops_pagetitle'] = $pageObj->getVar('wfc_title');
-                include_once(XOOPS_ROOT_PATH . '/header.php');
+                include_once XOOPS_ROOT_PATH . '/header.php';
                 /**
                  */
                 if ($GLOBALS['xoopsModuleConfig']['xoopstags']) {
@@ -169,9 +169,9 @@ switch ($op) {
                     }
                 }
                 $xoopsTpl->assign('wfc_tag', wfp_module_installed('tag'));
-                $xoopsTpl->assign($page_handler->getRelated($pageObj));
+                $xoopsTpl->assign($pageHandler->getRelated($pageObj));
                 $xoopsTpl->assign('rsslink', wfp_getModuleOption('enablerss'));
-                $xoopsTpl->assign('links', $page_handler->getNextPreviousLinks($pageObj->getVar('wfc_cid')));
+                $xoopsTpl->assign('links', $pageHandler->getNextPreviousLinks($pageObj->getVar('wfc_cid')));
                 /**
                  * Fix to allow comments on the main page without a cid
                  */
@@ -182,7 +182,7 @@ switch ($op) {
 
 /**
  */
-$xoopsTpl->assign($page_handler->getChanlinks());
+$xoopsTpl->assign($pageHandler->getChanlinks());
 $xoopsTpl->assign('copyright', sprintf(wfp_getModuleOption('copyrighttext'), date('Y'), $xoopsConfig['sitename']));
 $xoopsTpl->assign('menu_top', in_array(wfp_getModuleOption('menulinks'), array(1, 2)));
 $xoopsTpl->assign('menu_bottom', in_array(wfp_getModuleOption('menulinks'), array(1, 3)));

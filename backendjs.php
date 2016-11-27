@@ -14,7 +14,7 @@ if ($fd and (time() - filemtime($filename) < $timespan)) {
     fclose($fd);
 } else {
     fclose($fd);
-    $sql    = 'SELECT storyid, title FROM ' . $xoopsDB->prefix('stories') . ' WHERE published>0 AND published<' . time() . ' ORDER BY published DESC';
+    $sql    = 'SELECT storyid, title FROM ' . $xoopsDB->prefix('news_stories') . ' WHERE published>0 AND published<' . time() . ' ORDER BY published DESC';
     $result = $xoopsDB->query($sql, 10, 0);
     if (!$result) {
         echo 'An error occured';

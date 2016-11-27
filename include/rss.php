@@ -24,14 +24,14 @@ $tpl->xoops_setCaching(0);
 $tpl->xoops_setCacheTime(0);
 if (!$tpl->is_cached('db:system_rss.html', 'wfc|feed|rss')) {
     xoops_load('XoopsLocal');
-    $rssContent = &wfp_getClass('rss');
+    $rssContent = wfp_getClass('rss');
     $rssContent->basics('module_logo.png', 'modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/images');
     $rss = $rssContent->render();
     foreach ($rss as $key => $value) {
         $tpl->assign($key, $value);
     }
 
-    $handler = &wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
+    $handler = wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
     $objects = $handler->getList('wfc_publish', 'DESC', 0, 30);
     if (count($objects) > 0) {
         // Get users for items

@@ -13,13 +13,13 @@
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
-if (!$this->isNew()) {
-    echo '<div style="padding: 5px; float: left;"><a target="_BLANK" href="../index.php?wfc_cid=' . $this->getVar('wfc_cid') . '">' . _AM_WFC_QUICKVIEW . '</a></div>';
+if (!$this->isNew()) {//mb
+    echo '<div style="padding: 5px; float: left;"><a target="_BLANK" href="../main.php?wfc_cid=' . $this->getVar('wfc_cid') . '">' . _AM_WFC_QUICKVIEW . '</a></div>';
 }
 
 /**
  */
-$form = new XoopsThemeTabForm((!$this->isNew()) ? sprintf(_AM_WFP_MODIFY, $this->getVar('wfc_title')) : _AM_WFP_CREATE, 'page_form', 'index.php');
+$form = new XoopsThemeTabForm((!$this->isNew()) ? sprintf(_AM_WFP_MODIFY, $this->getVar('wfc_title')) : _AM_WFP_CREATE, 'page_form', 'main.php'); //mb
 $form->setExtra('enctype="multipart/form-data"');
 $form->doTabs();
 /**
@@ -57,7 +57,7 @@ $options = array(
     'height' => '400px'
 );
 
-$options_tray = new XoopsFormElementTray(_AM_EWFC_PAGE_CONTENT . ': ' . $this->getVar('wfc_title'), '<br />');
+$options_tray = new XoopsFormElementTray(_AM_EWFC_PAGE_CONTENT . ': ' . $this->getVar('wfc_title'), '<br>');
 //$options_tray->setNocolspan(1);
 
 $wfc_content = new XoopsFormEditor('', wfp_getModuleOption('use_wysiwyg'), $options, $nohtml = false, $onfailure = 'textarea');
@@ -95,7 +95,7 @@ $form->addElement($options_tray);
 /**
  * HTML File Options
  */
-$options_tray2 = new XoopsFormElementTray(_AM_EWFC_PAGE_WRAP, '<br /><br />');
+$options_tray2 = new XoopsFormElementTray(_AM_EWFC_PAGE_WRAP, '<br><br>');
 $options_tray2->setDescription(_AM_EWFC_PAGE_WRAP_DSC);
 $htmlfile_select = new XoopsFormText('', 'wfc_file', 50, 150, $this->getVar('wfc_file', 'e'));
 $options_tray2->addElement($htmlfile_select, false);
@@ -262,7 +262,7 @@ $form->endTab();
  * Permissions
  */
 $form->startTab(_AM_WFC_TABPERMISSIONS, 'main-permissions');
-$group = &wfp_getClass('permissions');
+$group = wfp_getClass('permissions');
 $group->setPermissions('wfcpages', 'page_read', '', $GLOBALS['xoopsModule']->getVar('mid'));
 $groups = new XoopsFormSelectCheckGroup(_AM_EWFP_GROUPS, 'page_read', $group->getAdmin($this->getVar('wfc_cid')), '', true);
 $groups->setDescription(_AM_EWFP_GROUPS_DSC);
@@ -275,9 +275,9 @@ $form->addElement(new XoopsFormButtontray('submit', _SUBMIT));
 $form->endTab();
 
 if (!$this->isNew()) {
-    $handler = &wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
-    $ret     = '<br /><div><b>' . _AM_WFC_QUICKLINK . '</b> ' . _AM_WFC_COPYSTANDALONE . '</div>';
-    $ret .= '<div style="padding: 5px;">' . XOOPS_URL . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/index.php?cid=' . $this->getVar('wfc_cid') . '</div><br />';
+    $handler = wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
+    $ret     = '<br><div><b>' . _AM_WFC_QUICKLINK . '</b> ' . _AM_WFC_COPYSTANDALONE . '</div>';
+    $ret .= '<div style="padding: 5px;">' . XOOPS_URL . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/index.php?cid=' . $this->getVar('wfc_cid') . '</div><br>';
     $ret .= $handler->pageInfo($this);
 
     $form->startTab(_AM_WFC_INFO, 'main-information');

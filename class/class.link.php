@@ -75,7 +75,8 @@ class wfc_Link extends wfp_Object
         if ($this->getVar($value)) {
             $image = $this->getImage($value, wfp_getModuleOption('linkimages'));
             if (is_array($image) && count($image) > 0) {
-                return '<a href="' . XOOPS_URL . '" target="_blank"><img style="width: ' . $image['width'] . '; height: ' . $image['height'] . ';" src="' . $image['url'] . '" alt="' . htmlspecialchars($GLOBALS['xoopsConfig']['sitename']) . '" /></a>';
+                return '<a href="' . XOOPS_URL . '" target="_blank"><img style="width: ' . $image['width'] . '; height: ' . $image['height'] . ';" src="' . $image['url'] . '" alt="' . htmlspecialchars($GLOBALS['xoopsConfig']['sitename'])
+                       . '" /></a>';
             }
         }
 

@@ -37,7 +37,7 @@ $form->addElement($wfcr_title, true);
 #/**
 # * Refer Content
 # */
-$options_tray = new XoopsFormElementTray(_AM_EWFC_REFER_INTRO, '<br />');
+$options_tray = new XoopsFormElementTray(_AM_EWFC_REFER_INTRO, '<br>');
 $options_tray->setNocolspan(1);
 if (class_exists('XoopsFormEditor')) {
     $options['name']   = 'wfcr_content';
@@ -174,7 +174,7 @@ $form->endTab();
 $form->startTab('Permissions', 'permission-info');
 /**
  */
-$group = &wfp_getClass('permissions');
+$group = wfp_getClass('permissions');
 $group->setPermissions('wfcrefer', 'refer_read', '', $GLOBALS['xoopsModule']->getVar('mid'));
 $groups = new XoopsFormSelectCheckGroup(_AM_EWFP_GROUPS, 'refer_read', $group->getAdmin($this->getVar('wfcr_id')), '', true);
 $groups->setDescription(_AM_EWFP_GROUPS_DSC);

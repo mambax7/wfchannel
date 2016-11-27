@@ -5,7 +5,7 @@
  * Redistribution of source must retain this copyright notice.
  */
 
-include("htmlparser.inc");
+include 'htmlparser.inc';
 
 /**
  * Class Html2Text. (HtmlParser example.)
@@ -21,30 +21,30 @@ class Html2Text
 
     // Private fields
 
-    var $iCurrentLine = "";
-    var $iCurrentWord = "";
-    var $iCurrentWordArray;
-    var $iCurrentWordIndex;
-    var $iInScript;
-    var $iListLevel   = 0;
-    var $iHtmlText;
-    var $iMaxColumns;
-    var $iHtmlParser;
+    public $iCurrentLine = '';
+    public $iCurrentWord = '';
+    public $iCurrentWordArray;
+    public $iCurrentWordIndex;
+    public $iInScript;
+    public $iListLevel   = 0;
+    public $iHtmlText;
+    public $iMaxColumns;
+    public $iHtmlParser;
 
     // Constants
 
-    var $TOKEN_BR      = 0;
-    var $TOKEN_P       = 1;
-    var $TOKEN_LI      = 2;
-    var $TOKEN_AFTERLI = 3;
-    var $TOKEN_UL      = 4;
-    var $TOKEN_ENDUL   = 5;
+    public $TOKEN_BR      = 0;
+    public $TOKEN_P       = 1;
+    public $TOKEN_LI      = 2;
+    public $TOKEN_AFTERLI = 3;
+    public $TOKEN_UL      = 4;
+    public $TOKEN_ENDUL   = 5;
 
     /**
      * @param $aHtmlText
      * @param $aMaxColumns
      */
-    function __construct($aHtmlText, $aMaxColumns)
+    public function __construct($aHtmlText, $aMaxColumns)
     {
         $this->iHtmlText   = $aHtmlText;
         $this->iMaxColumns = $aMaxColumns;
@@ -53,10 +53,10 @@ class Html2Text
     /**
      * @return string
      */
-    function convert()
+    public function convert()
     {
         $this->iHtmlParser = new HtmlParser($this->iHtmlText);
-        $wholeText         = "";
+        $wholeText         = '';
         while (($line = $this->getLine()) !== false) {
             $wholeText .= ($line . "\r\n");
         }
@@ -67,24 +67,24 @@ class Html2Text
     /**
      * @return bool|string
      */
-    function getLine()
+    public function getLine()
     {
         while (true) {
             if (!$this->addWordToLine($this->iCurrentWord)) {
                 $retvalue           = $this->iCurrentLine;
-                $this->iCurrentLine = "";
+                $this->iCurrentLine = '';
 
                 return $retvalue;
             }
             $word = $this->getWord();
             if ($word === false) {
-                if ($this->iCurrentLine == "") {
+                if ($this->iCurrentLine === '') {
                     break;
                 }
                 $retvalue           = $this->iCurrentLine;
-                $this->iCurrentLine = "";
+                $this->iCurrentLine = '';
                 $this->iInText      = false;
-                $this->iCurrentWord = "";
+                $this->iCurrentWord = '';
 
                 return $retvalue;
             }
@@ -97,14 +97,14 @@ class Html2Text
      * @param $word
      * @return bool
      */
-    function addWordToLine($word)
+    public function addWordToLine($word)
     {
         if ($this->iInScript) {
             return true;
         }
         $prevLine = $this->iCurrentLine;
         if ($word === $this->TOKEN_BR) {
-            $this->iCurrentWord = "";
+            $this->iCurrentWord = '';
 
             return false;
         }
@@ -130,15 +130,15 @@ class Html2Text
         }
         $toAdd = $word;
         if ($word === $this->TOKEN_AFTERLI) {
-            $toAdd = "";
+            $toAdd = '';
         }
-        if ($prevLine != "") {
-            $prevLine .= " ";
+        if ($prevLine !== '') {
+            $prevLine .= ' ';
         } else {
             $prevLine = $this->getIndentation($word === $this->TOKEN_AFTERLI);
         }
         $candidateLine = $prevLine . $toAdd;
-        if (strlen($candidateLine) > $this->iMaxColumns && $prevLine != "") {
+        if (strlen($candidateLine) > $this->iMaxColumns && $prevLine !== '') {
             return false;
         }
         $this->iCurrentLine = $candidateLine;
@@ -149,10 +149,10 @@ class Html2Text
     /**
      * @return bool|int|string
      */
-    function getWord()
+    public function getWord()
     {
         while (true) {
-            if ($this->iHtmlParser->iNodeType == NODE_TYPE_TEXT) {
+            if ($this->iHtmlParser->iNodeType === NODE_TYPE_TEXT) {
                 if (!$this->iInText) {
                     $words                   = $this->splitWords($this->iHtmlParser->iNodeValue);
                     $this->iCurrentWordArray = $words;
@@ -166,43 +166,47 @@ class Html2Text
                 } else {
                     $this->iInText = false;
                 }
-            } else if ($this->iHtmlParser->iNodeType == NODE_TYPE_ELEMENT) {
-                if (strcasecmp($this->iHtmlParser->iNodeName, "br") == 0) {
+            } elseif ($this->iHtmlParser->iNodeType === NODE_TYPE_ELEMENT) {
+                if (strcasecmp($this->iHtmlParser->iNodeName, 'br') === 0) {
                     $this->iHtmlParser->parse();
                     $this->iCurrentWord = $this->TOKEN_BR;
 
                     return $this->iCurrentWord;
-                } else if (strcasecmp($this->iHtmlParser->iNodeName, "p") == 0) {
+                } elseif (strcasecmp($this->iHtmlParser->iNodeName, 'p') === 0) {
                     $this->iHtmlParser->parse();
                     $this->iCurrentWord = $this->TOKEN_P;
 
                     return $this->iCurrentWord;
-                } else if (strcasecmp($this->iHtmlParser->iNodeName, "script") == 0) {
+                } elseif (strcasecmp($this->iHtmlParser->iNodeName, 'script') === 0) {
                     $this->iHtmlParser->parse();
-                    $this->iCurrentWord = "";
+                    $this->iCurrentWord = '';
                     $this->iInScript    = true;
 
                     return $this->iCurrentWord;
-                } else if (strcasecmp($this->iHtmlParser->iNodeName, "ul") == 0 || strcasecmp($this->iHtmlParser->iNodeName, "ol") == 0) {
+                } elseif (strcasecmp($this->iHtmlParser->iNodeName, 'ul') === 0
+                           || strcasecmp($this->iHtmlParser->iNodeName, 'ol') == 0
+                ) {
                     $this->iHtmlParser->parse();
                     $this->iCurrentWord = $this->TOKEN_UL;
                     $this->iListLevel++;
 
                     return $this->iCurrentWord;
-                } else if (strcasecmp($this->iHtmlParser->iNodeName, "li") == 0) {
+                } elseif (strcasecmp($this->iHtmlParser->iNodeName, 'li') === 0) {
                     $this->iHtmlParser->parse();
                     $this->iCurrentWord = $this->TOKEN_LI;
 
                     return $this->iCurrentWord;
                 }
-            } else if ($this->iHtmlParser->iNodeType == NODE_TYPE_ENDELEMENT) {
-                if (strcasecmp($this->iHtmlParser->iNodeName, "script") == 0) {
+            } elseif ($this->iHtmlParser->iNodeType === NODE_TYPE_ENDELEMENT) {
+                if (strcasecmp($this->iHtmlParser->iNodeName, 'script') === 0) {
                     $this->iHtmlParser->parse();
-                    $this->iCurrentWord = "";
+                    $this->iCurrentWord = '';
                     $this->iInScript    = false;
 
                     return $this->iCurrentWord;
-                } else if (strcasecmp($this->iHtmlParser->iNodeName, "ul") == 0 || strcasecmp($this->iHtmlParser->iNodeName, "ol") == 0) {
+                } elseif (strcasecmp($this->iHtmlParser->iNodeName, 'ul') === 0
+                           || strcasecmp($this->iHtmlParser->iNodeName, 'ol') === 0
+                ) {
                     $this->iHtmlParser->parse();
                     $this->iCurrentWord = $this->TOKEN_ENDUL;
                     if ($this->iListLevel > 0) {
@@ -224,10 +228,11 @@ class Html2Text
      * @param $text
      * @return array
      */
-    function splitWords($text)
+    public function splitWords($text)
     {
-        $words = split("[ \t\r\n]+", $text);
-        for ($idx = 0; $idx < count($words); $idx++) {
+        $words      = split("[ \t\r\n]+", $text);
+        $wordsCount = count($words);
+        for ($idx = 0; $idx < $wordsCount; $idx++) {
             $words[$idx] = $this->htmlDecode($words[$idx]);
         }
 
@@ -238,7 +243,7 @@ class Html2Text
      * @param $text
      * @return mixed
      */
-    function htmlDecode($text)
+    public function htmlDecode($text)
     {
         // TBD
         return $text;
@@ -248,15 +253,15 @@ class Html2Text
      * @param $hasLI
      * @return string
      */
-    function getIndentation($hasLI)
+    public function getIndentation($hasLI)
     {
-        $indent = "";
+        $indent = '';
         $idx    = 0;
         for ($idx = 0; $idx < ($this->iListLevel - 1); $idx++) {
-            $indent .= "  ";
+            $indent .= '  ';
         }
         if ($this->iListLevel > 0) {
-            $indent = $hasLI ? ($indent . "- ") : ($indent . "  ");
+            $indent = $hasLI ? ($indent . '- ') : ($indent . '  ');
         }
 
         return $indent;
