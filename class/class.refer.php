@@ -129,7 +129,7 @@ class wfc_ReferHandler extends wfp_ObjectHandler
         }
 
         include_once XOOPS_ROOT_PATH . '/class/xoopsmailer.php';
-        $xoopsMailer =& xoops_getMailer();
+        $xoopsMailer = xoops_getMailer();
         $xoopsMailer->useMail();
         $xoopsMailer->setTemplateDir(XOOPS_ROOT_PATH . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/mail_template');
         $xoopsMailer->setTemplate('refer.tpl');
