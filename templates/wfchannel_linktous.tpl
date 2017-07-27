@@ -7,7 +7,7 @@
         <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/link.php"><img class="page_image"
                                                                                 src="<{xoModuleIcons16 edit.png}>"
                                                                                 title="<{$smarty.const._MD_WFP_MODIFY}>"
-                                                                                alt="<{$smarty.const._MD_WFP_MODIFY}>"/></a>
+                                                                                alt="<{$smarty.const._MD_WFP_MODIFY}>"></a>
     </div>
 <{/if}>
 
@@ -21,7 +21,7 @@
         <div class="page_logo"><img class="page_logo_image" src="<{$linktous.image.url}>"
                                     width="<{$linktous.image.width}>" height="<{$linktous.image.height}>" name="image"
                                     id="image"
-                                    title="<{$chanlink2.title}>" alt="<{$chanlink2.title}>"/>
+                                    title="<{$chanlink2.title}>" alt="<{$chanlink2.title}>">
 
             <div class="page_logo_caption"><{$linktous.caption}></div>
         </div>
@@ -87,7 +87,7 @@
         <{if $linktous.newsfeed }>
             <div class="itemHead"><{$smarty.const._MD_WFC_DISPLAYNEWSLINK}></div>
             <div class="rssicon"><img src='<{$xoops_url}>/modules/<{$smarty.const._MODULE_DIR}>/images/rss.gif'
-                                      name='image5' id='image5' alt='<{$linktous.sitename}>'/></div>
+                                      name='image5' id='image5' alt='<{$linktous.sitename}>'></div>
             <div class="codeText"><{$lang_displaynewsrss}></div>
             <div class="newsfeed"><b><{$smarty.const._MD_WFC_NEWSFEEDLINKEXAMPLE}></b> <{$xoops_url}>/backend.php</div>
         <{/if}>

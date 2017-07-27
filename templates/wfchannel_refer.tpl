@@ -7,7 +7,7 @@
         <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/refer.php"><img class="page_image"
                                                                                  src="<{xoModuleIcons16 edit.png}>"
                                                                                  title="<{$smarty.const._MD_WFP_MODIFY}>"
-                                                                                 alt="<{$smarty.const._MD_WFP_MODIFY}>"/></a>
+                                                                                 alt="<{$smarty.const._MD_WFP_MODIFY}>"></a>
     </div>
 <{/if}>
 
@@ -20,7 +20,7 @@
     <{if $refer.image.url }>
         <div class="page_logo"><img class="page_logo_image" src="<{$refer.image.url}>" width="<{$refer.image.width}>"
                                     height="<{$refer.image.height}>" name="image" id="image" title="<{$refer.title}>"
-                                    alt="<{$refer.title}>"/></div>
+                                    alt="<{$refer.title}>"></div>
     <{/if}>
     <div class="itemText"><{$refer.content}></div>
 </div>

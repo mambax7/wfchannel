@@ -1,7 +1,8 @@
 Credits
 ===============
 
-WF-Channel was originally written bei Catzwolf until version 1.06.  Version 1.07 has been bugfixed by Predator.
+WF-Channel was originally written bei Catzwolf until version 1.06. 
+Current Version 1.07 has been bugfixed by Predator.
 
 Versions 2.x were developed again by Catzwolf
 

@@ -28,11 +28,11 @@ function xoops_module_update_wfchannel($module, $oldversion)
      * Do install here
      */
     $upgrade = true;
-    include_once XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/functions.php';
+    require_once XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/functions.php';
     $msgs[] = '<br>Updating Module Database Tables.......';
     if ($result === true) {
         define('_WF_INSTALLER', 1);
-        include_once XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/upgrade.php';
+        require_once XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/upgrade.php';
 
         return true;
     } else {

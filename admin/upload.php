@@ -11,7 +11,10 @@
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
-include_once __DIR__ . '/admin_header.php';
+
+use Xmf\Request;
+
+require_once __DIR__ . '/admin_header.php';
 
 $menuHandler->addHeader(_AM_WFC_UPLOADAREA);
 $op = wfp_Request::doRequest($_REQUEST, 'op', 'default', 'textbox');
@@ -93,7 +96,7 @@ switch ($op) {
         $menuHandler->addSubHeader(_AM_WFC_UPLOADAREA_DSC);
         //        $menuHandler->render(5);
         $dummyHandler = $referHandler = wfp_getHandler('dummy');
-        $up_obj        = $dummyHandler->create();
+        $up_obj       = $dummyHandler->create();
         $up_obj->formEdit('wfp_upload');
 }
 xoosla_cp_footer();

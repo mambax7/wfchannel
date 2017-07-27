@@ -1099,7 +1099,7 @@ class simple_html_dom_node
      * NOTE: This will ONLY work on an IMG tag. Returns FALSE on all other tag types.
      *
      * @author  John Schlick
-     * @return array|bool
+     * @return array|bool an array containing the 'height' and 'width' of the image on the page or -1 if we can't figure it out.
      */
     public function get_display_size()
     {
@@ -1710,8 +1710,7 @@ class simple_html_dom
 
         // Since CP1252 is a superset, if we get one of it's subsets, we want it instead.
         if ((strtolower($charset) === strtolower('ISO-8859-1')) || (strtolower($charset) === strtolower('Latin1'))
-            || (strtolower($charset) === strtolower('Latin-1'))
-        ) {
+            || (strtolower($charset) === strtolower('Latin-1'))) {
             if (is_object($debug_object)) {
                 $debug_object->debug_log(2, 'replacing ' . $charset . ' with CP1252 as its a superset');
             }

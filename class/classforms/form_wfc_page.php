@@ -13,7 +13,8 @@
  */
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
-if (!$this->isNew()) {//mb
+if (!$this->isNew()) {
+    //mb
     echo '<div style="padding: 5px; float: left;"><a target="_BLANK" href="../main.php?wfc_cid=' . $this->getVar('wfc_cid') . '">' . _AM_WFC_QUICKVIEW . '</a></div>';
 }
 

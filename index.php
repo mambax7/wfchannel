@@ -11,6 +11,9 @@
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
+
+use Xmf\Request;
+
 include __DIR__ . '/header.php';
 
 /**
@@ -62,7 +65,7 @@ switch ($op) {
         /**
          */
         $GLOBALS['xoopsOption']['template_main'] = 'wfchannel_refer.tpl';
-        include_once XOOPS_ROOT_PATH . '/header.php';
+        require_once XOOPS_ROOT_PATH . '/header.php';
         $refer_obj->formEdit('wfc_referpage');
         $xoopsTpl->assign('refer', array(
             'title'   => $refer_obj->getVar('wfcr_title'),
@@ -78,13 +81,13 @@ switch ($op) {
             redirect_header(XOOPS_URL, 1, _MD_WFC_NORIGHTTOVIEWPAGE);
         }
         $linkHandler = wfp_getHandler('link', _MODULE_DIR, _MODULE_CLASS);
-        $link_obj     = $linkHandler->get(1);
+        $link_obj    = $linkHandler->get(1);
         if (!$link_obj) {
             redirect_header(XOOPS_URL, 1, _MD_WFC_NORIGHTTOVIEWPAGE);
         }
 
         $GLOBALS['xoopsOption']['template_main'] = 'wfchannel_linktous.tpl';
-        include_once XOOPS_ROOT_PATH . '/header.php';
+        require_once XOOPS_ROOT_PATH . '/header.php';
         $xoopsTpl->assign('linktous', array(
             'textlink'    => $link_obj->getTextLink('wfcl_textlink'),
             'linkpath'    => wfp_getModuleOption('linkimages'),
@@ -132,7 +135,7 @@ switch ($op) {
             default:
                 $xoopsOption['template_main']   = 'wfchannel_index.tpl';
                 $xoopsOption['xoops_pagetitle'] = $pageObj->getVar('wfc_title');
-                include_once XOOPS_ROOT_PATH . '/header.php';
+                require_once XOOPS_ROOT_PATH . '/header.php';
                 /**
                  */
                 if ($GLOBALS['xoopsModuleConfig']['xoopstags']) {

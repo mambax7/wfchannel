@@ -27,7 +27,7 @@ defined('XOOPS_ROOT_PATH') || exit('Restricted access');
  */
 function wfchannel_getUserPoints($uid, $startdate = '')
 {
-    include_once XOOPS_ROOT_PATH . '/modules/wfchannel/include/functions.php';
+    require_once XOOPS_ROOT_PATH . '/modules/wfchannel/include/functions.php';
 
     $downloadHandler = wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
     if (empty($startdate)) {

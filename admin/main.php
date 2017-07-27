@@ -11,7 +11,10 @@
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
-include_once __DIR__ . '/admin_header.php';
+
+use Xmf\Request;
+
+require_once __DIR__ . '/admin_header.php';
 
 /**
  * Instance the call back
@@ -201,7 +204,7 @@ switch ($op) {
         $tlist->AddHeader('', '', 'center', 2);
         $tlist->AddHeader('action', '', 'center', false);
         $tlist->addFooter();
-        $button = array('../index.php' => 'view', 'edit', 'delete', 'duplicate');
+        $button = array('../main.php' => 'view', 'edit', 'delete', 'duplicate');
         $_obj   = $handler->getObj($nav, true);
         if ($_obj['count'] && count($_obj['list'])) {
             foreach ($_obj['list'] as $obj) {

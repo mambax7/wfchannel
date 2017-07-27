@@ -65,7 +65,7 @@ function wfc_CheckResource($upgrade)
         } else {
             $text = '';
             include XOOPS_ROOT_PATH . '/header.php';
-            include_once XOOPS_ROOT_PATH . '/modules/' . $wmodule->getVar('dirname') . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/errors.php';
+            require_once XOOPS_ROOT_PATH . '/modules/' . $wmodule->getVar('dirname') . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/errors.php';
             $wfc_requires = '1.04';
             switch ($ret) {
                 case 1:
@@ -96,9 +96,9 @@ if (empty($upgrade)) {
 $result = wfc_CheckResource($upgrade);
 if ($result) {
     if (file_exists($file = XOOPS_ROOT_PATH . '/modules/wfresource/language/' . $GLOBALS['xoopsConfig']['language'] . '/admin.php')) {
-        include_once $file;
+        require_once $file;
     } else {
-        include_once XOOPS_ROOT_PATH . '/modules/wfresource/language/english/admin.php';
+        require_once XOOPS_ROOT_PATH . '/modules/wfresource/language/english/admin.php';
     }
     if (file_exists($file = XOOPS_ROOT_PATH . '/modules/wfresource/include/functions.php')) {
         require_once $file;

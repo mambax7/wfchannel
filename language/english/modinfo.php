@@ -65,8 +65,7 @@ define('_MI_WFC_BANNEDDSC', 'The IP address will not be allowed to use the refer
 define('_MI_WFC_BOOKMARK', 'Display Bookmarks on pages?');
 define('_MI_WFC_BOOKMARKDSC', 'Display various social bookmarking sites on pages. These link to blinklist, fark etc etc.');
 define('_MI_WFC_MENULINKS', 'Menu Links');
-define('_MI_WFC_MENULINKSDSC',
-       'Selects how to display the menu links within the page: <br><br>None: Do not display menu links<br>Both: Display both top and menu links on the page.<br>Top: Only display the meny at the top of the page.<br>Bottom: Only display the menu at the bottom of the page.');
+define('_MI_WFC_MENULINKSDSC', 'Selects how to display the menu links within the page: <br><br>None: Do not display menu links<br>Both: Display both top and menu links on the page.<br>Top: Only display the meny at the top of the page.<br>Bottom: Only display the menu at the bottom of the page.');
 define('_MI_WFC_ACTIVATEREFERS', 'Activate Refers Page: ');
 define('_MI_WFC_ACTIVATEREFERS_DSC', 'Select to allow users to view and use the Refers Page.');
 define('_MI_WFC_ACTIVATELINKS', 'Activate Links Page: ');

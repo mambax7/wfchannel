@@ -11,7 +11,10 @@
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
-include_once __DIR__ . '/admin_header.php';
+
+use Xmf\Request;
+
+require_once __DIR__ . '/admin_header.php';
 
 $menuHandler->addHeader(_AM_WFC_UPLOADAREA);
 $op = wfp_Request::doRequest($_REQUEST, 'op', 'default', 'textbox');
@@ -22,8 +25,7 @@ switch ($op) {
 
         $uploadir = wfp_Request::doRequest($_REQUEST, 'uploadir', '', 'textbox');
         if (empty($uploadir) || !is_dir(XOOPS_ROOT_PATH . '/' . $uploadir)
-            || !is_readable(XOOPS_ROOT_PATH . '/' . $uploadir)
-        ) {
+            || !is_readable(XOOPS_ROOT_PATH . '/' . $uploadir)) {
             xoops_cp_header();
             $menuHandler->addSubHeader(_AM_WFC_IMPORT_DSC);
             //            $menuHandler->render(6);

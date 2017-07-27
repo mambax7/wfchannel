@@ -149,10 +149,19 @@ switch ($op) {
     default:
         include XOOPS_ROOT_PATH . '/header.php';
         echo "<table align=\"center\" width='100 % ' border='0'><tr><td align='center'><b>" . _MD_WFC_UPDATE1 . '</b></td></tr><tr><td>&nbsp;</td></tr></table>';
-        echo "<table align=\"center\" width='50 % ' border='0'><tr><td colspan='2'>" . _MD_WFC_UPDATE2 . '<br><br><b>' . _MD_WFC_UPDATE3 . '<b></td></tr><tr><td></td><td >' . _MD_WFC_UPDATE4
-             . "</td></tr><tr><td></td><td><span style='color:// ff0000;font-weight:bold;'>" . _MD_WFC_UPDATE5 . '</span></td></tr></table>';
+        echo "<table align=\"center\" width='50 % ' border='0'><tr><td colspan='2'>"
+             . _MD_WFC_UPDATE2
+             . '<br><br><b>'
+             . _MD_WFC_UPDATE3
+             . '<b></td></tr><tr><td></td><td >'
+             . _MD_WFC_UPDATE4
+             . "</td></tr><tr><td></td><td><span style='color:// ff0000;font-weight:bold;'>"
+             . _MD_WFC_UPDATE5
+             . '</span></td></tr></table>';
         echo '<p>' . _MD_WFC_UPDATE6 . '</p>';
-        echo "<form action='" . xoops_getenv('PHP_SELF') . "' method='post'><input type='submit' value='Start Upgrade' /><input type='hidden' name='op' value='upgrade' /></form>";
+        echo "<form action='" . xoops_getenv('PHP_SELF') . "' method='post'>";
+        echo $GLOBALS['xoopsSecurity']->getTokenHTML();
+        echo "<input type='submit' value='Start Upgrade'><input type='hidden' name='op' value='upgrade'></form>";
         break;
 } // switch
 include XOOPS_ROOT_PATH . '/footer.php';

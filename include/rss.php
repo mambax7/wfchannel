@@ -22,7 +22,7 @@ include_once XOOPS_ROOT_PATH . '/class/template.php';
 $tpl = new XoopsTpl();
 $tpl->xoops_setCaching(0);
 $tpl->xoops_setCacheTime(0);
-if (!$tpl->is_cached('db:system_rss.html', 'wfc|feed|rss')) {
+if (!$tpl->is_cached('db:system_rss.tpl', 'wfc|feed|rss')) {
     xoops_load('XoopsLocal');
     $rssContent = wfp_getClass('rss');
     $rssContent->basics('module_logo.png', 'modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/images');
@@ -55,4 +55,4 @@ if (!$tpl->is_cached('db:system_rss.html', 'wfc|feed|rss')) {
 }
 
 header('Content-Type:text/xml; charset=utf-8');
-$tpl->display('db:system_rss.html', 'wfc|feed|rss');
+$tpl->display('db:system_rss.tpl', 'wfc|feed|rss');

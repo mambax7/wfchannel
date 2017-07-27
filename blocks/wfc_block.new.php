@@ -22,9 +22,27 @@ function b_wfc_new_show($options)
     $db          = XoopsDatabaseFactory::getDatabaseConnection();
     $user_groups = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : array(0 => XOOPS_GROUP_ANONYMOUS);
 
-    $query = 'SELECT DISTINCT c.* FROM ' . $db->prefix('wfcpages') . ' c' . "\n LEFT JOIN " . $db->prefix('group_permission') . ' l' . "\n ON l.gperm_itemid = wfc_cid" . "\n AND ( c.wfc_publish = " . $db->quoteString(null) . ' OR c.wfc_publish <= '
-             . $db->quoteString(time()) . ' )' . "\n AND ( c.wfc_expired = " . $db->quoteString(null) . ' OR c.wfc_expired >= ' . $db->quoteString(time()) . ' )' . "\n WHERE ( l.gperm_name = 'page_read'" . "\n AND l.gperm_groupid IN ( "
-             . implode(',', $user_groups) . ' ))';
+    $query  = 'SELECT DISTINCT c.* FROM '
+              . $db->prefix('wfcpages')
+              . ' c'
+              . "\n LEFT JOIN "
+              . $db->prefix('group_permission')
+              . ' l'
+              . "\n ON l.gperm_itemid = wfc_cid"
+              . "\n AND ( c.wfc_publish = "
+              . $db->quoteString(null)
+              . ' OR c.wfc_publish <= '
+              . $db->quoteString(time())
+              . ' )'
+              . "\n AND ( c.wfc_expired = "
+              . $db->quoteString(null)
+              . ' OR c.wfc_expired >= '
+              . $db->quoteString(time())
+              . ' )'
+              . "\n WHERE ( l.gperm_name = 'page_read'"
+              . "\n AND l.gperm_groupid IN ( "
+              . implode(',', $user_groups)
+              . ' ))';
     $query .= "\n ORDER BY c.wfc_publish DESC";
     $result = $db->query($query, $options[1], 0);
     while (false !== ($myrow = $db->fetchArray($result))) {
@@ -50,12 +68,12 @@ function b_wfc_new_edit($options)
     $form = _MB_WFC_DISP . '&nbsp;';
     $form .= "<input type='hidden' name='options[]' value='";
     $form .= "wfc_publish'";
-    $form .= ' />';
-    $form .= "<input type='text' name='options[]' value='" . $options[1] . "' />";
-    $form .= '&nbsp;<br>' . _MB_WFC_CHARS . "&nbsp;<input type='text' name='options[]' value='" . $options[2] . "' />";
-    $form .= '&nbsp;<br>' . _MB_WFC_DATEFORMAT . "&nbsp;<input type='text' name='options[]' value='" . $options[3] . "' />";
+    $form       .= '>';
+    $form       .= "<input type='text' name='options[]' value='" . $options[1] . "'>";
+    $form       .= '&nbsp;<br>' . _MB_WFC_CHARS . "&nbsp;<input type='text' name='options[]' value='" . $options[2] . "'>";
+    $form       .= '&nbsp;<br>' . _MB_WFC_DATEFORMAT . "&nbsp;<input type='text' name='options[]' value='" . $options[3] . "'>";
     $options[4] = !isset($options[4]) ? 'wfchannel' : $options[4];
-    $form .= '&nbsp;<br>' . _MB_WFC_MODULE . "&nbsp;<input type='text' name='options[]' value='" . $options[4] . "' />";
+    $form       .= '&nbsp;<br>' . _MB_WFC_MODULE . "&nbsp;<input type='text' name='options[]' value='" . $options[4] . "'>";
 
     return $form;
 }

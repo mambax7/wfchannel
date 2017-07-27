@@ -4,14 +4,14 @@
                                        href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?act=rss" rel="nofollow"
                                        title="<{$smarty.const._MD_WFP_RSS_ICON}>"><img
                     class="page_image" src="<{$xoops_url}>/modules/<{$icon_dirname}>/images/icon/content_rss.png"
-                    title="<{$smarty.const._MD_WFP_RSS_ICON}>" alt="<{$smarty.const._MD_WFP_RSS_ICON}>"/></a><{/if}>
+                    title="<{$smarty.const._MD_WFP_RSS_ICON}>" alt="<{$smarty.const._MD_WFP_RSS_ICON}>"></a><{/if}>
         <{if $page_info.icons.print }><a target="_blank"
                                          href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?cid=<{$page_info.id}>&amp;act=print"
                                          rel="nofollow"
                                          title="<{$smarty.const._MD_WFP_PRINT_ICON}>"><img class="page_image"
                                                                                            src="<{$xoops_url}>/modules/<{$icon_dirname}>/images/icon/content_print.png"
                                                                                            title="<{$smarty.const._MD_WFP_PRINT_ICON}>"
-                                                                                           alt="<{$smarty.const._MD_WFP_PRINT_ICON}>"/>
+                                                                                           alt="<{$smarty.const._MD_WFP_PRINT_ICON}>">
             </a><{/if}>
         <{if $page_info.icons.pdf }><a target="_blank"
                                        href="<{$xoops_url}>/modules/<{$xoops_dirname}>/index.php?cid=<{$page_info.id}>&amp;act=pdf"
@@ -19,21 +19,21 @@
                                        title="<{$smarty.const._MD_WFP_PDF_ICON}>"><img class="page_image"
                                                                                        src="<{$xoops_url}>/modules/<{$icon_dirname}>/images/icon/content_pdf.png"
                                                                                        title="<{$smarty.const._MD_WFP_PDF_ICON}>"
-                                                                                       alt="<{$smarty.const._MD_WFP_PDF_ICON}>"/>
+                                                                                       alt="<{$smarty.const._MD_WFP_PDF_ICON}>">
             </a><{/if}>
         <{if $page_info.icons.email }><a target="_top" href="<{$page_info.maillink}>"
                                          title="<{$smarty.const._MD_WFP_EMAIL_ICON}>" rel="nofollow"><img
                     class="page_image"
                     src="<{$xoops_url}>/modules/<{$icon_dirname}>/images/icon/content_email.png"
                     border="0"
-                    alt="<{$smarty.const._MD_WFP_EMAIL_ICON}>"/>
+                    alt="<{$smarty.const._MD_WFP_EMAIL_ICON}>">
             </a><{/if}>
         <{if $page_info.icons.bookmark }><a href="#" rel="sidebar"
                                             onclick="if(document.all &amp;&amp; !window.opera){ window.external.AddFavorite(location.href, document.title); return false; }else{ this.title = document.title; }"
                                             title="bookmark this page"><img class="page_image"
                                                                             src="<{$xoops_url}>/modules/<{$icon_dirname}>/images/icon/content_bookmark.png"
                                                                             title="<{$smarty.const._MD_WFP_BOOKMARK_ICON}>"
-                                                                            alt="<{$smarty.const._MD_WFP_BOOKMARK_ICON}>"/>
+                                                                            alt="<{$smarty.const._MD_WFP_BOOKMARK_ICON}>">
             </a><{/if}>
     </div>
     <{if $page_info.title }>
@@ -54,15 +54,15 @@
     <div class="page_adminlink"><span><{$smarty.const._MD_WFC_ADMINTASKS}></span>
         <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/main.php?op=edit&amp;wfc_cid=<{$page_info.id}>"><img
                     class="page_image" src="<{xoModuleIcons16 edit.png}>"
-                    title="<{$smarty.const._MD_WFP_MODIFY}>" alt="<{$smarty.const._MD_WFP_MODIFY}>"/></a>
+                    title="<{$smarty.const._MD_WFP_MODIFY}>" alt="<{$smarty.const._MD_WFP_MODIFY}>"></a>
         <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/main.php?op=delete&amp;wfc_cid=<{$page_info.id}>"><img
                     class="page_image" src="<{xoModuleIcons16 delete.png}>"
                     title="<{$smarty.const._MD_WFP_DELETE}>"
-                    alt="<{$smarty.const._MD_WFP_DELETE}>"/></a>
+                    alt="<{$smarty.const._MD_WFP_DELETE}>"></a>
         <a href="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/main.php?op=duplicate&amp;wfc_cid=<{$page_info.id}>"><img
                     class="page_image" src="<{xoModuleIcons16 editcopy.png}>"
                     title="<{$smarty.const._MD_WFP_DUPLICATE}>"
-                    alt="<{$smarty.const._MD_WFP_DUPLICATE}>"/></a>
+                    alt="<{$smarty.const._MD_WFP_DUPLICATE}>"></a>
     </div>
 <{/if}>
 
@@ -83,7 +83,7 @@
         <div class="page_logo"><img class="page_logo_image" src="<{$page_info.image.url}>"
                                     width="<{$page_info.image.width}>" height="<{$page_info.image.height}>" name="image"
                                     id="image"
-                                    title="<{$chanlink2.title}>" alt="<{$chanlink2.title}>"/>
+                                    title="<{$chanlink2.title}>" alt="<{$chanlink2.title}>">
 
             <div class="page_logo_caption"><{$page_info.caption}></div>
         </div>
@@ -102,7 +102,7 @@
 
                 <a href="<{$links.previous.link}>"><img style="vertical-align: middle;" src="images/previous.gif"
                                                         title="<{$smarty.const._MD_WFP_PREVIOUSITEM}>"
-                                                        alt="<{$smarty.const._MD_WFP_PREVIOUSITEM}>"/>&nbsp;<{$links.previous.title}>
+                                                        alt="<{$smarty.const._MD_WFP_PREVIOUSITEM}>">&nbsp;<{$links.previous.title}>
                 </a>
             </div>
         <{/if}>
@@ -112,7 +112,7 @@
                 <a href="<{$links.next.link}>"><{$links.next.title}>&nbsp;<img style="vertical-align: middle;"
                                                                                src="images/next.gif"
                                                                                title="<{$smarty.const._MD_WFP_NEXTITEM}>"
-                                                                               alt="<{$smarty.const._MD_WFP_NEXTITEM}>"/></a>
+                                                                               alt="<{$smarty.const._MD_WFP_NEXTITEM}>"></a>
             </div>
         <{/if}>
     </div>
@@ -150,11 +150,11 @@
     <div class="page_commentsbox">
         <!-- start comments loop -->
         <{if $comment_mode == "flat"}>
-            <{include file="db:system_comments_flat.html"}>
+            <{include file="db:system_comments_flat.tpl"}>
         <{elseif $comment_mode == "thread"}>
-            <{include file="db:system_comments_thread.html"}>
+            <{include file="db:system_comments_thread.tpl"}>
         <{elseif $comment_mode == "nest"}>
-            <{include file="db:system_comments_nest.html"}>
+            <{include file="db:system_comments_nest.tpl"}>
         <{/if}>
         <!-- end comments loop -->
     </div>
@@ -162,4 +162,4 @@
     <!-- Start topic loop -->
 <{/if}>
 
-<{include file='db:system_notification_select.html'}>
+<{include file='db:system_notification_select.tpl'}>

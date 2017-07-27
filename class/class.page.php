@@ -11,6 +11,9 @@
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
+
+use Xmf\Request;
+
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 /**
@@ -140,7 +143,7 @@ class wfc_Page extends wfp_Object
         if ($doPageNav === true) {
             $text = explode('[pagebreak]', $this->getVar('wfc_content', 'e'));
             if (count($text) > 0) {
-                include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
+                require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
 
                 $page = wfp_Request::doRequest($_REQUEST, 'page', 0, 'int');
                 $this->setVar('wfc_content', htmlspecialchars_decode($text[$page]));
@@ -174,8 +177,16 @@ class wfc_Page extends wfp_Object
      */
     public function getEmailLink()
     {
-        return 'mailto:?subject=' . sprintf(_MD_WFC_INTARTICLE, $GLOBALS['xoopsConfig']['sitename']) . '&amp;body=' . sprintf(_MD_WFC_INTARTFOUND, $GLOBALS['xoopsConfig']['sitename']) . ':  ' . XOOPS_URL . '/modules/'
-               . $GLOBALS['xoopsModule']->getVar('dirname') . '/index.php?cid=' . $this->getVar('wfc_cid');
+        return 'mailto:?subject='
+               . sprintf(_MD_WFC_INTARTICLE, $GLOBALS['xoopsConfig']['sitename'])
+               . '&amp;body='
+               . sprintf(_MD_WFC_INTARTFOUND, $GLOBALS['xoopsConfig']['sitename'])
+               . ':  '
+               . XOOPS_URL
+               . '/modules/'
+               . $GLOBALS['xoopsModule']->getVar('dirname')
+               . '/index.php?cid='
+               . $this->getVar('wfc_cid');
     }
 
     /**
@@ -416,7 +427,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
 
         $page = wfp_Request::doRequest($_REQUEST, 'page', 0, 'int');
 
-        $wfpages_obj =& $this->getList();
+        $wfpages_obj = $this->getList();
         $array_keys  = array();
         foreach ($wfpages_obj as $key => $obj) {
             $array_keys[$key] = $obj->getVar('wfc_cid');
@@ -544,8 +555,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
     {
         if ((is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin())
             && (isset($GLOBALS['xoopsModuleConfig']['allow_admin'])
-                && $GLOBALS['xoopsModuleConfig']['allow_admin'] === 0)
-        ) {
+                && $GLOBALS['xoopsModuleConfig']['allow_admin'] === 0)) {
             return false;
         } else {
             $criteria = new CriteriaCompo();
@@ -805,7 +815,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
         $refersHandler = wfp_getHandler('refers', 'wfchannel', 'wfc_');
         $refer_count    = $refersHandler->getEmailSentCount();
         $default        = $this->getDefaultPage();
-        $ret .= '<input class="wfbutton" type="button" name="button" onclick=\'location="main.php?op=edit"\' value="' . _AM_WFP_CREATENEW . '" />';
+        $ret           .= '<input class="wfbutton" type="button" name="button" onclick=\'location="main.php?op=edit"\' value="' . _AM_WFP_CREATENEW . '">';
         $ret .= '<div style="padding-bottom: 8px;">';
         if ($default === null) {
             $ret .= _AM_WFC_NODEFAULTPAGESET;

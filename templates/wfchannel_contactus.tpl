@@ -1,6 +1,6 @@
 <{if $linktous.linkpagelogo }>
     <div align="center"><img src='<{$xoops_url}>/<{$linktous.path}>/<{$linktous.linkpagelogo}>' name='image' id='image'
-                             alt=''/></div>
+                             alt=''></div>
 <{/if}>
 
 <h3 align="left"><{$lang_linktous}></h3>

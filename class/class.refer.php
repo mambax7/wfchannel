@@ -11,6 +11,8 @@
 // URL: http:www.Xoops.com                                              //
 // Project: Xoops Project                                               //
 // -------------------------------------------------------------------------//
+use Xmf\Request;
+
 defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
 
 wfp_getObjectHandler();
@@ -102,8 +104,8 @@ class wfc_ReferHandler extends wfp_ObjectHandler
             $ip             = $refersHandler->getIP();
             if (in_array($ip, $bannedip)) {
                 $GLOBALS['xoopsOption']['template_main'] = 'wfchannel_banned.tpl';
-                include_once XOOPS_ROOT_PATH . '/header.php';
-                include_once XOOPS_ROOT_PATH . '/footer.php';
+                require_once XOOPS_ROOT_PATH . '/header.php';
+                require_once XOOPS_ROOT_PATH . '/footer.php';
                 exit();
             }
         }
@@ -128,7 +130,7 @@ class wfc_ReferHandler extends wfp_ObjectHandler
             return _MD_WFC_EMAILERROR_TEXT;
         }
 
-        include_once XOOPS_ROOT_PATH . '/class/xoopsmailer.php';
+        require_once XOOPS_ROOT_PATH . '/class/xoopsmailer.php';
         $xoopsMailer = xoops_getMailer();
         $xoopsMailer->useMail();
         $xoopsMailer->setTemplateDir(XOOPS_ROOT_PATH . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/mail_template');
@@ -168,7 +170,7 @@ class wfc_ReferHandler extends wfp_ObjectHandler
      */
     public function displayErrors()
     {
-        include_once XOOPS_ROOT_PATH . '/header.php';
+        require_once XOOPS_ROOT_PATH . '/header.php';
         $ret    = '<h3>' . _MD_WFC_ERRORS . '</h3>';
         $argues = func_get_args();
         if (func_num_args() == 1) {

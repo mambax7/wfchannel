@@ -18,8 +18,8 @@
  */
 
 $rootPath = dirname(dirname(dirname(__DIR__)));
-include_once $rootPath . '/mainfile.php';
-include_once $rootPath . '/include/cp_functions.php';
+require_once $rootPath . '/mainfile.php';
+require_once $rootPath . '/include/cp_functions.php';
 require_once $rootPath . '/include/cp_header.php';
 
 require_once XOOPS_ROOT_PATH . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/include/functions.php';
@@ -36,7 +36,7 @@ require_once __DIR__ . '/../include/functions.php';
 //$myts = MyTextSanitizer::getInstance();
 
 if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl)) {
-    include_once $GLOBALS['xoops']->path('class/template.php');
+    require_once $GLOBALS['xoops']->path('class/template.php');
     $xoopsTpl = new XoopsTpl();
 }
 

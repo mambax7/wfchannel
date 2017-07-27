@@ -11,7 +11,10 @@
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
-include_once __DIR__ . '/admin_header.php';
+
+use Xmf\Request;
+
+require_once __DIR__ . '/admin_header.php';
 
 $op = wfp_Request::doRequest($_REQUEST, 'op', 'default', 'textbox');
 switch ($op) {

@@ -1,27 +1,59 @@
-    =>version 2.07 Final      2016-11-27
-    - updated for XOOPS 2.5.9 and PHP 7 (mamba)
+<h5>2.07 Beta 2  [NOT RELEASED]</h5>
+<hr>
+- XOOPS 2.5.9, PHP 7 (mamba)
+- Converted to XOOPS 2.5.8 Admin GUI (mamba)
+- removed @version (mamba)
+- PSR-2 code cosmetics (mamba)
+- addNavigation(basename(__FILE__))  (mamba)
+- dirname(__FILE__) to __DIR__ (mamba)
+- replaced < br /> with < br > (mamba)
+- Unnecessary double quotes (mamba)
+- reference mismatch (mamba)
+- Hardening to type safe (mamba)
+- update Help (mamba)
+- changed _handler to Handler (mamba)
+- removed '/' from void HTML elements (&lt;br&gt;, &lt;img&gt;, etc) (mamba)
+- HTML 5: removed 'selected' and 'checked' (mamba)
+- updated file headers for consistency (mamba)
+- renamed several $indexAdmin with $adminObject for consistency (mamba)
+- Updates for PayPal changes (zyspec)
+- added Contributing.md (mamba)
+- moved functions to Utility class (mamba)
+- include_once to require_once (mamba)
+- php-cs-fixer updates (mamba)
+- started conversion to XMF (mamba)
+    &nbsp;&nbsp;- updated addInfoBoxLine entries (mamba)
+    &nbsp;&nbsp;- displayNavigation(basename(__FILE__))  (mamba)
+    &nbsp;&nbsp;- changed to - displayButton('left') (mamba)
 
-    =>version 2.06 (catzwolf)
-    ->fixed naming convention on the FCKeditor. Should now work on all systems.
-    ->fixed naming convention on file sanitize_textbox.php in the filters and put in force an error check to prevent errors and return default.
-    ->fixed naming convention on file sanitize_textbox.php in the filters.
-    ->Fixed: New Menu block was using the wrong 'string' for permissions. This block used work as expected now.
-    ->Removed: Removed code for older editors.
-    ->Removed: Removed code  now considered depreciated from Xoops 2.3.
-    ->Changed: Removed Xoops Captcha and repalaced it with the old WF-Channel version. This was due to a number of issues with the Xoops Version.
-    ->Changed: Used many of the new XoopsForms and elements that were added in Xoops 2.3.
-    ->Changed: Updated to work on PHP 2.3. The creation of Articles and such should now be possible.
-    ->Changed: Changed Captcha to now use Xoops Captcha.
-    ->Changed: Updated some language defines and corrected spelling errors.
-    ->Changed: WF-Channel should work with XoopsEditors now.
-    ->Fixed Many other issues, bugs and features that now lost to me while updaing this module.
-    ->Fixed: RSS Channels should be working now. If not.... bite me!
+<h5>2.07 Beta 1      [NOT RELEASED]</h5>
+<hr>
+    - updated for XOOPS 2.5.7.1 and PHP 5.6 (mamba)
 
-    =>Version 2.05
-    ->Fixed: The upgrader has been fixed and should update correctly now.
-    ->Changes: This version fixed many issues, and I'm sorry but I didn't take notice or notes
+<h5>2.06 (catzwolf)</h5>
+<hr>
+    - fixed naming convention on the FCKeditor. Should now work on all systems.
+    - fixed naming convention on file sanitize_textbox.php in the filters and put in force an error check to prevent errors and return default.
+    - fixed naming convention on file sanitize_textbox.php in the filters.
+    - Fixed: New Menu block was using the wrong 'string' for permissions. This block used work as expected now.
+    - Removed: Removed code for older editors.
+    - Removed: Removed code  now considered depreciated from Xoops 2.3.
+    - Changed: Removed Xoops Captcha and repalaced it with the old WF-Channel version. This was due to a number of issues with the Xoops Version.
+    - Changed: Used many of the new XoopsForms and elements that were added in Xoops 2.3.
+    - Changed: Updated to work on PHP 2.3. The creation of Articles and such should now be possible.
+    - Changed: Changed Captcha to now use Xoops Captcha.
+    - Changed: Updated some language defines and corrected spelling errors.
+    - Changed: WF-Channel should work with XoopsEditors now.
+    - Fixed Many other issues, bugs and features that now lost to me while updaing this module.
+    - Fixed: RSS Channels should be working now. If not.... bite me!
 
-    =>Version 2.04
+<h5>2.05</h5>
+<hr>
+    - Fixed: The upgrader has been fixed and should update correctly now.
+    - Changes: This version fixed many issues, and I'm sorry but I didn't take notice or notes
+
+<h5>2.04</h5>
+<hr>
     - Fixed: Bug in sql files that set the database charset to latin1, this has been removed to allow the database to define the charset.
     - Fixed: Big in main.php in the language files. $xoops['adminmail'] in the langauge define was treated as a non string var and would not display correctly.
     - Fixed: Fixed an error with modversion 'use_wysiwyg' the wrong key was used for the default causing an error with the XoosEditor. Normally, doing a save with
@@ -35,7 +67,8 @@
     - Fixed: Upload area will show a whitepage on uploading items, this was due a missing function.
     - Fixed: Issue with page navigation where a user had selected how many results when on a page more than one, this would cause unexpected results.
 
-    =>Version 2.03
+<h5>2.03</h5>
+<hr>
     - Fixed: Duplicate and Duplicate All would copy the default var arcorss to the new page. Now duplicate and duplicate pages will set this option to 0 during the copy process.
     - Fixed: Bug in the WF-Resource check function function. Wasn't correctly checking to see if is the module was an object first.
     - Fixed: Missing uninstall.php file.
@@ -54,12 +87,14 @@
     - Fixed: "Error: 1364 Field 'wfc_search' doesn't have a default value"
     - Changed: Changed all text values within database to default NULL rather than NOT null values.
 
-    =>Version 2.02
+<h5>2.02</h5>
+<hr>
     - Fixed: There was an issue with Xoops search within WF-Channel. This has now been corrected and should work as expected.
     - Fixed: Added and fixed the xoopseditor bug. Only the default editor would display even if another editor was selected.
     - Added: Introduced a check to see if the correct version of WF-Resource is installed. If the check fails it will let you know and direct you to the ltest/correct version.
 
-    =>Version 2.01
+<h5>2.01</h5>
+<hr>
     - Fixed: Email sending error. There was a bug that would generate a blank page when sending an email.
     - Fixed: default deselection, there was a bug that would prevent a user deselecting a default page on save.
     - Known Issue: When using clone, if a page has been selected that is the default page, then this will be carried
@@ -74,21 +109,24 @@
     - Changed: Changed the Page creation form layout and added more contextual help on some of the topics.
     - Added: Page creation Page, added a page link url for copying and pasting into other modules or scripts.
 
-    => version 2.00d RC
+<h5>2.00d RC</h5>
+<hr>
     - Fixed: There was a bug that would cause an error in search and profile module in Xoops v2.20.
     - Fixed: There was a bug in the admin area that would prevent mass deleting and cloning of 'Pages'.
     - Fixed: Some minor template issues.
     - Fixed: Fixed some typos within this document.
     - Changed: Changed the behavior of the menu in the pages, the top menu will now be horizontal rather than vertical.
 
-    => version 2.00c RC
+<h5>2.00c RC</h5>
+<hr>
     ===============
     - Fixed: The wrong mysql file was placed in the package before this module was released, added the correct one now.
     - Fixed: The Html upload path pointed to an incorrect folder, this has now been corrected.
     - Fixed: The Root path if not selected would point to an int val, now corrected.
     - Changed: All WF-Project modules will now use the calendar in WF-Resource as a fix between compatibility issues with 2.18 and 2.25 releases.
 
-    => version 2.00b RC
+<h5>2.00b RC</h5>
+<hr>
     ===============
     - Added: Clone, save, and delete now update page permissions now. So if you clone an item the previous page permission are copied over.
     - Removed: Removed the Cache folder as it is no longer required.
@@ -133,7 +171,8 @@
     - Changed: Changed the handler method for new block, should now be quicker than the previous version.
     - Changed: Removed two hardcoded language strings in Page Form.
 
-=> version 2.00a RC
+<h5>2.00a RC</h5>
+<hr>
 ================
     - Fixed: Image selection in Page form not allowing for no image.
     - Fixed: Removed all known 'english' hard coded language
@@ -151,7 +190,8 @@
     - Changed: Function name wfc_upload to avoid conflicts with WF-Channel clones
 
 
-=> version 2.00 RC
+<h5>2.00 RC</h5>
+<hr>
 ================
 
     - Completely rewritten to use OO functionality
@@ -178,7 +218,8 @@
 
 
 
-=> version 1.0.7
+<h5>1.0.7</h5>
+<hr>
 ================
 
   - Adding Full Security To WF-Channel
@@ -190,7 +231,7 @@
   - Change Page Menu Link to a function.
   - Add define("_MA_WFC_NORIGHTTOVIEWPAGE","You do not have permission to view this page"); to main.php
   - Change in xoops_version.php variable $modversion['dirname'] not used now (
-   $xoopsModule = &$modhandler->getByDirname($modversion['dirname']);  )
+   $xoopsModule = &$modhandler- getByDirname($modversion['dirname']);  )
   - Now 100% ML hack ( marcan ) compatible, so it is recommanded not to use the index.php for wfchannel from the ML package
   - modify link to wfsections2.com in wfchannel admin menu : Help Section, Report a bug section to wf-project site
   - Add [pagebreak] tag

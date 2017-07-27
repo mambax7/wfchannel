@@ -15,9 +15,10 @@ $moduleDirName = basename(__DIR__);
 
 // ------------------- Informations ------------------- //
 $modversion = array(
-    'version'             => 2.07,
-    'module_status'       => 'Final',
-    'release_date'        => '2016/11/26', //yyyy/mm/dd
+    'version'             => 2.08,
+    'requires'            => 1.06, //wf-resource
+    'module_status'       => 'Beta 1',
+    'release_date'        => '2017/07/22', //yyyy/mm/dd
     'name'                => _MI_WFC_CHANNEL,
     'description'         => _MI_WFC_CHANNELDESC,
     'official'            => 0, //1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
@@ -38,25 +39,23 @@ $modversion = array(
     'manual'              => 'link to manual file',
     'manual_file'         => XOOPS_URL . "/modules/{$moduleDirName}/docs/install.txt",
     'min_php'             => '5.5',
-    'min_xoops'           => '2.5.8',
-    'min_admin'           => '1.2',
-    'min_db'              => array('mysql' => '5.1'),
+    'min_xoops'           => '2.5.9',
+    'min_admin'           => '1.1',
+    'min_db'              => array('mysql' => '5.5'),
     // images
     'image'               => 'images/logoModule.png',
     'iconsmall'           => 'assets/images/iconsmall.png',
     'iconbig'             => 'assets/images/iconbig.png',
     'dirname'             => $moduleDirName,
     //Frameworks
-    'dirmoduleadmin'      => 'Frameworks/moduleclasses/moduleadmin',
-    'sysicons16'          => 'Frameworks/moduleclasses/icons/16',
-    'sysicons32'          => 'Frameworks/moduleclasses/icons/32',
+    //    'dirmoduleadmin'      => 'Frameworks/moduleclasses/moduleadmin',
+    //    'sysicons16'          => 'Frameworks/moduleclasses/icons/16',
+    //    'sysicons32'          => 'Frameworks/moduleclasses/icons/32',
     // Local path icons
     'modicons16'          => 'assets/images/icons/16',
     'modicons32'          => 'assets/images/icons/32',
-    //About
-    'requires'            => 1.06,
     //    'release'             => '2015-04-04',
-    'demo_site_url'       => 'http://www.xoops.org',
+    'demo_site_url'       => 'https://xoops.org',
     'demo_site_name'      => 'XOOPS Demo Site',
     'support_url'         => 'https://xoops.org/modules/newbb',
     'support_name'        => 'Support Forum',
@@ -300,7 +299,7 @@ $modversion['config'][] = array(
 
 xoops_load('XoopsEditorHandler');
 $editorHandler = XoopsEditorHandler::getInstance();
-$editorList     = array_flip($editorHandler->getList());
+$editorList    = array_flip($editorHandler->getList());
 
 $modversion['config'][] = array(
     'name'        => 'use_wysiwyg',

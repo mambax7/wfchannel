@@ -11,7 +11,10 @@
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
-include_once __DIR__ . '/admin_header.php';
+
+use Xmf\Request;
+
+require_once __DIR__ . '/admin_header.php';
 
 $menuHandler->addHeader(_AM_WFC_LINKAREA);
 $handler     = wfp_getHandler('link', _MODULE_DIR, _MODULE_CLASS);

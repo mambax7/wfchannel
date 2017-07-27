@@ -7,7 +7,9 @@
  * Licence: GNU
  */
 
-include_once __DIR__ . '/admin_header.php';
+use Xmf\Request;
+
+require_once __DIR__ . '/admin_header.php';
 
 $op = '';
 
@@ -23,7 +25,7 @@ if (isset($_GET)) {
     }
 }
 
-$op = XoopsRequest::getCmd('op', XoopsRequest::getCmd('op', '', 'POST'), 'GET');
+$op = Request::getCmd('op', Request::getCmd('op', '', 'POST'), 'GET');
 
 switch ($op) {
     case 'reorder':
@@ -40,8 +42,8 @@ switch ($op) {
     default:
         xoops_cp_header();
         global $xoopsConfig, $xoopsModule, $_GET;
-//        wfc_adminmenu(_AM_CHANADMIN);
-        
+        //        wfc_adminmenu(_AM_CHANADMIN);
+
         $orders = array();
         $cat    = array();
 
@@ -60,7 +62,7 @@ switch ($op) {
         while (false !== ($myrow = $xoopsDB->fetchArray($result))) {
             echo '<tr>';
             echo "<td align='center' class = head>" . $myrow['CID'] . '</td>';
-            echo "<input type='hidden' name='cat[]' value='" . $myrow['CID'] . "' />";
+            echo "<input type='hidden' name='cat[]' value='" . $myrow['CID'] . "'>";
             echo "<td align='left' nowrap='nowrap' class = even>" . $myrow['pagetitle'] . '</td>';
             echo "<td align='center' class = even>";
             echo "<input type='text' name='orders[]' value='" . $myrow['weight'] . "' size='5' maxlenght='5'>";
@@ -68,8 +70,8 @@ switch ($op) {
             echo '</tr>';
         }
         echo "<tr><td class='even' align='center' colspan='6'>";
-        echo "<input type='hidden' name='op' value=reorder />";
-        echo "<input type='submit' name='submit' value='" . _SUBMIT . "' />";
+        echo "<input type='hidden' name='op' value=reorder>";
+        echo "<input type='submit' name='submit' value='" . _SUBMIT . "'>";
 
         echo '</td></tr>';
         echo '</table>';

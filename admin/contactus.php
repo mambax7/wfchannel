@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/admin_header.php';
+require_once __DIR__ . '/admin_header.php';
 $menuHandler->addHeader(_AM_AD_CONTUSAREA);
 $Handler = wfp_getHandler('contactus', _MODULE_DIR, _MODULE_CLASS);
 

@@ -57,8 +57,7 @@ class HtmlCleanerTag
         if ($this->nodeType == HTML_CLEANER_NODE_NODETYPE_NODE) {
             $this->parseFromString($str);
         } elseif ($this->nodeType == HTML_CLEANER_NODE_NODETYPE_TEXT
-                  || $this->nodeType == HTML_CLEANER_NODE_NODETYPE_SPECIAL
-        ) {
+                  || $this->nodeType == HTML_CLEANER_NODE_NODETYPE_SPECIAL) {
             $this->nodeValue = $str;
         }
     }
@@ -75,7 +74,7 @@ class HtmlCleanerTag
             trigger_error('tag syntax error', E_USER_ERROR);
         }
         if ($str[strlen($str) - 2] === '/') {
-            $endset -= 1;
+            $endset             -= 1;
             $this->closingStyle = HTML_CLEANER_NODE_CLOSINGSTYLE_XHTMLSINGLE;
         }
         if ($str[1] === '/') {
@@ -165,8 +164,7 @@ class HtmlCleanerTag
     public function toString()
     {
         if ($this->nodeType == HTML_CLEANER_NODE_NODETYPE_TEXT
-            || $this->nodeType == HTML_CLEANER_NODE_NODETYPE_SPECIAL
-        ) {
+            || $this->nodeType == HTML_CLEANER_NODE_NODETYPE_SPECIAL) {
             return $this->nodeValue;
         }
         if ($this->nodeType == HTML_CLEANER_NODE_NODETYPE_NODE) {
@@ -178,7 +176,7 @@ class HtmlCleanerTag
             $str .= ' ' . $attkey . "=\"" . $attvalue . "\"";
         }
         if ($this->closingStyle == HTML_CLEANER_NODE_CLOSINGSTYLE_XHTMLSINGLE) {
-            $str .= ' />';
+            $str .= '>';
         } else {
             $str .= '>';
         }
@@ -252,6 +250,7 @@ class HtmlCleaner
     }
 
     // removes the worst mess from word.
+
     /**
      * @param $body
      * @return string
@@ -274,8 +273,7 @@ class HtmlCleaner
                 && $part->nodeName !== 'object'
                 && $part->nodeName !== 'iframe'
                 && $part->nodeName !== 'applet'
-                && $part->nodeName !== 'meta'
-            ) {
+                && $part->nodeName !== 'meta') {
                 $return .= $part->toString();
             }
         }
