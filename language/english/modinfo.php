@@ -175,3 +175,17 @@ define('_MI_WFC_TPL3_DESC', 'Display refer page.');
 define('_MI_WFC_TPL4_DESC', 'Display a banned page.');
 define('_MI_WFC_TPL5_DESC', 'Display channel links within pages.');
 define('_MI_WFC_TPL6_DESC', 'Display channel email error page.');
+
+//2.08
+//Help
+define('_MI_WFC_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_WFC_HELP_HEADER', __DIR__.'/help/helpheader.tpl');
+define('_MI_WFC_BACK_2_ADMIN', 'Back to Administration of ');
+define('_MI_WFC_OVERVIEW', 'Overview');
+
+//define('_MI_WFC_HELP_DIR', __DIR__);
+
+//help multi-page
+define('_MI_WFC_DISCLAIMER', 'Disclaimer');
+define('_MI_WFC_LICENSE', 'License');
+define('_MI_WFC_SUPPORT', 'Support');

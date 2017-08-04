@@ -233,3 +233,12 @@ define('_AM_EWFC_MENU_IMGWIDTH', 'Image Width: ');
 define('_AM_EWFC_MENU_IMGWIDTH_DSC', 'Enter the width you would like the image to be.');
 define('_AM_EWFC_MENU_IMGHEIGHT', 'Image Height: ');
 define('_AM_EWFC_MENU_IMGHEIGHT_DSC', 'Enter the height you would like the image to be.');
+
+//2.08
+define('_AM_WFC_UPGRADEFAILED0', "Update failed - couldn't rename field '%s'");
+define('_AM_WFC_UPGRADEFAILED1', "Update failed - couldn't add new fields");
+define('_AM_WFC_UPGRADEFAILED2', "Update failed - couldn't rename table '%s'");
+define('_AM_WFC_ERROR_COLUMN', 'Could not create column in database : %s');
+define('_AM_WFC_ERROR_BAD_XOOPS', 'This module requires XOOPS %s+ (%s installed)');
+define('_AM_WFC_ERROR_BAD_PHP', 'This module requires PHP version %s+ (%s installed)');
+define('_AM_WFC_ERROR_TAG_REMOVAL', 'Could not remove tags from Tag Module');

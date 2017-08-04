@@ -1,10 +1,5 @@
 <div id="help-template" class="outer">
-    <h1 class="head">Help:
-        <a class="ui-corner-all tooltip" href="<{$xoops_url}>/modules/<{$smarty.const._MI_WFC_DIRNAME}>/admin/index.php"
-           title="Back to the administration of <{$smarty.const._MI_WFC_NAME}>"> <{$smarty.const._MI_WFC_NAME}>
-            <img src="<{xoAdminIcons home.png}>"
-                 alt="Back to the Administration of <{$smarty.const._MI_WFC_NAME}>">
-        </a></h1>
+    <{include file=$smarty.const._MI_WFC_HELP_HEADER}>
 
     <h4 class="odd">Disclaimer</h4>
     <br>
