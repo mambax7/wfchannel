@@ -18,13 +18,13 @@ this:
   $htmlText = "... HTML text here ...";
   HtmlParser parser = new HtmlParser ($htmlText);
   while ($parser->parse()) {
-     
+
       // Data you can use here:
       //
-      // $parser->iNodeType 
+      // $parser->iNodeType
       // $parser->iNodeName
       // $parser->iNodeValue
-      // $parser->iNodeAttributes     
+      // $parser->iNodeAttributes
 
   }
 

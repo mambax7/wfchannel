@@ -43,7 +43,7 @@ function b_wfc_new_show($options)
               . "\n AND l.gperm_groupid IN ( "
               . implode(',', $user_groups)
               . ' ))';
-    $query .= "\n ORDER BY c.wfc_publish DESC";
+    $query  .= "\n ORDER BY c.wfc_publish DESC";
     $result = $db->query($query, $options[1], 0);
     while (false !== ($myrow = $db->fetchArray($result))) {
         $new['title']      = xoops_substr($myrow['wfc_title'], 0, $options[2] - 1);
@@ -65,9 +65,9 @@ function b_wfc_new_show($options)
  */
 function b_wfc_new_edit($options)
 {
-    $form = _MB_WFC_DISP . '&nbsp;';
-    $form .= "<input type='hidden' name='options[]' value='";
-    $form .= "wfc_publish'";
+    $form       = _MB_WFC_DISP . '&nbsp;';
+    $form       .= "<input type='hidden' name='options[]' value='";
+    $form       .= "wfc_publish'";
     $form       .= '>';
     $form       .= "<input type='text' name='options[]' value='" . $options[1] . "'>";
     $form       .= '&nbsp;<br>' . _MB_WFC_CHARS . "&nbsp;<input type='text' name='options[]' value='" . $options[2] . "'>";

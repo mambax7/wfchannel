@@ -1,6 +1,6 @@
 Hello {RUSER}.
 
-{TITLE} {SUSER}. 
+{TITLE} {SUSER}.
 
 {VISIT}: {SITEURL}
 

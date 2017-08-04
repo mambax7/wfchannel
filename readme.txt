@@ -22,7 +22,7 @@ Update from previous versions 1.05 or lower:
 
 
 Update from previous version 1.06
----------------------------------  
+---------------------------------
   1. Same instructions as "Fresh install"
 
 

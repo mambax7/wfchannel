@@ -103,7 +103,7 @@ switch ($op) {
         $menuHandler->addSubHeader(_AM_WFC_IMPORT_DSC);
         //        $menuHandler->render(6);
         $dummyHandler = $referHandler = wfp_getHandler('dummy');
-        $up_obj        = $dummyHandler->create();
+        $up_obj       = $dummyHandler->create();
         $up_obj->formEdit('wfp_import');
 }
 xoosla_cp_footer();

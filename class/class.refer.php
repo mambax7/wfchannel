@@ -101,7 +101,7 @@ class wfc_ReferHandler extends wfp_ObjectHandler
         $bannedip = explode('|', wfp_getModuleOption('banned'));
         if (count($bannedip) > 0) {
             $refersHandler = wfp_getHandler('refers', _MODULE_DIR, _MODULE_CLASS);
-            $ip             = $refersHandler->getIP();
+            $ip            = $refersHandler->getIP();
             if (in_array($ip, $bannedip)) {
                 $GLOBALS['xoopsOption']['template_main'] = 'wfchannel_banned.tpl';
                 require_once XOOPS_ROOT_PATH . '/header.php';

@@ -203,6 +203,7 @@ class simple_html_dom_node
     }
 
     // dump node's tree
+
     /**
      * @param bool|true $show_attr
      * @param int       $deep
@@ -229,6 +230,7 @@ class simple_html_dom_node
     }
 
     // Debugging function to dump a single dom node with a bunch of information about it.
+
     /**
      * @param  bool|true $echo
      * @return string|void
@@ -304,6 +306,7 @@ class simple_html_dom_node
     }
 
     // verify that node has children
+
     /**
      * @return bool
      */
@@ -313,6 +316,7 @@ class simple_html_dom_node
     }
 
     // returns children of node
+
     /**
      * @param  int $idx
      * @return array|null
@@ -330,6 +334,7 @@ class simple_html_dom_node
     }
 
     // returns the first child of node
+
     /**
      * @return null
      */
@@ -343,6 +348,7 @@ class simple_html_dom_node
     }
 
     // returns the last child of node
+
     /**
      * @return null
      */
@@ -356,6 +362,7 @@ class simple_html_dom_node
     }
 
     // returns the next sibling of node
+
     /**
      * @return null
      */
@@ -378,6 +385,7 @@ class simple_html_dom_node
     }
 
     // returns the previous sibling of node
+
     /**
      * @return null
      */
@@ -399,6 +407,7 @@ class simple_html_dom_node
     }
 
     // function to locate a specific ancestor tag in the path to the root.
+
     /**
      * @param $tag
      * @return null|simple_html_dom_node
@@ -428,6 +437,7 @@ class simple_html_dom_node
     }
 
     // get dom node's inner html
+
     /**
      * @return string
      */
@@ -449,6 +459,7 @@ class simple_html_dom_node
     }
 
     // get dom node's outer text (with tag)
+
     /**
      * @return string
      */
@@ -510,6 +521,7 @@ class simple_html_dom_node
     }
 
     // get dom node's plain text
+
     /**
      * @return string
      */
@@ -564,6 +576,7 @@ class simple_html_dom_node
     }
 
     // build node's text with tag
+
     /**
      * @return string
      */
@@ -994,6 +1007,7 @@ class simple_html_dom_node
     }
 
     // PaperG - Function to convert the text from one character set to another if the two sets are not the same.
+
     /**
      * @param $text
      * @return string
@@ -1174,6 +1188,7 @@ class simple_html_dom_node
     }
 
     // camel naming conventions
+
     /**
      * @return array
      */
@@ -1432,6 +1447,7 @@ class simple_html_dom
     }
 
     // load html from string
+
     /**
      * @param            $str
      * @param  bool|true $lowercase
@@ -1482,6 +1498,7 @@ class simple_html_dom
     }
 
     // load html from file
+
     /**
      * @return bool
      */
@@ -1498,6 +1515,7 @@ class simple_html_dom
     }
 
     // set callback function
+
     /**
      * @param $function_name
      */
@@ -1513,6 +1531,7 @@ class simple_html_dom
     }
 
     // save dom as string
+
     /**
      * @param  string $filepath
      * @return mixed
@@ -1574,6 +1593,7 @@ class simple_html_dom
     }
 
     // prepare HTML data and init everything
+
     /**
      * @param           $str
      * @param bool|true $lowercase
@@ -1623,6 +1643,7 @@ class simple_html_dom
     }
 
     // parse html content
+
     /**
      * @return bool
      */
@@ -1725,6 +1746,7 @@ class simple_html_dom
     }
 
     // read tag info
+
     /**
      * @return bool
      */
@@ -1800,6 +1822,7 @@ class simple_html_dom
             }
 
             $this->char = (++$this->pos < $this->size) ? $this->doc[$this->pos] : null; // next
+
             return true;
         }
 
@@ -1825,6 +1848,7 @@ class simple_html_dom
             }
             $this->link_nodes($node, true);
             $this->char = (++$this->pos < $this->size) ? $this->doc[$this->pos] : null; // next
+
             return true;
         }
 
@@ -1834,6 +1858,7 @@ class simple_html_dom
             $node->_[HDOM_INFO_TEXT] = $tag;
             $this->link_nodes($node, false);
             $this->char = $this->doc[--$this->pos]; // prev
+
             return true;
         }
 
@@ -1850,6 +1875,7 @@ class simple_html_dom
             }
             $this->link_nodes($node, false);
             $this->char = (++$this->pos < $this->size) ? $this->doc[$this->pos] : null; // next
+
             return true;
         }
 
@@ -1900,8 +1926,8 @@ class simple_html_dom
                 $node->attr              = array();
                 $node->_[HDOM_INFO_END]  = 0;
                 $node->_[HDOM_INFO_TEXT] = substr($this->doc, $begin_tag_pos, $this->pos - $begin_tag_pos - 1);
-                $this->pos -= 2;
-                $this->char = (++$this->pos < $this->size) ? $this->doc[$this->pos] : null; // next
+                $this->pos               -= 2;
+                $this->char              = (++$this->pos < $this->size) ? $this->doc[$this->pos] : null; // next
                 $this->link_nodes($node, false);
 
                 return true;
@@ -1937,7 +1963,7 @@ class simple_html_dom
         // check self closing
         if ($this->copy_until_char_escape('>') === '/') {
             $node->_[HDOM_INFO_ENDSPACE] .= '/';
-            $node->_[HDOM_INFO_END] = 0;
+            $node->_[HDOM_INFO_END]      = 0;
         } else {
             // reset parent
             if (!isset($this->self_closing_tags[strtolower($node->tag)])) {
@@ -1957,6 +1983,7 @@ class simple_html_dom
     }
 
     // parse attributes
+
     /**
      * @param $node
      * @param $name
@@ -1998,6 +2025,7 @@ class simple_html_dom
     }
 
     // link node's parent
+
     /**
      * @param $node
      * @param $is_child
@@ -2012,6 +2040,7 @@ class simple_html_dom
     }
 
     // as a text node
+
     /**
      * @param $tag
      * @return bool
@@ -2023,6 +2052,7 @@ class simple_html_dom
         $node->_[HDOM_INFO_TEXT] = '</' . $tag . '>';
         $this->link_nodes($node, false);
         $this->char = (++$this->pos < $this->size) ? $this->doc[$this->pos] : null; // next
+
         return true;
     }
 
@@ -2031,7 +2061,7 @@ class simple_html_dom
      */
     protected function skip($chars)
     {
-        $this->pos += strspn($this->doc, $chars, $this->pos);
+        $this->pos  += strspn($this->doc, $chars, $this->pos);
         $this->char = ($this->pos < $this->size) ? $this->doc[$this->pos] : null; // next
     }
 
@@ -2041,9 +2071,9 @@ class simple_html_dom
      */
     protected function copy_skip($chars)
     {
-        $pos = $this->pos;
-        $len = strspn($this->doc, $chars, $pos);
-        $this->pos += $len;
+        $pos        = $this->pos;
+        $len        = strspn($this->doc, $chars, $pos);
+        $this->pos  += $len;
         $this->char = ($this->pos < $this->size) ? $this->doc[$this->pos] : null; // next
         if ($len === 0) {
             return '';
@@ -2058,10 +2088,11 @@ class simple_html_dom
      */
     protected function copy_until($chars)
     {
-        $pos = $this->pos;
-        $len = strcspn($this->doc, $chars, $pos);
-        $this->pos += $len;
+        $pos        = $this->pos;
+        $len        = strcspn($this->doc, $chars, $pos);
+        $this->pos  += $len;
         $this->char = ($this->pos < $this->size) ? $this->doc[$this->pos] : null; // next
+
         return substr($this->doc, $pos, $len);
     }
 
@@ -2163,6 +2194,7 @@ class simple_html_dom
     }
 
     // restore noise to html content
+
     /**
      * @param $text
      * @return string
@@ -2198,6 +2230,7 @@ class simple_html_dom
     }
 
     // Sometimes we NEED one of the noise elements.
+
     /**
      * @param $text
      * @return mixed
@@ -2245,6 +2278,7 @@ class simple_html_dom
     }
 
     // camel naming conventions
+
     /**
      * @param  int $idx
      * @return mixed
