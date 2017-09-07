@@ -11,7 +11,7 @@
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
-defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 if (!$this->isNew()) {
     //mb
@@ -49,14 +49,14 @@ $form->addElement($page_subtitle, false);
 
 /**
  */
-$options = array(
+$options = [
     'name'   => 'wfc_content',
     'value'  => $this->getVar('wfc_content', 'e'),
     'rows'   => 35,
     'cols'   => 75,
     'width'  => '100%',
     'height' => '400px'
-);
+];
 
 $options_tray = new XoopsFormElementTray(_AM_EWFC_PAGE_CONTENT . ': ' . $this->getVar('wfc_title'), '<br>');
 //$options_tray->setNocolspan(1);

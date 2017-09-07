@@ -40,7 +40,7 @@ switch ($op) {
         $do_callback->setValueArray($_REQUEST);
         $do_callback->setValueTime('wfc_expired', $_REQUEST['wfc_expired']);
         $do_callback->setValueTime('wfc_publish', $_REQUEST['wfc_publish']);
-        $do_callback->setValueGroups('page_read', isset($_REQUEST['page_read']) ? $_REQUEST['page_read'] : array(0 => '1'));
+        $do_callback->setValueGroups('page_read', isset($_REQUEST['page_read']) ? $_REQUEST['page_read'] : [0 => '1']);
         /**
          */
         $i = 1;
@@ -86,7 +86,7 @@ switch ($op) {
             // /**
             // */
             $options['noreturn'] = true;
-            $ret                 = call_user_func(array($do_callback, 'save'), $options);
+            $ret                 = call_user_func([$do_callback, 'save'], $options);
             if ($ret === false) {
                 $handler->getHtmlErrors(false, 6);
                 // exit();

@@ -25,7 +25,7 @@ function wfchannel_notify_iteminfo($category, $item_id)
     }
     switch ($category) {
         case 'global':
-            return array('name' => '', 'url' => '');
+            return ['name' => '', 'url' => ''];
             break;
 
         case 'page':
@@ -37,7 +37,7 @@ function wfchannel_notify_iteminfo($category, $item_id)
                 if ($result_array) {
                     $path = XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/index.php?cid=' . (int)$result_array['wfc_cid'];
 
-                    return array('name' => $result_array['wfc_title'], 'url' => $path);
+                    return ['name' => $result_array['wfc_title'], 'url' => $path];
                 }
             }
 

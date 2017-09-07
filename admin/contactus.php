@@ -12,7 +12,7 @@ switch ($op) {
         $menuHandler->addSubHeader(_AM_AD_CONTUSAREA_DSC);
         $do_callback->setId(1);
         $do_callback->setMenu($menu);
-        if (!call_user_func(array($do_callback, $op), $options)) {
+        if (!call_user_func([$do_callback, $op], $options)) {
             $Handler->getHtmlErrors(false, $menu);
         }
         break;
@@ -24,7 +24,7 @@ switch ($op) {
         $_REQUEST['dosmiley'] = wfp_cleanRequestVars($_REQUEST, 'dosmiley', '0', XOBJ_DTYPE_INT);
         $_REQUEST['doimage']  = wfp_cleanRequestVars($_REQUEST, 'doimage', '0', XOBJ_DTYPE_INT);
         $_REQUEST['dobr']     = wfp_cleanRequestVars($_REQUEST, 'dobr', '0', XOBJ_DTYPE_INT);
-        if (!call_user_func(array($do_callback, $op), $options)) {
+        if (!call_user_func([$do_callback, $op], $options)) {
             $Handler->getHtmlErrors();
         }
         break;

@@ -11,7 +11,7 @@
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
-defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 wfp_getObjectHandler();
 
@@ -120,7 +120,7 @@ class wfc_RefersHandler extends wfp_ObjectHandler
      */
     public function &getObj()
     {
-        $obj = array();
+        $obj = [];
         if (func_num_args() === 2) {
             $args     = func_get_args();
             $criteria = new CriteriaCompo();

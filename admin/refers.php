@@ -34,7 +34,7 @@ switch ($op) {
         if (!wfp_Request::doRequest($_REQUEST, 'ok', 0, 'int')) {
             $menuHandler->addSubHeader(_AM_WFP_MAINAREA_DELETE_DSC);
         }
-        if (!call_user_func(array($do_callback, $op), null)) {
+        if (!call_user_func([$do_callback, $op], null)) {
             $handler->getHtmlErrors(true, $menu);
         }
         break;
@@ -78,16 +78,16 @@ switch ($op) {
         $tlist->AddHeader('wfcr_ip', '', 'center', true);
         $tlist->AddHeader('', '', 'center', 2);
         $tlist->AddHeader('action', '', 'center', false);
-        $tlist->addFooter(array('deleteall' => _AM_WFC_DELETESELECTED));
+        $tlist->addFooter(['deleteall' => _AM_WFC_DELETESELECTED]);
         $tlist->setPath('op=' . $op);
 
-        $button = array('delete');
+        $button = ['delete'];
         $_obj   = $handler->getObj($nav, false);
         if ($_obj['count'] && count($_obj['list'])) {
             foreach ($_obj['list'] as $obj) {
                 $wfcr_id = $obj->getVar('wfcr_id');
                 $tlist->addHidden($wfcr_id, 'value_id');
-                $tlist->add(array(
+                $tlist->add([
                                 $wfcr_id,
                                 $obj->getUserName('wfcr_uid'),
                                 $obj->formatTimeStamp('wfcr_date'),
@@ -95,7 +95,7 @@ switch ($op) {
                                 $obj->getVar('wfcr_ip'),
                                 $obj->getCheckbox('wfcr_id'),
                                 wfp_getIcons($button, 'wfcr_id', $wfcr_id)
-                            ));
+                            ]);
             }
         }
         // HTML output

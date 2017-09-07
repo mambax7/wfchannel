@@ -14,14 +14,14 @@
 $moduleDirName = basename(__DIR__);
 
 // ------------------- Informations ------------------- //
-$modversion = array(
+$modversion = [
     'version'             => 2.08,
-    'requires'            => 1.06, //wf-resource
+    'requires'            => 1.06,//wf-resource
     'module_status'       => 'Beta 1',
-    'release_date'        => '2017/07/22', //yyyy/mm/dd
+    'release_date'        => '2017/07/22',//yyyy/mm/dd
     'name'                => _MI_WFC_CHANNEL,
     'description'         => _MI_WFC_CHANNELDESC,
-    'official'            => 0, //1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
+    'official'            => 0,//1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
     'author'              => 'John Neill',
     'author_mail'         => 'author-email',
     'author_website_url'  => 'https://xoops.org',
@@ -41,7 +41,7 @@ $modversion = array(
     'min_php'             => '5.5',
     'min_xoops'           => '2.5.9',
     'min_admin'           => '1.1',
-    'min_db'              => array('mysql' => '5.5'),
+    'min_db'              => ['mysql' => '5.5'],
     // images
     'image'               => 'images/logoModule.png',
     'iconsmall'           => 'assets/images/iconsmall.png',
@@ -77,37 +77,37 @@ $modversion = array(
     'hasMain'             => 1,
     //Search & Comments
     'hasSearch'           => 1,
-    'search'              => array(
+    'search'              => [
         'file' => 'include/search.inc.php',
         'func' => $moduleDirName . '_search'
-    ),
+    ],
     'hasComments'         => 1,
-    'comments'            => array(
+    'comments'            => [
         'pageName'     => 'index.php',
         'itemName'     => 'cid',
         'callbackFile' => 'include/comment_functions.php',
-        'callback'     => array(
+        'callback'     => [
             'approve' => 'wfchannel_com_approve',
             'update'  => 'wfchannel_com_update'
-        )
-    ),
+        ]
+    ],
     // Install/Update
     'onInstall'           => 'include/oninstall.php',
     'onUpdate'            => 'include/onupdate.php',
     'onUninstall'         => 'include/onuninstall.php'
 
-);
+];
 
 // ------------------- Mysql ------------------- //
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 
 // Tables created by sql file (without prefix!)
-$modversion['tables'] = array(
+$modversion['tables'] = [
     'wfcpages',
     'wfclink',
     'wfcrefer',
     'wfcrefers'
-);
+];
 
 // Comment callback functions
 //$modversion['comments']['callbackFile']        = 'include/comment_functions.php';
@@ -115,17 +115,17 @@ $modversion['tables'] = array(
 //$modversion['comments']['callback']['update']  = 'wfchannel_com_update';
 
 // ------------------- Help files ------------------- //
-$modversion['helpsection'] = array(
-    array('name' => _MI_WFC_OVERVIEW, 'link' => 'page=help'),
-    array('name' => _MI_WFC_REQUIREMENTS, 'link' => 'page=__requirements'),
-    array('name' => _MI_WFC_INSTALL, 'link' => 'page=__install'),
-    array('name' => _MI_WFC_UPDATE, 'link' => 'page=__update'),
-    array('name' => _MI_WFC_HOWTO, 'link' => 'page=__howto'),
-    array('name' => _MI_WFC_CREDITS, 'link' => 'page=__credits'),
-    array('name' => _MI_WFC_DESCLAIMER, 'link' => 'page=__disclaimer'),
-    array('name' => _MI_WFC_LICENSE, 'link' => 'page=__license'),
-    array('name' => _MI_WFC_SUPPORT, 'link' => 'page=__support')
-);
+$modversion['helpsection'] = [
+    ['name' => _MI_WFC_OVERVIEW, 'link' => 'page=help'],
+    ['name' => _MI_WFC_REQUIREMENTS, 'link' => 'page=__requirements'],
+    ['name' => _MI_WFC_INSTALL, 'link' => 'page=__install'],
+    ['name' => _MI_WFC_UPDATE, 'link' => 'page=__update'],
+    ['name' => _MI_WFC_HOWTO, 'link' => 'page=__howto'],
+    ['name' => _MI_WFC_CREDITS, 'link' => 'page=__credits'],
+    ['name' => _MI_WFC_DISCLAIMER, 'link' => 'page=__disclaimer'],
+    ['name' => _MI_WFC_LICENSE, 'link' => 'page=__license'],
+    ['name' => _MI_WFC_SUPPORT, 'link' => 'page=__support']
+];
 
 /**
  * Notifications
@@ -134,24 +134,24 @@ $modversion['hasNotification']             = 1;
 $modversion['notification']['lookup_file'] = 'include/notification.inc.php';
 $modversion['notification']['lookup_func'] = 'wfchannel_notify_iteminfo';
 
-$modversion['notification']['category'][] = array(
+$modversion['notification']['category'][] = [
     'name'           => 'global',
     'title'          => _MI_WFC_GLOBALNOTIFYCAT_TITLE,
     'description'    => '_MI_WFC_GLOBALNOTIFYCAT_DESC',
-    'subscribe_from' => array('index.php'),
+    'subscribe_from' => ['index.php'],
     'item_name'      => ''
-);
+];
 
-$modversion['notification']['category'][] = array(
+$modversion['notification']['category'][] = [
     'name'           => 'page',
     'title'          => _MI_WFC_PAGENOTIFYCAT_TITLE,
     'description'    => '_MI_WFC_PAGENOTIFYCAT_DESC',
-    'subscribe_from' => array('index.php'),
+    'subscribe_from' => ['index.php'],
     'allow_bookmark' => 1,
     'item_name'      => 'cid'
-);
+];
 
-$modversion['notification']['event'][] = array(
+$modversion['notification']['event'][] = [
     'name'          => 'page_modified',
     'category'      => 'global',
     'title'         => _MI_WFC_GLOBALNOTIFY_TITLE,
@@ -159,9 +159,9 @@ $modversion['notification']['event'][] = array(
     'description'   => '_MI_WFC_GLOBALNOTIFY_DESC',
     'mail_template' => 'global_pagemodified_notify',
     'mail_subject'  => '_MI_WFC_GLOBALNOTIFY_SUBJECT'
-);
+];
 
-$modversion['notification']['event'][] = array(
+$modversion['notification']['event'][] = [
     'name'          => 'page_new',
     'category'      => 'global',
     'title'         => _MI_WFC_GLOBALNEWNOTIFY_TITLE,
@@ -169,9 +169,9 @@ $modversion['notification']['event'][] = array(
     'description'   => '_MI_WFC_GLOBALNEWNOTIFY_DESC',
     'mail_template' => 'global_pagenew_notify',
     'mail_subject'  => '_MI_WFC_GLOBALNEWNOTIFY_SUBJECT'
-);
+];
 
-$modversion['notification']['event'][] = array(
+$modversion['notification']['event'][] = [
     'name'          => 'page_modified',
     'category'      => 'page',
     'title'         => _MI_WFC_PAGENOTIFY_TITLE,
@@ -179,9 +179,9 @@ $modversion['notification']['event'][] = array(
     'description'   => '_MI_WFC_PAGENOTIFY_DESC',
     'mail_template' => 'global_pagemodified_notify',
     'mail_subject'  => '_MI_WFC_PAGENOTIFY_SUBJECT'
-);
+];
 
-$modversion['notification']['event'][] = array(
+$modversion['notification']['event'][] = [
     'name'          => 'page_new',
     'category'      => 'page',
     'title'         => _MI_WFC_PAGENEWNOTIFY_TITLE,
@@ -189,10 +189,10 @@ $modversion['notification']['event'][] = array(
     'description'   => '_MI_WFC_PAGENEWNOTIFY_DESC',
     'mail_template' => 'global_pagenew_notify',
     'mail_subject'  => '_MI_WFC_PAGENEWNOTIFY_SUBJECT'
-);
+];
 
 // ------------------- Blocks ------------------- //
-$modversion['blocks'][] = array(
+$modversion['blocks'][] = [
     'file'        => 'wfc_block.new.php',
     'name'        => _MI_WFC_BLOCK1,
     'description' => _MI_WFC_BLOCK1_DESC,
@@ -200,9 +200,9 @@ $modversion['blocks'][] = array(
     'edit_func'   => 'b_wfc_new_edit',
     'options'     => 'published|10|19|M/d/Y|' . $modversion['dirname'],
     'template'    => 'wfchannel_block_new.tpl'
-);
+];
 
-$modversion['blocks'][] = array(
+$modversion['blocks'][] = [
     'file'        => 'wfc_block.menu.php',
     'name'        => _MI_WFC_BLOCK2,
     'description' => _MI_WFC_BLOCK2_DESC,
@@ -210,98 +210,98 @@ $modversion['blocks'][] = array(
     'edit_func'   => 'b_wfc_menu_edit',
     'options'     => 'weight|10|19|' . $modversion['dirname'],
     'template'    => 'wfchannel_block_menu.tpl'
-);
+];
 
 // ------------------- Templates ------------------- //
 
-$modversion['templates'] = array(
+$modversion['templates'] = [
     // User
-    array('file' => $moduleDirName . '_index.tpl', 'description' => _MI_WFC_TPL1_DESC),
-    array('file' => $moduleDirName . '_linktous.tpl', 'description' => _MI_WFC_TPL2_DESC),
-    array('file' => $moduleDirName . '_refer.tpl', 'description' => _MI_WFC_TPL3_DESC),
-    array('file' => $moduleDirName . '_banned.tpl', 'description' => _MI_WFC_TPL4_DESC),
-    array('file' => $moduleDirName . '_channellinks.tpl', 'description' => _MI_WFC_TPL5_DESC),
-    array('file' => $moduleDirName . '_emailerror.tpl', 'description' => _MI_WFC_TPL6_DESC)
-);
+    ['file' => $moduleDirName . '_index.tpl', 'description' => _MI_WFC_TPL1_DESC],
+    ['file' => $moduleDirName . '_linktous.tpl', 'description' => _MI_WFC_TPL2_DESC],
+    ['file' => $moduleDirName . '_refer.tpl', 'description' => _MI_WFC_TPL3_DESC],
+    ['file' => $moduleDirName . '_banned.tpl', 'description' => _MI_WFC_TPL4_DESC],
+    ['file' => $moduleDirName . '_channellinks.tpl', 'description' => _MI_WFC_TPL5_DESC],
+    ['file' => $moduleDirName . '_emailerror.tpl', 'description' => _MI_WFC_TPL6_DESC]
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'htmluploaddir',
     'title'       => '_MI_WFC_HTMLUPLOADDIR',
     'description' => '_MI_WFC_HTMLUPLOADDIRDSC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
     'default'     => 'modules/' . $modversion['dirname'] . '/html'
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'uploaddir',
     'title'       => '_MI_WFC_UPLOADDIR',
     'description' => '_MI_WFC_UPLOADDIRDSC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
     'default'     => 'modules/' . $modversion['dirname'] . '/images'
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'linkimages',
     'title'       => '_MI_WFC_LINKIMAGES',
     'description' => '_MI_WFC_UPLOADDIRDSC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
     'default'     => 'modules/' . $modversion['dirname'] . '/images/linkimages'
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'maxfilesize',
     'title'       => '_MI_WFC_MAXFILESIZE',
     'description' => '_MI_WFC_MAXFILESIZEDSC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 120000
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'maximgwidth',
     'title'       => '_MI_WFC_IMGWIDTH',
     'description' => '_MI_WFC_IMGWIDTHDSC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 600
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'maximgheight',
     'title'       => '_MI_WFC_IMGHEIGHT',
     'description' => '_MI_WFC_IMGHEIGHTDSC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 600
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'perpage',
     'title'       => '_MI_WFC_PERPAGE',
     'description' => '_MI_MYDOWNLOADS_PERPAGEDSC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
     'default'     => 10,
-    'options'     => array('5' => 5, '10' => 10, '15' => 15, '20' => 20, '25' => 25, '30' => 30, '50' => 50)
-);
+    'options'     => ['5' => 5, '10' => 10, '15' => 15, '20' => 20, '25' => 25, '30' => 30, '50' => 50]
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'displaypagetitle',
     'title'       => '_MI_WFC_DISPLAYTITLE',
     'description' => '_MI_WFC_DISPLAYTITLEDSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1
-);
+];
 
 xoops_load('XoopsEditorHandler');
 $editorHandler = XoopsEditorHandler::getInstance();
 $editorList    = array_flip($editorHandler->getList());
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'use_wysiwyg',
     'title'       => '_MI_WFC_WYSIWYG',
     'description' => '_MI_WFC_WYSIWYGDSC',
@@ -309,143 +309,143 @@ $modversion['config'][] = array(
     'valuetype'   => 'text',
     'default'     => 'dhtmltextarea',
     'options'     => $editorList
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'banned',
     'title'       => '_MI_WFC_BANNED',
     'description' => '_MI_WFC_BANNEDDSC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
     'default'     => ''
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'displaybookmarks',
     'title'       => '_MI_WFC_BOOKMARK',
     'description' => '_MI_WFC_BOOKMARKDSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => '1'
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'allowaddthiscode',
     'title'       => '_MI_WFC_ALLOWADDTHISCODE',
     'description' => '_MI_WFC_ALLOWADDTHISCODE_DSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => '0'
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'addthiscode',
     'title'       => '_MI_WFC_ADDTHISCODE',
     'description' => '_MI_WFC_ADDTHISCODE_DSC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
     'default'     => ''
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'bookmarktextadd',
     'title'       => '_MI_WFC_ALLOWBMTEXT',
     'description' => '_MI_WFC_ALLOWBMTEXT_DSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => '0'
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'bookmarklayout',
     'title'       => '_MI_WFC_BMLAYOUT',
     'description' => '_MI_WFC_BMLAYOUT_DSC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
     'default'     => '0',
-    'options'     => array(
+    'options'     => [
         _MI_WFC_HORIZONTAL => 0,
         _MI_WFC_VERTICAL   => 1
-    )
-);
+    ]
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'menulinks',
     'title'       => '_MI_WFC_MENULINKS',
     'description' => '_MI_WFC_MENULINKSDSC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
     'default'     => 3,
-    'options'     => array('None' => 0, 'Both' => 1, 'Top' => 2, 'Bottom' => 3)
-);
+    'options'     => ['None' => 0, 'Both' => 1, 'Top' => 2, 'Bottom' => 3]
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'pageicon',
     'title'       => '_MI_WFC_DISPLAYICONS',
     'description' => '_MI_WFC_DISPLAYICONS_DSC',
     'formtype'    => 'select_multi',
     'valuetype'   => 'array',
-    'default'     => array(1, 2, 3, 4, 5),
-    'options'     => array(
+    'default'     => [1, 2, 3, 4, 5],
+    'options'     => [
         '_MI_WFC_NONE'           => 0,
         '_MI_WFC_RSS_ICON'       => 1,
         '_MI_WFC_PRINT_ICON'     => 2,
         '_MI_WFC_PDF_ICON'       => 3,
         '_MI_WFC_EMAILICON_ICON' => 4,
         '_MI_WFC_BOOKMARK_ICON'  => 5
-    )
-);
+    ]
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'act_refer',
     'title'       => '_MI_WFC_ACTIVATEREFERS',
     'description' => '_MI_WFC_ACTIVATEREFERS_DSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => '1'
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'act_link',
     'title'       => '_MI_WFC_ACTIVATELINKS',
     'description' => '_MI_WFC_ACTIVATELINKS_DSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => '1'
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'allow_admin',
     'title'       => '_MI_WFC_ALLOWADMIN',
     'description' => '_MI_WFC_ALLOWADMIN_DSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => '0'
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'xoopstags',
     'title'       => '_MI_WFC_XOOPSTAGS',
     'description' => '_MI_WFC_XOOPSTAGS_DSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => '0'
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'copyrighttext',
     'title'       => '_MI_WFC_COPYRIGHT',
     'description' => '_MI_WFC_COPYRIGHT_DSC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
     'default'     => 'Copyright © %s %s'
-);
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'allow_pnlinks',
     'title'       => '_MI_WFC_PNKINKS',
     'description' => '_MI_WFC_PNKINKS_DSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => '0'
-);
+];

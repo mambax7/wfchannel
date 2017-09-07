@@ -39,7 +39,7 @@ switch ($op) {
         unset($_SESSION['wfc_channel']);
         $do_callback->setBasics();
         $do_callback->setValueArray($_REQUEST);
-        $do_callback->setValueGroups('refer_read', !empty($_REQUEST['refer_read']) ? $_REQUEST['refer_read'] : array(0 => '1'));
+        $do_callback->setValueGroups('refer_read', !empty($_REQUEST['refer_read']) ? $_REQUEST['refer_read'] : [0 => '1']);
         $do_callback->setImage('wfcr_image', $_REQUEST['wfcr_image'], $_REQUEST['imgwidth'], $_REQUEST['imgheight']);
 
         $ret = $do_callback->htmlClean($do_callback->getValue('wfcr_content'), $_REQUEST['wfc_cleaningoptions']);

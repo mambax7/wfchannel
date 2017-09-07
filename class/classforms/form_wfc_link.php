@@ -11,7 +11,7 @@
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
-defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 $form = new XoopsThemeTabForm(_AM_WFC_CMODIFYLINK, 'op', 'link.php');
 $form->setExtra('enctype="multipart/form-data"');
@@ -37,14 +37,14 @@ $form->addElement($wfcl_titlelink, true);
 /**
  * Refer Content
  */
-$options = array(
+$options = [
     'name'   => 'wfcl_content',
     'value'  => $this->getVar('wfcl_content', 'e'),
     'rows'   => 35,
     'cols'   => 75,
     'width'  => '100%',
     'height' => '400px'
-);
+];
 
 $options_tray = new XoopsFormElementTray(_AM_EWFC_LINK_INTRO, '');
 $options_tray->setNocolspan(1);

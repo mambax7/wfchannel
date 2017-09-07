@@ -34,7 +34,7 @@ switch ($op) {
         $ret = false;
 
         xoops_load('XoopsCaptcha');
-        $xoopsOption  = array();
+        $xoopsOption  = [];
         $xoopsCaptcha = XoopsCaptcha::getInstance();
         if (!$xoopsCaptcha->verify()) {
             $stop .= $xoopsCaptcha->getMessage();
@@ -67,12 +67,12 @@ switch ($op) {
         $GLOBALS['xoopsOption']['template_main'] = 'wfchannel_refer.tpl';
         require_once XOOPS_ROOT_PATH . '/header.php';
         $refer_obj->formEdit('wfc_referpage');
-        $xoopsTpl->assign('refer', array(
+        $xoopsTpl->assign('refer', [
             'title'   => $refer_obj->getVar('wfcr_title'),
             'image'   => $refer_obj->getImage('wfcr_image', wfp_getModuleOption('uploaddir')),
             'content' => $refer_obj->getVar('wfcr_content'),
             'caption' => $refer_obj->getVar('wfcr_caption')
-        ));
+        ]);
         unset($refer_obj);
         break;
 
@@ -88,7 +88,7 @@ switch ($op) {
 
         $GLOBALS['xoopsOption']['template_main'] = 'wfchannel_linktous.tpl';
         require_once XOOPS_ROOT_PATH . '/header.php';
-        $xoopsTpl->assign('linktous', array(
+        $xoopsTpl->assign('linktous', [
             'textlink'    => $link_obj->getTextLink('wfcl_textlink'),
             'linkpath'    => wfp_getModuleOption('linkimages'),
             'image'       => $link_obj->getImage('wfcl_image', wfp_getModuleOption('uploaddir')),
@@ -101,7 +101,7 @@ switch ($op) {
             'content'     => $link_obj->getVar('wfcl_content'),
             'title'       => $link_obj->getVar('wfcl_titlelink'),
             'caption'     => $link_obj->getVar('wfcl_caption')
-        ));
+        ]);
         break;
 
     case 'page':
@@ -143,7 +143,7 @@ switch ($op) {
                     $xoopsTpl->assign('tags', true);
                     $xoopsTpl->assign('tagbar', tagBar($pageObj->getVar('wfc_cid'), 0));
                 }
-                $xoopsTpl->assign('page_info', array(
+                $xoopsTpl->assign('page_info', [
                     'id'        => $pageObj->getVar('wfc_cid'),
                     'title'     => $pageObj->getTitle(),
                     'counter'   => sprintf(_MD_WFC_COUNTER, $pageObj->getVar('wfc_counter')),
@@ -156,7 +156,7 @@ switch ($op) {
                     'bookmarks' => $pageObj->getBookMarks(),
                     'caption'   => $pageObj->getVar('wfc_caption'),
                     'icons'     => $pageObj->getIcons()
-                ));
+                ]);
 
                 /**
                  * Hacked this in just now, will change later
@@ -187,8 +187,8 @@ switch ($op) {
  */
 $xoopsTpl->assign($pageHandler->getChanlinks());
 $xoopsTpl->assign('copyright', sprintf(wfp_getModuleOption('copyrighttext'), date('Y'), $xoopsConfig['sitename']));
-$xoopsTpl->assign('menu_top', in_array(wfp_getModuleOption('menulinks'), array(1, 2)));
-$xoopsTpl->assign('menu_bottom', in_array(wfp_getModuleOption('menulinks'), array(1, 3)));
+$xoopsTpl->assign('menu_top', in_array(wfp_getModuleOption('menulinks'), [1, 2]));
+$xoopsTpl->assign('menu_bottom', in_array(wfp_getModuleOption('menulinks'), [1, 3]));
 /**
  * Comments
  */

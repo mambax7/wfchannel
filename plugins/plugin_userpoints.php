@@ -18,7 +18,7 @@
  * @since      2.3.0
  * @author     John Neill
  */
-defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 /**
  * @param         $uid
@@ -49,7 +49,7 @@ function wfchannel_getUserPoints($uid, $startdate = '')
     $criteria->add(new Criteria('wfc_uid', $uid, '='));
     $itemcount = $downloadHandler->getCount($criteria);
 
-    $ret = array();
+    $ret = [];
     /**
      * Get module items count for the user
      */

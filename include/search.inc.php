@@ -32,7 +32,7 @@ function wfchannel_search($queryarray, $andor, $limit, $offset, $userid)
 
     $i = 0;
 
-    $ret = array();
+    $ret = [];
     if (!empty($page_search['list'])) {
         foreach ($page_search['list'] as $obj) {
             $ret[$i]['link']  = 'index.php?wfc_cid=' . $obj->getVar('wfc_cid');

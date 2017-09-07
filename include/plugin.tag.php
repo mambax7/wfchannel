@@ -22,7 +22,7 @@ function wfchannel_tag_iteminfo(&$items)
     $upgrade = false;
     include_once XOOPS_ROOT_PATH . '/modules/' . basename(dirname(__DIR__)) . '/include/functions.php';
 
-    $items_id = array();
+    $items_id = [];
     foreach (array_keys($items) as $cat_id) {
         foreach (array_keys($items[$cat_id]) as $item_id) {
             $items_id[] = (int)$item_id;
@@ -35,14 +35,14 @@ function wfchannel_tag_iteminfo(&$items)
         foreach (array_keys($items[$cat_id]) as $item_id) {
             if (isset($items_obj[$item_id])) {
                 $obj                      = $items_obj[$item_id];
-                $items[$cat_id][$item_id] = array(
+                $items[$cat_id][$item_id] = [
                     'title'   => $obj->getVar('wfc_title'),
                     'uid'     => $obj->getVar('wfc_uid'),
                     'link'    => 'index.php?cid=' . $item_id,
                     'time'    => $obj->getVar('wfc_publish'),
                     'tags'    => '', // tag_parse_tag($item_obj->getVar("item_tags", "n")), // optional
                     'content' => ''
-                );
+                ];
             }
         }
     }

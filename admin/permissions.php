@@ -28,7 +28,7 @@ switch ($op) {
         ob_start('callback');
         $group = wfp_getClass('permissions');
         $group->setPermissions('wfcpages', 'page_read', '', $xoopsModule->getVar('mid'));
-        $group->render(array('cid' => 'wfc_cid', 'title' => 'wfc_title'));
+        $group->render(['cid' => 'wfc_cid', 'title' => 'wfc_title']);
         ob_end_flush();
         break;
 }

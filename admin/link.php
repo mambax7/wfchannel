@@ -28,7 +28,7 @@ switch ($op) {
         $menuHandler->addSubHeader(_AM_WFC_LINKAREA_DSC);
         $do_callback->setId(1);
         $do_callback->setMenu($menu);
-        if (!call_user_func(array($do_callback, $op), null)) {
+        if (!call_user_func([$do_callback, $op], null)) {
             echo $handler->getHtmlErrors(true, $menu);
         }
         break;
@@ -37,7 +37,7 @@ switch ($op) {
         unset($_SESSION['wfc_channel']);
         $do_callback->setBasics();
         $do_callback->setValueArray($_REQUEST);
-        $do_callback->setValueGroups('link_read', !empty($_REQUEST['link_read']) ? $_REQUEST['link_read'] : array(0 => '1'));
+        $do_callback->setValueGroups('link_read', !empty($_REQUEST['link_read']) ? $_REQUEST['link_read'] : [0 => '1']);
         $do_callback->setImage('wfcl_image', $_REQUEST['wfcl_image'], $_REQUEST['imgwidth'], $_REQUEST['imgheight']);
 
         $ret = $do_callback->htmlClean($do_callback->getValue('wfcl_content'), $_REQUEST['wfc_cleaningoptions']);
@@ -45,7 +45,7 @@ switch ($op) {
             $do_callback->setValue('wfcl_content', $ret);
         }
 
-        if (!call_user_func(array($do_callback, $op), null)) {
+        if (!call_user_func([$do_callback, $op], null)) {
             $handler->getHtmlErrors();
         }
         break;

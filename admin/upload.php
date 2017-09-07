@@ -38,9 +38,9 @@ switch ($op) {
                 exit();
             }
 
-            $allowed_mimetypes = array('text/html');
+            $allowed_mimetypes = ['text/html'];
             if ($rootnumber !== 3) {
-                $allowed_mimetypes = array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/x-png', 'image/png');
+                $allowed_mimetypes = ['image/gif', 'image/jpeg', 'image/pjpeg', 'image/x-png', 'image/png'];
             }
             $ret = wfp_uploader($allowed_mimetypes, $uploadfile, xoops_getenv('PHP_SELF'), 1, $uploadpath);
             xoops_cp_header();
@@ -81,12 +81,12 @@ switch ($op) {
             xoops_cp_header();
             $menuHandler->addSubHeader(_AM_WFP_MAINAREA_DELETE_DSC);
             //            $menuHandler->render(5);
-            xoops_confirm(array(
+            xoops_confirm([
                               'op'          => 'delete',
                               'uploadpath'  => $uploadpath,
                               'channelfile' => $channelfile,
                               'ok'          => 1
-                          ), xoops_getenv('PHP_SELF'), sprintf(_AM_WFP_DYRWTDICONFIRM, $channelfile), 'Delete');
+                          ], xoops_getenv('PHP_SELF'), sprintf(_AM_WFP_DYRWTDICONFIRM, $channelfile), 'Delete');
         }
         break;
 

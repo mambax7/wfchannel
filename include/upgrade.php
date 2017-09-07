@@ -182,7 +182,7 @@ if ($oldversion < 200) {
     $obj          = $pageHandler->getObj(null, true);
     if ($obj['count'] > 0) {
         foreach ($obj['list'] as $objs) {
-            $ret             = array();
+            $ret             = [];
             $ret['dohtml']   = ($objs->getVar('dohtml') == 0) ? 1 : 0;
             $ret['dosmiley'] = ($objs->getVar('dohtml') == 0) ? 1 : 0;
             $ret['doxcode']  = ($objs->getVar('dohtml') == 0) ? 1 : 0;

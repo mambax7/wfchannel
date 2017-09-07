@@ -99,7 +99,7 @@ class HtmlParser
 
     public function clearAttributes()
     {
-        $this->iNodeAttributes = array();
+        $this->iNodeAttributes = [];
     }
 
     /**
@@ -182,7 +182,7 @@ class HtmlParser
      */
     public function skipBlanksInTag()
     {
-        return '' !== $this->skipInTag(array(' ', "\t", "\r", "\n"));
+        return '' !== $this->skipInTag([' ', "\t", "\r", "\n"]);
     }
 
     /**
@@ -190,7 +190,7 @@ class HtmlParser
      */
     public function skipToBlanksOrEqualsInTag()
     {
-        return $this->skipToInTag(array(' ', "\t", "\r", "\n", '='));
+        return $this->skipToInTag([' ', "\t", "\r", "\n", '=']);
     }
 
     /**
@@ -198,7 +198,7 @@ class HtmlParser
      */
     public function skipToBlanksInTag()
     {
-        return $this->skipToInTag(array(' ', "\t", "\r", "\n"));
+        return $this->skipToInTag([' ', "\t", "\r", "\n"]);
     }
 
     /**
@@ -206,7 +206,7 @@ class HtmlParser
      */
     public function skipEqualsInTag()
     {
-        return $this->skipInTag(array('='));
+        return $this->skipInTag(['=']);
     }
 
     /**
@@ -217,13 +217,13 @@ class HtmlParser
         $ch    = $this->iCurrentChar;
         $value = '';
         if ($ch === "\"") {
-            $this->skipInTag(array("\""));
-            $value = $this->skipToInTag(array("\""));
-            $this->skipInTag(array("\""));
+            $this->skipInTag(["\""]);
+            $value = $this->skipToInTag(["\""]);
+            $this->skipInTag(["\""]);
         } elseif ($ch === "\'") {
-            $this->skipInTag(array("'"));
-            $value = $this->skipToInTag(array("'"));
-            $this->skipInTag(array("'"));
+            $this->skipInTag(["'"]);
+            $value = $this->skipToInTag(["'"]);
+            $this->skipInTag(["'"]);
         } else {
             $value = $this->skipToBlanksInTag();
         }

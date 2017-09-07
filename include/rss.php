@@ -11,7 +11,7 @@
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
-defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 $GLOBALS['xoopsLogger']->activated = false;
 if (function_exists('mb_http_output')) {
@@ -40,7 +40,7 @@ if (!$tpl->is_cached('db:system_rss.tpl', 'wfc|feed|rss')) {
         foreach ($objects as $obj) {
             $link        = $url . 'index.php?cid=' . $obj->getVar('wfc_cid');
             $description = xoops_substr($obj->getVar('wfc_content', 'e'), 0, 200, '...');
-            $tpl->append('items', array(
+            $tpl->append('items', [
                 'title'        => xoops_utf8_encode($obj->getVar('wfc_headline', 'e')),
                 'author'       => xoops_utf8_encode($obj->getUserName('wfc_uid')),
                 'link'         => $link,
@@ -49,7 +49,7 @@ if (!$tpl->is_cached('db:system_rss.tpl', 'wfc|feed|rss')) {
                 'pubdate'      => $obj->getTimeStamp('wfc_publish', 'rss'),
                 'dc_date'      => $obj->getTimeStamp('wfc_publish', 'd/m H:i'),
                 'description'  => xoops_utf8_encode($description)
-            ));
+            ]);
         }
     }
 }

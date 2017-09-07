@@ -44,8 +44,8 @@ switch ($op) {
         global $xoopsConfig, $xoopsModule, $_GET;
         //        wfc_adminmenu(_AM_CHANADMIN);
 
-        $orders = array();
-        $cat    = array();
+        $orders = [];
+        $cat    = [];
 
         echo "<fieldset><legend style='font-weight: bold; color: #900;'>" . _AM_REORDERADMIN . '</legend>';
         echo "<div style='padding: 8px;'>" . _AM_REORDERINTRO . '</div>';

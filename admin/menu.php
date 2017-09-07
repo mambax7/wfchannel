@@ -18,69 +18,69 @@ if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
 } else {
     $moduleHelper = Xmf\Module\Helper::getHelper('system');
 }
-$adminObject = \Xmf\Module\Admin::getInstance();
+
 
 $pathIcon32 = \Xmf\Module\Admin::menuIconPath('');
 //$pathModIcon32 = $moduleHelper->getModule()->getInfo('modicons32');
 
 $moduleHelper->loadLanguage('modinfo');
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => _AM_MODULEADMIN_HOME,
     'link'  => 'admin/index.php',
     'icon'  => $pathIcon32 . '/home.png'
-);
+];
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => _MI_WFC_ADMENU1,
     'link'  => 'admin/main.php',
     'icon'  => $pathIcon32 . '/index.png'
-);
+];
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => _MI_WFC_ADMENU2,
     'link'  => 'admin/main.php?op=edit',
     'icon'  => $pathIcon32 . '/add.png'
-);
+];
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => _MI_WFC_ADMENU3,
     'link'  => 'admin/refer.php',
     'icon'  => $pathIcon32 . '/button_ok.png'
-);
+];
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => _MI_WFC_ADMENU8,
     'link'  => 'admin/refers.php',
     'icon'  => $pathIcon32 . '/view_detailed.png'
-);
+];
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => _MI_WFC_ADMENU4,
     'link'  => 'admin/link.php',
     'icon'  => $pathIcon32 . '/addlink.png'
-);
+];
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => _MI_WFC_ADMENU5,
     'link'  => 'admin/permissions.php',
     'icon'  => $pathIcon32 . '/permissions.png'
-);
+];
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => _MI_WFC_ADMENU6,
     'link'  => 'admin/upload.php',
     'icon'  => $pathIcon32 . '/upload.png'
-);
+];
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => _MI_WFC_ADMENU7,
     'link'  => 'admin/import.php',
     'icon'  => $pathIcon32 . '/compfile.png'
-);
+];
 
-$adminmenu[] = array(
+$adminmenu[] = [
     'title' => _AM_MODULEADMIN_ABOUT,
     'link'  => 'admin/about.php',
     'icon'  => $pathIcon32 . '/about.png'
-);
+];

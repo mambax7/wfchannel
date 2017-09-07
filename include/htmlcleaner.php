@@ -98,7 +98,7 @@ class HtmlCleanerTag
     public function parseAttributes($str)
     {
         $i      = 0;
-        $return = array();
+        $return = [];
         $_state = -1;
         $_value = '';
         while ($i < strlen($str)) {
@@ -206,7 +206,7 @@ class HtmlCleaner
     public function dessicate($str)
     {
         $i       = 0;
-        $parts   = array();
+        $parts   = [];
         $_state  = -1;
         $str_len = strlen($str);
         while ($i < $str_len) {
