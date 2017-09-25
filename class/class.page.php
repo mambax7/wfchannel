@@ -140,7 +140,7 @@ class wfc_Page extends wfp_Object
 
         $ret = $clean->getHtml($this->getVar('wfc_file'), $this->getVar('wfc_content', 'e'), $this->uploadDir);
         $this->setVar('wfc_content', htmlspecialchars_decode($ret));
-        if ($doPageNav === true) {
+        if (true === $doPageNav) {
             $text = explode('[pagebreak]', $this->getVar('wfc_content', 'e'));
             if (count($text) > 0) {
                 require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
@@ -316,12 +316,12 @@ class wfc_PageHandler extends wfp_ObjectHandler
         $myts = MyTextSanitizer::getInstance();
 
         $obj = [];
-        if (func_num_args() === 2) {
+        if (2 === func_num_args()) {
             $args     = func_get_args();
             $criteria = new CriteriaCompo();
             if (!empty($args[0]['search'])) {
                 $args[0]['search'] = stripslashes($args[0]['search']);
-                if (isset($args[0]['andor']) && $args[0]['andor'] !== 'exact') {
+                if (isset($args[0]['andor']) && 'exact' !== $args[0]['andor']) {
                     $temp_queries = preg_split('/[\s,]+/', $args[0]['search']);
                     $queryarray   = [];
                     foreach ($temp_queries as $q) {
@@ -464,7 +464,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
         $cid = wfp_Request::doRequest($_REQUEST, 'cid', 0, 'int');
         $op  = wfp_Request::doRequest($_REQUEST, 'op', '', 'textbox');
 
-        $css = ($cid === 0 && !$op) ? 'page_underline' : 'page_none';
+        $css = (0 === $cid && !$op) ? 'page_underline' : 'page_none';
 
         $wfpages['chanlink'][] = ['css' => $css, 'id' => '', 'title' => _MD_WFC_HOME];
         $wfpages_obj           =& $this->getList();
@@ -488,7 +488,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
             unset($_SESSION['wfc_channel']['wfcl_titlelink']);
         }
 
-        $css = ($op === 'link') ? 'page_underline' : 'page_none';
+        $css = ('link' === $op) ? 'page_underline' : 'page_none';
         if (!isset($_SESSION['wfc_channel']['wfcl_titlelink'])) {
             $linksHandler = wfp_getHandler('link', _MODULE_DIR, _MODULE_CLASS);
             $links        = $linksHandler->get(1);
@@ -518,7 +518,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
         if (!$GLOBALS['xoopsModuleConfig']['act_refer']) {
             unset($_SESSION['wfc_channel']['wfcr_title']);
         }
-        $css = ($op === 'refer') ? 'page_underline' : 'page_none';
+        $css = ('refer' === $op) ? 'page_underline' : 'page_none';
         if (!isset($_SESSION['wfc_channel']['wfcr_title'])) {
             $referHandler = wfp_getHandler('refer', _MODULE_DIR, _MODULE_CLASS);
             $refer        = $referHandler->get(1);
@@ -555,7 +555,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
     {
         if ((is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin())
             && (isset($GLOBALS['xoopsModuleConfig']['allow_admin'])
-                && $GLOBALS['xoopsModuleConfig']['allow_admin'] === 0)) {
+                && 0 === $GLOBALS['xoopsModuleConfig']['allow_admin'])) {
             return false;
         } else {
             $criteria = new CriteriaCompo();
@@ -590,7 +590,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
         $criteriaSearch = new CriteriaCompo();
 
         if (isset($queryarray[0])) {
-            if ($moreChecks === true) {
+            if (true === $moreChecks) {
                 $criteriaSearch->add(new Criteria('wfc_title', "%$queryarray[0]%", 'LIKE'), 'OR');
                 $criteriaSearch->add(new Criteria('wfc_headline', "%$queryarray[0]%", 'LIKE'), 'OR');
                 $criteriaSearch->add(new Criteria('wfc_content', "%$queryarray[0]%", 'LIKE'), 'OR');
@@ -599,7 +599,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
         }
         if (!empty($andor)) {
             for ($i = 1, $iMax = count($queryarray); $i < $iMax; ++$i) {
-                if ($moreChecks === true) {
+                if (true === $moreChecks) {
                     $criteriaSearch->add(new Criteria('wfc_title', "%$queryarray[$i]%", 'LIKE'), 'OR');
                     $criteriaSearch->add(new Criteria('wfc_headline', "%$queryarray[$i]%", 'LIKE'), 'OR');
                     $criteriaSearch->add(new Criteria('wfc_content', "%$queryarray[$i]%", 'LIKE'), 'OR');
@@ -627,7 +627,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
         //        } else {
         //            $andor = '';
         //        }
-        if ($andor === 'exact') {
+        if ('exact' === $andor) {
             $andor = '';
         }
 
@@ -808,7 +808,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
     public function headingHtml()
     {
         $ret = '';
-        if (func_num_args() !== 1) {
+        if (1 !== func_num_args()) {
             return $ret;
         }
         $total_count   = $this->getCount();
@@ -817,7 +817,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
         $default       = $this->getDefaultPage();
         $ret           .= '<input class="wfbutton" type="button" name="button" onclick=\'location="main.php?op=edit"\' value="' . _AM_WFP_CREATENEW . '">';
         $ret           .= '<div style="padding-bottom: 8px;">';
-        if ($default === null) {
+        if (null === $default) {
             $ret .= _AM_WFC_NODEFAULTPAGESET;
         } else {
             $ret .= _AM_WFC_DEFAULTPAGESET . ": <a href='../main.php?op=edit&wfc_cid=" . $default['id'] . "'>" . $default['title'] . '</a>';

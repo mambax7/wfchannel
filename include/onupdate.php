@@ -30,7 +30,7 @@ function xoops_module_update_wfchannel($module, $oldversion)
     $upgrade = true;
     require_once XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/functions.php';
     $msgs[] = '<br>Updating Module Database Tables.......';
-    if ($result === true) {
+    if (true === $result) {
         define('_WF_INSTALLER', 1);
         require_once XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/upgrade.php';
 
@@ -57,7 +57,7 @@ function displayOutput()
             $msgs[] = "<div style=\"text-indent: 12px;\">$success</div>";
         }
     } else {
-        $msgs[] = "<div style=\"text-indent: 12px;\">" . sprintf(_MD_WFC_NOTHING_UPDATED, $updater->getTable()) . '</div>';
+        $msgs[] = '<div style="text-indent: 12px;">' . sprintf(_MD_WFC_NOTHING_UPDATED, $updater->getTable()) . '</div>';
     }
 
     $msgs[]  = '<h4>' . _MD_WFC_FAILURE . '</h4>';
@@ -67,6 +67,6 @@ function displayOutput()
             $msgs[] = "<div style=\"text-indent: 12px;\">$errors</div>";
         }
     } else {
-        $msgs[] = "<div style=\"text-indent: 12px;\">" . sprintf(_MD_WFC_NO_ERRORSFOUND, $updater->getTable()) . '</div>';
+        $msgs[] = '<div style="text-indent: 12px;">' . sprintf(_MD_WFC_NO_ERRORSFOUND, $updater->getTable()) . '</div>';
     }
 }

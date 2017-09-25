@@ -177,7 +177,7 @@ function displayOutput()
             echo "<div style=\"text-indent: 12px;\">$success</div>";
         }
     } else {
-        echo "<div style=\"text-indent: 12px;\">" . sprintf(_MD_WFC_NOTHING_UPDATED, $updater->getTable()) . '</div>';
+        echo '<div style="text-indent: 12px;">' . sprintf(_MD_WFC_NOTHING_UPDATED, $updater->getTable()) . '</div>';
     }
 
     echo '<h4>' . _MD_WFC_FAILURE . '</h4>';
@@ -187,6 +187,6 @@ function displayOutput()
             echo "<div style=\"text-indent: 12px;\">$errors</div>";
         }
     } else {
-        echo "<div style=\"text-indent: 12px;\">" . sprintf(_MD_WFC_NO_ERRORSFOUND, $updater->getTable()) . '</div>';
+        echo '<div style="text-indent: 12px;">' . sprintf(_MD_WFC_NO_ERRORSFOUND, $updater->getTable()) . '</div>';
     }
 }

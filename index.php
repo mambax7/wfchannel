@@ -41,7 +41,7 @@ switch ($op) {
         } else {
             $ret = $referHandler->refersend();
         }
-        if ($ret !== true || !empty($ret)) {
+        if (true !== $ret || !empty($ret)) {
             $GLOBALS['xoopsOption']['template_main'] = 'wfchannel_emailerror.tpl';
             include XOOPS_ROOT_PATH . '/header.php';
             $xoopsTpl->assign('wfc_email_error', $ret);

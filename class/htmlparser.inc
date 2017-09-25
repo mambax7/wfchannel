@@ -86,7 +86,7 @@ class HtmlParser
     public function parse()
     {
         $text = $this->skipToElement();
-        if ($text !== '') {
+        if ('' !== $text) {
             $this->iNodeType  = NODE_TYPE_TEXT;
             $this->iNodeName  = 'Text';
             $this->iNodeValue = $text;
@@ -107,7 +107,7 @@ class HtmlParser
      */
     public function readTag()
     {
-        if ($this->iCurrentChar !== '<') {
+        if ('<' !== $this->iCurrentChar) {
             $this->iNodeType = NODE_TYPE_DONE;
 
             return false;
@@ -116,16 +116,16 @@ class HtmlParser
         $this->clearAttributes();
         $name = $this->skipToBlanksInTag();
         $pos  = strpos($name, '/');
-        if ($pos === 0) {
+        if (0 === $pos) {
             $this->iNodeType  = NODE_TYPE_ENDELEMENT;
             $this->iNodeName  = substr($name, 1);
             $this->iNodeValue = '';
         } else {
             if (!$this->isValidTagIdentifier($name)) {
                 $comment = false;
-                if ($name === '!--') {
+                if ('!--' === $name) {
                     $rest = $this->skipToStringInTag('-->');
-                    if ($rest !== '') {
+                    if ('' !== $rest) {
                         $this->iNodeType  = NODE_TYPE_COMMENT;
                         $this->iNodeName  = 'Comment';
                         $this->iNodeValue = '<' . $name . $rest;
@@ -144,16 +144,16 @@ class HtmlParser
                 $this->iNodeValue = '';
                 $nameLength       = strlen($name);
                 $this->iNodeName  = $name;
-                if ($nameLength > 0 && substr($name, $nameLength - 1, 1) === '/') {
+                if ($nameLength > 0 && '/' === substr($name, $nameLength - 1, 1)) {
                     $this->iNodeName = substr($name, 0, $nameLength - 1);
                 }
             }
         }
         while ($this->skipBlanksInTag()) {
             $attrName = $this->skipToBlanksOrEqualsInTag();
-            if ($attrName !== '') {
+            if ('' !== $attrName) {
                 $this->skipBlanksInTag();
-                if ($this->iCurrentChar === '=') {
+                if ('=' === $this->iCurrentChar) {
                     $this->skipEqualsInTag();
                     $this->skipBlanksInTag();
                     $value                                        = $this->readValueInTag();
@@ -216,11 +216,11 @@ class HtmlParser
     {
         $ch    = $this->iCurrentChar;
         $value = '';
-        if ($ch === "\"") {
-            $this->skipInTag(["\""]);
-            $value = $this->skipToInTag(["\""]);
-            $this->skipInTag(["\""]);
-        } elseif ($ch === "\'") {
+        if ('"' === $ch) {
+            $this->skipInTag(['"']);
+            $value = $this->skipToInTag(['"']);
+            $this->skipInTag(['"']);
+        } elseif ("\'" === $ch) {
             $this->skipInTag(["'"]);
             $value = $this->skipToInTag(["'"]);
             $this->skipInTag(["'"]);
@@ -265,7 +265,7 @@ class HtmlParser
     {
         $sb = '';
         if (($ch = $this->iCurrentChar) !== -1) {
-            $match = ($ch === '>');
+            $match = ('>' === $ch);
             if (!$match) {
                 return $sb;
             }
@@ -284,7 +284,7 @@ class HtmlParser
     {
         $sb = '';
         while (($ch = $this->iCurrentChar) !== -1) {
-            if ($ch === '>') {
+            if ('>' === $ch) {
                 return $sb;
             } else {
                 $match      = false;
@@ -314,7 +314,7 @@ class HtmlParser
     {
         $sb = '';
         while (($ch = $this->iCurrentChar) !== -1) {
-            $match = $ch === '>';
+            $match = '>' === $ch;
             if (!$match) {
                 $charsCount = count($chars);
                 for ($idx = 0; $idx < $charsCount; ++$idx) {
@@ -341,7 +341,7 @@ class HtmlParser
     {
         $sb = '';
         while (($ch = $this->iCurrentChar) !== -1) {
-            if ($ch === '<') {
+            if ('<' === $ch) {
                 return $sb;
             }
             $sb .= $ch;
@@ -362,7 +362,7 @@ class HtmlParser
     public function skipToStringInTag($needle)
     {
         $pos = strpos($this->iHtmlText, $needle, $this->iHtmlTextIndex);
-        if ($pos === false) {
+        if (false === $pos) {
             return '';
         }
         $top      = $pos + strlen($needle);

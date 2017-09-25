@@ -116,12 +116,12 @@ class wfc_RefersHandler extends wfp_ObjectHandler
 
     /**
      * wfc_RefersHandler::getObj()
-     * @return bool
+     * @return array
      */
     public function &getObj()
     {
         $obj = [];
-        if (func_num_args() === 2) {
+        if (2 === func_num_args()) {
             $args     = func_get_args();
             $criteria = new CriteriaCompo();
             if (!empty($args[0]['search'])) {
@@ -157,7 +157,7 @@ class wfc_RefersHandler extends wfp_ObjectHandler
     public function headingHtml()
     {
         $ret = '';
-        if (func_num_args() == 1) {
+        if (1 == func_num_args()) {
             $ret = '<div style="padding-bottom: 8px;">' . _AM_WFC_TOTALEMAILSSENT . ': <b>' . func_get_arg(0) . '</b></div>';
         }
         /**

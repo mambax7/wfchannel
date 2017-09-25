@@ -87,7 +87,7 @@ switch ($op) {
             // */
             $options['noreturn'] = true;
             $ret                 = call_user_func([$do_callback, 'save'], $options);
-            if ($ret === false) {
+            if (false === $ret) {
                 $handler->getHtmlErrors(false, 6);
                 // exit();
             } else {

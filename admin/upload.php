@@ -39,7 +39,7 @@ switch ($op) {
             }
 
             $allowed_mimetypes = ['text/html'];
-            if ($rootnumber !== 3) {
+            if (3 !== $rootnumber) {
                 $allowed_mimetypes = ['image/gif', 'image/jpeg', 'image/pjpeg', 'image/x-png', 'image/png'];
             }
             $ret = wfp_uploader($allowed_mimetypes, $uploadfile, xoops_getenv('PHP_SELF'), 1, $uploadpath);

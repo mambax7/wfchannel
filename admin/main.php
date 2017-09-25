@@ -177,7 +177,7 @@ switch ($op) {
         $nav['search'] = wfp_Request::doRequest($_REQUEST, 'search', '', 'textbox');
         $nav['active'] = wfp_Request::doRequest($_REQUEST, 'active', 0, 'int');
         $nav['andor']  = wfp_Request::doRequest($_REQUEST, 'andor', 'AND', 'textbox');
-        if (strlen($nav['date']) !== 10) {
+        if (10 !== strlen($nav['date'])) {
             $nav['date'] = strtotime($nav['date']);
         }
         foreach ($nav as $k => $v) {

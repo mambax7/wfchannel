@@ -53,14 +53,14 @@ function wfc_CheckResource($upgrade)
     $ret = 0;
     if (!is_object($wf_resource)) {
         $ret = 1;
-    } elseif ($wf_resource->getVar('isactive') === 0) {
+    } elseif (0 === $wf_resource->getVar('isactive')) {
         $ret = 2;
     } elseif ($wfr_installed < $wfc_requires) {
         $ret = 3;
     }
 
-    if ($ret != 0) {
-        if ($upgrade === true) {
+    if (0 != $ret) {
+        if (true === $upgrade) {
             return false;
         } else {
             $text = '';
@@ -69,13 +69,13 @@ function wfc_CheckResource($upgrade)
             $wfc_requires = '1.04';
             switch ($ret) {
                 case 1:
-                    $text = ($xoopsUserIsAdmin === true) ? sprintf(_MD_WFC_ERROR_MISSING_MODULE, $wmodule->getVar('name'), $wfc_requires) : _MD_WFC_TECHISSUES;
+                    $text = (true === $xoopsUserIsAdmin) ? sprintf(_MD_WFC_ERROR_MISSING_MODULE, $wmodule->getVar('name'), $wfc_requires) : _MD_WFC_TECHISSUES;
                     break;
                 case 2:
-                    $text = ($xoopsUserIsAdmin === true) ? sprintf(_MD_WFC_ERROR_NOTACTIVE, $wfc_requires) : _MD_WFC_TECHISSUES;
+                    $text = (true === $xoopsUserIsAdmin) ? sprintf(_MD_WFC_ERROR_NOTACTIVE, $wfc_requires) : _MD_WFC_TECHISSUES;
                     break;
                 case 3:
-                    $text = ($xoopsUserIsAdmin === true) ? sprintf(_MD_WFC_ERROR_NOTUPDATE, $wmodule->getVar('name'), $wfc_requires) : _MD_WFC_TECHISSUES;
+                    $text = (true === $xoopsUserIsAdmin) ? sprintf(_MD_WFC_ERROR_NOTUPDATE, $wmodule->getVar('name'), $wfc_requires) : _MD_WFC_TECHISSUES;
                     break;
             } // switch
             echo $text;
@@ -83,7 +83,7 @@ function wfc_CheckResource($upgrade)
             exit();
         }
 
-        return ($isUpgrade === true) ? true : wfc_DisplayUserError();
+        return (true === $isUpgrade) ? true : wfc_DisplayUserError();
     } else {
         return true;
     }
@@ -121,7 +121,7 @@ function wfp_cleanRequestVars(&$array, $name = null, $def = null, $strict = fals
      */
     unset($array['usercookie'], $array['PHPSESSID']);
 
-    if (is_array($array) && $name == null) {
+    if (is_array($array) && null == $name) {
         $globals = [];
         foreach (array_keys($array) as $k) {
             $value = strip_tags(trim($array[$k]));
@@ -132,7 +132,7 @@ function wfp_cleanRequestVars(&$array, $name = null, $def = null, $strict = fals
             if (ctype_digit($value)) {
                 $value = (int)$value;
             } else {
-                if ($strict === true) {
+                if (true === $strict) {
                     $value = preg_replace('/\W/', '', trim($value));
                 }
                 $value = strtolower((string)$value);
@@ -152,7 +152,7 @@ function wfp_cleanRequestVars(&$array, $name = null, $def = null, $strict = fals
     if (ctype_digit($value)) {
         $value = (int)$value;
     } else {
-        if ($strict === true) {
+        if (true === $strict) {
             $value = preg_replace('/\W/', '', trim($value));
         }
         $value = strtolower((string)$value);

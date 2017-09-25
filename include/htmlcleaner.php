@@ -46,18 +46,18 @@ class HtmlCleanerTag
     public function __construct($str)
     {
         $this->nodeType = HTML_CLEANER_NODE_NODETYPE_TEXT;
-        if ($str[0] === '<') {
+        if ('<' === $str[0]) {
             $this->nodeType = HTML_CLEANER_NODE_NODETYPE_NODE;
         }
 
-        if ((strlen($str) > 1) && ($str[1] === '?' || $str[1] === '!')) {
+        if ((strlen($str) > 1) && ('?' === $str[1] || '!' === $str[1])) {
             $this->nodeType = HTML_CLEANER_NODE_NODETYPE_SPECIAL;
         }
 
-        if ($this->nodeType == HTML_CLEANER_NODE_NODETYPE_NODE) {
+        if (HTML_CLEANER_NODE_NODETYPE_NODE == $this->nodeType) {
             $this->parseFromString($str);
-        } elseif ($this->nodeType == HTML_CLEANER_NODE_NODETYPE_TEXT
-                  || $this->nodeType == HTML_CLEANER_NODE_NODETYPE_SPECIAL) {
+        } elseif (HTML_CLEANER_NODE_NODETYPE_TEXT == $this->nodeType
+                  || HTML_CLEANER_NODE_NODETYPE_SPECIAL == $this->nodeType) {
             $this->nodeValue = $str;
         }
     }
@@ -70,14 +70,14 @@ class HtmlCleanerTag
         $str    = str_replace("\n", ' ', $str);
         $offset = 1;
         $endset = strlen($str) - 2;
-        if ($str[0] !== '<' || $str[strlen($str) - 1] !== '>') {
+        if ('<' !== $str[0] || '>' !== $str[strlen($str) - 1]) {
             trigger_error('tag syntax error', E_USER_ERROR);
         }
-        if ($str[strlen($str) - 2] === '/') {
-            $endset             -= 1;
+        if ('/' === $str[strlen($str) - 2]) {
+            --$endset;
             $this->closingStyle = HTML_CLEANER_NODE_CLOSINGSTYLE_XHTMLSINGLE;
         }
-        if ($str[1] === '/') {
+        if ('/' === $str[1]) {
             $offset         = 2;
             $this->nodeType = HTML_CLEANER_NODE_NODETYPE_CLOSINGNODE;
         }
@@ -109,18 +109,18 @@ class HtmlCleanerTag
                 $_value = '';
                 $_state = 0; // parse from here
             }
-            if ($_state == 0) { // state 0 : looking for name
+            if (0 == $_state) { // state 0 : looking for name
                 if (preg_match('/([a-zA-Z]{1})/', $chr)) {
                     $_name  = $chr;
                     $_state = 1;
                 }
-            } elseif ($_state == 1) { // state 1 : looking for equal
+            } elseif (1 == $_state) { // state 1 : looking for equal
                 if (preg_match('/([a-zA-Z]{1})/', $chr)) {
                     $_name .= $chr;
-                } elseif ($chr === '=') {
+                } elseif ('=' === $chr) {
                     $_state = 2;
                 }
-            } elseif ($_state == 2) { // state 2 : looking for quote
+            } elseif (2 == $_state) { // state 2 : looking for quote
                 if (preg_match("/([\'\"]{1})/", $chr)) {
                     $_quote = $chr;
                     $_value = '';
@@ -130,8 +130,8 @@ class HtmlCleanerTag
                     $_value = $chr;
                     $_state = 3;
                 }
-            } elseif ($_state == 3) { // state 3 : looking for endquote
-                if ($_quote != '') {
+            } elseif (3 == $_state) { // state 3 : looking for endquote
+                if ('' != $_quote) {
                     if ($chr == $_quote) {
                         // end of attribute
                         $return[strtolower($_name)] = $_value;
@@ -151,7 +151,7 @@ class HtmlCleanerTag
             }
             ++$i;
         }
-        if ($_value != '') {
+        if ('' != $_value) {
             $return[strtolower($_name)] = $_value;
         }
 
@@ -163,19 +163,19 @@ class HtmlCleanerTag
      */
     public function toString()
     {
-        if ($this->nodeType == HTML_CLEANER_NODE_NODETYPE_TEXT
-            || $this->nodeType == HTML_CLEANER_NODE_NODETYPE_SPECIAL) {
+        if (HTML_CLEANER_NODE_NODETYPE_TEXT == $this->nodeType
+            || HTML_CLEANER_NODE_NODETYPE_SPECIAL == $this->nodeType) {
             return $this->nodeValue;
         }
-        if ($this->nodeType == HTML_CLEANER_NODE_NODETYPE_NODE) {
+        if (HTML_CLEANER_NODE_NODETYPE_NODE == $this->nodeType) {
             $str = '<' . $this->nodeName;
-        } elseif ($this->nodeType == HTML_CLEANER_NODE_NODETYPE_CLOSINGNODE) {
+        } elseif (HTML_CLEANER_NODE_NODETYPE_CLOSINGNODE == $this->nodeType) {
             return '</' . $this->nodeName . ">\n";
         }
         foreach ($this->attributes as $attkey => $attvalue) {
-            $str .= ' ' . $attkey . "=\"" . $attvalue . "\"";
+            $str .= ' ' . $attkey . '="' . $attvalue . '"';
         }
-        if ($this->closingStyle == HTML_CLEANER_NODE_CLOSINGSTYLE_XHTMLSINGLE) {
+        if (HTML_CLEANER_NODE_CLOSINGSTYLE_XHTMLSINGLE == $this->closingStyle) {
             $str .= '>';
         } else {
             $str .= '>';
@@ -215,14 +215,14 @@ class HtmlCleaner
                 $_buffer = '';
                 $_state  = 0;
             }
-            if ($_state == 0) { // state 0 : looking for <
-                if ($chr === '<') {
-                    if (($i + 3 < $str_len) && $str[$i + 1] === '!' && $str[$i + 2] == '-' && $str[$i + 3] == '-') {
+            if (0 == $_state) { // state 0 : looking for <
+                if ('<' === $chr) {
+                    if (($i + 3 < $str_len) && '!' === $str[$i + 1] && '-' == $str[$i + 2] && '-' == $str[$i + 3]) {
                         // comment
                         $_state = 2;
                     } else {
                         // start buffering
-                        if ($_buffer != '') {
+                        if ('' != $_buffer) {
                             // store part
                             array_push($parts, new HtmlCleanerTag($_buffer));
                         }
@@ -232,14 +232,14 @@ class HtmlCleaner
                 } else {
                     $_buffer .= $chr;
                 }
-            } elseif ($_state == 1) { // state 1 : in tag looking for >
+            } elseif (1 == $_state) { // state 1 : in tag looking for >
                 $_buffer .= $chr;
-                if ($chr === '>') {
+                if ('>' === $chr) {
                     array_push($parts, new HtmlCleanerTag($_buffer));
                     $_state = -1;
                 }
-            } elseif ($_state == 2) { // state 2 : in comment looking for -->
-                if ($str[$i - 2] == '-' && $str[$i - 1] == '-' && $str[$i] === '>') {
+            } elseif (2 == $_state) { // state 2 : in comment looking for -->
+                if ('-' == $str[$i - 2] && '-' == $str[$i - 1] && '>' === $str[$i]) {
                     $_state = -1;
                 }
             }
@@ -258,22 +258,22 @@ class HtmlCleaner
     public function cleanup($body)
     {
         $return = '';
-        foreach (HtmlCleaner::dessicate($body) as $part) {
+        foreach (self::dessicate($body) as $part) {
             if (isset($part->attributes['style'])) {
                 unset($part->attributes['style']);
             }
             if (isset($part->attributes['class'])) {
                 unset($part->attributes['class']);
             }
-            if (false === strpos($part->nodeValue, '<?xml:namespace') && $part->nodeName !== 'span'
-                && $part->nodeName !== 'font'
-                && $part->nodeName !== 'o'
-                && $part->nodeName !== 'script'
-                && $part->nodeName !== 'style'
-                && $part->nodeName !== 'object'
-                && $part->nodeName !== 'iframe'
-                && $part->nodeName !== 'applet'
-                && $part->nodeName !== 'meta') {
+            if (false === strpos($part->nodeValue, '<?xml:namespace') && 'span' !== $part->nodeName
+                && 'font' !== $part->nodeName
+                && 'o' !== $part->nodeName
+                && 'script' !== $part->nodeName
+                && 'style' !== $part->nodeName
+                && 'object' !== $part->nodeName
+                && 'iframe' !== $part->nodeName
+                && 'applet' !== $part->nodeName
+                && 'meta' !== $part->nodeName) {
                 $return .= $part->toString();
             }
         }

@@ -83,7 +83,7 @@ class wfc_ReferHandler extends wfp_ObjectHandler
      */
     public function generateHash($plainText, $salt = null)
     {
-        if ($salt === null) {
+        if (null === $salt) {
             $salt = substr(md5(uniqid(mt_rand(), true)), 0, SALT_LENGTH);
         } else {
             $salt = substr($salt, 0, SALT_LENGTH);
@@ -173,7 +173,7 @@ class wfc_ReferHandler extends wfp_ObjectHandler
         require_once XOOPS_ROOT_PATH . '/header.php';
         $ret    = '<h3>' . _MD_WFC_ERRORS . '</h3>';
         $argues = func_get_args();
-        if (func_num_args() == 1) {
+        if (1 == func_num_args()) {
             $ret .= $argues['0'];
         }
         $ret .= '<div style="padding-top: 12px;"><a href=\'javascript:history.go(-1)\'>[ ' . _MD_WFC_GOBACKBUTTON . ' ]</a></div>';

@@ -251,7 +251,7 @@ $form->addElement($wfc_related, false);
  */
 if (wfp_tag_module_included()) {
     require_once XOOPS_ROOT_PATH . '/modules/tag/include/formtag.php';
-    $item_tag = new XoopsFormTag('item_tag', 60, 255, $this->getVar('wfc_cid'), 0);
+    $item_tag = new TagFormTag('item_tag', 60, 255, $this->getVar('wfc_cid'), 0);
     $item_tag->setDescription(_AM_EWFC_METATITLE_DSC);
     $form->addElement($item_tag);
 }

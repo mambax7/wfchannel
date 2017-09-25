@@ -13,7 +13,7 @@
 
 function wfchannel_notify_iteminfo($category, $item_id)
 {
-    if (empty($GLOBALS['xoopsModule']) || $GLOBALS['xoopsModule']->getVar('dirname') !== 'wfchannel') {
+    if (empty($GLOBALS['xoopsModule']) || 'wfchannel' !== $GLOBALS['xoopsModule']->getVar('dirname')) {
         /** @var XoopsModuleHandler $moduleHandler */
         $moduleHandler = xoops_getHandler('module');
         $module        = $moduleHandler->getByDirname('wfchannel');

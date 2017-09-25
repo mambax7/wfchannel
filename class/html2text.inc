@@ -57,7 +57,7 @@ class Html2Text
     {
         $this->iHtmlParser = new HtmlParser($this->iHtmlText);
         $wholeText         = '';
-        while (($line = $this->getLine()) !== false) {
+        while (false !== ($line = $this->getLine())) {
             $wholeText .= ($line . "\r\n");
         }
 
@@ -77,8 +77,8 @@ class Html2Text
                 return $retvalue;
             }
             $word = $this->getWord();
-            if ($word === false) {
-                if ($this->iCurrentLine === '') {
+            if (false === $word) {
+                if ('' === $this->iCurrentLine) {
                     break;
                 }
                 $retvalue           = $this->iCurrentLine;
@@ -132,13 +132,13 @@ class Html2Text
         if ($word === $this->TOKEN_AFTERLI) {
             $toAdd = '';
         }
-        if ($prevLine !== '') {
+        if ('' !== $prevLine) {
             $prevLine .= ' ';
         } else {
             $prevLine = $this->getIndentation($word === $this->TOKEN_AFTERLI);
         }
         $candidateLine = $prevLine . $toAdd;
-        if (strlen($candidateLine) > $this->iMaxColumns && $prevLine !== '') {
+        if (strlen($candidateLine) > $this->iMaxColumns && '' !== $prevLine) {
             return false;
         }
         $this->iCurrentLine = $candidateLine;
@@ -152,7 +152,7 @@ class Html2Text
     public function getWord()
     {
         while (true) {
-            if ($this->iHtmlParser->iNodeType === NODE_TYPE_TEXT) {
+            if (NODE_TYPE_TEXT === $this->iHtmlParser->iNodeType) {
                 if (!$this->iInText) {
                     $words                   = $this->splitWords($this->iHtmlParser->iNodeValue);
                     $this->iCurrentWordArray = $words;
@@ -166,46 +166,46 @@ class Html2Text
                 } else {
                     $this->iInText = false;
                 }
-            } elseif ($this->iHtmlParser->iNodeType === NODE_TYPE_ELEMENT) {
-                if (strcasecmp($this->iHtmlParser->iNodeName, 'br') === 0) {
+            } elseif (NODE_TYPE_ELEMENT === $this->iHtmlParser->iNodeType) {
+                if (0 === strcasecmp($this->iHtmlParser->iNodeName, 'br')) {
                     $this->iHtmlParser->parse();
                     $this->iCurrentWord = $this->TOKEN_BR;
 
                     return $this->iCurrentWord;
-                } elseif (strcasecmp($this->iHtmlParser->iNodeName, 'p') === 0) {
+                } elseif (0 === strcasecmp($this->iHtmlParser->iNodeName, 'p')) {
                     $this->iHtmlParser->parse();
                     $this->iCurrentWord = $this->TOKEN_P;
 
                     return $this->iCurrentWord;
-                } elseif (strcasecmp($this->iHtmlParser->iNodeName, 'script') === 0) {
+                } elseif (0 === strcasecmp($this->iHtmlParser->iNodeName, 'script')) {
                     $this->iHtmlParser->parse();
                     $this->iCurrentWord = '';
                     $this->iInScript    = true;
 
                     return $this->iCurrentWord;
-                } elseif (strcasecmp($this->iHtmlParser->iNodeName, 'ul') === 0
-                           || strcasecmp($this->iHtmlParser->iNodeName, 'ol') == 0
+                } elseif (0 === strcasecmp($this->iHtmlParser->iNodeName, 'ul')
+                          || 0 == strcasecmp($this->iHtmlParser->iNodeName, 'ol')
                 ) {
                     $this->iHtmlParser->parse();
                     $this->iCurrentWord = $this->TOKEN_UL;
                     $this->iListLevel++;
 
                     return $this->iCurrentWord;
-                } elseif (strcasecmp($this->iHtmlParser->iNodeName, 'li') === 0) {
+                } elseif (0 === strcasecmp($this->iHtmlParser->iNodeName, 'li')) {
                     $this->iHtmlParser->parse();
                     $this->iCurrentWord = $this->TOKEN_LI;
 
                     return $this->iCurrentWord;
                 }
-            } elseif ($this->iHtmlParser->iNodeType === NODE_TYPE_ENDELEMENT) {
-                if (strcasecmp($this->iHtmlParser->iNodeName, 'script') === 0) {
+            } elseif (NODE_TYPE_ENDELEMENT === $this->iHtmlParser->iNodeType) {
+                if (0 === strcasecmp($this->iHtmlParser->iNodeName, 'script')) {
                     $this->iHtmlParser->parse();
                     $this->iCurrentWord = '';
                     $this->iInScript    = false;
 
                     return $this->iCurrentWord;
-                } elseif (strcasecmp($this->iHtmlParser->iNodeName, 'ul') === 0
-                           || strcasecmp($this->iHtmlParser->iNodeName, 'ol') === 0
+                } elseif (0 === strcasecmp($this->iHtmlParser->iNodeName, 'ul')
+                          || 0 === strcasecmp($this->iHtmlParser->iNodeName, 'ol')
                 ) {
                     $this->iHtmlParser->parse();
                     $this->iCurrentWord = $this->TOKEN_ENDUL;

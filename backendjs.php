@@ -22,13 +22,13 @@ if ($fd and (time() - filemtime($filename) < $timespan)) {
         $fd   = fopen($filename, 'w+b');
         $temp = "<script language='Javascript'>";
         $temp .= "document.write('<div class=\"rss_title\">";
-        $temp .= "<a href=\"" . XOOPS_URL . "\">" . $xoopsConfig['sitename'] . "</a> News<br></div>');\n";
+        $temp .= '<a href="' . XOOPS_URL . '">' . $xoopsConfig['sitename'] . "</a> News<br></div>');\n";
 
         while (false !== ($myrow = $xoopsDB->fetchArray($result))) {
             $myrow = str_replace('(', '-', $myrow);
             $myrow = str_replace(')', '-', $myrow);
             $myrow = str_replace("'", '', $myrow);
-            $temp  .= "document.write('<LI><span class=\"rss_body\"><A HREF=\"" . XOOPS_URL . '/modules/news/article.php?storyid=' . $myrow['storyid'] . "\" target=blank>";
+            $temp  .= "document.write('<LI><span class=\"rss_body\"><A HREF=\"" . XOOPS_URL . '/modules/news/article.php?storyid=' . $myrow['storyid'] . '" target=blank>';
             $temp  .= $myrow['title'] . "</a></span><br>');\n";
         }
         $t    = formatTimestamp(time(), 'm', '' . $xoopsConfig['server_TZ'] . '');

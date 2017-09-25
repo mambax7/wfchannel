@@ -183,10 +183,10 @@ if ($oldversion < 200) {
     if ($obj['count'] > 0) {
         foreach ($obj['list'] as $objs) {
             $ret             = [];
-            $ret['dohtml']   = ($objs->getVar('dohtml') == 0) ? 1 : 0;
-            $ret['dosmiley'] = ($objs->getVar('dohtml') == 0) ? 1 : 0;
-            $ret['doxcode']  = ($objs->getVar('dohtml') == 0) ? 1 : 0;
-            $ret['dobr']     = ($objs->getVar('dohtml') == 0) ? 1 : 0;
+            $ret['dohtml']   = (0 == $objs->getVar('dohtml')) ? 1 : 0;
+            $ret['dosmiley'] = (0 == $objs->getVar('dohtml')) ? 1 : 0;
+            $ret['doxcode']  = (0 == $objs->getVar('dohtml')) ? 1 : 0;
+            $ret['dobr']     = (0 == $objs->getVar('dohtml')) ? 1 : 0;
             $new_obj         = $pageHandler->get($objs->getVar('wfc_cid'));
             $new_obj->setVars($ret);
             @$pageHandler->insert($new_obj, false);
