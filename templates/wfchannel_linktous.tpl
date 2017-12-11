@@ -97,7 +97,9 @@
             </div>
             <!--<div class="displayjava"><{$smarty.const._MD_WFC_DISPLAYJSNEWSRSSLINK}></div>-->
             <div class="codeText"><{$smarty.const._MD_WFC_DISPLAYSCRIPT}></div>
-            <div class="codeTextArea"><textarea name='backend' cols='70' rows='4'>&lt;script type=&quot;text/javascript&quot; src=&quot;&lt;{$xoops_url}&gt;/modules/&lt;{$xoops_dirname}&gt;/backendjs.php&quot;&gt;</textarea>
+            <div class="codeTextArea"><label>
+                    <textarea name='backend' cols='70' rows='4'>&lt;script type=&quot;text/javascript&quot; src=&quot;&lt;{$xoops_url}&gt;/modules/&lt;{$xoops_dirname}&gt;/backendjs.php&quot;&gt;</textarea>
+                </label>
             </div>
         <{/if}>
     </div>

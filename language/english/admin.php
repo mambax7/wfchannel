@@ -31,9 +31,9 @@ define('_AM_WFC_MAINAREA_EDIT_DSC', 'Page Edit: You can create or edit a page fr
 define('_AM_WFC_REFERAREA', 'Refer Management');
 define('_AM_WFC_REFERAREA_DSC', 'Manage all your Refer page from this area.');
 define('_AM_WFC_REFERSAREA', 'Refers Management');
-define('_AM_WFC_REFERSAREA_DSC', 'Manage all refers made from your website. Select a date via the calender to view all refers for that date or leave blank to view all.');
+define('_AM_WFC_REFERSAREA_DSC', 'Manage all refers made from your website. Select a date via the calendar to view all refers for that date or leave blank to view all.');
 define('_AM_WFC_LINKAREA', 'Link Management');
-define('_AM_WFC_LINKAREA_DSC', 'Manage all your Link to us page from this area.');
+define('_AM_WFC_LINKAREA_DSC', 'Manage all your "Link to us" page from this area.');
 define('_AM_WFC_PERMISSIONAREA', 'Permission Management');
 define('_AM_WFC_UPLOADAREA', 'Upload Management');
 define('_AM_WFC_UPLOADAREA_DSC', 'Use this area to upload images, files or anything you wish to display.');

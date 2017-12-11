@@ -1,5 +1,5 @@
 <?php
-// $Id: class.refer.php 10055 2012-08-11 12:46:10Z beckmi $
+
 // ------------------------------------------------------------------------ //
 // Xoops - PHP Content Management System                                //
 // Copyright (c) 2007 Xoops                                         //

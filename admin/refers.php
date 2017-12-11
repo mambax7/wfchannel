@@ -100,6 +100,11 @@ switch ($op) {
         }
         // HTML output
         xoops_cp_header();
+
+    /** @var Xmf\Module\Admin $adminObject */
+    $adminObject = \Xmf\Module\Admin::getInstance();
+    $adminObject->displayNavigation(basename(__FILE__));
+
         $menuHandler->addSubHeader(_AM_WFC_REFERSAREA_DSC);
         //        $menuHandler->render($menu);
         $handler->headingHtml($_obj['count']);

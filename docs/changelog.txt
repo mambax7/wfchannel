@@ -132,7 +132,7 @@
     - Removed: Removed the Cache folder as it is no longer required.
     - Added: Main menu style block to blocks list.
     - Added: View icon in Page list in admin area, user can now view any page via this method.
-    - Added: DHTML calender within the refers admin area. Users can view refers sent by date rather than one great big list.
+    - Added: DHTML calendar within the refers admin area. Users can view refers sent by date rather than one great big list.
     - Added: Added microbutton to 'Link to Us' page.
     - Added: Added the ability to add group permission while editing page.
     - Added: Added pull down menu for page navigation, this allows you to dynamically change the amount of pages/refers

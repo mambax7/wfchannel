@@ -1,5 +1,5 @@
 <?php
-// $Id: footer.php 9326 2012-04-14 21:53:58Z beckmi $
+
 // ------------------------------------------------------------------------ //
 // XOOPS - PHP Content Management System                      //
 // Copyright (c) 2000 XOOPS.org                           //

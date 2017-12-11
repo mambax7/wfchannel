@@ -1,5 +1,5 @@
 <?php
-// $Id: functions.php 10055 2012-08-11 12:46:10Z beckmi $
+
 // ------------------------------------------------------------------------ //
 // WF-Channel - WF-Projects                                                 //
 // Copyright (c) 2007 WF-Channel                                            //

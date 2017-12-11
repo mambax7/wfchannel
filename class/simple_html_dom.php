@@ -718,7 +718,7 @@ class simple_html_dom_node
             return;
         }
 
-        $end = (!empty($this->_[HDOM_INFO_END])) ? $this->_[HDOM_INFO_END] : 0;
+        $end = !empty($this->_[HDOM_INFO_END]) ? $this->_[HDOM_INFO_END] : 0;
         if (0 === $end) {
             $parent = $this->parent;
             while (!isset($parent->_[HDOM_INFO_END]) && null !== $parent) {

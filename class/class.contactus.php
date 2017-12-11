@@ -1,5 +1,5 @@
 <?php
-// $Id: class.contactus.php 8179 2011-11-07 00:54:10Z beckmi $
+
 // ------------------------------------------------------------------------ //
 // Xoops - PHP Content Management System                                //
 // Copyright (c) 2007 Xoops                                         //

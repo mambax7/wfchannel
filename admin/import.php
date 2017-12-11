@@ -100,6 +100,12 @@ switch ($op) {
     case 'default':
     default:
         xoops_cp_header();
+
+    /** @var Xmf\Module\Admin $adminObject */
+    $adminObject = \Xmf\Module\Admin::getInstance();
+    $adminObject->displayNavigation(basename(__FILE__));
+
+
         $menuHandler->addSubHeader(_AM_WFC_IMPORT_DSC);
         //        $menuHandler->render(6);
         $dummyHandler = $referHandler = wfp_getHandler('dummy');

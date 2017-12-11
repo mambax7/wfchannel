@@ -21,6 +21,11 @@ switch ($op) {
     case 'default':
     default:
         xoops_cp_header();
+
+    /** @var Xmf\Module\Admin $adminObject */
+    $adminObject = \Xmf\Module\Admin::getInstance();
+    $adminObject->displayNavigation(basename(__FILE__));
+
         $menuHandler->addHeader(_AM_WFC_PERMISSIONAREA);
         $menuHandler->addSubHeader(_AM_WFC_REFERAREA_DSC);
         //        $menuHandler->render(4);
@@ -32,6 +37,7 @@ switch ($op) {
         ob_end_flush();
         break;
 }
+
 xoosla_cp_footer();
 
 /**

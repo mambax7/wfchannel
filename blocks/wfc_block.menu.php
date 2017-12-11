@@ -1,5 +1,5 @@
 <?php
-// $Id: wfc_block.menu.php 8179 2011-11-07 00:54:10Z beckmi $
+
 // ------------------------------------------------------------------------ //
 // WF-Channel - WF-Projects                                                 //
 // Copyright (c) 2007 WF-Channel                                            //

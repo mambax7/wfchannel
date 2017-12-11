@@ -44,10 +44,12 @@ switch ($op) {
             }
             $ret = wfp_uploader($allowed_mimetypes, $uploadfile, xoops_getenv('PHP_SELF'), 1, $uploadpath);
             xoops_cp_header();
+
             //            $menuHandler->render(5);
             echo $ret;
         } else {
             xoops_cp_header();
+
             //            $menuHandler->render(5);
             echo _AM_WFP_FILEDOESNOTEXIST;
         }
@@ -93,6 +95,11 @@ switch ($op) {
     case 'default':
     default:
         xoops_cp_header();
+
+        /** @var Xmf\Module\Admin $adminObject */
+        $adminObject = \Xmf\Module\Admin::getInstance();
+        $adminObject->displayNavigation(basename(__FILE__));
+
         $menuHandler->addSubHeader(_AM_WFC_UPLOADAREA_DSC);
         //        $menuHandler->render(5);
         $dummyHandler = $referHandler = wfp_getHandler('dummy');

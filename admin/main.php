@@ -104,7 +104,7 @@ switch ($op) {
                 break;
             case 1:
                 // Published
-                $time = (!empty($_REQUEST['wfc_publish'])) ? $_REQUEST['wfc_publish'] : time();
+                $time = !empty($_REQUEST['wfc_publish']) ? $_REQUEST['wfc_publish'] : time();
                 $do_callback->setValueTime('wfc_publish', $time);
                 $do_callback->setValueTime('wfc_expired', '');
                 break;
@@ -115,7 +115,7 @@ switch ($op) {
                 break;
             case 3:
                 // expired
-                $time = (!empty($_REQUEST['wfc_publish'])) ? $_REQUEST['wfc_publish'] : time();
+                $time = !empty($_REQUEST['wfc_publish']) ? $_REQUEST['wfc_publish'] : time();
                 $do_callback->setValueTime('wfc_publish', $time);
                 $do_callback->setValueTime('wfc_expired', time());
                 break;
@@ -193,16 +193,16 @@ switch ($op) {
         }
 
         $tlist = wfp_getClass('tlist');
-        $tlist->AddFormStart('post', 'main.php', 'pages');
-        $tlist->AddHeader('wfc_cid', '5', 'center', false);
-        $tlist->AddHeader('wfc_title', '25%', 'left', true);
-        $tlist->AddHeader('wfc_counter', '', 'center', true);
-        $tlist->AddHeader('wfc_mainmenu', '', 'center', true);
-        $tlist->AddHeader('wfc_publish', '', 'center', true);
-        $tlist->AddHeader('wfc_expired', '', 'center', true);
-        $tlist->AddHeader('wfc_weight', '', 'center', true);
-        $tlist->AddHeader('', '', 'center', 2);
-        $tlist->AddHeader('action', '', 'center', false);
+        $tlist->addFormStart('post', 'main.php', 'pages');
+        $tlist->addHeader('wfc_cid', '5', 'center', false);
+        $tlist->addHeader('wfc_title', '25%', 'left', true);
+        $tlist->addHeader('wfc_counter', '', 'center', true);
+        $tlist->addHeader('wfc_mainmenu', '', 'center', true);
+        $tlist->addHeader('wfc_publish', '', 'center', true);
+        $tlist->addHeader('wfc_expired', '', 'center', true);
+        $tlist->addHeader('wfc_weight', '', 'center', true);
+        $tlist->addHeader('', '', 'center', 2);
+        $tlist->addHeader('action', '', 'center', false);
         $tlist->addFooter();
         $button = ['../main.php' => 'view', 'edit', 'delete', 'duplicate'];
         $_obj   = $handler->getObj($nav, true);
@@ -223,6 +223,12 @@ switch ($op) {
         }
         // Html Output here
         xoops_cp_header();
+
+    /** @var Xmf\Module\Admin $adminObject */
+    $adminObject = \Xmf\Module\Admin::getInstance();
+    $adminObject->displayNavigation(basename(__FILE__));
+
+
         $menuHandler->addSubHeader(_AM_WFC_MAINAREA_DSC);
         //        $menuHandler->render(0);
         $handler->headingHtml($_obj['count']);

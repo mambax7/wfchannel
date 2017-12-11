@@ -42,6 +42,8 @@ define('_MI_WFC_ADMENU5', 'Permission');
 define('_MI_WFC_ADMENU6', 'Upload');
 define('_MI_WFC_ADMENU7', 'Import');
 define('_MI_WFC_ADMENU8', 'Refers Mgmt');
+define('_MI_WFC_HOME', 'Home');
+define('_MI_WFC_ABOUT', 'About');
 // Blocks
 define('_MI_WFC_BLOCK1', 'WF-Channel Recent Block');
 define('_MI_WFC_BLOCK1_DESC', 'Shows recently added donwload files');

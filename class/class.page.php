@@ -293,13 +293,14 @@ class wfc_PageHandler extends wfp_ObjectHandler
 
     /**
      * wfc_PageHandler::getDefaultPage()
-     * @return string
+     * @return array|string
      */
     public function &getDefaultPage()
     {
         $ret = '';
         $obj = $this->get(0, true, 'wfc_default');
         if (is_object($obj)) {
+            $ret = [];
             $ret['id']    = $_SESSION['wfchanneldefault']['id'] = $obj->getVar('wfc_cid');
             $ret['title'] = $_SESSION['wfchanneldefault']['title'] = $obj->getVar('wfc_title');
         }
@@ -311,9 +312,9 @@ class wfc_PageHandler extends wfp_ObjectHandler
      * wfc_PageHandler::getObj()
      * @return array|bool
      */
-    public function &getObj()
+    public function getObj()
     {
-        $myts = MyTextSanitizer::getInstance();
+        $myts = \MyTextSanitizer::getInstance();
 
         $obj = [];
         if (2 === func_num_args()) {
@@ -383,7 +384,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
      * @param $obj
      * @return array|mixed
      */
-    public function &getRelated(&$obj)
+    public function &getRelated($obj)
     {
         xoops_load('xoopscache');
         $ret = XoopsCache::read('wfc_related' . md5($obj->getVar('wfc_cid')));
