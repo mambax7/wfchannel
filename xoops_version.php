@@ -11,6 +11,8 @@
 // Project: Xoops Project                                               //
 // -------------------------------------------------------------------------//
 
+require_once __DIR__ . '/preloads/autoloader.php';
+
 $moduleDirName = basename(__DIR__);
 
 // ------------------- Informations ------------------- //

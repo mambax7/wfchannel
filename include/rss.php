@@ -20,7 +20,7 @@ if (function_exists('mb_http_output')) {
 
 include_once XOOPS_ROOT_PATH . '/class/template.php';
 $tpl = new XoopsTpl();
-$tpl->xoops_setCaching(0);
+$tpl->caching=(0);
 $tpl->xoops_setCacheTime(0);
 if (!$tpl->is_cached('db:system_rss.tpl', 'wfc|feed|rss')) {
     xoops_load('XoopsLocal');
