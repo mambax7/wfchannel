@@ -1,8 +1,8 @@
-<?php namespace Xoopsmodules\wfchannel;
+<?php namespace XoopsModules\Wfchannel;
 
 use Xmf\Request;
-use Xoopsmodules\wfchannel;
-use Xoopsmodules\wfchannel\common;
+use XoopsModules\Wfchannel;
+use XoopsModules\Wfchannel\Common;
 
 /**
  * Class Utility

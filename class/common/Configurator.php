@@ -1,4 +1,4 @@
-<?php namespace Xoopsmodules\wfchannel;
+<?php namespace XoopsModules\Wfchannel;
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
