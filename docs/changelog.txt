@@ -1,4 +1,4 @@
-<h5>2.07 Beta 2  [NOT RELEASED]</h5>  Dev: Xoops 2.5.9, PHP 7.2.0
+<h5>2.07 Beta 2  [NOT RELEASED]</h5>  Dev: Xoops 2.5.9, PHP 7.2.3
 <hr>
 - XOOPS 2.5.9, PHP 7 (mamba)
 - Converted to XOOPS 2.5.8 Admin GUI (mamba)
@@ -39,7 +39,7 @@
     - Removed: Removed code for older editors.
     - Removed: Removed code  now considered depreciated from Xoops 2.3.
     - Changed: Removed Xoops Captcha and repalaced it with the old WF-Channel version. This was due to a number of issues with the Xoops Version.
-    - Changed: Used many of the new XoopsForms and elements that were added in Xoops 2.3.
+    - Changed: Used many of the new \XoopsForms and elements that were added in Xoops 2.3.
     - Changed: Updated to work on PHP 2.3. The creation of Articles and such should now be possible.
     - Changed: Changed Captcha to now use Xoops Captcha.
     - Changed: Updated some language defines and corrected spelling errors.

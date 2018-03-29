@@ -10,7 +10,7 @@
 // URL: http:www.Xoops.com                                              //
 // Project: Xoops Project                                               //
 // -------------------------------------------------------------------------//
-defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
+defined('XOOPS_ROOT_PATH') || die('You do not have permission to access this file!');
 include __DIR__ . '/header.php';
 $op = wfp_cleanRequestVars($_REQUEST, 'op', 'default', XOBJ_DTYPE_TXTBOX);
 switch ($op) {

@@ -323,7 +323,7 @@ class simple_html_dom_node
      */
     public function children($idx = -1)
     {
-        if ($idx === -1) {
+        if (-1 === $idx) {
             return $this->children;
         }
         if (isset($this->children[$idx])) {
@@ -654,7 +654,7 @@ class simple_html_dom_node
             for ($l = 0; $l < $levle; ++$l) {
                 $ret = [];
                 foreach ($head as $k => $v) {
-                    $n = ($k === -1) ? $this->dom->root : $this->dom->nodes[$k];
+                    $n = (-1 === $k) ? $this->dom->root : $this->dom->nodes[$k];
                     //PaperG - Pass this optional parameter on to the seek function.
                     $n->seek($selectors[$c][$l], $ret, $lowercase);
                 }
@@ -1145,7 +1145,7 @@ class simple_html_dom_node
             }
 
             // If there is a width in the style attributes:
-            if (isset($attributes['width']) && $width === -1) {
+            if (isset($attributes['width']) && -1 === $width) {
                 // check that the last two characters are px (pixels)
                 if ('px' === strtolower(substr($attributes['width'], -2))) {
                     $proposed_width = substr($attributes['width'], 0, -2);
@@ -1157,7 +1157,7 @@ class simple_html_dom_node
             }
 
             // If there is a width in the style attributes:
-            if (isset($attributes['height']) && $height === -1) {
+            if (isset($attributes['height']) && -1 === $height) {
                 // check that the last two characters are px (pixels)
                 if ('px' === strtolower(substr($attributes['height'], -2))) {
                     $proposed_height = substr($attributes['height'], 0, -2);

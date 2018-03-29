@@ -7,7 +7,7 @@
  * Author: Catzwolf
  * Licence: GNU
  */
-defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
+defined('XOOPS_ROOT_PATH') || die('You do not have permission to access this file!');
 // Module Info
 // The name of this module
 define('_MI_WFC_CHANNEL', 'WF-Channel');
@@ -92,7 +92,7 @@ define('_MI_WFC_COPYRIGHT', 'Copyright Notice:');
 define('_MI_WFC_COPYRIGHT_DSC', 'Select to display a copyright notice on each page.');
 
 define('_MI_WFC_XOOPSTAGS', 'Enable Xoops Tags:');
-define('_MI_WFC_XOOPSTAGS_DSC', 'Enable Xoops Tags module (XoopsTag by DJ) intregation.');
+define('_MI_WFC_XOOPSTAGS_DSC', 'Enable Xoops Tags module (\XoopsTag by DJ) intregation.');
 
 define('_MI_WFC_PNKINKS', 'Show Previous and Next link:');
 define('_MI_WFC_PNKINKS_DSC', 'Enabling this option will display previous and next links. Those links are used to go to the previous and next page according to the publish date');

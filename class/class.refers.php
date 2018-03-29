@@ -11,7 +11,7 @@
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 wfp_getObjectHandler();
 
@@ -95,8 +95,8 @@ class wfc_RefersHandler extends wfp_ObjectHandler
      */
     public function getEmailSentCount($id = '')
     {
-        $criteria = new CriteriaCompo();
-        $criteria->add(new Criteria('wfcr_id', $id));
+        $criteria = new \CriteriaCompo();
+        $criteria->add(new \Criteria('wfcr_id', $id));
 
         $_count = $this->getCount($criteria);
 
@@ -109,8 +109,8 @@ class wfc_RefersHandler extends wfp_ObjectHandler
      */
     public function setEmailSendCount()
     {
-        $criteria = new CriteriaCompo();
-        $criteria->add(new Criteria('wfcr_id', 1));
+        $criteria = new \CriteriaCompo();
+        $criteria->add(new \Criteria('wfcr_id', 1));
         $this->updateCounter('wfcr_counter', $criteria);
     }
 
@@ -123,18 +123,18 @@ class wfc_RefersHandler extends wfp_ObjectHandler
         $obj = [];
         if (2 === func_num_args()) {
             $args     = func_get_args();
-            $criteria = new CriteriaCompo();
+            $criteria = new \CriteriaCompo();
             if (!empty($args[0]['search'])) {
                 $searchparms = $args[0]['search'];
-                $criteria->add(new Criteria('wfcr_username', "%$searchparms%", 'LIKE'), 'OR');
-                $criteria->add(new Criteria('wfcr_ip', "%$searchparms%", 'LIKE'), 'OR');
-                $criteria->add(new Criteria('wfcr_referurl', "%$searchparms%", 'LIKE'), 'OR');
+                $criteria->add(new \Criteria('wfcr_username', "%$searchparms%", 'LIKE'), 'OR');
+                $criteria->add(new \Criteria('wfcr_ip', "%$searchparms%", 'LIKE'), 'OR');
+                $criteria->add(new \Criteria('wfcr_referurl', "%$searchparms%", 'LIKE'), 'OR');
             }
             if (!empty($args[0]['date'])) {
                 $addon_date = $this->getaDate($args[0]['date']);
                 if ($addon_date['begin'] && $addon_date['end']) {
-                    $criteria->add(new Criteria('wfcr_date', $addon_date['begin'], '>='), 'AND');
-                    $criteria->add(new Criteria('wfcr_date', $addon_date['end'], '<='));
+                    $criteria->add(new \Criteria('wfcr_date', $addon_date['begin'], '>='), 'AND');
+                    $criteria->add(new \Criteria('wfcr_date', $addon_date['end'], '<='));
                 }
             }
             $obj['count'] = $this->getCount($criteria);
@@ -144,7 +144,7 @@ class wfc_RefersHandler extends wfp_ObjectHandler
                 $criteria->setStart($args[0]['start']);
                 $criteria->setLimit($args[0]['limit']);
             }
-            $obj['list'] = $this->getObjects($criteria, $args[1]);
+            $obj['list'] =& $this->getObjects($criteria, $args[1]);
         }
 
         return $obj;

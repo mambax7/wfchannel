@@ -13,7 +13,7 @@
 // -------------------------------------------------------------------------//
 use Xmf\Request;
 
-defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
+defined('XOOPS_ROOT_PATH') || die('You do not have permission to access this file!');
 
 wfp_getObjectHandler();
 
@@ -140,7 +140,7 @@ class wfc_ReferHandler extends wfp_ObjectHandler
         $xoopsMailer->assign('TITLE', _MD_WFC_MESSAGETITLE);
         $xoopsMailer->assign('SUSER', wfp_stripslashes($uname));
         $xoopsMailer->assign('RUSER', wfp_stripslashes($runame));
-        $xoopsMailer->assign('MESSAGE', htmlspecialchars(wfp_stripslashes($message)));
+        $xoopsMailer->assign('MESSAGE', htmlspecialchars(wfp_stripslashes($message), ENT_QUOTES | ENT_HTML5));
         $xoopsMailer->assign('VISIT', _MD_WFC_VISIT);
         $xoopsMailer->setToEmails(wfp_stripslashes($remail));
         $xoopsMailer->setFromEmail(wfp_stripslashes($email));

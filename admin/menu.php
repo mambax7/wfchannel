@@ -14,7 +14,7 @@
 
 use XoopsModules\Wfchannel;
 
-require_once __DIR__ . '/../class/Helper.php';
+// require_once __DIR__ . '/../class/Helper.php';
 //require_once __DIR__ . '/../include/common.php';
 $helper = Wfchannel\Helper::getInstance();
 

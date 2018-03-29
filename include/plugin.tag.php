@@ -20,7 +20,7 @@ function wfchannel_tag_iteminfo(&$items)
         return false;
     }
     $upgrade = false;
-    include_once XOOPS_ROOT_PATH . '/modules/' . basename(dirname(__DIR__)) . '/include/functions.php';
+    require_once XOOPS_ROOT_PATH . '/modules/' . basename(dirname(__DIR__)) . '/include/functions.php';
 
     $items_id = [];
     foreach (array_keys($items) as $cat_id) {
@@ -29,7 +29,7 @@ function wfchannel_tag_iteminfo(&$items)
         }
     }
     $handler   = wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
-    $items_obj = $handler->getObjects(new Criteria('wfc_cid', '(' . implode(', ', $items_id) . ')', 'IN'), true);
+    $items_obj = $handler->getObjects(new \Criteria('wfc_cid', '(' . implode(', ', $items_id) . ')', 'IN'), true);
 
     foreach (array_keys($items) as $cat_id) {
         foreach (array_keys($items[$cat_id]) as $item_id) {
@@ -57,7 +57,7 @@ function wfchannel_tag_iteminfo(&$items)
 function wfchannel_tag_synchronization($mid)
 {
     $itemHandler = xoops_getModuleHandler('pages', 'wfchannel');
-    $linkHandler = xoops_getModuleHandler('link', 'tag');
+    $linkHandler = \XoopsModules\Tag\Helper::getInstance()->getHandler('Link'); //@var \XoopsModules\Tag\Handler $tagHandler
 
     /**
      * clear tag-item links

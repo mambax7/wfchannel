@@ -89,7 +89,7 @@ switch ($op) {
             $ret                 = call_user_func([$do_callback, 'save'], $options);
             if (false === $ret) {
                 $handler->getHtmlErrors(false, 6);
-                // exit();
+            // exit();
             } else {
                 // $do_callback->setNotificationType( $wfc_cid > 0 ? 'page_modified' : 'page_new' ) ;
             }

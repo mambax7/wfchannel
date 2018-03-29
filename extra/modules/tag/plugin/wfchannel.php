@@ -11,7 +11,7 @@
  * @copyright : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license   : GNU/LGPL, see docs/license.php
  */
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * @param $items
@@ -30,7 +30,7 @@ function wfchannel_tag_iteminfo(&$items)
         }
     }
     $handler   = xoops_getModuleHandler('pages', 'wfchannel');
-    $items_obj = $handler->getObjects(new Criteria('wfc_cid', '(' . implode(', ', $items_id) . ')', 'IN'), true);
+    $items_obj = $handler->getObjects(new \Criteria('wfc_cid', '(' . implode(', ', $items_id) . ')', 'IN'), true);
 
     foreach (array_keys($items) as $cat_id) {
         foreach (array_keys($items[$cat_id]) as $item_id) {
@@ -58,7 +58,7 @@ function wfchannel_tag_iteminfo(&$items)
 function wfchannel_tag_synchronization($mid)
 {
     $itemHandler = xoops_getModuleHandler('pages', 'wfchannel');
-    $linkHandler = xoops_getModuleHandler('link', 'tag');
+    $linkHandler = \XoopsModules\Tag\Helper::getInstance()->getHandler('Link'); //@var \XoopsModules\Tag\Handler $tagHandler
 
     /* clear tag-item links */
     if ($linkHandler->mysql_major_version() >= 4) {

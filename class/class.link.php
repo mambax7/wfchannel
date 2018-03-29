@@ -11,7 +11,7 @@
 // URL: http:www.Xoops.com                                              //
 // Project: Xoops Project                                               //
 // -------------------------------------------------------------------------//
-defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
+defined('XOOPS_ROOT_PATH') || die('You do not have permission to access this file!');
 
 wfp_getObjectHandler();
 
@@ -75,7 +75,7 @@ class wfc_Link extends wfp_Object
         if ($this->getVar($value)) {
             $image = $this->getImage($value, wfp_getModuleOption('linkimages'));
             if (is_array($image) && count($image) > 0) {
-                return '<a href="' . XOOPS_URL . '" target="_blank"><img style="width: ' . $image['width'] . '; height: ' . $image['height'] . ';" src="' . $image['url'] . '" alt="' . htmlspecialchars($GLOBALS['xoopsConfig']['sitename']) . '"></a>';
+                return '<a href="' . XOOPS_URL . '" target="_blank"><img style="width: ' . $image['width'] . '; height: ' . $image['height'] . ';" src="' . $image['url'] . '" alt="' . htmlspecialchars($GLOBALS['xoopsConfig']['sitename'], ENT_QUOTES | ENT_HTML5) . '"></a>';
             }
         }
 

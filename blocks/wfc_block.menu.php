@@ -10,7 +10,7 @@
 // URL: http://catzwolf.x10hosting.com/                                     //
 // Project: WF-Projects                                                     //
 // -------------------------------------------------------------------------//
-defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
+defined('XOOPS_ROOT_PATH') || die('You do not have permission to access this file!');
 /**
  * b_wfc_menu_show()
  *
@@ -19,7 +19,7 @@ defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this fi
  */
 function b_wfc_menu_show($options)
 {
-    $db          = XoopsDatabaseFactory::getDatabaseConnection();
+    $db          = \XoopsDatabaseFactory::getDatabaseConnection();
     $user_groups = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : [0 => XOOPS_GROUP_ANONYMOUS];
 
     $sql    = 'SELECT DISTINCT c.* FROM '

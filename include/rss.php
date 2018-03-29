@@ -11,15 +11,15 @@
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 $GLOBALS['xoopsLogger']->activated = false;
 if (function_exists('mb_http_output')) {
     mb_http_output('pass');
 }
 
-include_once XOOPS_ROOT_PATH . '/class/template.php';
-$tpl = new XoopsTpl();
+require_once XOOPS_ROOT_PATH . '/class/template.php';
+$tpl = new \XoopsTpl();
 $tpl->caching=(0);
 $tpl->xoops_setCacheTime(0);
 if (!$tpl->is_cached('db:system_rss.tpl', 'wfc|feed|rss')) {

@@ -14,7 +14,7 @@
 
 use Xmf\Request;
 
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Include resource classes
@@ -147,7 +147,7 @@ class wfc_Page extends wfp_Object
 
                 $page = wfp_Request::doRequest($_REQUEST, 'page', 0, 'int');
                 $this->setVar('wfc_content', htmlspecialchars_decode($text[$page]));
-                $pagenav = new XoopsPageNav(count($text), 1, $page, 'page', 'cid=' . $this->getVar('wfc_cid'));
+                $pagenav = new \XoopsPageNav(count($text), 1, $page, 'page', 'cid=' . $this->getVar('wfc_cid'));
                 $this->setPageNav($pagenav);
             }
         }
@@ -267,25 +267,25 @@ class wfc_PageHandler extends wfp_ObjectHandler
         static $channels;
 
         if (!$channels) {
-            $criteriaPublished = new CriteriaCompo();
-            $criteriaPublished->add(new Criteria('wfc_publish', 0, '>'));
-            $criteriaPublished->add(new Criteria('wfc_publish', time(), '<='));
+            $criteriaPublished = new \CriteriaCompo();
+            $criteriaPublished->add(new \Criteria('wfc_publish', 0, '>'));
+            $criteriaPublished->add(new \Criteria('wfc_publish', time(), '<='));
 
-            $criteriaExpired = new CriteriaCompo();
-            $criteriaExpired->add(new Criteria('wfc_expired', 0, '='));
-            $criteriaExpired->add(new Criteria('wfc_expired', time(), '>'), 'OR');
+            $criteriaExpired = new \CriteriaCompo();
+            $criteriaExpired->add(new \Criteria('wfc_expired', 0, '='));
+            $criteriaExpired->add(new \Criteria('wfc_expired', time(), '>'), 'OR');
 
-            $criteria = new CriteriaCompo();
+            $criteria = new \CriteriaCompo();
             $criteria->add($criteriaPublished);
             $criteria->add($criteriaExpired);
-            $criteria->add(new Criteria('wfc_mainmenu', 1, '='), 'AND');
-            $criteria->add(new Criteria('wfc_default', 0, '='));
+            $criteria->add(new \Criteria('wfc_mainmenu', 1, '='), 'AND');
+            $criteria->add(new \Criteria('wfc_default', 0, '='));
 
             $criteria->setSort('wfc_weight');
             $criteria->setOrder('ASC');
             $criteria->setStart($start);
             $criteria->setLimit($start);
-            $channels = $this->getObjects($criteria);
+            $channels =& $this->getObjects($criteria);
         }
 
         return $channels;
@@ -319,7 +319,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
         $obj = [];
         if (2 === func_num_args()) {
             $args     = func_get_args();
-            $criteria = new CriteriaCompo();
+            $criteria = new \CriteriaCompo();
             if (!empty($args[0]['search'])) {
                 $args[0]['search'] = stripslashes($args[0]['search']);
                 if (isset($args[0]['andor']) && 'exact' !== $args[0]['andor']) {
@@ -339,30 +339,30 @@ class wfc_PageHandler extends wfp_ObjectHandler
             if (!empty($args[0]['date'])) {
                 $addon_date = $this->getaDate($args[0]['date']);
                 if ($addon_date['begin'] && $addon_date['end']) {
-                    $criteriaDate = new CriteriaCompo();
-                    $criteriaDate->add(new Criteria('wfc_publish', wfp_addslashes($addon_date['begin']), '>='));
-                    $criteriaDate->add(new Criteria('wfc_publish', wfp_addslashes($addon_date['end']), '<='));
+                    $criteriaDate = new \CriteriaCompo();
+                    $criteriaDate->add(new \Criteria('wfc_publish', wfp_addslashes($addon_date['begin']), '>='));
+                    $criteriaDate->add(new \Criteria('wfc_publish', wfp_addslashes($addon_date['end']), '<='));
                     $criteria->add($criteriaDate);
                 }
             }
             switch ((int)$args[0]['active']) {
                 case 1:
-                    // $criteria->add( new Criteria( 'wfc_publish', 1, '=' ) );
-                    $criteriaPublished = new CriteriaCompo();
-                    $criteriaPublished->add(new Criteria('wfc_publish', 0, '>'));
-                    $criteriaPublished->add(new Criteria('wfc_publish', time(), '<='));
+                    // $criteria->add( new \Criteria( 'wfc_publish', 1, '=' ) );
+                    $criteriaPublished = new \CriteriaCompo();
+                    $criteriaPublished->add(new \Criteria('wfc_publish', 0, '>'));
+                    $criteriaPublished->add(new \Criteria('wfc_publish', time(), '<='));
                     $criteria->add($criteriaPublished);
                     break;
                 case 2:
-                    $criteria->add(new Criteria('wfc_publish', 0, '='));
+                    $criteria->add(new \Criteria('wfc_publish', 0, '='));
                     break;
                 case 3:
-                    $criteriaExpired = new CriteriaCompo();
-                    $criteriaExpired->add(new Criteria('wfc_expired', time(), '>'), 'OR');
+                    $criteriaExpired = new \CriteriaCompo();
+                    $criteriaExpired->add(new \Criteria('wfc_expired', time(), '>'), 'OR');
                     $criteria->add($criteriaExpired);
                     break;
                 case 4:
-                    $criteria->add(new Criteria('wfc_active', (int)$args[0]['active'], '='));
+                    $criteria->add(new \Criteria('wfc_active', (int)$args[0]['active'], '='));
                     break;
             }
             $obj['count'] = $this->getCount($criteria);
@@ -372,7 +372,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
                 $criteria->setStart((int)$args[0]['start']);
                 $criteria->setLimit((int)$args[0]['limit']);
             }
-            $obj['list'] = $this->getObjects($criteria, $args[1]);
+            $obj['list'] =& $this->getObjects($criteria, $args[1]);
         }
 
         return $obj;
@@ -559,8 +559,8 @@ class wfc_PageHandler extends wfp_ObjectHandler
                 && 0 === $GLOBALS['xoopsModuleConfig']['allow_admin'])) {
             return false;
         } else {
-            $criteria = new CriteriaCompo();
-            $criteria->add(new Criteria('wfc_cid', $obj->getVar('wfc_cid')));
+            $criteria = new \CriteriaCompo();
+            $criteria->add(new \Criteria('wfc_cid', $obj->getVar('wfc_cid')));
             $this->updateCounter('wfc_counter', $criteria);
         }
     }
@@ -588,24 +588,24 @@ class wfc_PageHandler extends wfp_ObjectHandler
      */
     public function searchCriteria($queryarray, $andor = '', $moreChecks, &$criteria)
     {
-        $criteriaSearch = new CriteriaCompo();
+        $criteriaSearch = new \CriteriaCompo();
 
         if (isset($queryarray[0])) {
             if (true === $moreChecks) {
-                $criteriaSearch->add(new Criteria('wfc_title', "%$queryarray[0]%", 'LIKE'), 'OR');
-                $criteriaSearch->add(new Criteria('wfc_headline', "%$queryarray[0]%", 'LIKE'), 'OR');
-                $criteriaSearch->add(new Criteria('wfc_content', "%$queryarray[0]%", 'LIKE'), 'OR');
+                $criteriaSearch->add(new \Criteria('wfc_title', "%$queryarray[0]%", 'LIKE'), 'OR');
+                $criteriaSearch->add(new \Criteria('wfc_headline', "%$queryarray[0]%", 'LIKE'), 'OR');
+                $criteriaSearch->add(new \Criteria('wfc_content', "%$queryarray[0]%", 'LIKE'), 'OR');
             }
-            $criteriaSearch->add(new Criteria('wfc_related', "%$queryarray[0]%", 'LIKE'), 'OR');
+            $criteriaSearch->add(new \Criteria('wfc_related', "%$queryarray[0]%", 'LIKE'), 'OR');
         }
         if (!empty($andor)) {
             for ($i = 1, $iMax = count($queryarray); $i < $iMax; ++$i) {
                 if (true === $moreChecks) {
-                    $criteriaSearch->add(new Criteria('wfc_title', "%$queryarray[$i]%", 'LIKE'), 'OR');
-                    $criteriaSearch->add(new Criteria('wfc_headline', "%$queryarray[$i]%", 'LIKE'), 'OR');
-                    $criteriaSearch->add(new Criteria('wfc_content', "%$queryarray[$i]%", 'LIKE'), 'OR');
+                    $criteriaSearch->add(new \Criteria('wfc_title', "%$queryarray[$i]%", 'LIKE'), 'OR');
+                    $criteriaSearch->add(new \Criteria('wfc_headline', "%$queryarray[$i]%", 'LIKE'), 'OR');
+                    $criteriaSearch->add(new \Criteria('wfc_content', "%$queryarray[$i]%", 'LIKE'), 'OR');
                 }
-                $criteriaSearch->add(new Criteria('wfc_related', "%$queryarray[$i]%", 'LIKE'), 'OR');
+                $criteriaSearch->add(new \Criteria('wfc_related', "%$queryarray[$i]%", 'LIKE'), 'OR');
             }
         }
         $criteria->add($criteriaSearch);
@@ -632,26 +632,26 @@ class wfc_PageHandler extends wfp_ObjectHandler
             $andor = '';
         }
 
-        $criteria = new CriteriaCompo();
+        $criteria = new \CriteriaCompo();
         if (is_array($queryarray) && count($queryarray)) {
             $this->searchCriteria($queryarray, $andor, $moreChecks, $criteria);
-            $criteriaPublished = new CriteriaCompo();
-            $criteriaPublished->add(new Criteria('wfc_publish', 0, '>'));
-            $criteriaPublished->add(new Criteria('wfc_publish', time(), '<='));
+            $criteriaPublished = new \CriteriaCompo();
+            $criteriaPublished->add(new \Criteria('wfc_publish', 0, '>'));
+            $criteriaPublished->add(new \Criteria('wfc_publish', time(), '<='));
             $criteria->add($criteriaPublished);
 
-            $criteriaExpired = new CriteriaCompo();
-            $criteriaExpired->add(new Criteria('wfc_expired', 0, '='));
-            $criteriaExpired->add(new Criteria('wfc_expired', time(), '>'), 'OR');
+            $criteriaExpired = new \CriteriaCompo();
+            $criteriaExpired->add(new \Criteria('wfc_expired', 0, '='));
+            $criteriaExpired->add(new \Criteria('wfc_expired', time(), '>'), 'OR');
             $criteria->add($criteriaExpired);
 
-            $criteria->add(new Criteria('wfc_active', 4, '!='));
+            $criteria->add(new \Criteria('wfc_active', 4, '!='));
 
             $criteria->setSort('wfc_publish');
             $criteria->setOrder('DESC');
             $criteria->setStart((int)$offset);
             $criteria->setLimit((int)$limit);
-            $obj['list'] = $this->getObjects($criteria, false);
+            $obj['list'] =& $this->getObjects($criteria, false);
         }
 
         return $obj;
@@ -772,7 +772,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
     public function upTagHandler($obj)
     {
         $item_tag   = wfp_Request::doRequest($_REQUEST, 'item_tag', '', 'textbox');
-        $tagHandler = xoops_getModuleHandler('tag', 'tag');
+        $tagHandler = \XoopsModules\Tag\Helper::getInstance()->getHandler('Tag'); // xoops_getModuleHandler('tag', 'tag');
         if ($tagHandler) {
             $tagHandler->updateByItem($item_tag, $obj->getVar('wfc_cid'), $GLOBALS['xoopsModule']->getVar('dirname'), 0);
         }

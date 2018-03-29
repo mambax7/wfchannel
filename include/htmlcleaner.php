@@ -103,7 +103,7 @@ class HtmlCleanerTag
         $_value = '';
         while ($i < strlen($str)) {
             $chr = $str[$i];
-            if ($_state == -1) { // reset buffers
+            if (-1 == $_state) { // reset buffers
                 $_name  = '';
                 $_quote = '';
                 $_value = '';
@@ -211,7 +211,7 @@ class HtmlCleaner
         $str_len = strlen($str);
         while ($i < $str_len) {
             $chr = $str[$i];
-            if ($_state == -1) { // reset buffers
+            if (-1 == $_state) { // reset buffers
                 $_buffer = '';
                 $_state  = 0;
             }

@@ -18,7 +18,7 @@
  * @since      2.3.0
  * @author     John Neill
  */
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * @param         $uid
@@ -34,19 +34,19 @@ function wfchannel_getUserPoints($uid, $startdate = '')
         $startdate = strtotime(date('m-y-Y'));
     }
 
-    $criteriaPublished = new CriteriaCompo();
-    $criteriaPublished->add(new Criteria('wfc_publish', 0, '>'));
-    $criteriaPublished->add(new Criteria('wfc_publish', $startdate, '<='));
+    $criteriaPublished = new \CriteriaCompo();
+    $criteriaPublished->add(new \Criteria('wfc_publish', 0, '>'));
+    $criteriaPublished->add(new \Criteria('wfc_publish', $startdate, '<='));
 
-    $criteriaExpired = new CriteriaCompo();
-    $criteriaExpired->add(new Criteria('wfc_expired', 0, '='));
-    $criteriaExpired->add(new Criteria('wfc_expired', time(), '>'), 'OR');
+    $criteriaExpired = new \CriteriaCompo();
+    $criteriaExpired->add(new \Criteria('wfc_expired', 0, '='));
+    $criteriaExpired->add(new \Criteria('wfc_expired', time(), '>'), 'OR');
 
-    $criteria = new CriteriaCompo();
+    $criteria = new \CriteriaCompo();
     $criteria->add($criteriaPublished);
     $criteria->add($criteriaExpired);
-    $criteria->add(new Criteria('wfc_active', 1, '='));
-    $criteria->add(new Criteria('wfc_uid', $uid, '='));
+    $criteria->add(new \Criteria('wfc_active', 1, '='));
+    $criteria->add(new \Criteria('wfc_uid', $uid, '='));
     $itemcount = $downloadHandler->getCount($criteria);
 
     $ret = [];
