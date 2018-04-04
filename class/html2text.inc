@@ -230,7 +230,7 @@ class Html2Text
      */
     public function splitWords($text)
     {
-        $words      = split("[ \t\r\n]+", $text);
+        $words      = preg_split("[ \t\r\n]+", $text);
         $wordsCount = count($words);
         for ($idx = 0; $idx < $wordsCount; $idx++) {
             $words[$idx] = $this->htmlDecode($words[$idx]);
