@@ -100,7 +100,7 @@ class wfc_RefersHandler extends wfp_ObjectHandler
 
         $_count = $this->getCount($criteria);
 
-        return (int)$_count['amount'];
+        return \Xmf\Request::getInt('amount', 0, 'count');
     }
 
     /**
@@ -144,7 +144,7 @@ class wfc_RefersHandler extends wfp_ObjectHandler
                 $criteria->setStart($args[0]['start']);
                 $criteria->setLimit($args[0]['limit']);
             }
-            $obj['list'] =& $this->getObjects($criteria, $args[1]);
+            $obj['list'] = $this->getObjects($criteria, $args[1]);
         }
 
         return $obj;

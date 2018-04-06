@@ -285,7 +285,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
             $criteria->setOrder('ASC');
             $criteria->setStart($start);
             $criteria->setLimit($start);
-            $channels =& $this->getObjects($criteria);
+            $channels = $this->getObjects($criteria);
         }
 
         return $channels;
@@ -372,7 +372,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
                 $criteria->setStart((int)$args[0]['start']);
                 $criteria->setLimit((int)$args[0]['limit']);
             }
-            $obj['list'] =& $this->getObjects($criteria, $args[1]);
+            $obj['list'] = $this->getObjects($criteria, $args[1]);
         }
 
         return $obj;
@@ -651,7 +651,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
             $criteria->setOrder('DESC');
             $criteria->setStart((int)$offset);
             $criteria->setLimit((int)$limit);
-            $obj['list'] =& $this->getObjects($criteria, false);
+            $obj['list'] = $this->getObjects($criteria, false);
         }
 
         return $obj;
