@@ -26,7 +26,7 @@ $pageHandler = wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
 switch ($op) {
     case 'refersend':
         if (!$GLOBALS['xoopsSecurity']->check()) {
-            $url = $_SERVER['HTTP_REFERER'] ?: $_SERVER['PHP_SELF'];
+            $url = Request::getString('HTTP_REFERER', '', 'SERVER') ?: $_SERVER['PHP_SELF'];
             redirect_header($url, 1, $GLOBALS['xoopsSecurity']->getErrors(true));
         }
         $referHandler = wfp_getHandler('refer', _MODULE_DIR, _MODULE_CLASS);

@@ -121,7 +121,7 @@ function wfp_cleanRequestVars(&$array, $name = null, $def = null, $strict = fals
      */
     unset($array['usercookie'], $array['PHPSESSID']);
 
-    if (is_array($array) && null == $name) {
+    if (is_array($array) && null === $name) {
         $globals = [];
         foreach (array_keys($array) as $k) {
             $value = strip_tags(trim($array[$k]));

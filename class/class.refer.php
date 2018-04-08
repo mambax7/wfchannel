@@ -156,7 +156,7 @@ class wfc_ReferHandler extends wfp_ObjectHandler
             if (is_object($GLOBALS['xoopsUser'])) {
                 $refer_obj->setVar('wfcr_uid', $GLOBALS['xoopsUser']->getVar('uid'));
             }
-            $refer_obj->setVar('wfcr_referurl', $_SERVER['HTTP_REFERER']);
+            $refer_obj->setVar('wfcr_referurl', Request::getString('HTTP_REFERER', '', 'SERVER'));
             $refer_obj->setVar('wfcr_ip', $refersHandler->getIP());
             $refer_obj->setVar('wfcr_date', time());
             $refersHandler->insert($refer_obj, false);
