@@ -750,6 +750,7 @@ class wfc_PageHandler extends wfp_ObjectHandler
             case 'page_modified':
                 $tags['PAGE_NAME']   = $obj->getVar('wfc_title');
                 $tags['PAGE_URL']    = XOOPS_URL . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/index.php?cid=' . $obj->getVar('wfc_cid');
+                /** @var \XoopsNotificationHandler $notificationHandler */
                 $notificationHandler = xoops_getHandler('notification');
                 $notificationHandler->triggerEvent('page', $obj->getVar('wfc_cid'), $page_type, $tags);
                 break;

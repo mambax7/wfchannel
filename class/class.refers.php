@@ -48,7 +48,7 @@ class wfc_Refers extends wfp_Object
         if ($this->getVar('wfcr_username')) {
             return $this->getVar('wfcr_username');
         } else {
-            return XoopsUserUtility::getUnameFromId($this->getVar('wfcr_uid'));
+            return \XoopsUserUtility::getUnameFromId($this->getVar('wfcr_uid'));
         }
     }
 

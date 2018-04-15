@@ -6,7 +6,7 @@
 // rss_footer
 $filename = 'cache/backendjs.txt'; //File to read/write
 $timespan = 3600; //1 hours (if the file is more recent than this, it will not be updated)
-require_once __DIR__ . '/../../mainfile.php';
+require_once  dirname(dirname(__DIR__)) . '/mainfile.php';
 $fd = fopen($filename, 'rb');
 if ($fd and (time() - filemtime($filename) < $timespan)) {
     $contents = fread($fd, filesize($filename));

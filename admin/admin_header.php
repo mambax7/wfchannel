@@ -23,7 +23,7 @@ $rootPath = dirname(dirname(dirname(__DIR__)));
 require_once $rootPath . '/include/cp_header.php';
 
 //require_once XOOPS_ROOT_PATH . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/include/functions.php';
-require_once __DIR__ . '/../include/functions.php';
+require_once  dirname(__DIR__) . '/include/functions.php';
 //require_once $moduleDirName . '/include/common.php';
 
 $menuHandler = wfp_getHandler('menu');

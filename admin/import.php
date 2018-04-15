@@ -33,7 +33,7 @@ switch ($op) {
             xoosla_cp_footer();
         }
         xoops_load('xoopslists');
-        $htmlList = XoopsLists::getHtmlListAsArray(XOOPS_ROOT_PATH . '/' . $uploadir);
+        $htmlList = \XoopsLists::getHtmlListAsArray(XOOPS_ROOT_PATH . '/' . $uploadir);
 
         unset($_SESSION['wfc_channel']);
         $do_callback->setBasics();
