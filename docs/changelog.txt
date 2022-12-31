@@ -29,6 +29,8 @@
 - refactoring to Namespaces (mamba)
 - added Blocksadmin (mamba)
 - added Migration (mamba)
+- fixed delete function (mamba)
+- added test data (mamba)
 
 
 <h5>2.07 Beta 1      [NOT RELEASED]</h5>

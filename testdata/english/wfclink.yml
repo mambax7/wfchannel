@@ -1,0 +1,21 @@
+-
+    wfcl_id: '1'
+    wfcl_submenu: '1'
+    wfcl_textlink: 'Change Me'
+    wfcl_image: '|300|250'
+    wfcl_button: poweredby.gif|102|47
+    wfcl_logo: logo.gif|148|80
+    wfcl_banner: xoops_banner.gif|300|60
+    wfcl_microbutton: microbutton.gif|88|15
+    wfcl_mainpage: '1'
+    wfcl_newsfeed: '1'
+    wfcl_texthtml: ''
+    wfcl_titlelink: 'Link to us'
+    wfcl_newstitle: 'Xoops WF-Channel Feed'
+    wfcl_content: '<p>We welcome you to link to our Web site.  Feel free to create links from any section of your Web site to our articles about your website.  You are also welcome to link to our website directories and other resource pages.</p>'
+    wfcl_caption: ''
+    dohtml: '1'
+    dosmiley: '1'
+    doxcode: '1'
+    doimage: '0'
+    dobr: '0'

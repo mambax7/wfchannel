@@ -46,8 +46,11 @@ switch ($op) {
         if (!Request::getInt('ok', 0)) { //Wfresource\Request::doRequest($_REQUEST, 'ok', 0, 'int')) {
             $menuHandler->addSubHeader(_AM_WFP_MAINAREA_DELETE_DSC);
         }
+
+        $id = Request::getInt('wfc_cid', 0);
+
         //        if (!call_user_func(array($do_callback, $op), $options)) {
-        if (!$do_callback->deleteById($options)) {
+        if (!$do_callback->deleteById($id)) {
             $pageHandler->getHtmlErrors(true, $menu);
         }
         break;

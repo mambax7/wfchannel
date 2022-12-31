@@ -21,7 +21,7 @@ defined('XOOPS_ROOT_PATH') || exit('Restricted access');
  */
 function xoops_module_update_wfchannel($module, $oldversion)
 {
-    global $msgs;
+    $msgs          = [];
     $moduleDirName = \basename(\dirname(__DIR__));
     /**
      * Do install here
@@ -45,7 +45,8 @@ function xoops_module_update_wfchannel($module, $oldversion)
  */
 function displayOutput(): void
 {
-    global $updater, $msgs;
+    global $updater;
+    $msgs = [];
 
     $msgs[]   = '<h4>' . _MD_WFC_SUCCESS . '</h4>';
     $_success = $updater->getSuccess();
