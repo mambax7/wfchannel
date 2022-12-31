@@ -41,6 +41,8 @@ require_once \dirname(__DIR__) . '/include/functions.php';
 $menuHandler = Wfresource\Helper::getInstance()->getHandler('Menu');
 
 $moduleDirName = \basename(\dirname(__DIR__));
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+
 $helper        = Helper::getInstance();
 $adminObject   = Admin::getInstance();
 

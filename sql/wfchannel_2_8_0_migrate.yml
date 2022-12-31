@@ -1,0 +1,274 @@
+wfcpages:
+    options: 'ENGINE=MyISAM DEFAULT CHARSET=utf8'
+    columns:
+        -
+            name: wfc_cid
+            attributes: ' mediumint(8) unsigned  NOT NULL auto_increment'
+        -
+            name: wfc_title
+            attributes: ' varchar(255)  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfc_headline
+            attributes: ' varchar(255)  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfc_content
+            attributes: ' text  NOT NULL '
+        -
+            name: wfc_weight
+            attributes: ' smallint(5) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: wfc_default
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfc_image
+            attributes: ' varchar(255) '
+        -
+            name: wfc_file
+            attributes: ' varchar(255) '
+        -
+            name: wfc_usefiletitle
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfc_mainmenu
+            attributes: ' smallint(1) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfc_submenu
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfc_created
+            attributes: ' int(11) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfc_publish
+            attributes: ' int(11) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfc_expired
+            attributes: ' int(11) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfc_counter
+            attributes: ' mediumint(8) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfc_comments
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfc_allowcomments
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfc_uid
+            attributes: ' int(8) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: dohtml
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: doxcode
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: dosmiley
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: doimage
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: dobr
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: wfc_metakeywords
+            attributes: ' text  NOT NULL '
+        -
+            name: wfc_metadescription
+            attributes: ' text  NOT NULL '
+        -
+            name: wfc_related
+            attributes: ' varchar(255)  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfc_author
+            attributes: ' varchar(255)  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfc_caption
+            attributes: ' varchar(255)  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfc_active
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''0'' '
+    keys:
+        PRIMARY:
+            columns: wfc_cid
+            unique: true
+        wfc_default:
+            columns: wfc_default
+            unique: false
+        wfc_expired:
+            columns: wfc_expired
+            unique: false
+        wfc_publish:
+            columns: wfc_publish
+            unique: false
+        wfc_title:
+            columns: 'wfc_title (100)'
+            unique: false
+wfclink:
+    options: 'ENGINE=MyISAM DEFAULT CHARSET=utf8'
+    columns:
+        -
+            name: wfcl_id
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: wfcl_submenu
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: wfcl_textlink
+            attributes: ' varchar(255)  NOT NULL '
+        -
+            name: wfcl_image
+            attributes: ' varchar(255)  NOT NULL '
+        -
+            name: wfcl_button
+            attributes: ' varchar(255)  NOT NULL '
+        -
+            name: wfcl_logo
+            attributes: ' varchar(255)  NOT NULL '
+        -
+            name: wfcl_banner
+            attributes: ' varchar(255)  NOT NULL '
+        -
+            name: wfcl_microbutton
+            attributes: ' varchar(255)  NOT NULL '
+        -
+            name: wfcl_mainpage
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: wfcl_newsfeed
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfcl_texthtml
+            attributes: ' varchar(255)  NOT NULL '
+        -
+            name: wfcl_titlelink
+            attributes: ' varchar(255)  NOT NULL '
+        -
+            name: wfcl_newstitle
+            attributes: ' varchar(255)  NOT NULL '
+        -
+            name: wfcl_content
+            attributes: ' varchar(255)  NOT NULL '
+        -
+            name: wfcl_caption
+            attributes: ' varchar(255)  NOT NULL  DEFAULT '''' '
+        -
+            name: dohtml
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: dosmiley
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: doxcode
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: doimage
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: dobr
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+    keys:
+        PRIMARY:
+            columns: wfcl_id
+            unique: true
+        wfcl_mainpage:
+            columns: wfcl_mainpage
+            unique: false
+        wfcl_textlink:
+            columns: wfcl_textlink
+            unique: false
+wfcrefer:
+    options: 'ENGINE=MyISAM DEFAULT CHARSET=utf8'
+    columns:
+        -
+            name: wfcr_id
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: wfcr_title
+            attributes: ' varchar(60)  NOT NULL '
+        -
+            name: wfcr_content
+            attributes: ' text  NOT NULL '
+        -
+            name: wfcr_mainpage
+            attributes: ' smallint(1) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfcr_image
+            attributes: ' varchar(255)  NOT NULL '
+        -
+            name: wfcr_email
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: wfsr_ublurb
+            attributes: ' smallint(1) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfcr_dblurb
+            attributes: ' text  NOT NULL '
+        -
+            name: wfcr_privacy
+            attributes: ' smallint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: wfcr_emailcheck
+            attributes: ' smallint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: wfcr_privacytext
+            attributes: ' text  NOT NULL '
+        -
+            name: wfcr_counter
+            attributes: ' mediumint(8) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfcr_caption
+            attributes: ' varchar(255)  NOT NULL  DEFAULT '''' '
+        -
+            name: dohtml
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: doxcode
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: dosmiley
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: doimage
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+        -
+            name: dobr
+            attributes: ' tinyint(1) unsigned  NOT NULL  DEFAULT ''1'' '
+    keys:
+        PRIMARY:
+            columns: wfcr_id
+            unique: true
+        wfcr_mainpage:
+            columns: wfcr_mainpage
+            unique: false
+        wfcr_title:
+            columns: wfcr_title
+            unique: false
+wfcrefers:
+    options: 'ENGINE=MyISAM DEFAULT CHARSET=utf8'
+    columns:
+        -
+            name: wfcr_id
+            attributes: ' mediumint(8) unsigned  NOT NULL auto_increment'
+        -
+            name: wfcr_username
+            attributes: ' varchar(60)  NOT NULL '
+        -
+            name: wfcr_uid
+            attributes: ' mediumint(8) unsigned  NOT NULL  DEFAULT ''0'' '
+        -
+            name: wfcr_referurl
+            attributes: ' varchar(255)  NOT NULL '
+        -
+            name: wfcr_date
+            attributes: ' int(10) unsigned  NOT NULL '
+        -
+            name: wfcr_ip
+            attributes: ' varchar(20)  NOT NULL '
+    keys:
+        PRIMARY:
+            columns: wfcr_id
+            unique: true
+        wfcr_id:
+            columns: wfcr_id
+            unique: true

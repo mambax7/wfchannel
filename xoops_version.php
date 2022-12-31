@@ -18,10 +18,10 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 // ------------------- Information ------------------- /
 $modversion = [
-    'version'             => '2.8.0',
-    'requires'            => '1.6.0', //wf-resource
-    'module_status'       => 'Beta 1',
-    'release_date'        => '2017/07/22', //yyyy/mm/dd
+    'version'             => '3.0.0',
+    'requires'            => '2.0.0', //wf-resource
+    'module_status'       => 'Alpha 1',
+    'release_date'        => '2022/12/31', //yyyy/mm/dd
     'name'                => _MI_WFC_CHANNEL,
     'description'         => _MI_WFC_CHANNELDESC,
     'official'            => 0, //1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
