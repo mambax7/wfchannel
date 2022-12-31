@@ -27,7 +27,7 @@
  | context. Such license must be specifically obtained, however it's valid for |
  | any number of  implementations of the licensed software.                    |
  | - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - |
- | GPL - The GNU General Public License    http://www.gnu.org/licenses/gpl.txt |
+ | GPL - The GNU General Public License    https://www.gnu.org/licenses/gpl.txt |
  | Permits anyone the right to use and modify the software without limitations |
  | as long as proper  credits are given  and the original  and modified source |
  | code are included. Requires  that the final product, software derivate from |

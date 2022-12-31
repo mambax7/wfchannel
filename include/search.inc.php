@@ -1,4 +1,5 @@
-<?php
+<?php declare(strict_types=1);
+
 /**
  * $Id: search.inc.php 8179 2011-11-07 00:54:10Z beckmi $
  * Module: WF-Channel
@@ -8,25 +9,29 @@
  * Licence: GNU
  */
 
-defined('XOOPS_ROOT_PATH') || die('You do not have permission to access this file!');
+use XoopsModules\Wfchannel;
+
+defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
 /**
  * wfchannel_search()
  *
- * @param  mixed $queryarray
- * @param  mixed $andor
- * @param  mixed $limit
- * @param  mixed $offset
- * @param  mixed $userid
- * @return array|string
+ * @param mixed $queryarray
+ * @param mixed $andor
+ * @param mixed $limit
+ * @param mixed $offset
+ * @param mixed $userid
+ * @return array
  */
 function wfchannel_search($queryarray, $andor, $limit, $offset, $userid)
 {
     $upgrade = false;
     require_once XOOPS_ROOT_PATH . '/modules/wfchannel/include/functions.php';
 
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
+
     $ret = '';
     if (!isset($pageHandler)) {
-        $pageHandler = wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
+        $pageHandler = new Wfchannel\PageHandler($db); //wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
     }
     $page_search = $pageHandler->getSearch($queryarray, $andor, $limit, $offset, true);
 

@@ -55,7 +55,7 @@
 <h5>2.04</h5>
 <hr>
     - Fixed: Bug in sql files that set the database charset to latin1, this has been removed to allow the database to define the charset.
-    - Fixed: Big in main.php in the language files. $xoops['adminmail'] in the langauge define was treated as a non string var and would not display correctly.
+    - Fixed: Big in main.php in the language files. $xoops['adminmail'] in the language define was treated as a non string var and would not display correctly.
     - Fixed: Fixed an error with modversion 'use_wysiwyg' the wrong key was used for the default causing an error with the XoosEditor. Normally, doing a save with
     the prefs would fix this.
     - Fixed: Missing language defines for the print Page
@@ -181,8 +181,7 @@
     - Fixed: Default Page was not updated correctly, could have more than one default page. bad!!
     - Fixed: Page Menu link still shown if page was default or selected.
     - Fixed: css bug when no pages in database
-    - Fixed: If no default page selected, WF-Channel will no longer exit with a redirect but show a
-        no default page.
+    - Fixed: If no default page selected, WF-Channel will no longer exit with a redirect but show a no default page.
     - Fixed: The amount of Refer emails sent in admin area.
     - Added: Block, add a block to show new pages. (Will add a WF-Channel menu as requested).
     - Added: Better more friendly error handling, erros should just not fail for no reason.

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 // ------------------------------------------------------------------------ //
 // WF-Channel - WF-Projects                                                 //
@@ -7,15 +7,15 @@
 // Authors:                                                                 //
 // John Neill ( AKA Catzwolf )                                              //
 // //
-// URL: http://catzwolf.x10hosting.com/                                     //
+// URL: https://catzwolf.x10hosting.com/                                     //
 // Project: WF-Projects                                                     //
 // -------------------------------------------------------------------------//
-defined('XOOPS_ROOT_PATH') || die('You do not have permission to access this file!');
+defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
 /**
  * b_wfc_new_show()
  *
- * @param  mixed $options
- * @return mixed
+ * @param mixed $options
+ * @return array
  */
 function b_wfc_new_show($options)
 {
@@ -60,7 +60,7 @@ function b_wfc_new_show($options)
 /**
  * b_wfc_new_edit()
  *
- * @param  mixed $options
+ * @param mixed $options
  * @return string
  */
 function b_wfc_new_edit($options)
@@ -72,7 +72,7 @@ function b_wfc_new_edit($options)
     $form       .= "<input type='text' name='options[]' value='" . $options[1] . "'>";
     $form       .= '&nbsp;<br>' . _MB_WFC_CHARS . "&nbsp;<input type='text' name='options[]' value='" . $options[2] . "'>";
     $form       .= '&nbsp;<br>' . _MB_WFC_DATEFORMAT . "&nbsp;<input type='text' name='options[]' value='" . $options[3] . "'>";
-    $options[4] = !isset($options[4]) ? 'wfchannel' : $options[4];
+    $options[4] = $options[4] ?? 'wfchannel';
     $form       .= '&nbsp;<br>' . _MB_WFC_MODULE . "&nbsp;<input type='text' name='options[]' value='" . $options[4] . "'>";
 
     return $form;

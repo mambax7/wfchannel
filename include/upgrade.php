@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 // ------------------------------------------------------------------------ //
 // Xoops - PHP Content Management System                                //
 // Copyright (c) 2007 Xoops                                         //
@@ -10,18 +10,22 @@
 // URL: http:www.Xoops.com                                              //
 // Project: Xoops Project                                               //
 // -------------------------------------------------------------------------//
-defined('XOOPS_ROOT_PATH') || die('You do not have permission to access this file!');
+
+use XoopsModules\Wfchannel;
+use XoopsModules\Wfresource;
+
+defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
 
 global $updater;
 
 if (!defined('_WF_INSTALLER')) {
-    die('Cannot access this updater directly');
+    exit('Cannot access this updater directly');
     exit();
 }
 /**
  * Rename old table to new table
  */
-$updater = wfp_getClass('updater');
+$updater = new Wfresource\Updater(); //wfp_getClass('updater');
 if ($oldversion < 200) {
     $updater->RenameTable('wfschannel', 'wfcpages');
 
@@ -57,10 +61,10 @@ if ($oldversion < 200) {
     $updater->addField('wfc_caption', 'varchar( 255 ) NOT null default ""', 'wfc_author');
     $updater->addField('wfc_active', 'varchar( 255 ) NOT null default ""', 'wfc_caption');
 
-    $updater->changeField('html', 'dohtml tinyint( 1 ) unsigned NOT null default "0"', 'wfc_uid');
-    $updater->changeField('xcodes', 'doxcode tinyint( 1 ) unsigned NOT null default "1"', 'dohtml');
-    $updater->changeField('smiley', 'dosmiley tinyint( 1 ) unsigned NOT null default "1"', 'doxcode');
-    $updater->changeField('breaks', 'dobr tinyint( 1 ) unsigned NOT null default "1"', 'dosmiley');
+    $updater->changeField('html', 'dohtml tinyint( 1 ) unsigned NOT null default "0"');
+    $updater->changeField('xcodes', 'doxcode tinyint( 1 ) unsigned NOT null default "1"');
+    $updater->changeField('smiley', 'dosmiley tinyint( 1 ) unsigned NOT null default "1"');
+    $updater->changeField('breaks', 'dobr tinyint( 1 ) unsigned NOT null default "1"');
 
     $updater->modifyField('dohtml', 'tinyint(1) unsigned NOT NULL default "0"', 'wfc_uid');
     $updater->modifyField('doxcode', 'tinyint(1) unsigned NOT NULL default "1"', 'dohtml');
@@ -77,7 +81,7 @@ if ($oldversion < 200) {
 /**
  * Rename old table to new table
  */
-$updater = wfp_getClass('updater');
+$updater = new Wfresource\Updater(); //wfp_getClass('updater');
 if ($oldversion < 200) {
     $updater->RenameTable('wfsrefer', 'wfcrefer');
 
@@ -122,7 +126,7 @@ if ($oldversion < 200) {
 /**
  * Rename old table to new table
  */
-$updater = wfp_getClass('updater');
+$updater = new Wfresource\Updater(); //wfp_getClass('updater');
 if ($oldversion < 200) {
     $updater->RenameTable('wfslinktous', 'wfclink');
 
@@ -163,7 +167,7 @@ if ($oldversion < 200) {
     /**
      * Add New Table
      */
-    $updater = wfp_getClass('updater');
+    $updater = new Wfresource\Updater(); //wfp_getClass('updater');
     $data    = "  `wfcr_id` mediumint(8) unsigned NOT NULL auto_increment,
       `wfcr_username` varchar(60) NOT NULL,
       `wfcr_uid` mediumint(8) unsigned NOT NULL default '0',
@@ -178,8 +182,8 @@ if ($oldversion < 200) {
     /**
      * Lets fix issues with dohtml, dosmilies ect
      */
-    $pageHandler = wfp_getHandler('page', 'wfchannel', 'wfc_');
-    $obj          = $pageHandler->getObj(null, true);
+    $pageHandler = new Wfchannel\PageHandler($db); //wfp_getHandler('page', 'wfchannel', 'wfc_');
+    $obj         = $pageHandler->getObj(null, true);
     if ($obj['count'] > 0) {
         foreach ($obj['list'] as $objs) {
             $ret             = [];
@@ -200,7 +204,7 @@ if ($oldversion > 200 && $oldversion < 205) {
     /**
      * Pages
      */
-    $updater = wfp_getClass('updater');
+    $updater = new Wfresource\Updater(); //wfp_getClass('updater');
     $updater->setTable('wfcpages');
     $updater->changeField('wfc_cid', 'wfc_cid mediumint(8) unsigned NOT NULL AUTO_INCREMENT');
     $updater->addField('wfc_usefiletitle', 'tinyint(1) unsigned NOT NULL DEFAULT "0"', 'wfc_file');
@@ -231,7 +235,7 @@ if ($oldversion > 200 && $oldversion < 205) {
     /**
      * Links
      */
-    $updater = wfp_getClass('updater');
+    $updater = new Wfresource\Updater(); //wfp_getClass('updater');
     $updater->setTable('wfclink');
     $updater->modifyField('wfcl_id', 'tinyint(1) unsigned NOT NULL default "1"', 'FIRST');
     $updater->dropField('', 'wfcl_newsfeedjs');
@@ -247,7 +251,7 @@ if ($oldversion > 200 && $oldversion < 205) {
     /**
      * Refer
      */
-    $updater = wfp_getClass('updater');
+    $updater = new Wfresource\Updater(); //wfp_getClass('updater');
     $updater->setTable('wfcrefer');
     $updater->modifyField('wfcr_id', 'tinyint(1) unsigned NOT NULL default "1"', 'FIRST');
     $updater->dropField('', 'PRIMARY KEY');

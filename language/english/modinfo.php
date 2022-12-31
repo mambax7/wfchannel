@@ -1,4 +1,5 @@
-<?php
+<?php declare(strict_types=1);
+
 /**
  * $Id: modinfo.php 10066 2012-08-13 09:22:47Z beckmi $
  * Module: WF-Channel
@@ -7,32 +8,35 @@
  * Author: Catzwolf
  * Licence: GNU
  */
-defined('XOOPS_ROOT_PATH') || die('You do not have permission to access this file!');
+defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
 // Module Info
 // The name of this module
 define('_MI_WFC_CHANNEL', 'WF-Channel');
 // A brief description of this module
 define('_MI_WFC_CHANNELDESC', 'About us type Module');
 
-define('_MI_WFC_CHANNELDISCLAIMER', 'Software downloaded from the WF-Project web site is provided "as is" without warranty of any kind, either express or implied, including, but not limited to, the implied warranties of fitness for a purpose, or the warranty of non-infringement. Without limiting the foregoing, the WF-Project makes no warranty that:
+define(
+    '_MI_WFC_CHANNELDISCLAIMER',
+    'Software downloaded from the WF-Project website is provided "as is" without warranty of any kind, either express or implied, including, but not limited to, the implied warranties of fitness for a purpose, or the warranty of non-infringement. Without limiting the foregoing, the WF-Project makes no warranty that:
 
    1. the software will meet your requirements
    2. the software will be uninterrupted, timely, secure or error-free
    3. the results that may be obtained from the use of the software will be effective, accurate or reliable
    4. the quality of the software will meet your expectations
-   5. any errors in the software obtained from the WF-Project web site will be corrected.
+   5. any errors in the software obtained from the WF-Project website will be corrected.
 
-Software and its documentation made available on the WF-Project web site:
+Software and its documentation made available on the WF-Project website:
 
-   6. could include technical or other mistakes, inaccuracies or typographical errors. The WF-Project may make changes to the software or documentation made available on its web site.
+   6. could include technical or other mistakes, inaccuracies or typographical errors. The WF-Project may make changes to the software or documentation made available on its website.
    7. may be out of date, and the WF-Project makes no commitment to update such materials.
 
-The WF-Project assumes no responsibility for errors or ommissions in the software or documentation available from its web site.
+The WF-Project assumes no responsibility for errors or ommissions in the software or documentation available from its website.
 
 In no event shall the WF-Project be liable to you or any third parties for any special, punitive, incidental, indirect or consequential damages of any kind, or any damages whatsoever, including, without limitation, those resulting from loss of use, data or profits, whether or not the WF-Project has been advised of the possibility of such damages, and on any theory of liability, arising out of or in connection with the use of this software.
 
-The use of the software downloaded through the WF-Project site is done at your own discretion and risk and with agreement that you will be solely responsible for any damage to your computer system or loss of data that results from such activities. No advice or information, whether oral or written, obtained by you from the WF-Project or from the WF-Project web site shall create any warranty for the software.
-');
+The use of the software downloaded through the WF-Project site is done at your own discretion and risk and with agreement that you will be solely responsible for any damage to your computer system or loss of data that results from such activities. No advice or information, whether oral or written, obtained by you from the WF-Project or from the WF-Project website shall create any warranty for the software.
+'
+);
 // Names of admin menu items
 define('_MI_WFC_ADMENU1', 'Page index');
 define('_MI_WFC_ADMENU2', 'New page');
@@ -77,7 +81,7 @@ define('_MI_WFC_ALLOWADMIN', 'Allow Admin Hits?');
 define('_MI_WFC_ALLOWADMIN_DSC', 'Enable to allow administator page hits to count towards the page hit count.');
 
 define('_MI_WFC_ALLOWADDTHISCODE', 'Use AddThis Bookmarks?');
-define('_MI_WFC_ALLOWADDTHISCODE_DSC', 'Select yes to use Addthis (http://www.addthis.com) bookmark code. Free Registration is required.');
+define('_MI_WFC_ALLOWADDTHISCODE_DSC', 'Select yes to use Addthis (https://www.addthis.com) bookmark code. Free Registration is required.');
 define('_MI_WFC_ADDTHISCODE', 'AddThis Bookmark Code');
 define('_MI_WFC_ADDTHISCODE_DSC', 'Copy and Paste valid AddThis Bookmark code to use as your Bookmarks.');
 
@@ -143,7 +147,7 @@ define('_MI_WFC_PAGENEWNOTIFY_SUBJECT', '[{X_SITENAME}] {X_MODULE} auto-notify :
 
 // The name of this module
 define('_MI_WFC_NAME', 'WF-Channel');
-define('_MI_WFC_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_WFC_DIRNAME', basename(dirname(__DIR__, 2)));
 
 define('_MI_WFC_OVERVIEW', 'Overview');
 define('_MI_WFC_INSTALL', 'Install');
@@ -180,14 +184,14 @@ define('_MI_WFC_TPL6_DESC', 'Display channel email error page.');
 
 //2.08
 //Help
-//define('_MI_WFC_DIRNAME', basename(dirname(dirname(__DIR__))));
-define('_MI_WFC_HELP_HEADER', __DIR__.'/help/helpheader.tpl');
+//define('_MI_WFC_DIRNAME', basename(dirname(__DIR__, 2)));
+define('_MI_WFC_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_WFC_BACK_2_ADMIN', 'Back to Administration of ');
 //define('_MI_WFC_OVERVIEW', 'Overview');
 
 //define('_MI_WFC_HELP_DIR', __DIR__);
 
-//help multi-page
+//help multipage
 //define('_MI_WFC_DISCLAIMER', 'Disclaimer');
 //define('_MI_WFC_LICENSE', 'License');
 //define('_MI_WFC_SUPPORT', 'Support');

@@ -22,7 +22,7 @@
     </li>
     <br><li><span style="text-decoration: underline;"><b>Change and verify folder permissions</b></span>
         <p>CHMOD the following folders to 777: </p>
-        <p><i>wfchannel/cache<br>wfchannel/images<br>wfchannel/images/linkimages<br>wfchannel/html<br>wfchannel/html/images<br>
+        <p><i>wfchannel/cache<br>wfchannel/images<br>wfchannel/assets/images/linkimages<br>wfchannel/html<br>wfchannel/html/images<br>
             <br></i></p>
     </li>
     <li><span style="text-decoration: underline;"><b>Install the module</b></span>

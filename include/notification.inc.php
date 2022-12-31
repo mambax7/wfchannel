@@ -1,4 +1,5 @@
-<?php
+<?php declare(strict_types=1);
+
 /**
  * $Id: notification.inc.php 8179 2011-11-07 00:54:10Z beckmi $
  * Module: WF-Downloads
@@ -10,13 +11,13 @@
  * @param $item_id
  * @return array|bool
  */
-
 function wfchannel_notify_iteminfo($category, $item_id)
 {
     if (empty($GLOBALS['xoopsModule']) || 'wfchannel' !== $GLOBALS['xoopsModule']->getVar('dirname')) {
-        /** @var XoopsModuleHandler $moduleHandler */
+        /** @var \XoopsModuleHandler $moduleHandler */
         $moduleHandler = xoops_getHandler('module');
         $module        = $moduleHandler->getByDirname('wfchannel');
+        /** @var \XoopsConfigHandler $configHandler */
         $configHandler = xoops_getHandler('config');
         $config        = $configHandler->getConfigsByCat(0, (int)$module->getVar('mid'));
     } else {
@@ -27,7 +28,6 @@ function wfchannel_notify_iteminfo($category, $item_id)
         case 'global':
             return ['name' => '', 'url' => ''];
             break;
-
         case 'page':
         default:
             $sql    = 'SELECT wfc_cid, wfc_title FROM ' . $GLOBALS['xoopsDB']->prefix('wfcpages') . " WHERE wfc_cid = '" . (int)$item_id . "'";

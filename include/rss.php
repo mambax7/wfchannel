@@ -1,17 +1,20 @@
-<?php
+<?php declare(strict_types=1);
+
 /**
  * Name: rss.php
  * Description:
  *
- * @package    : Xoosla Modules
  * @Module     :
- * @subpackage :
  * @since      : v1.0.0
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
+
+use XoopsModules\Wfchannel;
+use XoopsModules\Wfresource;
+
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 $GLOBALS['xoopsLogger']->activated = false;
 if (function_exists('mb_http_output')) {
@@ -19,19 +22,19 @@ if (function_exists('mb_http_output')) {
 }
 
 require_once XOOPS_ROOT_PATH . '/class/template.php';
-$tpl = new \XoopsTpl();
-$tpl->caching=(0);
+$tpl          = new \XoopsTpl();
+$tpl->caching = 0;
 $tpl->xoops_setCacheTime(0);
 if (!$tpl->is_cached('db:system_rss.tpl', 'wfc|feed|rss')) {
     xoops_load('XoopsLocal');
-    $rssContent = wfp_getClass('rss');
+    $rssContent = new Wfresource\Rss(); //wfp_getClass('rss');
     $rssContent->basics('module_logo.png', 'modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/images');
     $rss = $rssContent->render();
     foreach ($rss as $key => $value) {
         $tpl->assign($key, $value);
     }
 
-    $handler = wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
+    $handler = new Wfchannel\PageHandler($db); //wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
     $objects = $handler->getList('wfc_publish', 'DESC', 0, 30);
     if (count($objects) > 0) {
         // Get users for items
@@ -46,9 +49,9 @@ if (!$tpl->is_cached('db:system_rss.tpl', 'wfc|feed|rss')) {
                 'link'         => $link,
                 'guid'         => $link,
                 'is_permalink' => false,
-                'pubdate'      => $obj->getTimeStamp('wfc_publish', 'rss'),
-                'dc_date'      => $obj->getTimeStamp('wfc_publish', 'd/m H:i'),
-                'description'  => xoops_utf8_encode($description)
+                'pubdate'      => $obj->getTimestamp('wfc_publish', 'rss'),
+                'dc_date'      => $obj->getTimestamp('wfc_publish', 'd/m H:i'),
+                'description'  => xoops_utf8_encode($description),
             ]);
         }
     }

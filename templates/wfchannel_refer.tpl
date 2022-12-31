@@ -17,7 +17,7 @@
 <div style="clear: both;"></div>
 
 <div class="itemBody">
-    <{if $refer.image.url }>
+    <{if !empty($refer.image.url) }>
         <div class="page_logo"><img class="page_logo_image" src="<{$refer.image.url}>" width="<{$refer.image.width}>"
                                     height="<{$refer.image.height}>" name="image" id="image" title="<{$refer.title}>"
                                     alt="<{$refer.title}>"></div>
@@ -30,14 +30,15 @@
       method="<{$refer_form.method}>" <{$refer_form.extra}> >
     <table id="refer-form-<{$refer_form.name}>" cellspacing="1" class="outer">
         <{foreach item=element from=$refer_form.elements}>
-            <{if !$element.hidden}>
+<{*            <{if !$element.hidden}>*}>
+            <{if empty($element.hidden)}>
                 <tr>
                     <td class="head">
-                        <div class='xoops-form-element-caption<{if $element.required}>-required<{/if}>'>
-                            <span class='caption-text'><{$element.caption}></span>
+                        <div class='xoops-form-element-caption<{if !empty($element.required)}>-required<{/if}>'>
+                            <span class='caption-text'><{if !empty($element.caption)}><{$element.caption}><{/if}></span>
                             <span class='caption-marker'>*</span>
                         </div>
-                        <{if $element.description != ""}>
+                        <{if !empty($element.description) }>
                             <div class='xoops-form-element-help'><{$element.description}></div>
                         <{/if}>
                     </td>
@@ -49,7 +50,7 @@
         <{/foreach}>
     </table>
     <{foreach item=element from=$refer_form.elements}>
-        <{if $element.hidden}>
+        <{if !empty($element.hidden)}>
             <{$element.body}>
         <{/if}>
     <{/foreach}>
@@ -58,7 +59,7 @@
 
 <div style="clear: both;">&nbsp;</div>
 
-<{if $referfriend.privacy_statement}>
+<{if !empty($referfriend.privacy_statement)}>
     <div style="padding-top: 6px; width: 70%; margin-left: auto; margin-right: auto;"><span
                 style="text-align: center;"><{$referfriend.privacy_statement}></span></div>
     <br>

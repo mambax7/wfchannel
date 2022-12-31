@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 // ------------------------------------------------------------------------ //
 // ------------------------------------------------------------------------ //
@@ -8,10 +8,10 @@
 // Authors:                                                                 //
 // John Neill ( AKA Catzwolf )                                              //
 //                                                                          //
-// URL: http://catzwolf.x10hosting.com/                                     //
+// URL: https://catzwolf.x10hosting.com/                                     //
 // Project: WF-Projects                                                     //
 // -------------------------------------------------------------------------//
-defined('XOOPS_ROOT_PATH') || die('You do not have permission to access this file!');
+defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
 
 // Blocks
 define('_MB_WFC_WFCHANNEL', 'wfchannel');

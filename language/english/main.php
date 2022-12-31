@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 // ------------------------------------------------------------------------ //
 // Xoops - PHP Content Management System                                //
 // Copyright (c) 2007 Xoops                                         //
@@ -10,7 +10,7 @@
 // URL: http:www.Xoops.com                                              //
 // Project: Xoops Project                                               //
 // -------------------------------------------------------------------------//
-defined('XOOPS_ROOT_PATH') || die('You do not have permission to access this file!');
+defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
 
 define('_MD_WFC_NORIGHTTOVIEWPAGE', 'Selected page not found');
 define('_MD_WFC_TEXTLINKEXAMPLE', 'Example of text link: ');
@@ -55,13 +55,19 @@ define('_MD_WFC_GOBACKBUTTON', 'Go Back');
 define('_MD_WFC_NOTITLESET', 'No Default Page');
 define('_MD_WFC_NOCONTENTSET', 'You are seeing this page as you have no default page setup. Go into the module admin area and select a page that you would like to have as your default page.');
 define('_MD_WFC_BANNED_HEADER', 'Banned IPaddress');
-define('_MD_WFC_BANNED_TEXT', '<div>Sorry, it seems that your IP address has been banned from using this system.</div><br>
+define(
+    '_MD_WFC_BANNED_TEXT',
+    '<div>Sorry, it seems that your IP address has been banned from using this system.</div><br>
 <div>If you feel this is in error, please contact ' . $GLOBALS['xoopsConfig']['adminmail'] . ' stating the reason you feel this has been in error or judged wrong.</div><br>
-<div>Thank-you</div>');
+<div>Thank-you</div>'
+);
 define('_MD_WFC_EMAILERROR_HEADER', 'Error Sending Email');
-define('_MD_WFC_EMAILERROR_TEXT', '<div>Sorry, it seems that you have not entered a valid email address for the recipent or for the sender. Please go back and try again</div><br>
+define(
+    '_MD_WFC_EMAILERROR_TEXT',
+    '<div>Sorry, it seems that you have not entered a valid email address for the recipent or for the sender. Please go back and try again</div><br>
 <div>If you feel this is in error, please contact ' . $GLOBALS['xoopsConfig']['adminmail'] . ' stating there has been an error and any information you think we need to know that may help towards correcting this.</div><br>
-<div>Thank-you</div>');
+<div>Thank-you</div>'
+);
 define('_MD_WFC_PDF_NEW_PAGE', 'New Page');
 define('_MD_WFC_INTARTICLE', 'Interesting Article at %s');
 define('_MD_WFC_INTARTFOUND', 'Here is an interesting article I have found at %s');

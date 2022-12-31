@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -11,38 +11,42 @@
 
 /**
  * @copyright    XOOPS Project (https://xoops.org)
- * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
- * @package
- * @since
+ * @license      GNU GPL 2.0 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  * @author       XOOPS Development Team
  */
 
-use XoopsModules\Wfchannel;
+use Xmf\Module\Admin;
+use XoopsModules\Wfchannel\Helper;
+use XoopsModules\Wfresource;
 
-$rootPath = dirname(dirname(dirname(__DIR__)));
-require_once $rootPath . '/include/cp_header.php';
+/** @var Admin $adminObject */
+/** @var Helper $helper */
+/** @var Wfresource\MenuHandler $menuHandler */
+
+require \dirname(__DIR__, 2) . '/wfresource/preloads/autoloader.php';
+require \dirname(__DIR__) . '/preloads/autoloader.php';
+require \dirname(__DIR__, 3) . '/include/cp_header.php';
+
+
+$moduleDirName = \basename(\dirname(__DIR__));
+
+/** @var \XoopsDatabase $db */
+$db = \XoopsDatabaseFactory::getDatabaseConnection();
 
 //require_once XOOPS_ROOT_PATH . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/include/functions.php';
-require_once  dirname(__DIR__) . '/include/functions.php';
+require_once \dirname(__DIR__) . '/include/functions.php';
 //require_once $moduleDirName . '/include/common.php';
 
-$menuHandler = wfp_getHandler('menu');
+//$menuHandler = wfp_getHandler('menu');
+$menuHandler = Wfresource\Helper::getInstance()->getHandler('Menu');
 
-$moduleDirName = basename(dirname(__DIR__));
-$helper = Wfchannel\Helper::getInstance();
-/** @var Xmf\Module\Admin $adminObject */
-$adminObject = \Xmf\Module\Admin::getInstance();
+$moduleDirName = \basename(\dirname(__DIR__));
+$helper        = Helper::getInstance();
+$adminObject   = Admin::getInstance();
 
 $myts = \MyTextSanitizer::getInstance();
 
-if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl)) {
-    require_once $GLOBALS['xoops']->path('class/template.php');
-    $xoopsTpl = new \XoopsTpl();
-}
-
-
-
-if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl)) {
+if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof \XoopsTpl)) {
     require_once $GLOBALS['xoops']->path('class/template.php');
     $xoopsTpl = new \XoopsTpl();
 }
@@ -51,10 +55,16 @@ if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof XoopsTpl))
 $helper->loadLanguage('admin');
 $helper->loadLanguage('modinfo');
 $helper->loadLanguage('main');
+$helper->loadLanguage('common');
 
-$pathIcon16      = Xmf\Module\Admin::iconUrl('', 16);
-$pathIcon32      = Xmf\Module\Admin::iconUrl('', 32);
+$pathIcon16    = Xmf\Module\Admin::iconUrl('', '16');
+$pathIcon32    = Xmf\Module\Admin::iconUrl('', '32');
 $pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 
 $GLOBALS['xoopsTpl']->assign('pathIcon16', $pathIcon16);
 $GLOBALS['xoopsTpl']->assign('pathIcon32', $pathIcon32);
+
+if (!isset($GLOBALS['xoTheme']) || !is_object($GLOBALS['xoTheme'])) {
+    require $GLOBALS['xoops']->path('class/theme.php');
+    $GLOBALS['xoTheme'] = new \xos_opal_Theme();
+}

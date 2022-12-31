@@ -76,7 +76,7 @@ CREATE TABLE `wfcpages` (
   `wfc_caption`         VARCHAR(255)          NOT NULL DEFAULT '0',
   `wfc_active`          TINYINT(1) UNSIGNED   NOT NULL DEFAULT '0',
   PRIMARY KEY (`wfc_cid`),
-  KEY `wfc_title` (`wfc_title`),
+  KEY `wfc_title` (`wfc_title`(100)),
   KEY `wfc_publish` (`wfc_publish`),
   KEY `wfc_expired` (`wfc_expired`),
   KEY `wfc_default` (`wfc_default`)

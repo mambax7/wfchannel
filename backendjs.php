@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 // Hacked from backend.php by lykoszine@yahoo.co.uk
 // Uses the following CSS classes:
 // rss_title
@@ -6,7 +6,7 @@
 // rss_footer
 $filename = 'cache/backendjs.txt'; //File to read/write
 $timespan = 3600; //1 hours (if the file is more recent than this, it will not be updated)
-require_once  dirname(dirname(__DIR__)) . '/mainfile.php';
+require_once \dirname(__DIR__, 2) . '/mainfile.php';
 $fd = fopen($filename, 'rb');
 if ($fd and (time() - filemtime($filename) < $timespan)) {
     $contents = fread($fd, filesize($filename));
@@ -17,7 +17,7 @@ if ($fd and (time() - filemtime($filename) < $timespan)) {
     $sql    = 'SELECT storyid, title FROM ' . $xoopsDB->prefix('news_stories') . ' WHERE published>0 AND published<' . time() . ' ORDER BY published DESC';
     $result = $xoopsDB->query($sql, 10, 0);
     if (!$result) {
-        echo 'An error occured';
+        echo 'An error occurred';
     } else {
         $fd   = fopen($filename, 'w+b');
         $temp = "<script language='Javascript'>";
@@ -31,11 +31,11 @@ if ($fd and (time() - filemtime($filename) < $timespan)) {
             $temp  .= "document.write('<LI><span class=\"rss_body\"><A HREF=\"" . XOOPS_URL . '/modules/news/article.php?storyid=' . $myrow['storyid'] . '" target=blank>';
             $temp  .= $myrow['title'] . "</a></span><br>');\n";
         }
-        $t    = formatTimestamp(time(), 'm', '' . $xoopsConfig['server_TZ'] . '');
+        $t    = formatTimestamp(time(), 'm', '' . $xoopsConfig['server_TZ']);
         $temp .= "document.write('<div class=\"rss_footer\">Updated : $t</div>');";
     }
     $temp .= '</script>';
     echo $temp;
-    fwrite($fd, $temp, strlen($temp));
+    fwrite($fd, $temp, mb_strlen($temp));
     fclose($fd);
 }

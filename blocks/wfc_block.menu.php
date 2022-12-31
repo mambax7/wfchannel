@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 // ------------------------------------------------------------------------ //
 // WF-Channel - WF-Projects                                                 //
@@ -7,15 +7,15 @@
 // Authors:                                                                 //
 // John Neill ( AKA Catzwolf )                                              //
 // //
-// URL: http://catzwolf.x10hosting.com/                                     //
+// URL: https://catzwolf.x10hosting.com/                                     //
 // Project: WF-Projects                                                     //
 // -------------------------------------------------------------------------//
-defined('XOOPS_ROOT_PATH') || die('You do not have permission to access this file!');
+defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
 /**
  * b_wfc_menu_show()
  *
- * @param  mixed $options
- * @return mixed
+ * @param mixed $options
+ * @return array
  */
 function b_wfc_menu_show($options)
 {
@@ -60,12 +60,12 @@ function b_wfc_menu_show($options)
 /**
  * b_wfc_menu_edit()
  *
- * @param  mixed $options
+ * @param mixed $options
  * @return string
  */
 function b_wfc_menu_edit($options)
 {
-    $options[3] = !isset($options[3]) ? _MB_WFC_WFCHANNEL : $options[3];
+    $options[3] = $options[3] ?? _MB_WFC_WFCHANNEL;
 
     $form = _MB_WFC_DISP . '&nbsp;';
     $form .= '<input type="hidden" name="options[]" value="';

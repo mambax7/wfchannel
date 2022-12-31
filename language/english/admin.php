@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 // ------------------------------------------------------------------------ //
 // Xoops - PHP Content Management System                                //
 // Copyright (c) 2007 Xoops                                         //
@@ -10,7 +10,7 @@
 // URL: http:www.Xoops.com                                              //
 // Project: Xoops Project                                               //
 // -------------------------------------------------------------------------//
-defined('XOOPS_ROOT_PATH') || die('You do not have permission to access this file!');
+defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
 
 /**
  * Menu Language defines
@@ -23,8 +23,7 @@ define('_AM_WFC_ADMINMENU_CONTUS', 'Contant Page');
 define('_AM_WFC_ADMINMENU_PERMS', 'Permissions');
 define('_AM_WFC_ADMINMENU_UPLOAD', 'Upload');
 define('_AM_WFC_ADMINMENU_IMPORT', 'Import');
-/**
- */
+
 define('_AM_WFC_MAINAREA', 'Page Management');
 define('_AM_WFC_MAINAREA_DSC', 'Manage all your pages from this area. Perform actions such as, edit, delete or duplicate your pages.');
 define('_AM_WFC_MAINAREA_EDIT_DSC', 'Page Edit: You can create or edit a page from this area. Once you have edited or modified your page, please click submit button to save all changes made.');
@@ -82,13 +81,16 @@ define('_AM_EWFC_USEFTITLE', 'Use Html Title:');
 define('_AM_EWFC_DOIMPORT', 'Import File:');
 
 define('_AM_EWFC_CLEANINGOPTIONS', 'Page Cleaning Options:');
-define('_AM_EWFC_CLEANINGOPTIONS_DSC', 'The options will perform certain text cleaning.
+define(
+    '_AM_EWFC_CLEANINGOPTIONS_DSC',
+    'The options will perform certain text cleaning.
  <br><br>
  <b>Helpful Hints</b><br>
  Raw Formatting: Leave all formatting untouched and no html cleansing.<br>
  Html Cleansing: Clean and Filter Html input.
  MS Word Cleansing: Removes undesired MS word tags from content and leave all other html tags intact.<br>
- Remove All Formatting: Removes all html tags from content and converts content to plain text.<br>');
+ Remove All Formatting: Removes all html tags from content and converts content to plain text.<br>'
+);
 define('_AM_EWFC_CLEANRAW', 'Raw Formatting');
 define('_AM_EWFC_CLEANHTML', 'Html Cleansing');
 define('_AM_EWFC_CLEANMSWORD', 'MS Word Cleansing');
@@ -107,9 +109,9 @@ define('_AM_EWFC_MAINMENU_DSC', 'If selected this page will be displayed within 
 define('_AM_EWFC_SUBMENU', 'Channel Block Menu:');
 define('_AM_EWFC_SUBMENU_DSC', 'If selected, this page will be displayed in the Module Menu Block');
 define('_AM_EWFC_ALLOWCOMMENTS', 'Show Comments:');
-define('_AM_EWFC_ALLOWCOMMENTS_DSC', 'Select to allow comments for this page. Gobal Comments can be enabled/disabled from the module preferences.');
+define('_AM_EWFC_ALLOWCOMMENTS_DSC', 'Select tO allow comments for this page. Global Comments can be enabled/disabled from the module preferences.');
 define('_AM_EWFC_MENU_AUTHOR', 'Author Name:');
-define('_AM_EWFC_MENU_AUTHOR_DSC', 'Select a Author name from the pulldown selection.');
+define('_AM_EWFC_MENU_AUTHOR_DSC', 'SELECT a Author name FROM the pulldown selection.');
 define('_AM_EWFC_MENU_AUTHORALIAS', 'Enter Author Alias:');
 define('_AM_EWFC_MENU_AUTHORALIAS_DSC', 'Enter an Alias Author name for this page.');
 define('_AM_EWFC_METATITLE', 'Meta Keywords: ');
@@ -206,12 +208,15 @@ define('_AM_EWFC_FOLDERDOESNOTEXIST', '<strong>ERROR:</strong> The import folder
 define('_AM_WFC_CHANIMAGEEXIST', 'File %s already exisits on the server, please try uploading another file.');
 
 define('_AM_WFC_SELSTATUS', 'Set Page Status:');
-define('_AM_WFC_SELSTATUS_DSC', 'Set the status of a page to one of the following:
+define(
+    '_AM_WFC_SELSTATUS_DSC',
+    'Set the status of a page to one of the following:
 <br><b>Published:</b> Open to all viewers with permissions
 <br><b>Unpublished:</b> Sets Page to a submitted stage
 <br><b>Expired:</b> Sets Page as Archive/Expired
 <br><b>Inactive:</b> Sets the page as inactive keeps its orginal state
-');
+'
+);
 
 define('_AM_WFC_SELALL', 'All Pages');
 define('_AM_WFC_SELPUBLISHED', 'Published');

@@ -1,4 +1,5 @@
-<?php
+<?php declare(strict_types=1);
+
 /**
  * Module: WF-Channel
  * Version: v1.0.5
@@ -25,7 +26,7 @@ if (isset($_GET)) {
     }
 }
 
-$op = Request::getCmd('op', Request::getCmd('op', '', 'POST'), 'GET');
+$op = Request::getString('op', Request::getCmd('op', '', 'POST'), 'GET');
 
 switch ($op) {
     case 'reorder':
@@ -37,7 +38,6 @@ switch ($op) {
         redirect_header('reorder.php', 1, _AM_REORDERCHANNEL);
 
         break;
-
     case 'default':
     default:
         xoops_cp_header();

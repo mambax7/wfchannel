@@ -33,8 +33,8 @@ Setting Folder permissions:
   The following folders need to be CHMODed to 777
 
   /modules/wfchannel/cache
-  /modules/wfchannel/images
-  /modules/wfchannel/images/linkimages
+  /modules/wfchannel/assets/images
+  /modules/wfchannel/assets/images/linkimages
   /modules/wfchannel/html
   /modules/wfchannel/html/images
 

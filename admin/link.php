@@ -1,11 +1,10 @@
-<?php
+<?php declare(strict_types=1);
+
 /**
  * Name: link.php
  * Description:
  *
- * @package    : Xoosla Modules
  * @Module     :
- * @subpackage :
  * @since      : v1.0.0
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
@@ -13,14 +12,18 @@
  */
 
 use Xmf\Request;
+use XoopsModules\Wfchannel;
+use XoopsModules\Wfresource;
 
 require_once __DIR__ . '/admin_header.php';
 
-$menuHandler->addHeader(_AM_WFC_LINKAREA);
-$handler     = wfp_getHandler('link', _MODULE_DIR, _MODULE_CLASS);
-$do_callback = wfp_getObjectCallback($handler);
+xoops_cp_header();
 
-$op = wfp_Request::doRequest($_REQUEST, 'op', 'edit', 'textbox');
+$menuHandler->addHeader(_AM_WFC_LINKAREA);
+$linkHandler = new Wfchannel\LinkHandler($db); //wfp_getHandler('link', _MODULE_DIR, _MODULE_CLASS);
+$do_callback = Wfresource\Utility::getObjectCallback($linkHandler);
+
+$op = Request::getString('op', 'edit'); //Wfresource\Request::doRequest($_REQUEST, 'op', 'edit', 'textbox');
 switch ($op) {
     case 'edit':
     default:
@@ -29,10 +32,9 @@ switch ($op) {
         $do_callback->setId(1);
         $do_callback->setMenu($menu);
         if (!call_user_func([$do_callback, $op], null)) {
-            echo $handler->getHtmlErrors(true, $menu);
+            echo $linkHandler->getHtmlErrors(true, $menu);
         }
         break;
-
     case 'save':
         unset($_SESSION['wfc_channel']);
         $do_callback->setBasics();
@@ -46,8 +48,9 @@ switch ($op) {
         }
 
         if (!call_user_func([$do_callback, $op], null)) {
-            $handler->getHtmlErrors();
+            $linkHandler->getHtmlErrors();
         }
         break;
 }
-xoosla_cp_footer();
+//xoosla_cp_footer();
+require_once __DIR__ . '/admin_footer.php';

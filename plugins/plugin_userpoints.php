@@ -1,4 +1,5 @@
-<?php
+<?php declare(strict_types=1);
+
 /**
  * Name: Untitled 1.php
  * Description:
@@ -11,25 +12,26 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright  XOOPS Project (https://xoops.org)
- * @license    http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package    : XOOPS
+ * @license    GNU GPL 2.0 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  * @Module     :
- * @subpackage :
  * @since      2.3.0
  * @author     John Neill
  */
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
+
+use XoopsModules\Wfchannel;
+
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 /**
  * @param         $uid
- * @param  string $startdate
+ * @param string  $startdate
  * @return array
  */
 function wfchannel_getUserPoints($uid, $startdate = '')
 {
     require_once XOOPS_ROOT_PATH . '/modules/wfchannel/include/functions.php';
 
-    $downloadHandler = wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
+    $downloadHandler = new Wfchannel\PageHandler($db); //wfp_getHandler('page', _MODULE_DIR, _MODULE_CLASS);
     if (empty($startdate)) {
         $startdate = strtotime(date('m-y-Y'));
     }

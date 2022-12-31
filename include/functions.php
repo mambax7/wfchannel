@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 // ------------------------------------------------------------------------ //
 // WF-Channel - WF-Projects                                                 //
@@ -7,16 +7,17 @@
 // Authors:                                                                 //
 // John Neill ( AKA Catzwolf )                                              //
 // //
-// URL: http://catzwolf.x10hosting.com/                                     //
+// URL: https://catzwolf.x10hosting.com/                                     //
 // Project: WF-Projects                                                     //
 // -------------------------------------------------------------------------//
-defined('XOOPS_ROOT_PATH') || die('You do not have permission to access this file!');
+
+defined('XOOPS_ROOT_PATH') || exit('You do not have permission to access this file!');
 
 if (!isset($GLOBALS['xoopsConfig']['language'])) {
     $GLOBALS['xoopsConfig']['language'] = 'english';
 }
 
-$moduleDirName = basename(dirname(__DIR__));
+$moduleDirName = \basename(\dirname(__DIR__));
 
 define('_MODULE_DIR', $moduleDirName);
 define('_WFC_MODULE_PATH', XOOPS_ROOT_PATH . '/modules/' . $moduleDirName);
@@ -32,7 +33,7 @@ function wfc_CheckResource($upgrade)
 {
     global $xoopsUserIsAdmin, $xoopsConfig, $xoopsUser;
 
-    /** @var XoopsModuleHandler $moduleHandler */
+    /** @var \XoopsModuleHandler $moduleHandler */
     $moduleHandler = xoops_getHandler('module');
     $wmodule       = $moduleHandler->getByDirname(_MODULE_DIR);
 
@@ -48,7 +49,7 @@ function wfc_CheckResource($upgrade)
          */
     }
     $wmodule      = $moduleHandler->getByDirname(_MODULE_DIR);
-    $wfc_requires = (int)(100 * ($wmodule->getInfo('requires') + 0.001));
+    $wfc_requires = ($wmodule->getInfo('requires'));
 
     $ret = 0;
     if (!is_object($wf_resource)) {
@@ -62,56 +63,54 @@ function wfc_CheckResource($upgrade)
     if (0 != $ret) {
         if (true === $upgrade) {
             return false;
-        } else {
-            $text = '';
-            include XOOPS_ROOT_PATH . '/header.php';
-            require_once XOOPS_ROOT_PATH . '/modules/' . $wmodule->getVar('dirname') . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/errors.php';
-            $wfc_requires = '1.04';
-            switch ($ret) {
-                case 1:
-                    $text = (true === $xoopsUserIsAdmin) ? sprintf(_MD_WFC_ERROR_MISSING_MODULE, $wmodule->getVar('name'), $wfc_requires) : _MD_WFC_TECHISSUES;
-                    break;
-                case 2:
-                    $text = (true === $xoopsUserIsAdmin) ? sprintf(_MD_WFC_ERROR_NOTACTIVE, $wfc_requires) : _MD_WFC_TECHISSUES;
-                    break;
-                case 3:
-                    $text = (true === $xoopsUserIsAdmin) ? sprintf(_MD_WFC_ERROR_NOTUPDATE, $wmodule->getVar('name'), $wfc_requires) : _MD_WFC_TECHISSUES;
-                    break;
-            } // switch
-            echo $text;
-            include XOOPS_ROOT_PATH . '/footer.php';
-            exit();
         }
+        $text = '';
+        require_once XOOPS_ROOT_PATH . '/header.php';
+        require_once XOOPS_ROOT_PATH . '/modules/' . $wmodule->getVar('dirname') . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/errors.php';
+        $wfc_requires = '1.04';
+        switch ($ret) {
+            case 1:
+                $text = ($xoopsUserIsAdmin) ? sprintf(_MD_WFC_ERROR_MISSING_MODULE, $wmodule->getVar('name'), $wfc_requires) : _MD_WFC_TECHISSUES;
+                break;
+            case 2:
+                $text = ($xoopsUserIsAdmin) ? sprintf(_MD_WFC_ERROR_NOTACTIVE, $wfc_requires) : _MD_WFC_TECHISSUES;
+                break;
+            case 3:
+                $text = ($xoopsUserIsAdmin) ? sprintf(_MD_WFC_ERROR_NOTUPDATE, $wmodule->getVar('name'), $wfc_requires) : _MD_WFC_TECHISSUES;
+                break;
+        } // switch
+        echo $text;
+        require_once XOOPS_ROOT_PATH . '/footer.php';
+        exit();
 
         return (true === $isUpgrade) ? true : wfc_DisplayUserError();
-    } else {
-        return true;
     }
+
+    return true;
 }
 
 if (empty($upgrade)) {
     $upgrade = false;
 }
 
-$result = wfc_CheckResource($upgrade);
-if ($result) {
-    if (file_exists($file = XOOPS_ROOT_PATH . '/modules/wfresource/language/' . $GLOBALS['xoopsConfig']['language'] . '/admin.php')) {
-        require_once $file;
-    } else {
-        require_once XOOPS_ROOT_PATH . '/modules/wfresource/language/english/admin.php';
-    }
-    if (file_exists($file = XOOPS_ROOT_PATH . '/modules/wfresource/include/functions.php')) {
-        require_once $file;
-    }
-}
+//TODO convert version check to Semantic
+
+//$result = wfc_CheckResource($upgrade);
+//if ($result) {
+//    xoops_loadLanguage('admin', 'wfresource');
+//    xoops_loadLanguage('main', 'wfresource');
+//
+//    if (file_exists($file = XOOPS_ROOT_PATH . '/modules/wfresource/include/functions.php')) {
+//        require_once $file;
+//    }
+//}
 
 /**
- * @param                              $array
- * @param  null                        $name
- * @param  null                        $def
- * @param  bool                        $strict
- * @param  int                         $lengthcheck
- * @return array|int|mixed|null|string
+ * @param null $name
+ * @param null $def
+ * @param bool $strict
+ * @param int  $lengthcheck
+ * @return array|false|int|string|null
  */
 function wfp_cleanRequestVars(&$array, $name = null, $def = null, $strict = false, $lengthcheck = 15)
 {
@@ -125,17 +124,17 @@ function wfp_cleanRequestVars(&$array, $name = null, $def = null, $strict = fals
         $globals = [];
         foreach (array_keys($array) as $k) {
             $value = strip_tags(trim($array[$k]));
-            if (strlen($value >= $lengthcheck)) {
+            if (mb_strlen($value >= $lengthcheck)) {
                 return null;
             }
 
             if (ctype_digit($value)) {
                 $value = (int)$value;
             } else {
-                if (true === $strict) {
+                if ($strict) {
                     $value = preg_replace('/\W/', '', trim($value));
                 }
-                $value = strtolower((string)$value);
+                $value = \mb_strtolower((string)$value);
             }
             $globals[$k] = $value;
         }
@@ -145,17 +144,16 @@ function wfp_cleanRequestVars(&$array, $name = null, $def = null, $strict = fals
 
     if (!isset($array[$name]) || !array_key_exists($name, $array)) {
         return $def;
-    } else {
-        $value = strip_tags(trim($array[$name]));
     }
+    $value = strip_tags(trim($array[$name]));
 
     if (ctype_digit($value)) {
         $value = (int)$value;
     } else {
-        if (true === $strict) {
+        if ($strict) {
             $value = preg_replace('/\W/', '', trim($value));
         }
-        $value = strtolower((string)$value);
+        $value = \mb_strtolower((string)$value);
     }
 
     return $value;

@@ -17,7 +17,7 @@
 <div style="clear: both;"></div>
 
 <div class="itemBody">
-    <{if $linktous.image.image }>
+    <{if $linktous.image.image|default:'' }>
         <div class="page_logo"><img class="page_logo_image" src="<{$linktous.image.url}>"
                                     width="<{$linktous.image.width}>" height="<{$linktous.image.height}>" name="image"
                                     id="image"
@@ -87,11 +87,11 @@
         <{if $linktous.newsfeed }>
             <div class="itemHead"><{$smarty.const._MD_WFC_DISPLAYNEWSLINK}></div>
             <div class="rssicon"><img src='<{$xoops_url}>/modules/<{$smarty.const._MODULE_DIR}>/images/rss.gif'
-                                      name='image5' id='image5' alt='<{$linktous.sitename}>'></div>
-            <div class="codeText"><{$lang_displaynewsrss}></div>
+                                      name='image5' id='image5' alt='<{$linktous.sitename|default:''}>'></div>
+            <div class="codeText"><{$lang_displaynewsrss|default:''}></div>
             <div class="newsfeed"><b><{$smarty.const._MD_WFC_NEWSFEEDLINKEXAMPLE}></b> <{$xoops_url}>/backend.php</div>
         <{/if}>
-        <{if $linktous.newsfeedjs }>
+        <{if $linktous.newsfeedjs|default:'' }>
             <div class="newsfeed"><b><{$smarty.const._MD_WFC_NEWSFEEDJSLINKEXAMPLE}></b> <{$xoops_url}>
                 /modules/wfchannel/backendjs.php
             </div>

@@ -1,9 +1,10 @@
-<?php
+<?php declare(strict_types=1);
+
 /**
  * changed : 13. apr. 03
  *     author  : troels@kyberfabrikken.dk
  *     additional : Martin B. Vestergaard
- *     download: http://www.phpclasses.org/browse.html/package/1020.html
+ *     download: https://www.phpclasses.org/browse.html/package/1020.html
  *
  *     description :
  *         a script aimed at cleaning up after mshtml. use it in your wysiwyg html-editor,
@@ -41,7 +42,7 @@ class HtmlCleanerTag
     public $closingStyle;
 
     /**
-     * @param $str
+     * @param string $str
      */
     public function __construct($str)
     {
@@ -50,7 +51,7 @@ class HtmlCleanerTag
             $this->nodeType = HTML_CLEANER_NODE_NODETYPE_NODE;
         }
 
-        if ((strlen($str) > 1) && ('?' === $str[1] || '!' === $str[1])) {
+        if ((mb_strlen($str) > 1) && ('?' === $str[1] || '!' === $str[1])) {
             $this->nodeType = HTML_CLEANER_NODE_NODETYPE_SPECIAL;
         }
 
@@ -63,17 +64,17 @@ class HtmlCleanerTag
     }
 
     /**
-     * @param $str
+     * @param string $str
      */
-    public function parseFromString($str)
+    public function parseFromString($str): void
     {
         $str    = str_replace("\n", ' ', $str);
         $offset = 1;
-        $endset = strlen($str) - 2;
-        if ('<' !== $str[0] || '>' !== $str[strlen($str) - 1]) {
+        $endset = mb_strlen($str) - 2;
+        if ('<' !== $str[0] || '>' !== $str[mb_strlen($str) - 1]) {
             trigger_error('tag syntax error', E_USER_ERROR);
         }
-        if ('/' === $str[strlen($str) - 2]) {
+        if ('/' === $str[mb_strlen($str) - 2]) {
             --$endset;
             $this->closingStyle = HTML_CLEANER_NODE_CLOSINGSTYLE_XHTMLSINGLE;
         }
@@ -87,21 +88,20 @@ class HtmlCleanerTag
         for ($tagattr = ''; $offset <= $endset; ++$offset) {
             $tagattr .= $str[$offset];
         }
-        $this->nodeName   = strtolower($tagname);
+        $this->nodeName   = \mb_strtolower($tagname);
         $this->attributes = $this->parseAttributes($tagattr);
     }
 
     /**
-     * @param $str
-     * @return array
+     * @param string $str
      */
-    public function parseAttributes($str)
+    public function parseAttributes($str): array
     {
         $i      = 0;
         $return = [];
         $_state = -1;
         $_value = '';
-        while ($i < strlen($str)) {
+        while ($i < mb_strlen($str)) {
             $chr = $str[$i];
             if (-1 == $_state) { // reset buffers
                 $_name  = '';
@@ -134,34 +134,31 @@ class HtmlCleanerTag
                 if ('' != $_quote) {
                     if ($chr == $_quote) {
                         // end of attribute
-                        $return[strtolower($_name)] = $_value;
-                        $_state                     = -1;
+                        $return[mb_strtolower($_name)] = $_value;
+                        $_state                        = -1;
                     } else {
                         $_value .= $chr;
                     }
                 } else {
-                    if (preg_match("/([a-zA-Z0-9\.\,\_\-\/\#\@\%]{1})/", $chr)) {
+                    if (preg_match('/([a-zA-Z0-9\.\,\_\-\/\#\@\%]{1})/', $chr)) {
                         $_value .= $chr;
                     } else {
                         // end of attribute
-                        $return[strtolower($_name)] = $_value;
-                        $_state                     = -1;
+                        $return[mb_strtolower($_name)] = $_value;
+                        $_state                        = -1;
                     }
                 }
             }
             ++$i;
         }
         if ('' != $_value) {
-            $return[strtolower($_name)] = $_value;
+            $return[mb_strtolower($_name)] = $_value;
         }
 
         return $return;
     }
 
-    /**
-     * @return string
-     */
-    public function toString()
+    public function toString(): string
     {
         if (HTML_CLEANER_NODE_NODETYPE_TEXT == $this->nodeType
             || HTML_CLEANER_NODE_NODETYPE_SPECIAL == $this->nodeType) {
@@ -191,24 +188,20 @@ class HtmlCleanerTag
  */
 class HtmlCleaner
 {
-    /**
-     * @return string
-     */
-    public function version()
+    public function version(): string
     {
         return 'mshtml cleanup v.0.9 by troels@kyberfabrikken.dk';
     }
 
     /**
-     * @param $str
-     * @return array
+     * @param string $str
      */
-    public function dessicate($str)
+    public function dessicate($str): array
     {
         $i       = 0;
         $parts   = [];
         $_state  = -1;
-        $str_len = strlen($str);
+        $str_len = mb_strlen($str);
         while ($i < $str_len) {
             $chr = $str[$i];
             if (-1 == $_state) { // reset buffers
@@ -224,7 +217,7 @@ class HtmlCleaner
                         // start buffering
                         if ('' != $_buffer) {
                             // store part
-                            array_push($parts, new HtmlCleanerTag($_buffer));
+                            $parts[] = new HtmlCleanerTag($_buffer);
                         }
                         $_buffer = '<';
                         $_state  = 1;
@@ -235,8 +228,8 @@ class HtmlCleaner
             } elseif (1 == $_state) { // state 1 : in tag looking for >
                 $_buffer .= $chr;
                 if ('>' === $chr) {
-                    array_push($parts, new HtmlCleanerTag($_buffer));
-                    $_state = -1;
+                    $parts[] = new HtmlCleanerTag($_buffer);
+                    $_state  = -1;
                 }
             } elseif (2 == $_state) { // state 2 : in comment looking for -->
                 if ('-' == $str[$i - 2] && '-' == $str[$i - 1] && '>' === $str[$i]) {
@@ -253,19 +246,18 @@ class HtmlCleaner
 
     /**
      * @param $body
-     * @return string
      */
-    public function cleanup($body)
+    public function cleanup($body): string
     {
         $return = '';
-        foreach (self::dessicate($body) as $part) {
+        foreach ($this->dessicate($body) as $part) {
             if (isset($part->attributes['style'])) {
                 unset($part->attributes['style']);
             }
             if (isset($part->attributes['class'])) {
                 unset($part->attributes['class']);
             }
-            if (false === strpos($part->nodeValue, '<?xml:namespace') && 'span' !== $part->nodeName
+            if (false === mb_strpos($part->nodeValue, '<?xml:namespace') && 'span' !== $part->nodeName
                 && 'font' !== $part->nodeName
                 && 'o' !== $part->nodeName
                 && 'script' !== $part->nodeName

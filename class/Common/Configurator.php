@@ -1,4 +1,6 @@
-<?php namespace XoopsModules\Wfchannel\Common;
+<?php declare(strict_types=1);
+
+namespace XoopsModules\Wfchannel\Common;
 
 /*
  You may not change or alter any portion of this comment or credits
@@ -9,72 +11,57 @@
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
+
 /**
  * Configurator Class
  *
  * @copyright   XOOPS Project (https://xoops.org)
- * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @license     GNU GPL 2.0 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  * @author      XOOPS Development Team
- * @package     Publisher
- * @since       1.05
- *
  */
 
-require_once dirname(__DIR__) . '/include/common.php';
+//require_once \dirname(__DIR__, 2) . '/include/common.php';
 
 /**
  * Class Configurator
  */
 class Configurator
 {
+    public $name;
+    public $paths           = [];
     public $uploadFolders   = [];
-    public $blankFiles  = [];
+    public $copyBlankFiles  = [];
+    public $copyTestFolders = [];
     public $templateFolders = [];
     public $oldFiles        = [];
     public $oldFolders      = [];
-    public $name;
+    public $renameTables    = [];
+    public $renameColumns   = [];
+    public $moduleStats     = [];
+    public $modCopyright;
+    public $icons;
 
     /**
-     * PublisherConfigurator constructor.
+     * Configurator constructor.
      */
     public function __construct()
     {
-        $moduleDirName        = basename(dirname(__DIR__));
-        $capsDirName          = strtoupper($moduleDirName);
-        $this->name           = 'Module Configurator';
-        $this->uploadFolders  = [
-            constant($capsDirName . '_UPLOAD_PATH'),
-            constant($capsDirName . '_UPLOAD_PATH') . '/content',
-            constant($capsDirName . '_UPLOAD_PATH') . '/images',
-            constant($capsDirName . '_UPLOAD_PATH') . '/images/category',
-            constant($capsDirName . '_UPLOAD_PATH') . '/images/thumbnails',
-        ];
-        $this->blankFiles = [
-            constant($capsDirName . '_UPLOAD_PATH'),
-            constant($capsDirName . '_UPLOAD_PATH') . '/images/category',
-            constant($capsDirName . '_UPLOAD_PATH') . '/images/thumbnails',
-        ];
+        $config = require \dirname(__DIR__, 2) . '/config/config.php';
 
-        $this->templateFolders = [
-            '/templates/',
-            '/templates/blocks/',
-            '/templates/admin/'
+        $this->name            = $config->name;
+        $this->paths           = $config->paths;
+        $this->uploadFolders   = $config->uploadFolders;
+        $this->copyBlankFiles  = $config->copyBlankFiles;
+        $this->copyTestFolders = $config->copyTestFolders;
+        $this->templateFolders = $config->templateFolders;
+        $this->oldFiles        = $config->oldFiles;
+        $this->oldFolders      = $config->oldFolders;
+        $this->renameTables    = $config->renameTables;
+        $this->renameColumns   = $config->renameColumns;
+        $this->moduleStats     = $config->moduleStats;
+        $this->modCopyright    = $config->modCopyright;
 
-        ];
-        $this->oldFiles        = [
-            '/class/request.php',
-            '/class/registry.php',
-            '/class/utilities.php',
-            '/class/util.php',
-            '/include/constants.php',
-            '/include/functions.php',
-            '/ajaxrating.txt'
-        ];
-        $this->oldFolders      = [
-            '/images',
-            '/css',
-            '/js',
-            '/tcpdf',
-        ];
+        $this->icons = require \dirname(__DIR__, 2) . '/config/icons.php';
+        $this->paths = require \dirname(__DIR__, 2) . '/config/paths.php';
     }
 }

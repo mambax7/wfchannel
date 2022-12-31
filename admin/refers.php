@@ -1,18 +1,20 @@
-<?php
+<?php declare(strict_types=1);
+
 /**
  * Name: refers.php
  * Description:
  *
- * @package    : Xoosla Modules
  * @Module     :
- * @subpackage :
  * @since      : v1.0.0
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
 
+use Xmf\Module\Admin;
 use Xmf\Request;
+use XoopsModules\Wfchannel;
+use XoopsModules\Wfresource;
 
 require_once __DIR__ . '/admin_header.php';
 
@@ -20,69 +22,71 @@ require_once __DIR__ . '/admin_header.php';
  * Instance the call back
  */
 $menuHandler->addHeader(_AM_WFC_REFERSAREA);
-$handler     = wfp_getHandler('refers', _MODULE_DIR, _MODULE_CLASS);
-$do_callback = wfp_getObjectCallback($handler);
+$refersHandler = new Wfchannel\RefersHandler($db); // wfp_getHandler('refers', _MODULE_DIR, _MODULE_CLASS);
+$do_callback   = Wfresource\Utility::getObjectCallback($refersHandler);
 
 /**
  * Switch
  */
 $menu = 2;
-$op   = wfp_Request::doRequest($_REQUEST, 'op', 'default', 'textbox');
+$op   = Request::getString('op', 'default'); //Wfresource\Request::doRequest($_REQUEST, 'op', 'default', 'textbox');
+
+xoops_cp_header();
+
 switch ($op) {
     case 'delete':
         $do_callback->setMenu($menu);
-        if (!wfp_Request::doRequest($_REQUEST, 'ok', 0, 'int')) {
+        if (!Request::getInt('ok', 0)) {
+            //Wfresource\Request::doRequest($_REQUEST, 'ok', 0, 'int')) {
             $menuHandler->addSubHeader(_AM_WFP_MAINAREA_DELETE_DSC);
         }
         if (!call_user_func([$do_callback, $op], null)) {
-            $handler->getHtmlErrors(true, $menu);
+            $refersHandler->getHtmlErrors(true, $menu);
         }
         break;
-
     case 'deleteall':
         if (false === $do_callback->deleteall($op)) {
-            $handler->getHtmlErrors(true, $menu);
+            $refersHandler->getHtmlErrors(true, $menu);
         }
         break;
-
     case 'default':
     default:
-        $nav['start']  = wfp_Request::doRequest($_REQUEST, 'start', 0, 'int');
-        $nav['sort']   = wfp_Request::doRequest($_REQUEST, 'sort', 'wfcr_id', 'int');
-        $nav['order']  = wfp_Request::doRequest($_REQUEST, 'order', 'ASC', 'textbox');
-        $nav['limit']  = wfp_Request::doRequest($_REQUEST, 'limit', 10, 'int');
-        $nav['date']   = wfp_Request::doRequest($_REQUEST, 'date', '', 'textbox');
-        $nav['search'] = wfp_Request::doRequest($_REQUEST, 'search', '', 'textbox');
-        $nav['andor']  = wfp_Request::doRequest($_REQUEST, 'andor', 'AND', 'textbox');
-        if (10 !== strlen($nav['date'])) {
+        $nav['start']  = Request::getInt('start', 0); //Wfresource\Request::doRequest($_REQUEST, 'start', 0, 'int');
+        $nav['sort']   = Request::getInt('sort', 'wfcr_id'); //Wfresource\Request::doRequest($_REQUEST, 'sort', 'wfcr_id', 'int');
+        $nav['order']  = Request::getString('order', 'ASC'); //Wfresource\Request::doRequest($_REQUEST, 'order', 'ASC', 'textbox');
+        $nav['limit']  = Request::getInt('limit', 10); //Wfresource\Request::doRequest($_REQUEST, 'limit', 10, 'int');
+        $nav['date']   = Request::getString('date', ''); //Wfresource\Request::doRequest($_REQUEST, 'date', '', 'textbox');
+        $nav['search'] = Request::getString('search', ''); //Wfresource\Request::doRequest($_REQUEST, 'search', '', 'textbox');
+        $nav['andor']  = Request::getString('andor', 'AND'); //Wfresource\Request::doRequest($_REQUEST, 'andor', 'AND', 'textbox');
+        if (10 !== mb_strlen($nav['date'])) {
             $nav['date'] = strtotime($nav['date']);
         }
         foreach ($nav as $k => $v) {
             if (isset($_REQUEST[$k])) {
-                $_SESSION['wfchannel']['refers'][$k] = $nav[$k];
+                $_SESSION['wfchannel']['refers'][$k] = $v;
             } else {
                 if (isset($_SESSION['wfchannel']['refers'][$k])) {
                     $nav[$k] = $_SESSION['wfchannel']['refers'][$k];
                 } else {
-                    $_SESSION['wfchannel']['refers'][$k] = $nav[$k];
+                    $_SESSION['wfchannel']['refers'][$k] = $v;
                 }
             }
         }
 
-        $tlist = wfp_getClass('tlist');
-        $tlist->AddFormStart('post', 'refers.php', 'refer');
-        $tlist->AddHeader('wfcr_id', '5', 'center', false);
-        $tlist->AddHeader('wfcr_uid', '20%', 'left', true);
-        $tlist->AddHeader('wfcr_date', '', 'center', true);
-        $tlist->AddHeader('wfcr_referurl', '', 'center', true);
-        $tlist->AddHeader('wfcr_ip', '', 'center', true);
-        $tlist->AddHeader('', '', 'center', 2);
-        $tlist->AddHeader('action', '', 'center', false);
+        $tlist = new Wfresource\Tlist(); //wfp_getClass('tlist');
+        $tlist->addFormStart('post', 'refers.php', 'refer');
+        $tlist->addHeader('wfcr_id', '5', 'center', false);
+        $tlist->addHeader('wfcr_uid', '20%', 'left', true);
+        $tlist->addHeader('wfcr_date', '', 'center', true);
+        $tlist->addHeader('wfcr_referurl', '', 'center', true);
+        $tlist->addHeader('wfcr_ip', '', 'center', true);
+        $tlist->addHeader('', '', 'center', 2);
+        $tlist->addHeader('action', '', 'center', false);
         $tlist->addFooter(['deleteall' => _AM_WFC_DELETESELECTED]);
         $tlist->setPath('op=' . $op);
 
         $button = ['delete'];
-        $_obj   = $handler->getObj($nav, false);
+        $_obj   = $refersHandler->getObj($nav, false);
         if ($_obj['count'] && count($_obj['list'])) {
             foreach ($_obj['list'] as $obj) {
                 $wfcr_id = $obj->getVar('wfcr_id');
@@ -94,24 +98,27 @@ switch ($op) {
                                 $obj->getReferUrl(),
                                 $obj->getVar('wfcr_ip'),
                                 $obj->getCheckbox('wfcr_id'),
-                                wfp_getIcons($button, 'wfcr_id', $wfcr_id)
+                                Wfresource\Utility::getIcons($button, 'wfcr_id', $wfcr_id),
                             ]);
             }
         }
         // HTML output
-        xoops_cp_header();
+        //        xoops_cp_header();
 
-    /** @var Xmf\Module\Admin $adminObject */
-    $adminObject = \Xmf\Module\Admin::getInstance();
-    $adminObject->displayNavigation(basename(__FILE__));
+        /** @var Xmf\Module\Admin $adminObject */
+        $adminObject = Admin::getInstance();
+        $adminObject->displayNavigation(basename(__FILE__));
+
+        //        $adminObject->displayIndex();
 
         $menuHandler->addSubHeader(_AM_WFC_REFERSAREA_DSC);
-        //        $menuHandler->render($menu);
-        $handler->headingHtml($_obj['count']);
-        $handler->displayCalendar($nav, false);
+        $menuHandler->render($menu);
+        $refersHandler->headingHtml($_obj['count']);
+        $refersHandler->displayCalendar($nav, false);
         $tlist->render();
-        wfp_ShowPagenav($_obj['count'], $nav['limit'], $nav['start'], 'start', 1, 'index.php?limit=' . $nav['limit']);
-        wfp_ShowLegend($button);
+        Wfresource\Utility::showPagenav($_obj['count'], $nav['limit'], $nav['start'], 'start', 1, 'index.php?limit=' . $nav['limit']);
+        Wfresource\Utility::showLegend($button);
         break;
 }
-xoosla_cp_footer();
+//xoosla_cp_footer();
+require_once __DIR__ . '/admin_footer.php';

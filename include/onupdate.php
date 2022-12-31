@@ -1,29 +1,28 @@
-<?php
+<?php declare(strict_types=1);
+
 /**
  * Name: onupdate.php
  * Description:
  *
- * @package    : Xoosla Modules
  * @Module     : WF-Channel
- * @subpackage : Updater
  * @since      : v1.0.0
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 /**
  * xoops_module_update_wfchannel()
  *
- * @param  mixed $module
- * @param  mixed $oldversion
+ * @param mixed $module
+ * @param mixed $oldversion
  * @return bool
  */
 function xoops_module_update_wfchannel($module, $oldversion)
 {
     global $msgs;
-    $moduleDirName = basename(dirname(__DIR__));
+    $moduleDirName = \basename(\dirname(__DIR__));
     /**
      * Do install here
      */
@@ -35,18 +34,16 @@ function xoops_module_update_wfchannel($module, $oldversion)
         require_once XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/upgrade.php';
 
         return true;
-    } else {
-        $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">Update Failed: Required module WF-Resource is missing. Please Install this module and perform the update again</span>';
-
-        return false;
     }
+    $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">Update Failed: Required module WF-Resource is missing. Please Install this module and perform the update again</span>';
+
+    return false;
 }
 
 /**
  * displayOutput()
- *
  */
-function displayOutput()
+function displayOutput(): void
 {
     global $updater, $msgs;
 

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 // ------------------------------------------------------------------------ //
 // XOOPS - PHP Content Management System                      //
@@ -24,6 +24,7 @@
 // along with this program; if not, write to the Free Software              //
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 // ------------------------------------------------------------------------ //
+
 $xoopsTpl->assign('icon_dirname', 'wfresource');
 $xoops_module_header = '
 <link rel="stylesheet" type="text/css" href="' . XOOPS_URL . '/modules/' . $GLOBALS['xoopsModule']->getVar('dirname') . '/templates/css/module.css">

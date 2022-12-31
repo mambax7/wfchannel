@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 // ------------------------------------------------------------------------ //
 // Xoops - PHP Content Management System                                //
 // Copyright (c) 2007 Xoops                                         //
@@ -13,17 +13,18 @@
 
 require_once __DIR__ . '/preloads/autoloader.php';
 
-$moduleDirName = basename(__DIR__);
+$moduleDirName      = basename(__DIR__);
+$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
-// ------------------- Informations ------------------- //
+// ------------------- Information ------------------- /
 $modversion = [
-    'version'             => 2.08,
-    'requires'            => 1.06,//wf-resource
+    'version'             => '2.8.0',
+    'requires'            => '1.6.0', //wf-resource
     'module_status'       => 'Beta 1',
-    'release_date'        => '2017/07/22',//yyyy/mm/dd
+    'release_date'        => '2017/07/22', //yyyy/mm/dd
     'name'                => _MI_WFC_CHANNEL,
     'description'         => _MI_WFC_CHANNELDESC,
-    'official'            => 0,//1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
+    'official'            => 0, //1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
     'author'              => 'John Neill',
     'author_mail'         => 'author-email',
     'author_website_url'  => 'https://xoops.org',
@@ -34,18 +35,18 @@ $modversion = [
     'license'             => 'GPL 2.0 or later',
     'license_url'         => 'www.gnu.org/licenses/gpl-2.0.html/',
     'help'                => 'page=help',
-    //
-    'release_info'        => 'Changelog',
-    'release_file'        => XOOPS_URL . "/modules/{$moduleDirName}/docs/changelog file",
-    //
+
+    'release_info' => 'Changelog',
+    'release_file' => XOOPS_URL . "/modules/{$moduleDirName}/docs/changelog file",
+
     'manual'              => 'link to manual file',
     'manual_file'         => XOOPS_URL . "/modules/{$moduleDirName}/docs/install.txt",
-    'min_php'             => '5.5',
-    'min_xoops'           => '2.5.9',
-    'min_admin'           => '1.1',
+    'min_php'             => '7.4',
+    'min_xoops'           => '2.5.10',
+    'min_admin'           => '1.2',
     'min_db'              => ['mysql' => '5.5'],
     // images
-    'image'               => 'images/logoModule.png',
+    'image'               => 'assets/images/logoModule.png',
     'iconsmall'           => 'assets/images/iconsmall.png',
     'iconbig'             => 'assets/images/iconbig.png',
     'dirname'             => $moduleDirName,
@@ -81,7 +82,7 @@ $modversion = [
     'hasSearch'           => 1,
     'search'              => [
         'file' => 'include/search.inc.php',
-        'func' => $moduleDirName . '_search'
+        'func' => $moduleDirName . '_search',
     ],
     'hasComments'         => 1,
     'comments'            => [
@@ -90,14 +91,13 @@ $modversion = [
         'callbackFile' => 'include/comment_functions.php',
         'callback'     => [
             'approve' => 'wfchannel_com_approve',
-            'update'  => 'wfchannel_com_update'
-        ]
+            'update'  => 'wfchannel_com_update',
+        ],
     ],
     // Install/Update
     'onInstall'           => 'include/oninstall.php',
     'onUpdate'            => 'include/onupdate.php',
-    'onUninstall'         => 'include/onuninstall.php'
-
+    'onUninstall'         => 'include/onuninstall.php',
 ];
 
 // ------------------- Mysql ------------------- //
@@ -108,7 +108,7 @@ $modversion['tables'] = [
     'wfcpages',
     'wfclink',
     'wfcrefer',
-    'wfcrefers'
+    'wfcrefers',
 ];
 
 // Comment callback functions
@@ -126,7 +126,7 @@ $modversion['helpsection'] = [
     ['name' => _MI_WFC_CREDITS, 'link' => 'page=__credits'],
     ['name' => _MI_WFC_DISCLAIMER, 'link' => 'page=__disclaimer'],
     ['name' => _MI_WFC_LICENSE, 'link' => 'page=__license'],
-    ['name' => _MI_WFC_SUPPORT, 'link' => 'page=__support']
+    ['name' => _MI_WFC_SUPPORT, 'link' => 'page=__support'],
 ];
 
 /**
@@ -141,7 +141,7 @@ $modversion['notification']['category'][] = [
     'title'          => _MI_WFC_GLOBALNOTIFYCAT_TITLE,
     'description'    => '_MI_WFC_GLOBALNOTIFYCAT_DESC',
     'subscribe_from' => ['index.php'],
-    'item_name'      => ''
+    'item_name'      => '',
 ];
 
 $modversion['notification']['category'][] = [
@@ -150,7 +150,7 @@ $modversion['notification']['category'][] = [
     'description'    => '_MI_WFC_PAGENOTIFYCAT_DESC',
     'subscribe_from' => ['index.php'],
     'allow_bookmark' => 1,
-    'item_name'      => 'cid'
+    'item_name'      => 'cid',
 ];
 
 $modversion['notification']['event'][] = [
@@ -160,7 +160,7 @@ $modversion['notification']['event'][] = [
     'caption'       => _MI_WFC_GLOBALNOTIFY_CAPTION,
     'description'   => '_MI_WFC_GLOBALNOTIFY_DESC',
     'mail_template' => 'global_pagemodified_notify',
-    'mail_subject'  => '_MI_WFC_GLOBALNOTIFY_SUBJECT'
+    'mail_subject'  => '_MI_WFC_GLOBALNOTIFY_SUBJECT',
 ];
 
 $modversion['notification']['event'][] = [
@@ -170,7 +170,7 @@ $modversion['notification']['event'][] = [
     'caption'       => _MI_WFC_GLOBALNEWNOTIFY_CAPTION,
     'description'   => '_MI_WFC_GLOBALNEWNOTIFY_DESC',
     'mail_template' => 'global_pagenew_notify',
-    'mail_subject'  => '_MI_WFC_GLOBALNEWNOTIFY_SUBJECT'
+    'mail_subject'  => '_MI_WFC_GLOBALNEWNOTIFY_SUBJECT',
 ];
 
 $modversion['notification']['event'][] = [
@@ -180,7 +180,7 @@ $modversion['notification']['event'][] = [
     'caption'       => _MI_WFC_PAGENOTIFY_CAPTION,
     'description'   => '_MI_WFC_PAGENOTIFY_DESC',
     'mail_template' => 'global_pagemodified_notify',
-    'mail_subject'  => '_MI_WFC_PAGENOTIFY_SUBJECT'
+    'mail_subject'  => '_MI_WFC_PAGENOTIFY_SUBJECT',
 ];
 
 $modversion['notification']['event'][] = [
@@ -190,7 +190,7 @@ $modversion['notification']['event'][] = [
     'caption'       => _MI_WFC_PAGENEWNOTIFY_CAPTION,
     'description'   => '_MI_WFC_PAGENEWNOTIFY_DESC',
     'mail_template' => 'global_pagenew_notify',
-    'mail_subject'  => '_MI_WFC_PAGENEWNOTIFY_SUBJECT'
+    'mail_subject'  => '_MI_WFC_PAGENEWNOTIFY_SUBJECT',
 ];
 
 // ------------------- Blocks ------------------- //
@@ -201,7 +201,7 @@ $modversion['blocks'][] = [
     'show_func'   => 'b_wfc_new_show',
     'edit_func'   => 'b_wfc_new_edit',
     'options'     => 'published|10|19|M/d/Y|' . $modversion['dirname'],
-    'template'    => 'wfchannel_block_new.tpl'
+    'template'    => 'wfchannel_block_new.tpl',
 ];
 
 $modversion['blocks'][] = [
@@ -211,7 +211,7 @@ $modversion['blocks'][] = [
     'show_func'   => 'b_wfc_menu_show',
     'edit_func'   => 'b_wfc_menu_edit',
     'options'     => 'weight|10|19|' . $modversion['dirname'],
-    'template'    => 'wfchannel_block_menu.tpl'
+    'template'    => 'wfchannel_block_menu.tpl',
 ];
 
 // ------------------- Templates ------------------- //
@@ -223,7 +223,7 @@ $modversion['templates'] = [
     ['file' => $moduleDirName . '_refer.tpl', 'description' => _MI_WFC_TPL3_DESC],
     ['file' => $moduleDirName . '_banned.tpl', 'description' => _MI_WFC_TPL4_DESC],
     ['file' => $moduleDirName . '_channellinks.tpl', 'description' => _MI_WFC_TPL5_DESC],
-    ['file' => $moduleDirName . '_emailerror.tpl', 'description' => _MI_WFC_TPL6_DESC]
+    ['file' => $moduleDirName . '_emailerror.tpl', 'description' => _MI_WFC_TPL6_DESC],
 ];
 
 $modversion['config'][] = [
@@ -232,7 +232,7 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_HTMLUPLOADDIRDSC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => 'modules/' . $modversion['dirname'] . '/html'
+    'default'     => 'modules/' . $modversion['dirname'] . '/html',
 ];
 
 $modversion['config'][] = [
@@ -241,7 +241,7 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_UPLOADDIRDSC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => 'modules/' . $modversion['dirname'] . '/images'
+    'default'     => 'modules/' . $modversion['dirname'] . '/images',
 ];
 
 $modversion['config'][] = [
@@ -250,7 +250,7 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_UPLOADDIRDSC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => 'modules/' . $modversion['dirname'] . '/images/linkimages'
+    'default'     => 'modules/' . $modversion['dirname'] . '/images/linkimages',
 ];
 
 $modversion['config'][] = [
@@ -259,7 +259,7 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_MAXFILESIZEDSC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
-    'default'     => 120000
+    'default'     => 120000,
 ];
 
 $modversion['config'][] = [
@@ -268,7 +268,7 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_IMGWIDTHDSC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
-    'default'     => 600
+    'default'     => 600,
 ];
 
 $modversion['config'][] = [
@@ -277,7 +277,7 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_IMGHEIGHTDSC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
-    'default'     => 600
+    'default'     => 600,
 ];
 
 $modversion['config'][] = [
@@ -287,7 +287,7 @@ $modversion['config'][] = [
     'formtype'    => 'select',
     'valuetype'   => 'int',
     'default'     => 10,
-    'options'     => ['5' => 5, '10' => 10, '15' => 15, '20' => 20, '25' => 25, '30' => 30, '50' => 50]
+    'options'     => ['5' => 5, '10' => 10, '15' => 15, '20' => 20, '25' => 25, '30' => 30, '50' => 50],
 ];
 
 $modversion['config'][] = [
@@ -296,7 +296,7 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_DISPLAYTITLEDSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => 1
+    'default'     => 1,
 ];
 
 xoops_load('XoopsEditorHandler');
@@ -310,7 +310,7 @@ $modversion['config'][] = [
     'formtype'    => 'select',
     'valuetype'   => 'text',
     'default'     => 'dhtmltextarea',
-    'options'     => $editorList
+    'options'     => $editorList,
 ];
 
 $modversion['config'][] = [
@@ -319,7 +319,7 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_BANNEDDSC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
-    'default'     => ''
+    'default'     => '',
 ];
 
 $modversion['config'][] = [
@@ -328,7 +328,7 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_BOOKMARKDSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => '1'
+    'default'     => '1',
 ];
 
 $modversion['config'][] = [
@@ -337,7 +337,7 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_ALLOWADDTHISCODE_DSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => '0'
+    'default'     => '0',
 ];
 
 $modversion['config'][] = [
@@ -346,7 +346,7 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_ADDTHISCODE_DSC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
-    'default'     => ''
+    'default'     => '',
 ];
 
 $modversion['config'][] = [
@@ -355,7 +355,7 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_ALLOWBMTEXT_DSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => '0'
+    'default'     => '0',
 ];
 
 $modversion['config'][] = [
@@ -367,8 +367,8 @@ $modversion['config'][] = [
     'default'     => '0',
     'options'     => [
         _MI_WFC_HORIZONTAL => 0,
-        _MI_WFC_VERTICAL   => 1
-    ]
+        _MI_WFC_VERTICAL   => 1,
+    ],
 ];
 
 $modversion['config'][] = [
@@ -378,7 +378,7 @@ $modversion['config'][] = [
     'formtype'    => 'select',
     'valuetype'   => 'int',
     'default'     => 3,
-    'options'     => ['None' => 0, 'Both' => 1, 'Top' => 2, 'Bottom' => 3]
+    'options'     => ['None' => 0, 'Both' => 1, 'Top' => 2, 'Bottom' => 3],
 ];
 
 $modversion['config'][] = [
@@ -394,8 +394,8 @@ $modversion['config'][] = [
         '_MI_WFC_PRINT_ICON'     => 2,
         '_MI_WFC_PDF_ICON'       => 3,
         '_MI_WFC_EMAILICON_ICON' => 4,
-        '_MI_WFC_BOOKMARK_ICON'  => 5
-    ]
+        '_MI_WFC_BOOKMARK_ICON'  => 5,
+    ],
 ];
 
 $modversion['config'][] = [
@@ -404,7 +404,7 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_ACTIVATEREFERS_DSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => '1'
+    'default'     => '1',
 ];
 
 $modversion['config'][] = [
@@ -413,7 +413,7 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_ACTIVATELINKS_DSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => '1'
+    'default'     => '1',
 ];
 
 $modversion['config'][] = [
@@ -422,7 +422,7 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_ALLOWADMIN_DSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => '0'
+    'default'     => '0',
 ];
 
 $modversion['config'][] = [
@@ -431,7 +431,7 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_XOOPSTAGS_DSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => '0'
+    'default'     => '0',
 ];
 
 $modversion['config'][] = [
@@ -440,7 +440,7 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_COPYRIGHT_DSC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => 'Copyright © %s %s'
+    'default'     => 'Copyright © %s %s',
 ];
 
 $modversion['config'][] = [
@@ -449,5 +449,29 @@ $modversion['config'][] = [
     'description' => '_MI_WFC_PNKINKS_DSC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => '0'
+    'default'     => '0',
+];
+
+/**
+ * Make Sample button visible?
+ */
+$modversion['config'][] = [
+    'name'        => 'displaySampleButton',
+    'title'       => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLE_BUTTON',
+    'description' => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLE_BUTTON_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
+
+/**
+ * Show Developer Tools?
+ */
+$modversion['config'][] = [
+    'name'        => 'displayDeveloperTools',
+    'title'       => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_DEV_TOOLS',
+    'description' => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_DEV_TOOLS_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
 ];

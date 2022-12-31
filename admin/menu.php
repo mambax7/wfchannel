@@ -1,83 +1,92 @@
-<?php
+<?php declare(strict_types=1);
+
 /**
  * Name: menu.php
  * Description:
  *
- * @package    : Xoosla Modules
  * @Module     :
- * @subpackage :
  * @since      : v1.0.0
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
 
-use XoopsModules\Wfchannel;
+use Xmf\Module\Admin;
+use XoopsModules\Wfchannel\Helper;
 
-// require_once  dirname(__DIR__) . '/class/Helper.php';
-//require_once  dirname(__DIR__) . '/include/common.php';
-$helper = Wfchannel\Helper::getInstance();
+/** @var Admin $adminObject */
+/** @var Helper $helper */
+include \dirname(__DIR__) . '/preloads/autoloader.php';
 
-$pathIcon32 = \Xmf\Module\Admin::menuIconPath('');
-$pathModIcon32 = $helper->getModule()->getInfo('modicons32');
+$moduleDirName      = \basename(\dirname(__DIR__));
+$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
+$helper = Helper::getInstance();
+$helper->loadLanguage('common');
+$helper->loadLanguage('feedback');
+
+$pathIcon32    = Admin::menuIconPath('');
+$pathModIcon32 = XOOPS_URL . '/modules/' . $moduleDirName . '/assets/images/icons/32/';
+if (is_object($helper->getModule()) && false !== $helper->getModule()->getInfo('modicons32')) {
+    $pathModIcon32 = $helper->url($helper->getModule()->getInfo('modicons32'));
+}
 
 $adminmenu[] = [
     'title' => _MI_WFC_HOME,
     'link'  => 'admin/index.php',
-    'icon'  => $pathIcon32 . '/home.png'
+    'icon'  => $pathIcon32 . '/home.png',
 ];
 
 $adminmenu[] = [
     'title' => _MI_WFC_ADMENU1,
     'link'  => 'admin/main.php',
-    'icon'  => $pathIcon32 . '/index.png'
+    'icon'  => $pathIcon32 . '/index.png',
 ];
 
 $adminmenu[] = [
     'title' => _MI_WFC_ADMENU2,
     'link'  => 'admin/main.php?op=edit',
-    'icon'  => $pathIcon32 . '/add.png'
+    'icon'  => $pathIcon32 . '/add.png',
 ];
 
 $adminmenu[] = [
     'title' => _MI_WFC_ADMENU3,
     'link'  => 'admin/refer.php',
-    'icon'  => $pathIcon32 . '/button_ok.png'
+    'icon'  => $pathIcon32 . '/button_ok.png',
 ];
 
 $adminmenu[] = [
     'title' => _MI_WFC_ADMENU8,
     'link'  => 'admin/refers.php',
-    'icon'  => $pathIcon32 . '/view_detailed.png'
+    'icon'  => $pathIcon32 . '/view_detailed.png',
 ];
 
 $adminmenu[] = [
     'title' => _MI_WFC_ADMENU4,
     'link'  => 'admin/link.php',
-    'icon'  => $pathIcon32 . '/addlink.png'
+    'icon'  => $pathIcon32 . '/addlink.png',
 ];
 
 $adminmenu[] = [
     'title' => _MI_WFC_ADMENU5,
     'link'  => 'admin/permissions.php',
-    'icon'  => $pathIcon32 . '/permissions.png'
+    'icon'  => $pathIcon32 . '/permissions.png',
 ];
 
 $adminmenu[] = [
     'title' => _MI_WFC_ADMENU6,
     'link'  => 'admin/upload.php',
-    'icon'  => $pathIcon32 . '/upload.png'
+    'icon'  => $pathIcon32 . '/upload.png',
 ];
 
 $adminmenu[] = [
     'title' => _MI_WFC_ADMENU7,
     'link'  => 'admin/import.php',
-    'icon'  => $pathIcon32 . '/compfile.png'
+    'icon'  => $pathIcon32 . '/compfile.png',
 ];
 
 $adminmenu[] = [
     'title' => _MI_WFC_ABOUT,
     'link'  => 'admin/about.php',
-    'icon'  => $pathIcon32 . '/about.png'
+    'icon'  => $pathIcon32 . '/about.png',
 ];

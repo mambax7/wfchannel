@@ -1,19 +1,11 @@
-<?php namespace XoopsModules\Wfchannel;
+<?php declare(strict_types=1);
 
-use Xmf\Request;
-use XoopsModules\Wfchannel;
-use XoopsModules\Wfchannel\Common;
+namespace XoopsModules\Wfchannel;
 
 /**
  * Class Utility
  */
-class Utility
+class Utility extends Common\SysUtility
 {
-    use Common\VersionChecks; //checkVerXoops, checkVerPhp Traits
-
-    use Common\ServerStats; // getServerStats Trait
-
-    use Common\FilesManagement; // Files Management Trait
-
     //--------------- Custom module methods -----------------------------
 }

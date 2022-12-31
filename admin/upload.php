@@ -1,31 +1,32 @@
-<?php
+<?php declare(strict_types=1);
+
 /**
  * Name: upload.php
  * Description:
  *
- * @package    : Xoosla Modules
  * @Module     :
- * @subpackage :
  * @since      : v1.0.0
  * @author     John Neill <catzwolf@xoosla.com>
  * @copyright  : Copyright (C) 2009 Xoosla. All rights reserved.
  * @license    : GNU/LGPL, see docs/license.php
  */
 
+use Xmf\Module\Admin;
 use Xmf\Request;
+use XoopsModules\Wfresource;
 
 require_once __DIR__ . '/admin_header.php';
 
 $menuHandler->addHeader(_AM_WFC_UPLOADAREA);
-$op = wfp_Request::doRequest($_REQUEST, 'op', 'default', 'textbox');
+$op = Request::getString('op', 'default'); //Wfresource\Request::doRequest($_REQUEST, 'op', 'default', 'textbox');
 switch ($op) {
     case 'upload':
         if (!$GLOBALS['xoopsSecurity']->check()) {
-            redirect_header(xoops_getenv('PHP_SELF'), 0, $GLOBALS['xoopsSecurity']->getErrors(true));
+            redirect_header(xoops_getenv('SCRIPT_NAME'), 0, $GLOBALS['xoopsSecurity']->getErrors(true));
         }
-        $uploadfile = wfp_Request::doRequest($_FILES['uploadfile'], 'name', '', 'textbox');
-        $uploadpath = wfp_Request::doRequest($_REQUEST, 'uploadpath', '', 'textbox');
-        $rootnumber = wfp_Request::doRequest($_REQUEST, 'rootnumber', 0, 'int');
+        $uploadfile = Request::getString('name', ''); //Wfresource\Request::doRequest($_FILES['uploadfile'], 'name', '', 'textbox');
+        $uploadpath = Request::getString('uploadpath', ''); //Wfresource\Request::doRequest($_REQUEST, 'uploadpath', '', 'textbox');
+        $rootnumber = Request::getInt('rootnumber', 0); //Wfresource\Request::doRequest($_REQUEST, 'rootnumber', 0, 'int');
         /**
          * Do checks here
          */
@@ -34,7 +35,8 @@ switch ($op) {
                 xoops_cp_header();
                 //                $menuHandler->render(5);
                 echo sprintf(_AM_WFC_CHANIMAGEEXIST, $uploadfile);
-                xoosla_cp_footer();
+                //xoosla_cp_footer();
+                require_once __DIR__ . '/admin_footer.php';
                 exit();
             }
 
@@ -42,7 +44,7 @@ switch ($op) {
             if (3 !== $rootnumber) {
                 $allowed_mimetypes = ['image/gif', 'image/jpeg', 'image/pjpeg', 'image/x-png', 'image/png'];
             }
-            $ret = wfp_uploader($allowed_mimetypes, $uploadfile, xoops_getenv('PHP_SELF'), 1, $uploadpath);
+            $ret = Wfresource\Utility::uploader($allowed_mimetypes, $uploadfile, xoops_getenv('SCRIPT_NAME'), 1, $uploadpath);
             xoops_cp_header();
 
             //            $menuHandler->render(5);
@@ -54,15 +56,14 @@ switch ($op) {
             echo _AM_WFP_FILEDOESNOTEXIST;
         }
         break;
-
     case 'delete':
         if (!$GLOBALS['xoopsSecurity']->check()) {
-            redirect_header(xoops_getenv('PHP_SELF'), 0, $GLOBALS['xoopsSecurity']->getErrors(true));
+            redirect_header(xoops_getenv('SCRIPT_NAME'), 0, $GLOBALS['xoopsSecurity']->getErrors(true));
         }
 
-        $ok          = wfp_Request::doRequest($_POST, 'ok', 0, 'int');
-        $uploadpath  = wfp_Request::doRequest($_REQUEST, 'uploadpath', '', 'textbox');
-        $channelfile = wfp_Request::doRequest($_REQUEST, 'channelfile', '', 'textbox');
+        $ok          = Request::getInt('ok', 0); //Wfresource\Request::doRequest($_POST, 'ok', 0, 'int');
+        $uploadpath  = Request::getString('uploadpath', ''); //Wfresource\Request::doRequest($_REQUEST, 'uploadpath', '', 'textbox');
+        $channelfile = Request::getString('channelfile', ''); //Wfresource\Request::doRequest($_REQUEST, 'channelfile', '', 'textbox');
         $file        = explode('|', $channelfile);
         $channelfile = is_array($file) ? $file[0] : $file;
 
@@ -71,39 +72,46 @@ switch ($op) {
             if (file_exists($filetodelete)) {
                 chmod($filetodelete, 0777);
                 if (@unlink($filetodelete)) {
-                    redirect_header(xoops_getenv('PHP_SELF'), 1, sprintf(_AM_WFP_FILEDELETED, $channelfile));
+                    redirect_header(xoops_getenv('SCRIPT_NAME'), 1, sprintf(_AM_WFP_FILEDELETED, $channelfile));
                 } else {
                     xoops_cp_header();
                     //                    echo $menuHandler->render(5);
                     echo sprintf(_AM_WFP_ERRORDELETEFILE, $channelfile);
-                    xoosla_cp_footer();
+                    //xoosla_cp_footer();
+                    require_once __DIR__ . '/admin_footer.php';
                 }
             }
         } else {
             xoops_cp_header();
             $menuHandler->addSubHeader(_AM_WFP_MAINAREA_DELETE_DSC);
             //            $menuHandler->render(5);
-            xoops_confirm([
-                              'op'          => 'delete',
-                              'uploadpath'  => $uploadpath,
-                              'channelfile' => $channelfile,
-                              'ok'          => 1
-                          ], xoops_getenv('PHP_SELF'), sprintf(_AM_WFP_DYRWTDICONFIRM, $channelfile), 'Delete');
+            xoops_confirm(
+                [
+                    'op'          => 'delete',
+                    'uploadpath'  => $uploadpath,
+                    'channelfile' => $channelfile,
+                    'ok'          => 1,
+                ],
+                xoops_getenv('SCRIPT_NAME'),
+                sprintf(_AM_WFP_DYRWTDICONFIRM, $channelfile),
+                'Delete'
+            );
         }
         break;
-
     case 'default':
     default:
         xoops_cp_header();
 
         /** @var Xmf\Module\Admin $adminObject */
-        $adminObject = \Xmf\Module\Admin::getInstance();
+        $adminObject = Admin::getInstance();
         $adminObject->displayNavigation(basename(__FILE__));
 
         $menuHandler->addSubHeader(_AM_WFC_UPLOADAREA_DSC);
         //        $menuHandler->render(5);
-        $dummyHandler = $referHandler = wfp_getHandler('dummy');
+        //        $dummyHandler = $referHandler = wfp_getHandler('dummy');
+        $dummyHandler = $referHandler = Wfresource\Helper::getInstance()->getHandler('WfpDummy');
         $up_obj       = $dummyHandler->create();
         $up_obj->formEdit('wfp_upload');
 }
-xoosla_cp_footer();
+//xoosla_cp_footer();
+require_once __DIR__ . '/admin_footer.php';
