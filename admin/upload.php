@@ -31,7 +31,7 @@ switch ($op) {
          * Do checks here
          */
         if (!empty($uploadfile)) {
-            if (file_exists(XOOPS_ROOT_PATH . "/${uploadpath}/${uploadfile}")) {
+            if (file_exists(XOOPS_ROOT_PATH . "/{$uploadpath}/{$uploadfile}")) {
                 xoops_cp_header();
                 //                $menuHandler->render(5);
                 echo sprintf(_AM_WFC_CHANIMAGEEXIST, $uploadfile);
